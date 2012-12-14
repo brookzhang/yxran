@@ -1,5 +1,7 @@
 Yxran::Application.routes.draw do
   
+  get "maintain/index"
+
   authenticated :user do
     root :to => 'home#index'
   end
