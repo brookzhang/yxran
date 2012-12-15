@@ -1,2 +1,28 @@
-<h1>Maintain::Stores#index</h1>
-<p>Find me in app/views/maintain/stores/index.html.erb</p>
+<div class="span8">
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th><%= t(:store_name) %></th>
+          <th></th>
+          <th></th>                                      
+      </tr>
+  </thead>   
+  <tbody>
+  <% @stores.each do |store| %>
+    <tr>
+        <td><%= link_to store.name, [:maintain, store]  %></td>
+        <td>
+			<%= link_to t(:stock), maintain_store_stocks_path(store) , :class => 'btn' %>
+        </td>
+        <td><%= link_to(t(:delete), maintain_store_path(store), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini')  %></td>                                       
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="5">
+      <%= link_to t(:create), new_maintain_store_path, :class => 'btn' %>
+	  <%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div> 

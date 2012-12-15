@@ -13,7 +13,7 @@ class AddLookupProductStoreStockHistory < ActiveRecord::Migration
     create_table(:products) do |t|
       t.string :name
       t.string :description
-      t.string :type  #tea type
+      t.string :category  #tea type
       t.string :measurement
       t.float :unit_price
       
@@ -23,7 +23,7 @@ class AddLookupProductStoreStockHistory < ActiveRecord::Migration
     
     create_table(:stores) do |t|
       t.string :name
-      t.string :type  # store type
+      t.string :category  # store type
       t.string :remark
       
       t.timestamps
@@ -51,8 +51,8 @@ class AddLookupProductStoreStockHistory < ActiveRecord::Migration
     end
 
     add_index(:lookups, [:code, :category])
-    add_index(:products, [:name, :type])
-    add_index(:stores, [:name, :type])
+    add_index(:products, [:name, :category])
+    add_index(:stores, [:name, :category])
     add_index(:stocks, [:product_id, :store_id ])
     add_index(:histories, [:stock_id, :adjust_type, :adjusted_at ])
   end

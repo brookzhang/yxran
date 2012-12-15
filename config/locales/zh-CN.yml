@@ -10,10 +10,12 @@ zh-CN:
   
   # globle.
   #----------------------------------------------------------------------------
+  create: '新增'
   edit: '编辑'
   update: '更新'
   delete: '删除'
   submit: '提交'
+  cancel: '撤销'
   back: '返回'
   close: '关掉'
   created_at: '创建日期'
@@ -56,14 +58,45 @@ zh-CN:
   account_info: '账号信息'
   role: '身份'
   change_role: '身份调整'
-  user_updated: '账号资料已更新'
-  unable_to_update_user: '没办法修改账号'
+  updated_ok: '资料已更新'
+  unable_to_update: '没办法修改'
   not_authorized_as_admin: '只有管理员有权限'
   user_deleted: '账号已删除'
   can_not_delete_yourself: '不能删除自己的账号'
   are_you_sure_to_delete: '真的要删吗?'
+  created_ok: '添加成功'
+  unable_to_create: '添加失败'
   
+  
+  # lookup.
+  #----------------------------------------------------------------------------
   code: '编码'
   category: '分组'
   description: '描述'
   remark: '备注'
+  sequence: '排序'
+  status: '状态'
+  
+  
+  # product.
+  #----------------------------------------------------------------------------
+  category: '分类'
+  product_name: '商品名称'
+  measurement: '计量单位'
+  unit_price: '单价'
+  
+  
+  # store.
+  #----------------------------------------------------------------------------
+  store_name: '店铺名称'
+  store_category: '店铺类型'
+  
+  # stock.
+  #----------------------------------------------------------------------------
+  stock: '库存'
+  quantity: '数量'
+  safe_stock: '安全库存'
+  
+  
+  
+  

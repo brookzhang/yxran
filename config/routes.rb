@@ -8,8 +8,10 @@ Yxran::Application.routes.draw do
     resources :lookups
     resources :products
     resources :stores
-    resources :stocks do
-      resources :histories
+    resources :stores do
+      resources :stocks do
+        resources :histories
+      end
     end
   end
   

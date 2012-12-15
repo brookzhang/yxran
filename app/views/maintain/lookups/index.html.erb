@@ -14,15 +14,16 @@
     <tr>
         <td><%= lookup.code %></td>
         <td><%= t(lookup.category) %></td>
-        <td><%= link_to lookup.description, lookup %></td>
+        <td><%= link_to lookup.description, [:maintain, lookup] %></td>
         <td>
         </td>
-        <td><%= link_to(t(:delete), lookup_path(lookup), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini')  %></td>                                       
+        <td><%= link_to(t(:delete), maintain_lookup_path(lookup), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini')  %></td>                                       
     </tr>
   <% end %>
   <tr>
     <td colspan="5">
       <%= link_to t(:create), new_maintain_lookup_path, :class => 'btn' %>
+			<%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
     </td>
   </tr>
   </tbody>

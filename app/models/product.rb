@@ -2,7 +2,7 @@ class Product < ActiveRecord::Base
   has_many :stocks
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :description, :type, :measurement, :unit_price
+  attr_accessible :name, :description, :category, :measurement, :unit_price
 
   
   validates_presence_of :name, :measurement

@@ -1,0 +1,7 @@
+<!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:stock_name) %>: <%= @stock.name %></p>
+<p><%= t(:stock_category) %>: <%= @stock.category %></p>
+<p><%= t(:remark) %>: <%= @stock.remark %></p>
+<p><%= t(:created_at) %>: <%= @stock.created_at.to_date %></p>
+<%= link_to t(:edit), edit_maintain_stock_path(@stock), :class => 'btn'%>
+<%= link_to t(:back), maintain_stocks_path, :class => 'btn'%>

@@ -40,14 +40,14 @@ ActiveRecord::Schema.define(:version => 20121215070114) do
   create_table "products", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "type"
+    t.string   "category"
     t.string   "measurement"
     t.float    "unit_price"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
-  add_index "products", ["name", "type"], :name => "index_products_on_name_and_type"
+  add_index "products", ["name", "category"], :name => "index_products_on_name_and_category"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -74,13 +74,13 @@ ActiveRecord::Schema.define(:version => 20121215070114) do
 
   create_table "stores", :force => true do |t|
     t.string   "name"
-    t.string   "type"
+    t.string   "category"
     t.string   "remark"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "stores", ["name", "type"], :name => "index_stores_on_name_and_type"
+  add_index "stores", ["name", "category"], :name => "index_stores_on_name_and_category"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
