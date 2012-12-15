@@ -1,0 +1,69 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+zh-CN:
+  
+  # site info.
+  #----------------------------------------------------------------------------
+  app_name: '易香然'
+  
+  
+  # globle.
+  #----------------------------------------------------------------------------
+  edit: '编辑'
+  update: '更新'
+  delete: '删除'
+  submit: '提交'
+  back: '返回'
+  close: '关掉'
+  created_at: '创建日期'
+  user: '店员'
+  admin: '管理员'
+  manager: '经理'
+  member: '会员'
+  
+  # sessions.
+  #----------------------------------------------------------------------------
+  sign_in: '登入'
+  sign_out: '退出'
+  sign_up: '注册'
+  remember_me: '记住我'
+  
+  # users.
+  #----------------------------------------------------------------------------
+  name: '名称'
+  email: '邮箱'
+  password: '密码'
+  password_confirmation: '再输入一次密码'
+  current_password: '当前密码'
+  if_no_change_leave_empty: '如果不想改的话就让它空着'
+  need_current_password_for_confirm: "需要输入当前的密码以确认修改"
+  my_account: '我的账号'
+  edit_account: '修改账号'
+  cancel_account: '注销账号'
+  
+  
+
+  # maintain.
+  #----------------------------------------------------------------------------
+  maintain: '管理'
+  lookup_config: '系统设定'
+  users_maintain: '账号管理'
+  products_maintain: '商品管理'
+  stores_maintain: '店子管理'
+  sales_maintain: '销售管理'
+  members_maintain: '会员管理'
+  account_info: '账号信息'
+  role: '身份'
+  change_role: '身份调整'
+  user_updated: '账号资料已更新'
+  unable_to_update_user: '没办法修改账号'
+  not_authorized_as_admin: '只有管理员有权限'
+  user_deleted: '账号已删除'
+  can_not_delete_yourself: '不能删除自己的账号'
+  are_you_sure_to_delete: '真的要删吗?'
+  
+  code: '编码'
+  category: '分组'
+  description: '描述'
+  remark: '备注'

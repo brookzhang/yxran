@@ -1,0 +1,30 @@
+<div class="span8">
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th><%= t(:code) %></th>
+          <th><%= t(:category) %></th>
+          <th><%= t(:description) %></th>
+          <th></th>
+          <th></th>                                      
+      </tr>
+  </thead>   
+  <tbody>
+  <% @lookups.each do |lookup| %>
+    <tr>
+        <td><%= lookup.code %></td>
+        <td><%= t(lookup.category) %></td>
+        <td><%= link_to lookup.description, lookup %></td>
+        <td>
+        </td>
+        <td><%= link_to(t(:delete), lookup_path(lookup), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini')  %></td>                                       
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="5">
+      <%= link_to t(:create), new_maintain_lookup_path, :class => 'btn' %>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div> 

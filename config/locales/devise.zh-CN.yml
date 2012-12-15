@@ -1,6 +1,6 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
-cn:
+zh-CN:
   errors:
     messages:
       expired: "过期了,请重新操作"

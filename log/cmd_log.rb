@@ -1,29 +1,7 @@
 
 
-
-
-
-Command	Description
-rake -T
-rake ffcrm:setup	 #Prepare the database and set up Fat Free CRM
-rake ffcrm:setup:admin	 #Create admin user
-rake ffcrm:demo:load	 #Load demo data
-rake ffcrm:demo:reload
-rake ffcrm:dropbox:run	 #Run dropbox crawler and process incoming emails
-rake ffcrm:settings:clear	 #Clear settings from database (reset to default)
-rake assets:precompile	 #Precompile static assets (javascript/css/etc.) for deployment
-rake spec:acceptance	 #Run the acceptance specs in spec/acceptance
-rake spec:no_acceptance	 #Run all specs except acceptance tests
-
-
-rails g model entities/Product name:string measurement:string unit_price:float remark:string 
-rails g controller admin/Products index new create edit update destroy
-
-#rails g model Stock name:string remark:string status:integer
-#rails g model Stock_Product stock_id:integer product_id:integer quantity:integer
-#rails g model Stock_Product_History stock_product_id:integer adjusted_by:integer adjuested_to:integer adjust_type:string remark:string
-#rails g controller admin/Stocks index new create edit update destroy
-#rails g controller admin/stock_products index new create edit update destroy
+rails g migration AddProductStoreStockHistory
+rails g migration AddMemberSale
 
 rails g model Warehouse name:string remark:string status:integer
 rails g model Inventory warehouse_id:integer product_id:integer quantity:integer last_updated_at:datetime
@@ -33,13 +11,8 @@ rails g controller admin/Inventories index new create edit update destroy
 rails g controller admin/Histories index new create edit update destroy
 
 
-if defined?(redirect_path)  #record as a tag , for undefined variable judgement
 
 
-
-
-#################################################
-#################################################
 
 set HTTP_PROXY=http://172.30.4.63:3128
 set HTTP_PROXY=http://172.20.1.46:8999

@@ -1,7 +1,19 @@
 Yxran::Application.routes.draw do
   
-  get "maintain/index"
+  
+  
 
+  namespace :maintain do
+    match '/dashboard',:to=> 'dashboard#index'
+    resources :lookups
+    resources :products
+    resources :stores
+    resources :stocks do
+      resources :histories
+    end
+  end
+  
+  
   authenticated :user do
     root :to => 'home#index'
   end
