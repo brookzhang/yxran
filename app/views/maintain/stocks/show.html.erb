@@ -1,7 +1,10 @@
 <!--h3><%= t(:account_info) %></h3-->
-<p><%= t(:stock_name) %>: <%= @stock.name %></p>
-<p><%= t(:stock_category) %>: <%= @stock.category %></p>
+<p><%= t(:product_name) %>: <%= @stock.product.name %></p>
+<p><%= t(:store_name) %>: <%= @stock.store.name %></p>
+<p><%= t(:quantity) %>: <%= @stock.quantity %></p>
+<p><%= t(:safe_stock) %>: <%= @stock.safe_stock %></p>
 <p><%= t(:remark) %>: <%= @stock.remark %></p>
 <p><%= t(:created_at) %>: <%= @stock.created_at.to_date %></p>
 <%= link_to t(:edit), edit_maintain_stock_path(@stock), :class => 'btn'%>
+<%= link_to t(:adjust_stock), new_maintain_stock_path(:store_id => @stock.store_id, :product_id => @stock.product_id), :class => 'btn'%>
 <%= link_to t(:back), maintain_stocks_path, :class => 'btn'%>

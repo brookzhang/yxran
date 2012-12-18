@@ -1,6 +1,7 @@
 class Stock < ActiveRecord::Base
   has_many :histories
-  belongs_to :store, :product
+  belongs_to :store
+  belongs_to :product
   
   
   # Setup accessible (or protected) attributes for your model

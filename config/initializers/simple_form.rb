@@ -44,6 +44,8 @@ SimpleForm.setup do |config|
     b.use :hint,  :wrap_with => { :tag => :span, :class => :hint }
     b.use :error, :wrap_with => { :tag => :span, :class => :error }
   end
+  
+
 
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :default

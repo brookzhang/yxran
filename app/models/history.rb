@@ -1,4 +1,5 @@
 class History < ActiveRecord::Base
+  belongs_to :stock
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :stock_id, :adjust_type, :reference_id, :adjusted_by, :adjusted_to, :adjusted_at, :remark

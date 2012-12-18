@@ -1,7 +1,10 @@
 class Maintain::StocksController < ApplicationController
   def index
-    @store = Store.find(params[:store_id])
-    @stocks = Stock.where("store_id= ?",@store.id)
+    @stock = Stock.new
+    @stock.store_id = params[:store_id]
+    @stock.product_id = params[:product_id]
+    @stocks = find_stocks(@stock)
+    
   end
   
   def show
@@ -9,11 +12,13 @@ class Maintain::StocksController < ApplicationController
   end
 
   def new
-    @stock = Stock.new
+    @stock = params[:id] ? Stock.find(params[:id]) : Stock.new
   end
 
   def create
     @stock = Stock.new(params[:stock])
+    if Stock.count()
+    end
     if @stock.save
       redirect_to maintain_stocks_path, :notice => t(:created_ok)
     else
@@ -33,6 +38,15 @@ class Maintain::StocksController < ApplicationController
     else
       redirect_to maintain_stock_path(@stock), :alert => t(:unable_to_update)
     end
+  end
+  
+  private
+  def find_stocks(stock)
+    conditions = {}
+    conditions[:store_id] = stock.store_id unless stock.store_id.to_i > 0
+    conditions[:product_id] = stock.product_id unless stock.product_id.to_i > 0
+    Stock.find(:all, :conditions => conditions)
+    
   end
   
 end

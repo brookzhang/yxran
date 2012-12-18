@@ -53,6 +53,7 @@ zh-CN:
   users_maintain: '账号管理'
   products_maintain: '商品管理'
   stores_maintain: '店子管理'
+  stocks_maintain: '库存管理'
   sales_maintain: '销售管理'
   members_maintain: '会员管理'
   account_info: '账号信息'
@@ -95,7 +96,12 @@ zh-CN:
   #----------------------------------------------------------------------------
   stock: '库存'
   quantity: '数量'
+  stock_quantity: '当前库存'
   safe_stock: '安全库存'
+  adjust_stock: '调整库存'
+  create_stock: '新增库存'
+  adjust_quantity: '调整数量'
+  
   
   
   

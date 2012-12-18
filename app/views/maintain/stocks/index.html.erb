@@ -4,25 +4,25 @@
       <tr>
           <th><%= t(:store_name) %></th>
           <th><%= t(:product_name) %></th>
-          <th></th>
+          <th><%= t(:stock_quantity) %></th>
           <th></th>                                      
       </tr>
   </thead>   
   <tbody>
   <% @stocks.each do |stock| %>
     <tr>
-        <td><%#= stock.product.name %></td>
-        <td><%#= stock.store.name %></td>
-        <td>
+        <td><%= stock.product.name %></td>
+        <td><%= stock.store.name %></td>
+        <td><%= stock.quantity %></td>
+        <td><%= link_to t(:edit), edit_maintain_stock_path(stock), :class => 'btn' %>
 			
-        </td>
-        <td></td>                                       
+        </td>                                    
     </tr>
   <% end %>
   <tr>
     <td colspan="5">
-      <%#= link_to t(:create), new_maintain_stock_path, :class => 'btn' %>
-	  <%#= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
+      <%= link_to t(:create_stock), new_maintain_stock_path, :class => 'btn' %>
+	  <%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
     </td>
   </tr>
   </tbody>

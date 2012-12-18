@@ -42,6 +42,7 @@ class AddLookupProductStoreStockHistory < ActiveRecord::Migration
     
     create_table(:histories, :id => false) do |t|
       t.references :stock
+      t.references :user
       t.string :adjust_type #adjust type
       t.integer :reference_id #sale_id or adjust_id
       t.integer :adjusted_by
@@ -54,6 +55,6 @@ class AddLookupProductStoreStockHistory < ActiveRecord::Migration
     add_index(:products, [:name, :category])
     add_index(:stores, [:name, :category])
     add_index(:stocks, [:product_id, :store_id ])
-    add_index(:histories, [:stock_id, :adjust_type, :adjusted_at ])
+    add_index(:histories, [:stock_id, :user_id, :adjust_type, :adjusted_at ])
   end
 end
