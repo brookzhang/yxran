@@ -13,8 +13,9 @@
 
 ActiveRecord::Schema.define(:version => 20121215070114) do
 
-  create_table "histories", :id => false, :force => true do |t|
+  create_table "histories", :force => true do |t|
     t.integer  "stock_id"
+    t.integer  "user_id"
     t.string   "adjust_type"
     t.integer  "reference_id"
     t.integer  "adjusted_by"
@@ -23,7 +24,8 @@ ActiveRecord::Schema.define(:version => 20121215070114) do
     t.string   "remark"
   end
 
-  add_index "histories", ["stock_id", "adjust_type", "adjusted_at"], :name => "index_histories_on_stock_id_and_adjust_type_and_adjusted_at"
+  add_index "histories", ["stock_id"], :name => "index_histories_on_stock_id"
+  add_index "histories", ["user_id", "adjust_type", "adjusted_at"], :name => "index_histories_on_user_id_and_adjust_type_and_adjusted_at"
 
   create_table "lookups", :force => true do |t|
     t.string   "code"
@@ -60,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20121215070114) do
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
-  create_table "stocks", :id => false, :force => true do |t|
+  create_table "stocks", :force => true do |t|
     t.integer  "product_id"
     t.integer  "store_id"
     t.integer  "quantity"

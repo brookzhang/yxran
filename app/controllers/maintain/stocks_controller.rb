@@ -43,8 +43,8 @@ class Maintain::StocksController < ApplicationController
   private
   def find_stocks(stock)
     conditions = {}
-    conditions[:store_id] = stock.store_id unless stock.store_id.to_i > 0
-    conditions[:product_id] = stock.product_id unless stock.product_id.to_i > 0
+    conditions[:store_id] = stock.store_id unless stock.store_id.nil?
+    conditions[:product_id] = stock.product_id unless stock.product_id.nil?
     Stock.find(:all, :conditions => conditions)
     
   end
