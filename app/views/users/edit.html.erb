@@ -4,8 +4,6 @@
 <p>
   <%= t(:role) %>: <%= t(@user.roles.first.name) unless @user.roles.first.nil? %>
   
-  <a data-toggle="modal" href="#role-options-<%= @user.id %>" class="btn btn-mini btn-warning" type="button"><%= t(:change_role) %></a>
-  <%= render :partial => 'role' %>
 </p>
 <p><%= t(:created_at) %>: <%= @user.created_at.to_date %></p>
 

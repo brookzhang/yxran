@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121215070114) do
+ActiveRecord::Schema.define(:version => 20121219074812) do
 
   create_table "histories", :force => true do |t|
     t.integer  "stock_id"
@@ -32,12 +32,40 @@ ActiveRecord::Schema.define(:version => 20121215070114) do
     t.string   "category"
     t.string   "description"
     t.integer  "sequence"
-    t.integer  "status"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "status",      :default => 1
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   add_index "lookups", ["code", "category"], :name => "index_lookups_on_code_and_category"
+
+  create_table "members", :force => true do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "remark"
+    t.string   "level"
+    t.integer  "score"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "members", ["name", "phone"], :name => "index_members_on_name_and_phone"
+
+  create_table "orders", :force => true do |t|
+    t.integer  "store_id"
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.float    "amount"
+    t.string   "remark"
+    t.integer  "status",     :default => 1
+    t.integer  "user_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "orders", ["store_id", "product_id"], :name => "index_orders_on_store_id_and_product_id"
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -45,8 +73,9 @@ ActiveRecord::Schema.define(:version => 20121215070114) do
     t.string   "category"
     t.string   "measurement"
     t.float    "unit_price"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "status",      :default => 1
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   add_index "products", ["name", "category"], :name => "index_products_on_name_and_category"
@@ -61,6 +90,24 @@ ActiveRecord::Schema.define(:version => 20121215070114) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "sales", :force => true do |t|
+    t.integer  "store_id"
+    t.integer  "product_id"
+    t.integer  "member_id"
+    t.string   "category"
+    t.float    "amount"
+    t.integer  "quantity"
+    t.integer  "score"
+    t.string   "remark"
+    t.integer  "status",     :default => 1
+    t.integer  "user_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "sales", ["member_id"], :name => "index_sales_on_member_id"
+  add_index "sales", ["store_id", "product_id"], :name => "index_sales_on_store_id_and_product_id"
 
   create_table "stocks", :force => true do |t|
     t.integer  "product_id"
@@ -78,11 +125,26 @@ ActiveRecord::Schema.define(:version => 20121215070114) do
     t.string   "name"
     t.string   "category"
     t.string   "remark"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "status",     :default => 1
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "stores", ["name", "category"], :name => "index_stores_on_name_and_category"
+
+  create_table "transfers", :force => true do |t|
+    t.integer  "from_store_id"
+    t.integer  "to_store_id"
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.string   "remark"
+    t.integer  "status",        :default => 1
+    t.integer  "user_id"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  add_index "transfers", ["from_store_id", "to_store_id"], :name => "index_transfers_on_from_store_id_and_to_store_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -98,6 +160,7 @@ ActiveRecord::Schema.define(:version => 20121215070114) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
+    t.integer  "store_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

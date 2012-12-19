@@ -5,7 +5,7 @@ class AddLookupProductStoreStockHistory < ActiveRecord::Migration
       t.string :category
       t.string :description
       t.integer :sequence
-      t.integer :status
+      t.integer :status, :default => 1
       
       t.timestamps
     end
@@ -16,6 +16,7 @@ class AddLookupProductStoreStockHistory < ActiveRecord::Migration
       t.string :category  #tea type
       t.string :measurement
       t.float :unit_price
+      t.integer :status, :default => 1
       
       t.timestamps
     end
@@ -25,6 +26,7 @@ class AddLookupProductStoreStockHistory < ActiveRecord::Migration
       t.string :name
       t.string :category  # store type
       t.string :remark
+      t.integer :status, :default => 1
       
       t.timestamps
     end
@@ -45,7 +47,7 @@ class AddLookupProductStoreStockHistory < ActiveRecord::Migration
       t.references :user
       t.string :adjust_type #adjust type
       t.integer :reference_id #sale_id or adjust_id
-      t.integer :adjusted_by
+      t.integer :adjusted_by  # 
       t.integer :adjusted_to
       t.datetime :adjusted_at
       t.string :remark

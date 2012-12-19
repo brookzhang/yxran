@@ -1,9 +1,11 @@
 class Store < ActiveRecord::Base
   has_many :stocks
+  has_many :sales
+  
   
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :category, :remark 
+  attr_accessible :name, :category, :remark , :status
 
   
   validates_presence_of :name 

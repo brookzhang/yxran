@@ -1,0 +1,13 @@
+<%= simple_form_for @sale, :html => {:class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @sale %>
+  <%= f.association :store, :label => t(:store_name), :autofocus => true, :required => true  %>
+  <%= f.association :product, :label => t(:product_name), :required => true  %>
+  <%= f.input :quantity, :label => t(:quantity), :required => true %>
+  <%= f.input :amount, :label => t(:amount) , :required => true  %> 
+  <%= f.input :remark, :label => t(:remark) %>
+  <%= f.input :category, :as => :hidden, :input_html => {:value => @sale.category} %>
+  <%= f.button :submit, t(:submit), :class => 'btn' %>
+  <%= link_to t(:back), :back, :class => 'btn' %>
+<% end %>
+

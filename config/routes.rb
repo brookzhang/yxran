@@ -3,12 +3,14 @@ Yxran::Application.routes.draw do
   
   
 
+  resources :sales
+
   namespace :maintain do
     match '/dashboard',:to=> 'dashboard#index'
     resources :lookups
     resources :products
     resources :stores
-    resources :stores
+    resources :users
     resources :stocks do
       resources :histories
     end

@@ -1,7 +1,7 @@
 
 
-rails g migration AddProductStoreStockHistory
-rails g migration AddMemberSale
+rails g migration AddLookupProductStoreStockHistory
+rails g migration AddMemberSaleTransferOrder
 
 rails g model Warehouse name:string remark:string status:integer
 rails g model Inventory warehouse_id:integer product_id:integer quantity:integer last_updated_at:datetime

@@ -1,0 +1,4 @@
+
+<%= render 'normal_sale' if @sale.category == 'N' %>
+<%= render 'member_sale' if @sale.category == 'M' %>
+<%= render 'cost_sale' if @sale.category == 'C' %>
