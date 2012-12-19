@@ -13,7 +13,7 @@
   <% @sales.each do |sale| %>
     <tr>
         <td><%= sale.product.name %></td>
-        <td><%= sale.amount %></td>
+        <td><%= link_to sale.amount.to_s, sale %></td>
         <td><%= sale.created_at %></td>
         <td>
         </td>

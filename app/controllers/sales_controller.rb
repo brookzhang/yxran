@@ -6,10 +6,20 @@ class SalesController < ApplicationController
   def show
     @sale = Sale.find(params[:id])
   end
+  
+  def normal_sale
+    @sale = Sale.new
+    @sale.category = 'N'
+  end
+  
+  def member_sale
+    @sale = Sale.new
+    @sale.category = 'M'
+  end
 
   def new
     @sale = Sale.new
-    @sale.category = params[:category].nil? ? 'N' : params[:category]
+    @sale.category = 'C'
   end
   
 

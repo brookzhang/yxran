@@ -5,10 +5,13 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   #devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   devise :database_authenticatable, :rememberable, :trackable, :validatable
+  
+  belongs_to :store
+
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :store_id, :as => :admin
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :store_id
   # attr_accessible :title, :body
   
   validates_presence_of :name
