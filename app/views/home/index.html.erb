@@ -1,10 +1,10 @@
 
   <p>
-    <%= link_to t(:normal_sale), new_sale_path(:category => 'N'), :class => 'btn btn-primary btn-large' %>
-    <%= link_to t(:member_sale), new_sale_path(:category => 'M'), :class => 'btn btn-primary btn-large' %>
+    <%= link_to t(:normal_sale), new_sale_path, :class => 'btn btn-primary btn-large' %>
+    <%= link_to t(:member_sale), sale_member_path, :class => 'btn btn-primary btn-large' %>
   </p>
   <p>
-    <%= link_to t(:cost_sale), new_sale_path(:category => 'C'), :class => 'btn btn-primary btn-large' %>
+    <%= link_to t(:cost_sale), sale_cost_path, :class => 'btn btn-primary btn-large' %>
     <%= link_to t(:sale_record), sales_path, :class => 'btn btn-primary btn-large' %>
   </p>
   <p>

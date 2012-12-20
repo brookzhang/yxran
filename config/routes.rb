@@ -4,9 +4,11 @@ Yxran::Application.routes.draw do
   
 
   resources :sales
+  match 'sale/cost', :to => 'sales#cost_sale'
+  match 'sale/member', :to => 'sales#member_sale'
 
   namespace :maintain do
-    match '/dashboard',:to=> 'dashboard#index'
+    match '/dashboard',:to => 'dashboard#index'
     resources :lookups
     resources :products
     resources :stores

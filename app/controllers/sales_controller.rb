@@ -7,9 +7,9 @@ class SalesController < ApplicationController
     @sale = Sale.find(params[:id])
   end
   
-  def normal_sale
+  def cost_sale
     @sale = Sale.new
-    @sale.category = 'N'
+    @sale.category = 'C'
   end
   
   def member_sale
@@ -19,7 +19,7 @@ class SalesController < ApplicationController
 
   def new
     @sale = Sale.new
-    @sale.category = 'C'
+    @sale.category = 'N'
   end
   
 
