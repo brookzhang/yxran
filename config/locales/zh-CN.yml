@@ -26,6 +26,7 @@ zh-CN:
   show: '查看'
   date: '日期'
   time: '时间'
+  search: '搜索'
   
   
   # sessions.
@@ -52,9 +53,9 @@ zh-CN:
   
   # sales.
   #----------------------------------------------------------------------------
-  normal_sale: '普通销售'
+  normal_sale: '普通零售'
   member_sale: '会员购买'
-  cost_sale: '日常耗用'
+  cost_sale: '品茶耗用'
   sale_record: '销售记录'
   amount: '金额'
   
@@ -63,7 +64,10 @@ zh-CN:
   # members.
   #----------------------------------------------------------------------------
   member_search: '会员查询'
+  member_name: '会员姓名'
+  phone: '电话号码'
   score: '积分'
+  address: '地址'
   
   
   

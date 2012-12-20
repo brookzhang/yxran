@@ -46,7 +46,6 @@ class Maintain::StocksController < ApplicationController
     conditions[:store_id] = stock.store_id unless stock.store_id.nil?
     conditions[:product_id] = stock.product_id unless stock.product_id.nil?
     Stock.find(:all, :conditions => conditions)
-    
   end
   
 end

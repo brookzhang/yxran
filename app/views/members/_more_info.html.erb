@@ -1,0 +1,6 @@
+
+<form class="form-inline" method="get" action="<%=members_path%>">
+  <input type="text" name="name" class="input-medium" placeholder="<%=t(:member_name)%>" value="<%=@member.name%>">
+  <input type="text" name="phone" class="input-small" placeholder="<%=t(:phone)%>" value="<%=@member.phone%>">
+  <button type="submit" class="btn"><%=t(:search)%></button>
+</form>

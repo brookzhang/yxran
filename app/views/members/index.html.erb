@@ -1,0 +1,9 @@
+<div class="span8">
+<form class="form-inline" method="get" action="<%=members_path%>">
+  <input type="text" name="name" class="input-small" placeholder="<%=t(:member_name)%>" value="<%=@member.name%>">
+  <input type="text" name="phone" class="input-small" placeholder="<%=t(:phone)%>" value="<%=@member.phone%>">
+  <button type="submit" class="btn"><%=t(:search)%></button>
+</form>
+<%= render 'list' unless @members.nil? %>
+<%= render 'more_info' if @members.nil? && !@member.name.nil? && !@member.phone.nil? %>
+</div> 

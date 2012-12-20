@@ -1,0 +1,22 @@
+
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th><%= t(:name) %></th>
+          <th><%= t(:phone) %></th>
+          <th><%= t(:score) %></th>
+          <th></th>                                   
+      </tr>
+  </thead>   
+  <tbody>
+  <% @members.each do |member| %>
+    <tr>
+        <td><%= link_to member.name, member %></td>
+        <td><%= member.phone %></td>
+        <td><%= member.score %></td>
+        <td>
+        </td>                                    
+    </tr>
+  <% end %>
+  </tbody>
+</table>

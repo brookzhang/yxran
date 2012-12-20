@@ -3,7 +3,9 @@ Yxran::Application.routes.draw do
   
   
 
+  resources :members
   resources :sales
+  
   match 'sale/cost', :to => 'sales#cost_sale'
   match 'sale/member', :to => 'sales#member_sale'
 
