@@ -54,6 +54,7 @@ class SalesController < ApplicationController
     @member = sale.member_id.nil? ? nil : Member.find(sale.member_id)
     @store = Store.find(sale.store_id)
     sale.transaction do
+      sale.save
       @member.add_score(sale.score)
       @store.subtract(sale.quantity)
       
