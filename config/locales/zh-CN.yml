@@ -49,7 +49,7 @@ zh-CN:
   edit_account: '修改账号'
   cancel_account: '注销账号'
   location: '值班店铺'
-  user: '人员'
+  user: '店员'
   
   # sales.
   #----------------------------------------------------------------------------
@@ -58,6 +58,7 @@ zh-CN:
   cost_sale: '品茶耗用'
   sale_record: '销售记录'
   amount: '金额'
+  buy_again: '再次购买'
   
   
   
@@ -68,6 +69,8 @@ zh-CN:
   phone: '电话号码'
   score: '积分'
   address: '地址'
+  create_member: '新会员'
+  no_member_found: '没有找到这样的会员'
   
   
   

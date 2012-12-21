@@ -7,6 +7,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :rememberable, :trackable, :validatable
   
   belongs_to :store
+  
+  has_many :members
+  has_many :sales
+  has_many :transfers
+  has_many :orders
+  has_many :histories
 
 
   # Setup accessible (or protected) attributes for your model

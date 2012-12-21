@@ -2,7 +2,7 @@
 <ul class="nav">
   <% if user_signed_in? %>
     <% if !current_user.store_id.nil? %>
-      <li><%= link_to(current_user.store.name, root_path) %></li>
+      <li><%= link_to current_user.store.name, root_path  %></li>
     <% end %>
     <% if current_user.has_role? :admin %>
       <li><%= link_to(t(:maintain), maintain_dashboard_path) %></li>

@@ -14,6 +14,7 @@ class SalesController < ApplicationController
   
   def member_sale
     @sale = Sale.new
+    @sale.member_id = params[:member_id]
     @sale.category = 'M'
   end
 
@@ -25,6 +26,7 @@ class SalesController < ApplicationController
 
   def create
     @sale = Sale.new(params[:sale])
+    @sale.user_id = current_user.id
     if @sale.save
       redirect_to sales_path, :notice => t(:created_ok)
     else
@@ -43,6 +45,18 @@ class SalesController < ApplicationController
       redirect_to sale_path(@sale), :notice => t(:updated_ok)
     else
       redirect_to sale_path(@sale), :alert => t(:unable_to_update)
+    end
+  end
+  
+  private
+  
+  def new_sale_save(sale)
+    @member = sale.member_id.nil? ? nil : Member.find(sale.member_id)
+    @store = Store.find(sale.store_id)
+    sale.transaction do
+      @member.add_score(sale.score)
+      @store.subtract(sale.quantity)
+      
     end
   end
 end

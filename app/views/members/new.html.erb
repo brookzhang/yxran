@@ -1,0 +1,12 @@
+<%= simple_form_for @member, :html => {:class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @member %>
+  <%= f.input :name, :label => t(:name), :input_html => {:value => @member.name}, :required => true, :autofocus => true %> 
+  <%= f.input :phone, :label => t(:phone), :input_html => {:value => @member.phone}, :required => true %>
+  <%= f.input :address, :label => t(:address)  %>
+  <%= f.input :remark, :label => t(:remark)  %>
+  <%= f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id.to_s } %>
+  <%= f.button :submit, t(:submit), :class => 'btn' %>
+  <%= link_to t(:back), :back, :class => 'btn' %>
+<% end %>
+

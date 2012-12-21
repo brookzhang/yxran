@@ -14,7 +14,7 @@
         <td><%= link_to member.name, member %></td>
         <td><%= member.phone %></td>
         <td><%= member.score %></td>
-        <td>
+        <td><%= link_to t(:buy_again), membersale_path(:member_id => member.id), :class => 'btn' %>
         </td>                                    
     </tr>
   <% end %>
