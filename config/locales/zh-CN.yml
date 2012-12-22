@@ -81,13 +81,19 @@ zh-CN:
   # maintain.
   #----------------------------------------------------------------------------
   maintain: '管理'
-  lookup_config: '系统设定'
-  users_maintain: '账号管理'
-  products_maintain: '商品管理'
+  lookups_maintain: '字典管理'
+  switches_maintain: '系统设定'
+  users_maintain: '用户管理'
+  categories_maintain: '商品分类'
+  products_maintain: '所有商品'
+  discounts_maintain: '积分设定'
   stores_maintain: '店子管理'
   stocks_maintain: '库存管理'
   sales_maintain: '销售管理'
   members_maintain: '会员管理'
+  events_maintain: '操作记录'
+  orders_maintain: '订单管理'
+  transfers_maintain: '调货管理'
   account_info: '账号信息'
   role: '身份'
   change_role: '身份调整'
@@ -111,9 +117,18 @@ zh-CN:
   status: '状态'
   
   
-  # product.
+  # category.
   #----------------------------------------------------------------------------
   category: '分类'
+  parent_category: '父类'
+  root_category: '总分类'
+  s_children: '的子分类'
+  create_product: '添加商品'
+  select_category_first: '先选好分类'
+  show_products: '查看商品'
+  
+  # product.
+  #----------------------------------------------------------------------------
   product_name: '商品名称'
   product: '商品'
   measurement: '计量单位'

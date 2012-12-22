@@ -9,46 +9,83 @@
 
 
 
-puts "CREATING 茶叶种类"
+puts "creating lookups"
 Lookup.create([
-  {:code => 'tgy', :category => 'tea_type', :description => '铁观音' },
-  {:code => 'puer', :category =>'tea_type', :description => '普洱'},
-  {:code => 'lc', :category => 'tea_type', :description => '绿茶'},
-  {:code => 'hc', :category => 'tea_type', :description => '红茶'}
+  {:code => 's', :category => 'event', :description => '修改设定' },
+  {:code => 'u', :category =>'event', :description => '用户修改'},
+  {:code => 'c', :category =>'event', :description => '产品分类'},
+  {:code => 'ds', :category =>'event', :description => '产品折扣'},
+  {:code => 'c', :category =>'store_category', :description => '总部'},
+  {:code => 'p', :category =>'store_category', :description => '分店'},
+  {:code => 'i', :category =>'store_category', :description => '入驻'},
+  {:code => 's', :category =>'store_category', :description => '仓库'}
 ], :without_protection => true)
 
-puts 'CREATING products'
+puts "creating switches"
+Switch.create([
+  {:key => 'default_discount', :value => '0.1', :description => '默认折扣' }
+], :without_protection => true)
+
+puts "creating categories of products"
+Category.create([
+  {:parent_id => '0', :name => '茶叶', :description => '茶叶种类', :sequence => '1' },
+  {:parent_id => '0', :name => '茶具', :description => '茶具', :sequence => '2' },
+  {:parent_id => '1', :name => '绿茶', :description => '绿茶', :sequence =>'1' },
+  {:parent_id => '1', :name => '红茶', :description => '红茶', :sequence => '2' },
+  {:parent_id => '1', :name => '铁观音', :description => '铁观音', :sequence => '3' },
+  {:parent_id => '1', :name => '普洱茶', :description => '普洱茶', :sequence => '4' },
+  {:parent_id => '1', :name => '黑茶', :description => '黑茶', :sequence => '5' },
+  {:parent_id => '1', :name => '乌龙茶', :description => '乌龙茶', :sequence => '6' },
+  {:parent_id => '2', :name => '茶壶', :description => '茶壶', :sequence => '1' },
+  {:parent_id => '2', :name => '茶杯', :description => '茶杯', :sequence => '2' },
+  {:parent_id => '2', :name => '茶盘', :description => '茶盘', :sequence => '3' },
+  {:parent_id => '2', :name => '套件', :description => '套件', :sequence => '4' },
+  {:parent_id => '2', :name => '配件', :description => '配件', :sequence => '5' }
+], :without_protection => true)
+
+puts 'creating discounts'
+Discount.create([
+  {:category_id => 1, :member_level => '0', :discount => 0.1 },
+  {:category_id => 2, :member_level => '0', :discount => 0.1 },
+  {:category_id => 1, :member_level => '1', :discount => 0.15 },
+  {:category_id => 2, :member_level => '1', :discount => 0.15 },
+  {:category_id => 1, :member_level => '2', :discount => 0.2 },
+  {:category_id => 2, :member_level => '2', :discount => 0.15 }
+], :without_protection => true)
+
+puts 'creating products'
 Product.create([
-  {:name => '铁观音秋茶2012', :category => 'tgy', :description => '铁观音秋茶2012', :measurement => '克', :unit_price => '1.2'},
-  {:name => '大益普洱2005', :category => 'puer', :description => '大益普洱2005', :measurement => '饼', :unit_price => '200' },
-  {:name => '正山小种2011', :category => 'hc', :description => '正山小种2011', :measurement => '克', :unit_price => '3.0' },
-  {:name => '西湖龙井2012', :category => 'lc', :description => '西湖龙井2012', :measurement => '克', :unit_price => '2.0' }
+  {:name => '铁观音秋茶2012', :category_id => '5', :description => '铁观音秋茶2012', :measurement => '克', :unit_price => '1.2'},
+  {:name => '大益普洱2005', :category_id => '6', :description => '大益普洱2005', :measurement => '饼', :unit_price => '200' },
+  {:name => '正山小种2011', :category_id => '4', :description => '正山小种2011', :measurement => '克', :unit_price => '3.0' },
+  {:name => '西湖龙井2012', :category_id => '3', :description => '西湖龙井2012', :measurement => '克', :unit_price => '2.0' }
 ], :without_protection => true)
 
 
-puts "Creating stores"
+puts "creating stores"
 Store.create([
-  {:name => '总部仓库', :category => '总部', :remark => 'XXX路XXX号'},
-  {:name => '信誉大街店', :category => '分店', :remark => '信誉大街XX号' },
-  {:name => '才培店', :category => '入驻', :remark => '才培大厦一楼'}
+  {:name => '总店', :category => 'c', :remark => 'XXX路XXX号'},
+  {:name => '信誉大街店', :category => 'p', :remark => '信誉大街XX号' },
+  {:name => '才培店', :category => 'i', :remark => '才培大厦一楼'},
+  {:name => '总部仓库', :category => 's', :remark => 'xxxxx'}
 ], :without_protection => true)
 
 
-puts 'CREATING ROLES'
+puts 'creating roles'
 Role.create([
   { :name => 'admin' }, 
   { :name => 'manager' }, 
   { :name => 'user' }
 ], :without_protection => true)
 
-puts 'Create users'
+puts 'creating users'
 User.create([
-  {:name => 'admin', :email => 'brook@brook.com', :store_id => '1', :password => '123456', :password_confirmation => '123456'},
-  {:name => 'manager', :email => 'manager@brook.com', :store_id => '2', :password => '123456', :password_confirmation => '123456'},
-  {:name => 'user', :email => 'user@brook.com', :store_id => '3', :password => '123456', :password_confirmation => '123456'}
+  {:name => 'admin', :email => 'brook@b.com', :store_id => '1', :password => '123456', :password_confirmation => '123456'},
+  {:name => 'manager', :email => 'manager@b.com', :store_id => '2', :password => '123456', :password_confirmation => '123456'},
+  {:name => 'user', :email => 'user@b.com', :store_id => '3', :password => '123456', :password_confirmation => '123456'}
 ])
 
-puts 'Users roles add. '
+puts 'Adding roles'
 User.find(1).add_role :admin
 User.find(2).add_role :manager
 User.find(3).add_role :user

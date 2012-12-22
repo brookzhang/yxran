@@ -11,7 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121219074812) do
+ActiveRecord::Schema.define(:version => 20121222072748) do
+
+  create_table "categories", :force => true do |t|
+    t.integer  "parent_id"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "sequence"
+    t.integer  "status",      :default => 1
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "discounts", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "member_level"
+    t.float    "discount"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "discounts", ["category_id", "member_level"], :name => "index_discounts_on_category_id_and_member_level"
+
+  create_table "events", :force => true do |t|
+    t.string   "category"
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+  end
+
+  add_index "events", ["category", "user_id"], :name => "index_events_on_category_and_user_id"
 
   create_table "histories", :force => true do |t|
     t.integer  "stock_id"
@@ -44,11 +73,12 @@ ActiveRecord::Schema.define(:version => 20121219074812) do
     t.string   "phone"
     t.string   "address"
     t.string   "remark"
-    t.string   "level"
-    t.integer  "score"
+    t.integer  "level",      :default => 0
+    t.float    "score"
+    t.float    "all_score"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "members", ["name", "phone"], :name => "index_members_on_name_and_phone"
@@ -69,8 +99,8 @@ ActiveRecord::Schema.define(:version => 20121219074812) do
 
   create_table "products", :force => true do |t|
     t.string   "name"
+    t.integer  "category_id"
     t.string   "description"
-    t.string   "category"
     t.string   "measurement"
     t.float    "unit_price"
     t.integer  "status",      :default => 1
@@ -78,7 +108,7 @@ ActiveRecord::Schema.define(:version => 20121219074812) do
     t.datetime "updated_at",                 :null => false
   end
 
-  add_index "products", ["name", "category"], :name => "index_products_on_name_and_category"
+  add_index "products", ["name", "category_id"], :name => "index_products_on_name_and_category_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -96,9 +126,11 @@ ActiveRecord::Schema.define(:version => 20121219074812) do
     t.integer  "product_id"
     t.integer  "member_id"
     t.string   "category"
-    t.float    "amount"
     t.integer  "quantity"
-    t.integer  "score"
+    t.float    "unitprice"
+    t.float    "amount"
+    t.float    "score"
+    t.float    "used_score"
     t.string   "remark"
     t.integer  "status",     :default => 1
     t.integer  "user_id"
@@ -131,6 +163,17 @@ ActiveRecord::Schema.define(:version => 20121219074812) do
   end
 
   add_index "stores", ["name", "category"], :name => "index_stores_on_name_and_category"
+
+  create_table "switches", :force => true do |t|
+    t.string   "key"
+    t.string   "value"
+    t.string   "description"
+    t.integer  "status",      :default => 1
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "switches", ["key", "value"], :name => "index_switches_on_key_and_value"
 
   create_table "transfers", :force => true do |t|
     t.integer  "from_store_id"

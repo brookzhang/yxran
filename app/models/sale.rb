@@ -9,7 +9,7 @@ class Sale < ActiveRecord::Base
   
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :store_id, :product_id, :member_id , :remark, :category, :quantity, :amount, :score, :status, :user_id
+  attr_accessible :store_id, :product_id, :member_id , :remark, :category, :quantity,:unitprice, :amount, :score,:used_score, :status, :user_id
 
   
   validates_presence_of :store_id, :product_id, :quantity

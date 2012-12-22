@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   has_many :transfers
   has_many :orders
   has_many :histories
-
+  has_many :members
+  has_many :events
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :store_id, :as => :admin

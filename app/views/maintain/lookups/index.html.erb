@@ -13,7 +13,7 @@
   <% @lookups.each do |lookup| %>
     <tr>
         <td><%= lookup.code %></td>
-        <td><%= t(lookup.category) %></td>
+        <td><%= lookup.category %></td>
         <td><%= link_to lookup.description, [:maintain, lookup] %></td>
         <td>
         </td>

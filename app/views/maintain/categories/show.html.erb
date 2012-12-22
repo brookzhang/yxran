@@ -1,0 +1,9 @@
+<!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:code) %>: <%= @category.code %></p>
+<p><%= t(:category) %>: <%= @category.category %></p>
+<p><%= t(:description) %>: <%= @category.description %></p>
+<p><%= t(:sequence) %>: <%= @category.sequence %></p>
+<p><%= t(:status) %>: <%= @category.status %></p>
+<p><%= t(:created_at) %>: <%= @category.created_at.to_date %></p>
+<%= link_to t(:edit), edit_maintain_category_path(@category), :class => 'btn'%>
+<%= link_to t(:back), maintain_categorys_path, :class => 'btn'%>

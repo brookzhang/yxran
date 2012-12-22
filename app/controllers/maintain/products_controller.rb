@@ -1,6 +1,7 @@
 class Maintain::ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @category = params[:category_id].nil? ? nil : Category.find(params[:category_id])
+    @products = products_list(@category)
   end
   
   def show
@@ -8,7 +9,12 @@ class Maintain::ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    if params[:category_id].nil?
+      redirect_to maintain_categories_path, :notice => t(:select_category_first)
+    else
+      @product = Product.new
+      @product.category_id = params[:category_id]
+    end
   end
 
   def create
@@ -36,4 +42,12 @@ class Maintain::ProductsController < ApplicationController
 
   def destroy
   end
+  
+  
+  def products_list(category)
+    conditions = {}
+    conditions[:category_id] = category.id unless category.nil?
+    Product.find(:all, :conditions => conditions)
+  end
+  
 end

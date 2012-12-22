@@ -27,7 +27,7 @@ class SalesController < ApplicationController
   def create
     @sale = Sale.new(params[:sale])
     @sale.user_id = current_user.id
-    if @sale.save
+    if new_sale_save(sale)
       redirect_to sales_path, :notice => t(:created_ok)
     else
       redirect_to :back, :alert => t(:unable_to_create)

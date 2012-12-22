@@ -1,7 +1,6 @@
 Yxran::Application.routes.draw do
   
   
-  
 
   resources :members
   resources :sales
@@ -15,6 +14,7 @@ Yxran::Application.routes.draw do
     resources :products
     resources :stores
     resources :users
+    resources :categories
     resources :stocks do
       resources :histories
     end

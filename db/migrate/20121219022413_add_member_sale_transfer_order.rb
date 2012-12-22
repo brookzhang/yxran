@@ -5,9 +5,10 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
       t.string :phone
       t.string :address
       t.string :remark    #member remark
-      t.string :level   #member level : vip1, vip2, vip3
-      t.integer :score  #buy something ,add score . need a score using history
-      t.references :user
+      t.integer :level, :default => 0   #member level : 0-normal member, 1-, 2-vip2, vip3
+      t.float :score  #buy something ,add score . need a score using history
+      t.float :all_score 
+      t.references :user  #creator
       
       t.timestamps
     end
@@ -17,9 +18,11 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
       t.references :product
       t.integer :member_id  #category=M , or is nil
       t.string :category  #sale type M-member buy, N-normal sale, C-cost sale
-      t.float :amount
       t.integer :quantity
-      t.integer :score
+      t.float :unitprice
+      t.float :amount
+      t.float :score
+      t.float :used_score
       t.string :remark
       t.integer :status, :default => 1 # 0-cancel
       t.references :user

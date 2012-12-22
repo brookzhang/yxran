@@ -1,0 +1,32 @@
+<div class="span8">
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th>[<%= @parent_category.nil? ?  t(:root_category) : @parent_category.name %>]<%= t(:s_children) %></th>
+          <th><%= t(:description) %></th>
+          <th></th>    
+          <th></th>                                      
+      </tr>
+  </thead>   
+  <tbody>
+  <% @categories.each do |category| %>
+    <tr>
+        <td><%= link_to category.name, maintain_categories_path(:parent_id => category.id) %></td>
+        <td><%= category.description%></td>
+        <td>
+          <%= link_to(t(:show_products), maintain_products_path(:category_id => category.id), :class => 'btn btn-mini')  unless category.parent_id == 0 %>
+          
+          <%= link_to(t(:create_product), new_maintain_product_path(:category_id => category.id), :class => 'btn btn-mini')  unless category.parent_id == 0 %>
+        </td>           
+        <td><%= link_to(t(:delete), maintain_category_path(category), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini')  %></td>                                       
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="5">
+      <%= link_to t(:create), new_maintain_category_path(:parent_id => @parent_category.nil? ? 0 : @parent_category.id), :class => 'btn' %>
+			<%= link_to t(:back), maintain_categories_path, :class => 'btn'%>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div> 
