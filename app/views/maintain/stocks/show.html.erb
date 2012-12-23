@@ -5,6 +5,7 @@
 <p><%= t(:safe_stock) %>: <%= @stock.safe_stock %></p>
 <p><%= t(:remark) %>: <%= @stock.remark %></p>
 <p><%= t(:created_at) %>: <%= @stock.created_at.to_date %></p>
-<%= link_to t(:edit), edit_maintain_stock_path(@stock), :class => 'btn'%>
-<%= link_to t(:adjust_stock), new_maintain_stock_path(:store_id => @stock.store_id, :product_id => @stock.product_id), :class => 'btn'%>
+<p><%= link_to t(:edit), edit_maintain_stock_path(@stock), :class => 'btn'%>
 <%= link_to t(:back), maintain_stocks_path, :class => 'btn'%>
+</p>
+<%= render :template => 'maintain/histories/index' %>

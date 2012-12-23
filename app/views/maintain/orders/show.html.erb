@@ -1,0 +1,12 @@
+<!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:store) %>: <%= @order.store.name %></p>
+<p><%= t(:product) %>: <%= @order.product.name %></p>
+<p><%= t(:quantity) %>: <%= @order.quantity %></p>
+<p><%= t(:amount) %>: <%= @order.amount %></p>
+<p><%= t(:remark) %>: <%= @order.remark %></p>
+<p><%= t(:creator) %>: <%= @order.user.name %></p>
+<p><%= t(:status) %>: <%= @order.status %></p>
+<p><%= t(:created_at) %>: <%= @order.created_at.to_date %></p>
+<%= link_to t(:edit), edit_maintain_order_path(@order), :class => 'btn'%>
+<%= link_to(t(:delete), maintain_order_path(@order), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
+<%= link_to t(:back), maintain_orders_path, :class => 'btn'%>

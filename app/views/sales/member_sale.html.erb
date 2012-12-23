@@ -10,7 +10,11 @@
   <%= f.input :remark, :label => t(:remark) %>
   <%= f.input :category, :as => :hidden, :input_html => {:value => @sale.category} %>
   <%= f.input :member_id, :as => :hidden, :input_html => {:value => @sale.member_id} %>
-  <%= f.button :submit, t(:submit), :class => 'btn' %>
-  <%= link_to t(:back), :back, :class => 'btn' %>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, t(:submit), :class => 'btn' %>
+      <%= link_to t(:back), :back, :class => 'btn' %>
+    </div>
+  </div>
 <% end %>
 

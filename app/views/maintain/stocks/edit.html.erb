@@ -1,12 +1,16 @@
 <%= simple_form_for [:maintain,@stock], :html => {:class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors @stock %>
-  <%= f.label t(:product_name) %> 
-  <%= f.label t(:store_name)  %>
-  <%= f.label t(:quantity) %>
+  <%= f.input :product, :label => t(:product_name), :input_html => {:value => @stock.product.name, :disabled => true } %> 
+  <%= f.input :store, :label => t(:store_name), :input_html => {:value => @stock.store.name, :disabled => true } %> 
+  <%= f.input :quantity, :label => t(:quantity), :input_html => {:value => @stock.quantity, :disabled => true } %> 
+  <%= f.input :id, :as => :hidden, :input_html => {:value => @stock} %>
   <%= f.input :safe_stock, :label => t(:safe_stock), :autofocus => true %>
-  <%= f.input :remark, :label => t(:remark) %>
-  <%= f.button :submit, t(:submit), :class => 'btn' %>
-  <%= link_to t(:back), :back, :class => 'btn' %>
+  <%= f.input :remark, :label => t(:remark) %><div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, t(:submit), :class => 'btn' %>
+      <%= link_to t(:back), :back, :class => 'btn' %>
+    </div>
+  </div>
 <% end %>
 

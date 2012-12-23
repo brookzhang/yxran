@@ -5,7 +5,11 @@
   <%= f.input :value, :label => t(:value), :required => true %>
   <%= f.input :description, :label => t(:description), :required => true %>
   <%#= f.input :status, :label => t(:status), :required => true, :input_html  => { :value => '1' }%>
-  <%= f.button :submit, t(:submit), :class => 'btn' %>
-  <%= link_to t(:back), :back, :class => 'btn' %>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, t(:submit), :class => 'btn' %>
+      <%= link_to t(:back), :back, :class => 'btn' %>
+    </div>
+  </div>
 <% end %>
 

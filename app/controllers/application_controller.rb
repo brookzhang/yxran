@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path, :alert => exception.message
   end
   
+  
+  
+  
   private
   def do_not_check_authorization?
     respond_to?(:devise_controller?) or
@@ -33,5 +36,8 @@ class ApplicationController < ActionController::Base
     #end
     
   end
+  
+  
+  
   
 end

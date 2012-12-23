@@ -9,16 +9,15 @@ class Maintain::StocksController < ApplicationController
   
   def show
     @stock = Stock.find(params[:id])
+    @histories = History.where(" stock_id =? ", @stock.id)
   end
 
   def new
-    @stock = params[:id] ? Stock.find(params[:id]) : Stock.new
+    @stock = Stock.new
   end
 
   def create
     @stock = Stock.new(params[:stock])
-    if Stock.count()
-    end
     if @stock.save
       redirect_to maintain_stocks_path, :notice => t(:created_ok)
     else

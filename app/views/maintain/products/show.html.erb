@@ -8,6 +8,10 @@
 <p><%= t(:measurement) %>: <%= @product.measurement %></p>
 <p><%= t(:unit_price) %>: <%= @product.unit_price %></p>
 <p><%= t(:created_at) %>: <%= @product.created_at.to_date %></p>
-<%= link_to t(:edit), edit_maintain_product_path(@product), :class => 'btn'%>
+<p><%= link_to t(:edit), edit_maintain_product_path(@product), :class => 'btn'%>
 <%= link_to(t(:delete), maintain_product_path(@product), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
 <%= link_to t(:back), maintain_products_path, :class => 'btn'%>
+</p>
+<p>
+  <%= link_to(t(:create_order), new_maintain_order_path(:product_id => @product.id), :class => 'btn') %>
+</p>

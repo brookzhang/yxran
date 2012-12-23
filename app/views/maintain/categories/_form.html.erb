@@ -6,7 +6,11 @@
   <%= f.input :description, :label => t(:description), :input_html  => { :value => @category.description }, :required => true %>
   <%= f.input :sequence, :label => t(:sequence), :input_html  => { :value => @category.sequence }, :required => true %>
   <%= f.input :parent_id, :as => :hidden, :input_html => {:value => @category.parent_id} %>
-  <%= f.button :submit, t(:submit), :class => 'btn' %>
-  <%= link_to t(:back), :back, :class => 'btn' %>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, t(:submit), :class => 'btn' %>
+      <%= link_to t(:back), :back, :class => 'btn' %>
+    </div>
+  </div>
 <% end %>
 

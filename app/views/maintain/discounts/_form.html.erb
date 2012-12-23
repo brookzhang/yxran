@@ -5,7 +5,11 @@
   <%= f.input :category_id, :as => :hidden, :input_html => {:value => @discount.category_id } %>
   <%= f.input :member_level, :label => t(:member_level), :required => true, :autofocus => true %> 
   <%= f.input :discount, :label => t(:discount), :required => true %>
+  <div class="control-group">
+    <div class="controls">
   <%= f.button :submit, t(:submit), :class => 'btn' %>
   <%= link_to t(:back), maintain_discounts_path(:category_id => @discount.category_id), :class => 'btn' %>
+    </div>
+  </div>
 <% end %>
 

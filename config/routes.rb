@@ -20,6 +20,7 @@ Yxran::Application.routes.draw do
     resources :sales
     resources :members
     resources :events
+    resources :orders
     resources :stocks do
       resources :histories
     end

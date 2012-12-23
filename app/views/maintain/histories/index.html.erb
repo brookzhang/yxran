@@ -1,2 +1,23 @@
-<h1>Maintain::Histories#index</h1>
-<p>Find me in app/views/maintain/histories/index.html.erb</p>
+
+<table class="table  table-striped">
+	  <thead>
+      <tr>
+          <th><%= t(:adjust_type) %></th>
+          <th><%= t(:adjusted_by) %></th>
+          <th><%= t(:adjusted_to) %></th>
+          <th><%= t(:remark) %></th>
+          <th><%= t(:adjusted_at) %></th>                              
+      </tr>
+  </thead>   
+  <tbody>
+  <% @histories.each do |history| %>
+    <tr>
+        <td><%= history.adjust_type %></td>
+        <td><%= history.adjusted_by %></td>
+        <td><%= history.adjusted_to %></td>
+        <td><%= history.remark %></td>
+        <td><%= history.adjusted_at %></td>                             
+    </tr>
+  <% end %>
+  </tbody>
+</table>

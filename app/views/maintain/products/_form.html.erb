@@ -7,7 +7,11 @@
   <%= f.input :description, :label => t(:description), :required => true %>
   <%= f.input :measurement, :label => t(:measurement), :required => true %>
   <%= f.input :unit_price, :label => t(:unit_price), :required => true %>
-  <%= f.button :submit, t(:submit), :class => 'btn' %>
-  <%= link_to t(:back), :back, :class => 'btn' %>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, t(:submit), :class => 'btn' %>
+      <%= link_to t(:back), :back, :class => 'btn' %>
+    </div>
+  </div>
 <% end %>
 

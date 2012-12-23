@@ -1,2 +1,3 @@
 module Maintain::StocksHelper
+  
 end
