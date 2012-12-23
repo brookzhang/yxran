@@ -12,4 +12,5 @@
 
 
 <%= link_to t(:edit), edit_maintain_user_path(@user), :class => 'btn'%>
+<%= link_to(t(:delete), maintain_user_path(@user), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn') unless @user == current_user %>
 <%= link_to t(:back), maintain_users_path, :class => 'btn'%>

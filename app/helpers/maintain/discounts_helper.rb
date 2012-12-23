@@ -1,0 +1,2 @@
+module Maintain::DiscountsHelper
+end

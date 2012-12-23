@@ -1,0 +1,2 @@
+module Maintain::EventsHelper
+end

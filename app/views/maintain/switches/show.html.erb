@@ -1,0 +1,9 @@
+<!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:key) %>: <%= @switch.key %></p>
+<p><%= t(:value) %>: <%= @switch.value %></p>
+<p><%= t(:status) %>: <%= @switch.status %></p>
+<p><%= t(:description) %>: <%= @switch.description %></p>
+<p><%= t(:created_at) %>: <%= @switch.created_at.to_date %></p>
+<%= link_to t(:edit), edit_maintain_switch_path(@switch), :class => 'btn'%>
+<%= link_to(t(:delete), maintain_switch_path(@switch), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
+<%= link_to t(:back), maintain_switches_path, :class => 'btn'%>

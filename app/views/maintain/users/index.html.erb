@@ -16,7 +16,7 @@
         <td><%= t(user.roles.first.name) unless user.roles.first.nil? %></td>
         <td>
         </td>
-        <td><%= link_to(t(:delete), maintain_user_path(user), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>                                       
+        <td></td>                                       
     </tr>
   <% end %>
   </tbody>

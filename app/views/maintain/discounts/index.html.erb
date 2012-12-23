@@ -1,0 +1,30 @@
+<div class="span8">
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th><%= t(:category) %></th>
+          <th><%= t(:member_level) %></th>
+          <th><%= t(:discount) %></th>
+          <th></th>                                      
+      </tr>
+  </thead>   
+  <tbody>
+  <% @discounts.each do |discount| %>
+    <tr>
+        <td><%= link_to discount.category.name, maintain_discounts_path(:category_id => discount.category_id) %></td>
+        <td><%= discount.member_level %></td>
+        <td><%= discount.discount %></td>
+        <td><%= link_to t(:show), [:maintain,discount], :class => 'btn btn-small' %>
+			
+        </td>                                    
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="5">
+      <%#= link_to t(:create_discount), new_maintain_discount_path(:category_id => @category.nil? ? nil : @category.id), :class => 'btn' %>
+	  <%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div> 

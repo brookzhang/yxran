@@ -17,4 +17,20 @@ class Category < ActiveRecord::Base
     
   end
   
+  def has_children
+    Category.where(" parent_id = ?",self.id).count == 0 ? false : true
+  end
+  
+  def has_product
+    Product.where(" category_id =? ", self.id ).count == 0 ? false : true
+  end
+  
+  def hole_name
+    
+  end
+  
+  def discounts_list
+    "member * 0.1 " << "super member * 0.15 " << "vip * 0.2 "
+  end
+  
 end

@@ -14,7 +14,7 @@
         <td>
 			<%= link_to t(:stock), maintain_stocks_path(:store_id => store), :class => 'btn' %>
         </td>
-        <td><%= link_to(t(:delete), maintain_store_path(store), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini')  %></td>                                       
+        <td><%= link_to t(:sale), '#', :class => 'btn' %></td>                                       
     </tr>
   <% end %>
   <tr>

@@ -71,6 +71,8 @@ zh-CN:
   address: '地址'
   create_member: '新会员'
   no_member_found: '没有找到这样的会员'
+  member_level: '会员级别'
+  creator: '创建人'
   
   
   
@@ -117,6 +119,11 @@ zh-CN:
   status: '状态'
   
   
+  # switch.
+  #----------------------------------------------------------------------------
+  key: '键'
+  value: '值'
+  
   # category.
   #----------------------------------------------------------------------------
   category: '分类'
@@ -126,6 +133,11 @@ zh-CN:
   create_product: '添加商品'
   select_category_first: '先选好分类'
   show_products: '查看商品'
+  change_category: '修改分类'
+  create_category: '新增分类'
+  create_sub_category: '新增子分类'
+  category_deleted: '分类已删除'
+  can_not_delete_category: '不能删除此分类'
   
   # product.
   #----------------------------------------------------------------------------
@@ -150,6 +162,23 @@ zh-CN:
   adjust_stock: '调整库存'
   create_stock: '新增库存'
   adjust_quantity: '调整数量'
+  
+  
+  # sale.
+  #----------------------------------------------------------------------------
+  sale: '销售'
+  
+  
+  # discount.
+  #----------------------------------------------------------------------------
+  discount: '折扣'
+  discount_setting: '设定折扣'
+  create_discount: '新增折扣'
+  
+  
+  # event.
+  #----------------------------------------------------------------------------
+  content: '内容'
   
   
   

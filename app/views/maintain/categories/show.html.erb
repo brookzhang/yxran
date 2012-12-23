@@ -1,9 +1,25 @@
 <!--h3><%= t(:account_info) %></h3-->
-<p><%= t(:code) %>: <%= @category.code %></p>
-<p><%= t(:category) %>: <%= @category.category %></p>
+<p><%= t(:category) %>: <%= t(@category.parent.name) %> -> <%= @category.name %></p>
 <p><%= t(:description) %>: <%= @category.description %></p>
 <p><%= t(:sequence) %>: <%= @category.sequence %></p>
-<p><%= t(:status) %>: <%= @category.status %></p>
+<p><%= t(:discount) %>: <%= @category.discounts_list %></p>
 <p><%= t(:created_at) %>: <%= @category.created_at.to_date %></p>
-<%= link_to t(:edit), edit_maintain_category_path(@category), :class => 'btn'%>
-<%= link_to t(:back), maintain_categorys_path, :class => 'btn'%>
+<p>
+  <%= link_to t(:edit), edit_maintain_category_path(@category), :class => 'btn'%>
+  <% if @category.has_children || @category.has_product %>
+  <%= link_to(t(:delete), '#',  :class => 'btn disabled')  %>
+  <%else%>
+  <%= link_to(t(:delete), maintain_category_path(@category), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
+  <%end%>
+  <%= link_to t(:back), maintain_categories_path(:parent_id => @category.parent_id), :class => 'btn'%>
+</p>
+<p>
+  <% if @category.has_product %>
+  <%= link_to(t(:create_sub_category), '#',  :class => 'btn disabled')  %>
+  <%else%>
+  <%= link_to(t(:create_sub_category), new_maintain_category_path(:parent_id => @category), :class => 'btn')  %>
+  <%end%>
+  <%= link_to(t(:discount_setting), maintain_discounts_path(:category_id => @category.id), :class => 'btn') %>
+  <%= link_to(t(:show_products), maintain_products_path(:category_id => @category.id), :class => 'btn')  unless @category.parent_id == 0 %>
+  <%= link_to(t(:create_product), new_maintain_product_path(:category_id => @category.id), :class => 'btn')  unless @category.parent_id == 0 %>
+</p>

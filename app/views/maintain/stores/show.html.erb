@@ -4,4 +4,5 @@
 <p><%= t(:remark) %>: <%= @store.remark %></p>
 <p><%= t(:created_at) %>: <%= @store.created_at.to_date %></p>
 <%= link_to t(:edit), edit_maintain_store_path(@store), :class => 'btn'%>
+<%= link_to(t(:delete), maintain_store_path(@store), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
 <%= link_to t(:back), maintain_stores_path, :class => 'btn'%>

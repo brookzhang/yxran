@@ -1,0 +1,8 @@
+<!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:category) %>: <%= @discount.category.name %></p>
+<p><%= t(:member_level) %>: <%= @discount.member_level %></p>
+<p><%= t(:discount) %>: <%= @discount.discount %></p>
+<p><%= t(:created_at) %>: <%= @discount.created_at.to_date %></p>
+<%= link_to t(:edit), edit_maintain_discount_path(@discount), :class => 'btn'%>
+<%= link_to(t(:delete), maintain_discount_path(@discount), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
+<%= link_to t(:back), maintain_discounts_path, :class => 'btn'%>

@@ -1,8 +1,8 @@
-class UsersController < ApplicationController
+class Maintain::UsersController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    authorize! :index, @user, :message => t(:not_authorized_as_admin)
+    #authorize! :index, @user, :message => t(:not_authorized_as_admin)
     @users = User.all
   end
 

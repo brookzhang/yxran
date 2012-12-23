@@ -1,0 +1,32 @@
+<div class="span8">
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th><%= t(:category) %></th>
+          <th><%= t(:content) %></th>
+          <th><%= t(:creator) %></th>
+          <th><%= t(:created_at) %></th>
+          <th></th>
+          <th></th>                                      
+      </tr>
+  </thead>   
+  <tbody>
+  <% @events.each do |event| %>
+    <tr>
+        <td><%= event.category %></td>
+        <td><%= event.content %></td>
+        <td><%= event.user.name %></td>
+        <td><%= event.created_at.to_date%></td>
+        <td>
+        </td>
+        <td></td>                                       
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="5">
+			<%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div> 

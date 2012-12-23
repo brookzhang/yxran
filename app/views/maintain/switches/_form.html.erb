@@ -1,0 +1,11 @@
+<%= simple_form_for [:maintain,@switch], :html => {:class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @switch %>
+  <%= f.input :key, :label => t(:key), :required => true, :autofocus => true %> 
+  <%= f.input :value, :label => t(:value), :required => true %>
+  <%= f.input :description, :label => t(:description), :required => true %>
+  <%#= f.input :status, :label => t(:status), :required => true, :input_html  => { :value => '1' }%>
+  <%= f.button :submit, t(:submit), :class => 'btn' %>
+  <%= link_to t(:back), :back, :class => 'btn' %>
+<% end %>
+

@@ -2,26 +2,23 @@
 <table class="table table-condensed">
 	  <thead>
       <tr>
+          <th><%= t(:category) %></th>
           <th><%= t(:product_name) %></th>
-          <th><%= t(:measurement) %></th>
-          <th></th>
-          <th></th>                                      
+          <th><%= t(:unit_price) %></th>                         
       </tr>
   </thead>   
   <tbody>
   <% @products.each do |product| %>
     <tr>
+        <td><%= link_to product.category.name, maintain_products_path(:category_id => product.category_id) %></td>
         <td><%= link_to product.name, [:maintain, product]  %></td>
-        <td><%= product.measurement %></td>
-        <td>
-        </td>
-        <td><%= link_to(t(:delete), maintain_product_path(product), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini')  %></td>                                       
+        <td><%= product.unit_price %> / <%= product.measurement %></td>            
     </tr>
   <% end %>
   <tr>
     <td colspan="5">
       <%= link_to t(:create), new_maintain_product_path, :class => 'btn' %>
-	  <%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
+	  <%= link_to t(:back), maintain_products_path, :class => 'btn'%>
     </td>
   </tr>
   </tbody>
