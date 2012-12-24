@@ -11,9 +11,9 @@
   <tbody>
   <% @discounts.each do |discount| %>
     <tr>
-        <td><%= link_to discount.category.name, maintain_discounts_path(:category_id => discount.category_id) %></td>
-        <td><%= discount.member_level %></td>
-        <td><%= discount.discount %></td>
+        <td><%= link_to discount.category.name, maintain_category_path(discount.category_id) %></td>
+        <td><%= l(discount.member_level, 'member') %></td>
+        <td>* <%= discount.discount %></td>
         <td><%= link_to t(:show), [:maintain,discount], :class => 'btn btn-small' %>
 			
         </td>                                    

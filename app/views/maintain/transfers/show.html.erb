@@ -1,0 +1,12 @@
+<!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:from_store) %>: <%= @transfer.from_store.name %></p>
+<p><%= t(:to_store) %>: <%= @transfer.to_store.name %></p>
+<p><%= t(:product) %>: <%= @transfer.product.name %></p>
+<p><%= t(:quantity) %>: <%= @transfer.quantity %></p>
+<p><%= t(:remark) %>: <%= @transfer.remark %></p>
+<p><%= t(:creator) %>: <%= @transfer.user.name %></p>
+<p><%= t(:status) %>: <%= @transfer.status %></p>
+<p><%= t(:created_at) %>: <%= @transfer.created_at.to_date %></p>
+<%= link_to t(:edit), edit_maintain_transfer_path(@transfer), :class => 'btn'%>
+<%= link_to(t(:delete), maintain_transfer_path(@transfer), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
+<%= link_to t(:back), maintain_transfers_path, :class => 'btn'%>

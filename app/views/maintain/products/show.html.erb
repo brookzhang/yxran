@@ -14,4 +14,8 @@
 </p>
 <p>
   <%= link_to(t(:create_order), new_maintain_order_path(:product_id => @product.id), :class => 'btn') %>
+  <%= link_to(t(:create_transfer), new_maintain_transfer_path(:product_id => @product.id), :class => 'btn') %>
 </p>
+
+
+<%= render :partial => 'maintain/stocks/list_stores' %>

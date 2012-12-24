@@ -5,6 +5,7 @@ class Maintain::StoresController < ApplicationController
   
   def show
     @store = Store.find(params[:id])
+    @stocks = Stock.where(" store_id =? ", @store.id)
   end
 
   def new

@@ -195,5 +195,11 @@ zh-CN:
   create_order: '创建订单'
   
   
-  
+  # transfer.
+  #----------------------------------------------------------------------------
+  transfer: '调货'
+  from_store: '调出'
+  to_store: '调入'
+  from_to_store_must_diffrent: '调货双方必须不一样'
+  create_transfer: '创建调货'
   

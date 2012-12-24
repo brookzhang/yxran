@@ -3,7 +3,7 @@ class Store < ActiveRecord::Base
   has_many :sales
   has_many :users
   has_many :orders
-  
+  has_many :transfers
   
 
   # Setup accessible (or protected) attributes for your model

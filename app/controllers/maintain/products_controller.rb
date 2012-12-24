@@ -6,6 +6,7 @@ class Maintain::ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
+    @stocks = Stock.where(" product_id =? ", @product.id)
   end
 
   def new

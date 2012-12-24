@@ -14,21 +14,42 @@ class Order < ActiveRecord::Base
   #validates_uniqueness_of :name, :case_sensitive => false
   
   
+  
   def order_add()
-    if self.save
-      change_stock(self.store_id, self.product_id, self.quantity, self.id, "order_add")
-    else
-      false
-    end   
+    
+    update_stock(self.quantity, 'o')
   end
   
-  def order_edit(order_array)
-    change_quantity = order_array[:quantity].to_i - self.quantity
-    Stock.change_stock(self.store_id, self.product_id, change_quantity, self.id, "order_edit")
+  
+  
+  def order_edit(new_quantity)
+    change_quantity = new_quantity - self.quantity
+    self.quantity = new_quantity
     
-    self.update_attributes(order_array)
-
+    update_stock(change_quantity, 'oe')
+  end
+  
+  def update_stock(change_quantity,adjust_type)
+    ActiveRecord::Base.transaction do
+      begin
+        self.save
+        @stock = Stock.where(" store_id = ? and product_id = ? ", self.store_id, self.product_id).first
+        if @stock.nil?
+          @stock = Stock.new
+          @stock.store_id = self.store_id
+          @stock.product_id = self.product_id
+        end
+        
+        @history = History.new(:adjust_type => adjust_type, :reference_id => self.id, :remark => self.remark)
+        @stock.record_update(change_quantity, @history)
+        true
+      rescue
+        false
+      end
+      
+    end
     
+      
   end
   
 end

@@ -39,7 +39,8 @@ class Maintain::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    if @order.order_edit(params[:order])
+    #redirect_to maintain_order_path(@order), :notice => @order.order_edit(params[:order][:quantity].to_i).to_s
+    if @order.order_edit(params[:order][:quantity].to_i)
       redirect_to maintain_order_path(@order), :notice => t(:updated_ok)
     else
       redirect_to maintain_order_path(@order), :alert => t(:unable_to_update)

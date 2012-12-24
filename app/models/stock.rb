@@ -11,21 +11,33 @@ class Stock < ActiveRecord::Base
   validates_presence_of :product_id, :store_id
   validates_uniqueness_of :product_id, :scope => :store_id
   
-  def change_stock(store_id, product_id, quantity, reference_id, remark)
-    @stock = Stock.where(" store_id = ? and product_id = ? ", store_id, product_id).first
-      if @stock.nil?
-        @stock = Stock.new
-        @stock.store_id = store_id
-        @stock.product_id = product_id
-        @stock.quantity = quantity
-        @stock.save
+  
+  #init stock
+  
+  
+  
+  #common method ,update stock
+  def record_update(quantity, history)
+    if quantity == 0
+      return
+    else
+      if self.id.nil?
+        self.quantity = quantity
       else
-        @stock.quantity += quantity
-        @stock.update_attributes(:quantity => @stock.quantity )
+        self.quantity += quantity
       end
       
-      @history = History.new(:stock_id => @stock.id, :adjust_type => 'o', :reference_id => reference_id, :adjusted_by => quantity, :adjusted_to => @stock.quantity, :adjusted_at => DateTime.now , :remark => "order_add")
-      @history.save
+      self.save
+      
+      history.stock_id = self.id
+      history.adjusted_by = quantity
+      history.adjusted_to = self.quantity
+      history.adjusted_at = DateTime.now
+      history.save
+    end
+    
+    
+    
   end
   
   

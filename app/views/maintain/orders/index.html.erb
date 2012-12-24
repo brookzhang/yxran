@@ -13,8 +13,8 @@
   <tbody>
   <% @orders.each do |order| %>
     <tr>
-        <td><%= link_to order.store.name, maintain_orders_path(:store_id => order.store_id) %></td>
-        <td><%= link_to order.product.name, maintain_orders_path(:product_id => order.product_id)  %></td>
+        <td><%= link_to order.store.name, maintain_store_path(order.store) %></td>
+        <td><%= link_to order.product.name, maintain_product_path(order.product)  %></td>
         <td><%= link_to order.quantity, [:maintain, order] %></td> 
         <td><%= order.amount %></td>           
         <td><%= order.remark %></td>           

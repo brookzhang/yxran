@@ -2,7 +2,9 @@
 <p><%= t(:category) %>: <%= t(@category.parent.name) %> -> <%= @category.name %></p>
 <p><%= t(:description) %>: <%= @category.description %></p>
 <p><%= t(:sequence) %>: <%= @category.sequence %></p>
-<p><%= t(:discount) %>: <%= @category.discounts_list %></p>
+<p><%= t(:discount) %>: <%= discounts_list @category.id   %>
+  <%= link_to(t(:discount_setting), maintain_discounts_path(:category_id => @category.id), :class => 'btn') %>
+</p>
 <p><%= t(:created_at) %>: <%= @category.created_at.to_date %></p>
 <p>
   <%= link_to t(:edit), edit_maintain_category_path(@category), :class => 'btn'%>
@@ -19,7 +21,7 @@
   <%else%>
   <%= link_to(t(:create_sub_category), new_maintain_category_path(:parent_id => @category), :class => 'btn')  %>
   <%end%>
-  <%= link_to(t(:discount_setting), maintain_discounts_path(:category_id => @category.id), :class => 'btn') %>
+  
   <%= link_to(t(:show_products), maintain_products_path(:category_id => @category.id), :class => 'btn')  unless @category.parent_id == 0 %>
   <%= link_to(t(:create_product), new_maintain_product_path(:category_id => @category.id), :class => 'btn')  unless @category.parent_id == 0 %>
 </p>

@@ -1,7 +1,7 @@
 <%= simple_form_for [:maintain,@order], :html => {:class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors @order %>
-  <%= @order.product.name %>
+  <%= f.input :product, :label => t(:product_name), :input_html => {:value => @order.product.name, :disabled => true } %>
   <%= f.input :product_id, :as => :hidden, :input_html => {:value => @order.product_id } %>
   <%= f.input :store_id, :label => t(:store), :collection => @stores, :required => true, :autofocus => true %> 
   <%= f.input :quantity, :label => t(:quantity), :required => true %>

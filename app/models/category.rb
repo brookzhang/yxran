@@ -1,6 +1,9 @@
 class Category < ActiveRecord::Base
   has_many :products
   has_many :discounts
+  has_many :categories
+  
+  belongs_to :parent, :class_name => 'Category'
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :parent_id, :name, :description, :sequence, :status
@@ -29,8 +32,5 @@ class Category < ActiveRecord::Base
     
   end
   
-  def discounts_list
-    "member * 0.1 " << "super member * 0.15 " << "vip * 0.2 "
-  end
   
 end

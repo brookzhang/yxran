@@ -7,4 +7,5 @@ class History < ActiveRecord::Base
   
   validates_presence_of :stock_id, :adjust_type, :adjusted_by, :adjusted_to, :adjusted_at
   #validates_uniqueness_of :product_id, :scope => :store_id
+  
 end

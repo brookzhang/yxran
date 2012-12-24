@@ -2,6 +2,10 @@ Yxran::Application.routes.draw do
   
   
 
+
+  devise_for :users
+  
+  resources :users
   resources :members
   resources :sales
   
@@ -21,6 +25,7 @@ Yxran::Application.routes.draw do
     resources :members
     resources :events
     resources :orders
+    resources :transfers
     resources :stocks do
       resources :histories
     end
@@ -31,8 +36,6 @@ Yxran::Application.routes.draw do
     root :to => 'home#index'
   end
   root :to => "home#index"
-  devise_for :users
-  resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

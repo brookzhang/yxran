@@ -10,4 +10,15 @@ module ApplicationHelper
     HTML
     html.html_safe
   end
+  
+  def l(code, category)
+    @lookup = Lookup.where(" code = ? and category = ? ", code.to_s, category).first
+    @lookup.nil? ? code : @lookup.description
+  end
+  
+  def settings(key)
+    @switch = Switch.where(" key = ? ", key).first
+    @switch.nil? ? nil : @switch.value
+  end
+  
 end

@@ -9,6 +9,7 @@ class Maintain::DiscountsController < ApplicationController
   end
 
   def new
+    @lookups = Lookup.where(" category = ? ", "member")
     if params[:category_id].nil?
       redirect_to maintain_categories_path, :notice => t(:select_category_first)
     else
@@ -28,6 +29,7 @@ class Maintain::DiscountsController < ApplicationController
   end
 
   def edit
+    @lookups = Lookup.where(" category = ? ", "member")
     @discount = Discount.find(params[:id])
   end
 

@@ -11,14 +11,26 @@
 
 puts "creating lookups"
 Lookup.create([
-  {:code => 's', :category => 'event', :description => '修改设定' },
+  {:code => 's', :category =>'event', :description => '修改设定' },
   {:code => 'u', :category =>'event', :description => '用户修改'},
   {:code => 'c', :category =>'event', :description => '产品分类'},
   {:code => 'ds', :category =>'event', :description => '产品折扣'},
-  {:code => 'c', :category =>'store_category', :description => '总部'},
-  {:code => 'p', :category =>'store_category', :description => '分店'},
-  {:code => 'i', :category =>'store_category', :description => '入驻'},
-  {:code => 's', :category =>'store_category', :description => '仓库'}
+  {:code => 'c', :category =>'store', :description => '总部'},
+  {:code => 'p', :category =>'store', :description => '分店'},
+  {:code => 'i', :category =>'store', :description => '入驻'},
+  {:code => 's', :category =>'store', :description => '仓库'},
+  {:code => 'o', :category =>'adjust_type', :description => '订单'},
+  {:code => 'oe', :category =>'adjust_type', :description => '订单修改'},
+  {:code => 't', :category =>'adjust_type', :description => '调货'},
+  {:code => 'te', :category =>'adjust_type', :description => '调货修改'},
+  {:code => 's', :category =>'adjust_type', :description => '销售'},
+  {:code => 'se', :category =>'adjust_type', :description => '销售修改'},
+  {:code => 'admin', :category =>'role', :description => '管理员'},
+  {:code => 'manager', :category =>'role', :description => '经理'},
+  {:code => 'user', :category =>'role', :description => '店员'},
+  {:code => '0', :category =>'member', :description => '普通会员'},
+  {:code => '1', :category =>'member', :description => '高级会员'},
+  {:code => '9', :category =>'member', :description => '贵宾'}
 ], :without_protection => true)
 
 puts "creating switches"
@@ -49,8 +61,8 @@ Discount.create([
   {:category_id => 2, :member_level => '0', :discount => 0.1 },
   {:category_id => 1, :member_level => '1', :discount => 0.15 },
   {:category_id => 2, :member_level => '1', :discount => 0.15 },
-  {:category_id => 1, :member_level => '2', :discount => 0.2 },
-  {:category_id => 2, :member_level => '2', :discount => 0.15 }
+  {:category_id => 1, :member_level => '9', :discount => 0.2 },
+  {:category_id => 2, :member_level => '9', :discount => 0.15 }
 ], :without_protection => true)
 
 puts 'creating products'
