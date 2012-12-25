@@ -16,7 +16,8 @@ class Category < ActiveRecord::Base
     self.parent_id.nil? || self.parent_id==0 ? Category.new(:name => 'root_category') : Category.find(self.parent_id)
   end
   
-  def all_category_ids
+  def parents
+    
     
   end
   

@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
   def index
-    @category = params[:category_id].nil? ? nil : Category.find(params[:category_id])
-    @products = products_list(@category)
+    category_id = params[:category_id].nil? ? 0 : params[:category_id].to_i
+    @category = category_id ==0 ? nil : Category.find(category_id)
+    @categories = Category.where(" parent_id = ? ", category_id )
+    @products = Product.where( " category_id = ? ", category_id)
   end
   
   def show

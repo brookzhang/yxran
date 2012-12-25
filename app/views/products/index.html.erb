@@ -1,2 +1,19 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="span8">
+	  <%= render 'category' %>
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th><%= t(:product_name) %></th>
+          <th><%= t(:unit_price) %></th>                         
+      </tr>
+  </thead>   
+  <tbody>
+  <% @products.each do |product| %>
+    <tr>
+        <td><%= link_to product.name, product %></td>
+        <td><%= product.unit_price %> / <%= product.measurement %></td>            
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div> 

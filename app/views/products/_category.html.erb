@@ -1,0 +1,9 @@
+
+<p>
+	  <%= link_to t(:root_category), products_path(:category_id => 0) %>  ->
+	  <%= link_to(@category.name, products_path(:category_id => @category)) unless @category.nil? %>
+	  <%@categories.each do |category|%>
+			<%=link_to(category.name, products_path(:category_id => category), :class => 'btn') %>
+	  <%end%>
+</p>
+

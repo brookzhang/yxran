@@ -55,7 +55,7 @@ zh-CN:
   #----------------------------------------------------------------------------
   normal_sale: '普通零售'
   member_sale: '会员购买'
-  cost_sale: '品茶耗用'
+  cost_sale: '日常耗用'
   sale_record: '销售记录'
   amount: '金额'
   buy_again: '再次购买'
@@ -145,6 +145,7 @@ zh-CN:
   product: '商品'
   measurement: '计量单位'
   unit_price: '单价'
+  all_product: '所有商品'
   
   
   # store.
@@ -162,6 +163,7 @@ zh-CN:
   adjust_stock: '调整库存'
   create_stock: '新增库存'
   adjust_quantity: '调整数量'
+  stock_in_store: '店内库存'
   
   
   # history.
