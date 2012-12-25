@@ -27,7 +27,7 @@ class SalesController < ApplicationController
   def create
     @sale = Sale.new(params[:sale])
     @sale.user_id = current_user.id
-    if new_sale_save(sale)
+    if @sale.sale_add
       redirect_to sales_path, :notice => t(:created_ok)
     else
       redirect_to :back, :alert => t(:unable_to_create)
@@ -48,16 +48,6 @@ class SalesController < ApplicationController
     end
   end
   
-  private
   
-  def new_sale_save(sale)
-    @member = sale.member_id.nil? ? nil : Member.find(sale.member_id)
-    @store = Store.find(sale.store_id)
-    sale.transaction do
-      sale.save
-      @member.add_score(sale.score)
-      @store.subtract(sale.quantity)
-      
-    end
-  end
+  
 end
