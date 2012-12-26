@@ -27,6 +27,7 @@ zh-CN:
   date: '日期'
   time: '时间'
   search: '搜索'
+  money: '元'
   
   
   # sessions.
@@ -204,4 +205,10 @@ zh-CN:
   to_store: '调入'
   from_to_store_must_diffrent: '调货双方必须不一样'
   create_transfer: '创建调货'
+  
+  
+  # cart.
+  #----------------------------------------------------------------------------
+  cart: '货单'
+  
   

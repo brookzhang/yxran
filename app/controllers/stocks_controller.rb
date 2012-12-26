@@ -7,10 +7,6 @@ class StocksController < ApplicationController
     
   end
   
-  def show
-    @stock = Stock.find(params[:id])
-    @histories = History.where(" stock_id =? ", @stock.id)
-  end
   
   
   private

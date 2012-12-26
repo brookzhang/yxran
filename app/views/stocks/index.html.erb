@@ -1,2 +1,22 @@
-<h1>Stocks#index</h1>
-<p>Find me in app/views/stocks/index.html.erb</p>
+<div class="span8">
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th><%= t(:product) %></th>
+          <th><%= t(:stock) %></th>
+          <th></th>                                      
+      </tr>
+  </thead>   
+  <tbody>
+  <% @stocks.each do |stock| %>
+    <tr>
+        <td><%= stock.product.name %></td>
+        <td><%= stock.quantity %> <%= stock.product.measurement %></td>
+        <td><%= link_to t(:show), stock.product, :class => 'btn' %>
+        </td>                                    
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>
+</div> 

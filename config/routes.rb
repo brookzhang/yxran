@@ -4,6 +4,7 @@ Yxran::Application.routes.draw do
 
 
 
+
   devise_for :users
   
   resources :users
@@ -11,6 +12,7 @@ Yxran::Application.routes.draw do
   resources :sales
   resources :products
   resources :stocks
+  resources :carts
   
   match 'costsale', :to => 'sales#cost_sale'
   match 'membersale', :to => 'sales#member_sale'

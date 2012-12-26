@@ -8,7 +8,8 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
-    @stocks = Stock.where(" product_id =? ", @product.id)
+    @stock = Stock.where(" product_id =? and store_id = ? ", @product.id, current_user.store_id).first
+    @histories = @stock.nil? ? nil : History.where(" stock_id =? ", @stock.id)
   end
   
   
