@@ -146,7 +146,7 @@ zh-CN:
   product: '商品'
   measurement: '计量单位'
   unit_price: '单价'
-  all_product: '所有商品'
+  all_products: '所有商品'
   
   
   # store.
@@ -196,6 +196,7 @@ zh-CN:
   order: '订单'
   select_product_first: '先选商品'
   create_order: '创建订单'
+  select_product: '选择商品'
   
   
   # transfer.
@@ -210,5 +211,6 @@ zh-CN:
   # cart.
   #----------------------------------------------------------------------------
   cart: '货单'
-  
+  none_cart: '货单是空的'
+  add_to_cart: '加入货单'
   

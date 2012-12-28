@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
     @category = category_id ==0 ? nil : Category.find(category_id)
     @categories = Category.where(" parent_id = ? ", category_id )
     @products = Product.where( " category_id = ? ", category_id)
+    @cart = Cart.new
   end
   
   def show
