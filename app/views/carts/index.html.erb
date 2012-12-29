@@ -1,28 +1,3 @@
-<div class="span8">
-  <% if !@member.nil? %>
-    <div class="alert alert-success">
-      <a class="close" data-dismiss="alert">&#215;</a>
-      <%= @member.name %> <%= @member.score %>
-    </div>
-  <% end %>
-  <% if @carts.count > 0 %>
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th><%= t(:product_name) %></th>
-        <th><%= t(:quantity) %></th>                         
-      </tr>
-    </thead>   
-    <tbody>
-    <% @carts.each do |cart| %>
-      <tr>
-        <td><%= link_to cart.product.name, cart %></td>
-        <td><%= cart.quantity %> <%= cart.product.measurement %></td>            
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-  <%else%>
-    <p><%=t(:none_cart) %> <%= link_to t(:select_product), products_path, :class => 'btn' %> </p>
-  <%end%>
-</div> 
+<%= render 'member' unless @member.nil? %>
+<%= render 'sale' if @member.nil? %>
+<%=@count%>

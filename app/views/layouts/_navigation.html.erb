@@ -2,8 +2,11 @@
 <ul class="nav">
   <% if user_signed_in? %>
     <% if !current_user.store_id.nil? %>
-      <li><a href="<%=carts_path%>" >
+      <li><a href="<%=carts_path%>" class="cart_count" >
         <i class="icon-home"></i><%=current_user.store.name %>
+        <% if !session[:cart_count].nil? %>
+        <span class="num"><span><%= session[:cart_count] %></span><i></i></span>
+        <% end %>
       </a></li>
       
     <% end %>

@@ -213,4 +213,8 @@ zh-CN:
   cart: '货单'
   none_cart: '货单是空的'
   add_to_cart: '加入货单'
+  select_member: '选取'
+  member_selected_ok: '已选取会员'
+  selected_member: '已选会员'
+  
   

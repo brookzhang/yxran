@@ -11,29 +11,7 @@
     </thead>   
     <tbody>
     <% @products.each do |product| %>
-      <tr>
-        <td><%= link_to product.name, product %></td>
-        <td><%= product.unit_price %> / <%= product.measurement %></td>
-        <td>
-          <a data-toggle="modal" href="#add_cart-options-<%= product.id %>" class="btn btn-mini btn-warning" type="button"><%= t(:add_to_cart) %></a>
-          <div id="add_cart-options-<%= product.id %>" class="modal" style="display: none;">
-            <%= simple_form_for @cart, :remote => true , :url => new_cart_path, :html => {:method => :get, :class => 'form-horizontal' } do |f| %>
-              <div class="modal-header">
-                <a class="close" data-dismiss="modal">&#215;</a>
-                <h3><%= t(:add_to_cart) %></h3>
-              </div>
-              <div class="modal-body">
-                <%= f.input :quantity, :label => t(:quantity), :auto_focus => true %>
-                <%= f.input :product_id, :as => :hidden, :input_html =>{:value => product.id} %>
-              </div>
-              <div class="modal-footer">
-                <%= f.submit t(:add_to_cart) , :class => "btn" %>
-                <a class="btn" data-dismiss="modal" href="#"><%= t(:back) %></a>
-              </div>
-            <% end %>
-          </div>
-        </td>            
-      </tr>
+	  <%= render product %>
     <% end %>
     </tbody>
   </table>

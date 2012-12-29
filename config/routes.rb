@@ -16,6 +16,7 @@ Yxran::Application.routes.draw do
   
   match 'costsale', :to => 'sales#cost_sale'
   match 'membersale', :to => 'sales#member_sale'
+  match 'selectmember', :to => 'members#select_member'
 
   namespace :maintain do
     match '/dashboard',:to => 'dashboard#index'

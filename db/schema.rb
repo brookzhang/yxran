@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
     t.integer  "store_id"
     t.integer  "user_id"
     t.integer  "quantity"
+    t.float    "used_score"
+    t.float    "amount"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

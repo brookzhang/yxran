@@ -22,7 +22,7 @@ class MembersController < ApplicationController
     @member.score = 0
     @member.user_id = current_user.id
     if @member.save
-      redirect_to membersale_path(:member_id => @member), :notice => t(:created_ok)
+      redirect_to  @member , :notice => t(:created_ok)
     else
       redirect_to :back, :alert => t(:unable_to_create)
     end
@@ -34,7 +34,14 @@ class MembersController < ApplicationController
   def update
   end
   
+  def select_member
+    session[:member_id] = params[:member_id]
+    redirect_to products_path, :notice => t(:member_selected_ok)
+  end
   
+  def cancel_member
+    session.delete :member_id
+  end
   
   
   private

@@ -22,3 +22,35 @@
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
+
+.cart_count{ }
+
+.cart_count .num{
+  position:absolute;
+  top:9px;
+  left:3em;
+  padding:0 3px;
+  margin-left:18px;
+  color:#fff;
+  line-height:1.5;
+  background-color:#f00;
+  *margin-top:6px;
+}
+.cart_count .num i{
+  position:absolute;
+  width:0;
+  height:0;
+  left:-11px;
+  top:50%;
+  margin-top:-6px;
+  line-height:0;
+  border-color:transparent #f00 transparent transparent;
+  border-style:dashed solid dashed dashed;
+  border-width:6px 6px 3px 5px;
+  pointer-events:none;
+}
+
+
+
+
+

@@ -5,6 +5,8 @@ class AddCart < ActiveRecord::Migration
       t.references :store
       t.references :user
       t.integer :quantity
+      t.float :used_score
+      t.float :amount
       
       t.timestamps
     end
