@@ -133,7 +133,7 @@ $ tail -f log/development.log					#show database log
 $ set HTTP_PROXY=http://172.30.4.63:3128   #set proxy=http://172.30.4.63:3128 
 $ gem install rails               # -p --http-proxy http://172.30.4.63:3128
 
-
+  
 # ============================rake:   ruby make============================
 $ rake db:create
 $ rake db:test:prepare

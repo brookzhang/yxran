@@ -8,7 +8,7 @@
       <th><%= t(:amount) %></th>                  
     </tr>
   </thead>
-  <tbody>
+  <tbody>   
   <% @carts.each do |cart| %>
     <tr>
       <%= fields_for "carts[]", cart do |f| %>
