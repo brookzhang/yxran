@@ -3,14 +3,17 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 
-hide_form = () ->
-  $('modal').hide()
+#hide_form ->
+#  $('modal').hide()
+#
+#submit_form ->
+#  $(this).form.submit() 
 
-submit_form = () ->
-  $(this).form.submit() 
-
-$('btn').on click:->
-  alert '111' 
-  hide_form()
-  submit_form()
-  false
+#$('.coffee').bind 'click', (event) =>
+#    alert '111'
+#    
+#$('.btn').on click:->
+#  alert '111' 
+#  hide_form()
+#  submit_form()
+#  false

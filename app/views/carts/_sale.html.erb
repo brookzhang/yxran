@@ -1,27 +1,35 @@
 
-  <% if @carts.count > 0 %>
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th><%= t(:product_name) %></th>
-        <th><%= t(:quantity) %></th>                         
-      </tr>
-    </thead>   
-    <tbody>
-    <% @carts.each do |cart| %>
-      <tr>
-        <td><%= link_to cart.product.name, cart %></td>
-        <td><%= cart.quantity %> <%= cart.product.measurement %></td>            
-      </tr>
-    <% end %>
+<%= form_tag multi_update_carts_path, :method => :put do %>
+<table class="table table-condensed">
+  <thead>
     <tr>
-      <td colspan="5">
-        <%= link_to t(:create), new_maintain_lookup_path, :class => 'btn' %>
-              <%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
-      </td>
+      <th><%= t(:product_name) %></th>
+      <th><%= t(:quantity) %></th>   
+      <th><%= t(:amount) %></th>                  
     </tr>
-    </tbody>
-  </table>
-  <%else%>
-    <p><%=t(:none_cart) %> <%= link_to t(:select_product), products_path, :class => 'btn' %> </p>
-  <%end%>
+  </thead>
+  <tbody>
+  <% @carts.each do |cart| %>
+    <tr>
+      <%= fields_for "carts[]", cart do |f| %>
+        <td><%= cart.product.name %> </td>
+        <td><%= f.number_field :quantity, :class => 'quantity' %> <%= cart.product.measurement %></td> 
+        <td><%= f.number_field :amount, :class => 'quantity' %></td>
+      <% end %>           
+    </tr>
+  <% end %>
+  </tbody>
+  <tr>
+    <td colspan="3">
+      <%= submit_tag  t(:update), :class => 'btn' %>
+      <%= link_to t(:all_products), products_path, :class => 'btn ' %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <%= link_to t(:normal_sale), new_sale_path, :class => 'btn btn-warning' %>
+      <%= link_to t(:cost_sale), costsale_path, :class => 'btn btn-warning' %>
+    </td>
+  </tr>
+</table>
+<%end%>

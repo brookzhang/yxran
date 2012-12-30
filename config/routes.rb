@@ -12,7 +12,12 @@ Yxran::Application.routes.draw do
   resources :sales
   resources :products
   resources :stocks
-  resources :carts
+  resources :carts do
+    collection do
+      put "multi_update"
+    end
+  end
+  
   
   match 'costsale', :to => 'sales#cost_sale'
   match 'membersale', :to => 'sales#member_sale'

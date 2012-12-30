@@ -12,6 +12,8 @@ class CartsController < ApplicationController
     @cart.save
     
     session[:cart_count] = Cart.count.to_s
+    
+    redirect_to carts_path, :notice => t(:add_ok)
   end
 
   def create
@@ -21,6 +23,11 @@ class CartsController < ApplicationController
   end
 
   def update
+    
+  end
+  
+  def multi_update
+    
   end
 
   def destroy
