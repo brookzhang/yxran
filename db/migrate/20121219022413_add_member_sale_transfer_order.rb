@@ -19,7 +19,7 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
       t.integer :member_id  #category=M , or is nil
       t.string :category  #sale type M-member buy, N-normal sale, C-cost sale
       t.integer :quantity
-      t.float :unitprice
+      t.float :unit_price
       t.float :amount
       t.float :score
       t.float :used_score

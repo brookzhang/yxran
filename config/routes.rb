@@ -12,16 +12,8 @@ Yxran::Application.routes.draw do
   resources :sales
   resources :products
   resources :stocks
-  resources :carts do
-    collection do
-      put "multi_update"
-    end
-  end
+  resources :carts
   
-  
-  match 'costsale', :to => 'sales#cost_sale'
-  match 'membersale', :to => 'sales#member_sale'
-  match 'selectmember', :to => 'members#select_member'
 
   namespace :maintain do
     match '/dashboard',:to => 'dashboard#index'

@@ -1,4 +1,6 @@
 class StocksController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index
     @stock = Stock.new
     @stock.store_id = current_user.store.id

@@ -1,4 +1,6 @@
 class MembersController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index
     @member = Member.new
     @member.name = params[:name]
@@ -8,6 +10,7 @@ class MembersController < ApplicationController
   end
 
   def show
+    @member = Member.find(params[:id])
   end
   
   def new

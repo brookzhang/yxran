@@ -1,2 +1,28 @@
-<h1>Carts#edit</h1>
-<p>Find me in app/views/carts/edit.html.erb</p>
+<%= simple_form_for @cart, :html => {:class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @cart %>
+  <div class="control-group">
+    <div class="controls">
+      <%= @cart.product.name << ' ' << @cart.product.price %>
+    </div>
+  </div>
+  
+  <%= f.input :quantity, :label => t(:quantity), :input_html => { :class => ' input-small ' }, :required => true, :autofocus => true %>
+  <% if !@member.nil? %>
+    <div class="control-group">
+      <div class="controls">
+       <%= @member.name << ' ' << @member.score.to_s << t(:scores) %>
+      </div>
+    </div>
+    <%= f.input :used_score, :label => t(:used_score), :input_html => { :class => ' input-small ' }, :required => false %>
+  <% end %>
+  <%= f.input :amount, :label => t(:amount), :input_html => { :class => ' input-small ' }, :required => true %>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, t(:submit), :class => 'btn' %>
+      &nbsp;&nbsp;&nbsp;
+      <%= link_to t(:back), carts_path, :class => 'btn' %>
+    </div>
+  </div>
+<% end %>
+

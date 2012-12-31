@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
     t.integer  "member_id"
     t.string   "category"
     t.integer  "quantity"
-    t.float    "unitprice"
+    t.float    "unit_price"
     t.float    "amount"
     t.float    "score"
     t.float    "used_score"

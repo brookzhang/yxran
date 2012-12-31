@@ -15,4 +15,9 @@ class Product < ActiveRecord::Base
   def get_discount(member_level)
     0.1
   end
+  
+  def price
+    self.unit_price.to_s << '/' << self.measurement
+  end
+  
 end

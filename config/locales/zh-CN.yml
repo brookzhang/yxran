@@ -28,6 +28,10 @@ zh-CN:
   time: '时间'
   search: '搜索'
   money: '元'
+  are_you_sure_to_delete: '真的要删吗?'
+  created_ok: '添加成功'
+  unable_to_create: '添加失败'
+  unable_to_delete: '删除失败'
   
   
   # sessions.
@@ -54,9 +58,9 @@ zh-CN:
   
   # sales.
   #----------------------------------------------------------------------------
-  normal_sale: '普通零售'
+  normal_sale: '零售'
   member_sale: '会员购买'
-  cost_sale: '日常耗用'
+  cost_sale: '消耗'
   sale_record: '销售记录'
   amount: '金额'
   buy_again: '再次购买'
@@ -74,7 +78,7 @@ zh-CN:
   no_member_found: '没有找到这样的会员'
   member_level: '会员级别'
   creator: '创建人'
-  
+  dismiss: '取消'
   
   
   
@@ -105,9 +109,6 @@ zh-CN:
   not_authorized_as_admin: '只有管理员有权限'
   user_deleted: '账号已删除'
   can_not_delete_yourself: '不能删除自己的账号'
-  are_you_sure_to_delete: '真的要删吗?'
-  created_ok: '添加成功'
-  unable_to_create: '添加失败'
   
   
   # lookup.
@@ -213,9 +214,12 @@ zh-CN:
   cart: '货单'
   none_cart: '货单是空的'
   add_to_cart: '加入货单'
-  select_member: '选取'
-  member_selected_ok: '已选取会员'
+  select: '选取'
+  select_member: '选会员'
+  member_selected_ok: '已选好了会员'
   selected_member: '已选会员'
   add_ok: '添加成功'
-  
+  add_product: '选商品'
+  scores: '分'
+  used_score: '使用积分'
   

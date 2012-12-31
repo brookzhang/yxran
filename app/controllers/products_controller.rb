@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index
     category_id = params[:category_id].nil? ? 0 : params[:category_id].to_i
     @category = category_id ==0 ? nil : Category.find(category_id)

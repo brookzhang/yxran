@@ -79,7 +79,7 @@ Store.create([
   {:name => '总店', :category => 'c', :remark => 'XXX路XXX号'},
   {:name => '信誉大街店', :category => 'p', :remark => '信誉大街XX号' },
   {:name => '才培店', :category => 'i', :remark => '才培大厦一楼'},
-  {:name => '总部仓库', :category => 's', :remark => 'xxxxx'}
+  {:name => '总部仓库', :category => 's', :remark => 'XXX路XXX号'}
 ], :without_protection => true)
 
 
@@ -92,9 +92,9 @@ Role.create([
 
 puts 'creating users'
 User.create([
-  {:name => 'admin', :email => 'brook@b.com', :store_id => '1', :password => '123456', :password_confirmation => '123456'},
-  {:name => 'manager', :email => 'manager@b.com', :store_id => '2', :password => '123456', :password_confirmation => '123456'},
-  {:name => 'user', :email => 'user@b.com', :store_id => '3', :password => '123456', :password_confirmation => '123456'}
+  {:name => 'admin', :email => 'admin@yxran.com', :store_id => '1', :password => '123456', :password_confirmation => '123456'},
+  {:name => 'manager', :email => 'manager@yxran.com', :store_id => '2', :password => '123456', :password_confirmation => '123456'},
+  {:name => 'user', :email => 'user@yxran.com', :store_id => '3', :password => '123456', :password_confirmation => '123456'}
 ])
 
 puts 'Adding roles'

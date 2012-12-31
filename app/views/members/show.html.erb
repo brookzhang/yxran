@@ -1,2 +1,14 @@
-<h1>Members#show</h1>
-<p>Find me in app/views/members/show.html.erb</p>
+<!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:name) %>: <%= @member.name %></p>
+<p><%= t(:phone) %>: <%= @member.phone if @member.phone %></p>
+<p><%= t(:address) %>: <%= @member.address %></p>
+<p><%= t(:remark) %>: <%= @member.remark %></p>
+<p><%= t(:member_level) %>: <%= l(@member.level,'member') %></p>
+<p><%= t(:score) %>: <%= @member.score %></p>
+<p><%= t(:created_at) %>: <%= @member.created_at.to_date %></p>
+
+<p>
+  <%= link_to t(:select_member), carts_path(:member_id => @member), :class => 'btn btn-warning' %>
+  <%= link_to t(:edit), edit_member_path(@member), :class => 'btn' if @member.user_id == current_user.id %>
+  <%= link_to t(:back), members_path, :class => 'btn'%>
+</p>

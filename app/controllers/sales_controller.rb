@@ -1,4 +1,6 @@
 class SalesController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index
     @sales = Sale.all
   end
@@ -6,21 +8,13 @@ class SalesController < ApplicationController
   def show
     @sale = Sale.find(params[:id])
   end
-  
-  def cost_sale
-    @sale = Sale.new
-    @sale.category = 'C'
-  end
-  
-  def member_sale
-    @sale = Sale.new
-    @sale.member_id = params[:member_id]
-    @sale.category = 'M'
-  end
 
   def new
     @sale = Sale.new
-    @sale.category = 'N'
+    @sale.category = params[:category]
+    
+    @carts = Cart.where(" user_id = ? and store_id = ? ", current_user.id, current_user.store_id)
+    @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
   end
   
 

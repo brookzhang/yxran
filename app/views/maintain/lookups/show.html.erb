@@ -5,6 +5,7 @@
 <p><%= t(:sequence) %>: <%= @lookup.sequence %></p>
 <p><%= t(:status) %>: <%= @lookup.status %></p>
 <p><%= t(:created_at) %>: <%= @lookup.created_at.to_date %></p>
-<%= link_to t(:edit), edit_maintain_lookup_path(@lookup), :class => 'btn'%>
+<p><%= link_to t(:edit), edit_maintain_lookup_path(@lookup), :class => 'btn'%>
 <%= link_to(t(:delete), maintain_lookup_path(@lookup), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
 <%= link_to t(:back), maintain_lookups_path, :class => 'btn'%>
+</p>
