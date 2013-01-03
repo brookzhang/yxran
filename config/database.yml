@@ -18,12 +18,18 @@ test:
   pool: 5
   timeout: 5000
 
-production:
-  adapter: postgresql
-  database: yxran
-  username:
-  password:
-  host:     localhost
-  port:     5432
-  schema_search_path: public
-  min_messages: warning
+production: 
+  adapter: postgresql 
+  database: yxran 
+  username: deploy 
+  password: MyP4ssW0rd 
+  host: ec2-50-16-40-223.compute-1.amazonaws.com 
+  reconnect: true 
+
+slave: 
+  adapter: postgresql 
+  database: yxran 
+  username: deploy 
+  password: MyP4ssW0rd 
+  host: ec2-50-16-40-223.compute-1.amazonaws.com 
+  reconnect: true 
