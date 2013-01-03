@@ -1,3 +1,20 @@
+ssh -i yxran.pem ubuntu@54.241.26.155
+
+chmod 0666 log/development.log
+
+rvm pkg install openssl
+rvm reinstall all --force
+
+sudo apt-get install libsqlite3-dev
+
+.bashrc
+echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && . '$HOME/.rvm/scripts/rvm'" >> /home/ubuntu/.bashrc
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+ [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
+ 
+source ~/.bashrc   #/refresh bash
+
 
 
 rails g migration AddLookupProductStoreStockHistory
@@ -10,7 +27,7 @@ rails g controller admin/Warehouses index new create edit update destroy
 rails g controller admin/Inventories index new create edit update destroy
 rails g controller admin/Histories index new create edit update destroy
 
-
+$ git remote set-url origin git@github.com:user/repo.git
 
 
 
