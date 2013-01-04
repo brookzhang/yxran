@@ -15,6 +15,7 @@ class SalesController < ApplicationController
     
     @carts = Cart.where(" user_id = ? and store_id = ? ", current_user.id, current_user.store_id)
     @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
+    
   end
   
 
