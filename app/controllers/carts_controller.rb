@@ -7,7 +7,8 @@ class CartsController < ApplicationController
     
     @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
     @carts = Cart.where(" user_id = ? and store_id = ? ", current_user.id, current_user.store_id)
-    @count = Cart.count 
+    @count = Cart.count
+    session[:cart_count] = @count.to_s
   end
 
 

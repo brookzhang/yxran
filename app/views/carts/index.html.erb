@@ -25,10 +25,11 @@
   <thead>
   <tr>
     <td colspan="3">
-      <% if @member.nil? %>
+      <% if @member.nil? && @count > 0 %>
         <%= link_to t(:normal_sale), new_sale_path(:category => 'N'), :class => 'btn btn-warning' %>
         <%= link_to t(:cost_sale), new_sale_path(:category => 'C'), :class => 'btn btn-warning' %>
-      <%else %>
+      <%end %>
+      <% if !@member.nil? %>
         <%= link_to t(:dismiss), carts_path(:dismiss => '1'), :class => 'btn btn-danger'  %>
         <%= @member.name %>
         <%= t(:score)%> : <%= @member.score %>

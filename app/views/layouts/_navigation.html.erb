@@ -4,7 +4,7 @@
     <% if !current_user.store_id.nil? %>
       <li><a href="<%=carts_path%>" class="cart_count" >
         <i class="icon-home"></i><%=current_user.store.name %>
-        <% if !session[:cart_count].nil? %>
+        <% if !session[:cart_count].nil? && session[:cart_count].to_i > 0 %>
         <span class="num"><span><%= session[:cart_count] %></span><i></i></span>
         <% end %>
       </a></li>

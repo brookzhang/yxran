@@ -15,7 +15,10 @@
           <%= link_to t(:add_product), products_path, :class => 'btn '  %>
           <%= t(:none_cart)%>
         <%else %>
-          <%= link_to t(:submit), new_sale_path(:category => 'N'), :class => 'btn btn-warning' %>
+          <%= form_for @sale do |f| %>
+          <%= f.hidden_field :category  %>
+          <%= f.button t(:submit), :type => :submit, :class => 'btn btn-warning' %>
+          <%end %>
         <%end%>
       </td>         
     </tr>

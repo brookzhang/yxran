@@ -20,7 +20,7 @@ class Sale < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       begin
         if self.category == 'M'
-          self.score = self.amount * self.product.get_discount(self.member.member_level)
+          self.score = self.amount / 10 
           @member = Member.find(self.member_id)
           @member.score += self.score
           @member.save
