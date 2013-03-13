@@ -1,0 +1,15 @@
+<div id="store-options-<%= @user.id %>" class="modal" style="display: none;">
+  <%= simple_form_for @user, :url => user_path(@user), :html => {:method => :put, :class => 'form-horizontal' } do |f| %>
+    <div class="modal-header">
+      <a class="close" data-dismiss="modal">&#215;</a>
+      <h3><%= t(:change_store) %></h3>
+    </div>
+    <div class="modal-body">
+      <%= f.input :store_id, :collection => @stores, :as => :radio_buttons, :label_method => lambda {|r| t(r.name)}, :label => false%>
+    </div>
+    <div class="modal-footer">
+      <%= f.submit t(:change_store) , :class => "btn" %>
+      <a class="btn" data-dismiss="modal" href="#"><%= t(:close) %></a>
+    </div>
+  <% end %>
+</div>

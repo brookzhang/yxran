@@ -2,7 +2,10 @@
   <%= f.error_notification %>
   <%= display_base_errors @store %>
   <%= f.input :name, :label => t(:store_name), :autofocus => true %> 
-  <%= f.input :category, :label => t(:store_category)  %>
+  <%#= f.input :category, :label => t(:store_category)  %>
+  
+  <%= f.input :category, :label => t(:store_category), :collection => @lookups, :label_method => :description, :value_method => :code, :required => true %>
+  
   <%= f.input :remark, :label => t(:remark) %>
   <div class="control-group">
     <div class="controls">

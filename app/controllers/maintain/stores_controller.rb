@@ -9,6 +9,7 @@ class Maintain::StoresController < ApplicationController
   end
 
   def new
+    @lookups = Lookup.where(" category = ? ", "store")
     @store = Store.new
   end
 
@@ -23,6 +24,7 @@ class Maintain::StoresController < ApplicationController
   end
 
   def edit
+    @lookups = Lookup.where(" category = ? ", "store")
     @store = Store.find(params[:id])
   end
 

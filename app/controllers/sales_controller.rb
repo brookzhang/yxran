@@ -22,7 +22,7 @@ class SalesController < ApplicationController
   def create
     @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
     
-    @carts = Cart.where(" user_id = ? and store_id = ? ", current_user.id, current_user.store_id)
+    @carts = Cart.list_by_user(current_user)
     @carts.each do |cart|
       @sale = Sale.new(params[:sale])
       @sale.store_id = cart.store_id

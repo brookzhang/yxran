@@ -12,6 +12,13 @@ class Cart < ActiveRecord::Base
   #validates_uniqueness_of :product_id, :scope => :store_id
   
   
+  def self.count_by_user(user)
+    list_by_user(user).count
+  end
+  
+  def self.list_by_user(user)
+    self.where(" user_id = ? and store_id = ? ", user.id, user.store_id)
+  end
   
   
   

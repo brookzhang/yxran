@@ -7,6 +7,7 @@ class Maintain::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @stocks = Stock.where(" product_id =? ", @product.id)
+    @categories = Category.where(:parent_id => @product.category.parent_id)
   end
 
   def new

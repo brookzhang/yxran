@@ -6,9 +6,8 @@ class CartsController < ApplicationController
     session[:member_id] = nil if params[:dismiss] == '1'
     
     @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
-    @carts = Cart.where(" user_id = ? and store_id = ? ", current_user.id, current_user.store_id)
-    @count = Cart.count
-    session[:cart_count] = @count.to_s
+    @carts = Cart.list_by_user(current_user)
+    
   end
 
 
@@ -20,9 +19,9 @@ class CartsController < ApplicationController
     @cart.amount = @cart.quantity * @cart.product.unit_price
     @cart.save
     
-    session[:cart_count] = Cart.count.to_s
+    session[:cart_count] = Cart.count_by_user(current_user).to_s
     
-    redirect_to carts_path #, :notice => t(:add_ok)
+    redirect_to products_path(:category_id => @cart.product.category_id) # carts_path #, :notice => t(:add_ok)
   end
 
 
@@ -45,6 +44,7 @@ class CartsController < ApplicationController
     
     
     if @cart.save
+      session[:cart_count] = Cart.count_by_user(current_user).to_s
       redirect_to carts_path, :notice => t(:updated_ok)
     else
       redirect_to :back, :alert => t(:unable_to_update)
@@ -55,7 +55,7 @@ class CartsController < ApplicationController
   def destroy
     @cart = Cart.find(params[:id])
     if @cart.destroy
-      session[:cart_count] = Cart.count.to_s
+      session[:cart_count] = Cart.count_by_user(current_user).to_s
       redirect_to carts_path
     else
       redirect_to :back, :notice => t(:unable_to_delete)

@@ -55,6 +55,8 @@ zh-CN:
   cancel_account: '注销账号'
   location: '值班店铺'
   user: '店员'
+  user_updated: '店员信息已更新'
+  unable_to_update_user: '店员信息不能修改'
   
   # sales.
   #----------------------------------------------------------------------------
@@ -93,7 +95,7 @@ zh-CN:
   users_maintain: '用户管理'
   categories_maintain: '商品分类'
   products_maintain: '所有商品'
-  discounts_maintain: '积分设定'
+  discounts_maintain: '折扣设定'
   stores_maintain: '店子管理'
   stocks_maintain: '库存管理'
   sales_maintain: '销售管理'
@@ -132,9 +134,9 @@ zh-CN:
   parent_category: '父类'
   root_category: '总分类'
   s_children: '的子分类'
-  create_product: '添加商品'
+  create_product: '新增商品'
   select_category_first: '先选好分类'
-  show_products: '查看商品'
+  show_products: '查看所属商品'
   change_category: '修改分类'
   create_category: '新增分类'
   create_sub_category: '新增子分类'
@@ -155,6 +157,7 @@ zh-CN:
   store_name: '店铺名称'
   store: '店铺'
   store_category: '店铺类型'
+  change_store: '店铺轮换'
   
   # stock.
   #----------------------------------------------------------------------------
