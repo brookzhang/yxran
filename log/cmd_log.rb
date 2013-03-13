@@ -14,7 +14,7 @@ echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && . '$HOME/.rvm/scripts/rvm'" >> /home/
  [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
  
 source ~/.bashrc   #/refresh bash
-
+ 
 
 
 rails g migration AddLookupProductStoreStockHistory
