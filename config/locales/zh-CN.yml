@@ -225,4 +225,7 @@ zh-CN:
   add_product: '选商品'
   scores: '分'
   used_score: '使用积分'
+  use_score: '使用积分'
+  sum_amount: '总金额'
+  all_used_scores: '已用积分'
   

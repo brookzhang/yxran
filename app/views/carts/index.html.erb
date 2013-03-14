@@ -23,18 +23,23 @@
   <% end %>
   </tbody>
   <thead>
-  <tr>
-    <td colspan="3">
-      <% if @member.nil? && @carts.count > 0 %>
-        <%= link_to t(:normal_sale), new_sale_path(:category => 'N'), :class => 'btn btn-warning' %>
-        <%= link_to t(:cost_sale), new_sale_path(:category => 'C'), :class => 'btn btn-warning' %>
-      <%end %>
-      <% if !@member.nil? %>
-        <%= link_to t(:dismiss), carts_path(:dismiss => '1'), :class => 'btn btn-danger'  %>
-        <%= @member.name %>
-        <%= t(:score)%> : <%= @member.score %>
-      <% end %>
-    </td>
-  </tr>
+    <tr>
+    <th colspan="3">
+      <%= t(:sum_amount)%> : <%= t(:all_used_scores) %>
+    </th>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <% if @member.nil? && @carts.count > 0 %>
+          <%= link_to t(:normal_sale), new_sale_path(:category => 'N'), :class => 'btn btn-warning' %>
+          <%= link_to t(:cost_sale), new_sale_path(:category => 'C'), :class => 'btn btn-warning' %>
+        <%end %>
+        <% if !@member.nil? %>
+          <%= link_to t(:dismiss), carts_path(:dismiss => '1'), :class => 'btn btn-danger'  %>
+          <%= @member.name %>
+          <%= t(:score)%> : <%= @member.score %>
+        <% end %>
+      </td>
+    </tr>
   </thead> 
 </table>
