@@ -3,7 +3,7 @@
     <div>
       <b><%= link_to cart.product.name, edit_cart_path(cart) %></b>
       &nbsp;&nbsp;
-      <% if @member.score > 0 %>
+      <% if !@member.nil? && @member.score > 0 %>
       <a data-toggle="modal" href="#score-input-<%= cart.id %>" class="btn btn-mini" type="button"><%= t(:use_score) %></a>
       <% end %>
     </div>

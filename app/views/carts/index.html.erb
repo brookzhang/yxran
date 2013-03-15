@@ -11,7 +11,7 @@
   <tr>
     <th colspan="3">
       <%= link_to t(:add_product), products_path, :class => 'btn ' %>
-      <%= link_to t(:select_member), members_path, :class => 'btn btn-warning' if @member.nil?  %>
+      <%= link_to t(:select_member), members_path, :class => 'btn btn-warning' if @member.nil? && @carts.count > 0  %>
       <%= link_to t(:submit), new_sale_path(:category => 'M'), :class => 'btn btn-warning' unless @member.nil?  %>
     </th>
   </tr>
@@ -23,11 +23,13 @@
   <% end %>
   </tbody>
   <thead>
+    <% if @carts.count > 0 %>
     <tr>
     <th colspan="3">
       <%= t(:sum_amount)%>: <%= t(:all_used_scores) %>: 
     </th>
     </tr>
+    <% end %>
     <tr>
       <td colspan="3">
         <% if @member.nil? && @carts.count > 0 %>
