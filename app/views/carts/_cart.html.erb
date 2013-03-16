@@ -9,13 +9,15 @@
     </div>
     <strong><%= cart.quantity %><%= cart.product.measurement %></strong>
     *  <%= cart.product.price %>
+    
     <% if !@member.nil? %>
     - <%= cart.used_score.nil? ? 0 : cart.used_score %><%= t(:scores) %>
     <% end%>
+    
     = <%= cart.quantity * cart.product.unit_price %> <%=t(:money)%>
     [<strong><%= cart.amount %><%=t(:money)%></strong>]
     
-      <%= link_to t(:delete), cart , :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini  btn-inverse'   %>
+    <%= link_to t(:delete), cart , :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini  btn-inverse'   %>
       
       
     <div id="score-input-<%= cart.id %>" class="modal" style="display: none;">

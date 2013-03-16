@@ -21,33 +21,20 @@ class SalesController < ApplicationController
 
   def create
     @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
-    
-    @carts = Cart.list_by_user(current_user)
-    @carts.each do |cart|
-      @sale = Sale.new(params[:sale])
-      @sale.store_id = cart.store_id
-      @sale.product_id = cart.product_id
-      @sale.quantity = cart.quantity
-      @sale.unit_price = cart.product.unit_price
-      @sale.amount = cart.amount
-      @sale.used_score = cart.used_score
-      @sale.remark = t(:sale)
-      @sale.member_id = @member.nil? ? nil : @member.id
-      @sale.user_id = current_user.id
-      if @sale.sale_add()
-        cart.destroy
-      else
-        
-      end
+    @sale = Sale.new(params[:sale])
+    @sale.store_id = current_user.store_id
+    @sale.user_id = current_user.id
+    @sale.member_id = @member.nil? ? nil : @member.id
+    if @sale.sale_add(current_user.store_id)
+      redirect_to sales_path, :notice => t(:created_ok)
+    else
+      redirect_to :back, :alert => t(:unable_to_create)
     end
     
-    #if @sale.sale_add
-      redirect_to sales_path, :notice => t(:created_ok)
-    #else
-    #  redirect_to :back, :alert => t(:unable_to_create)
-    #end
     
   end
+
+
 
   def edit
     @sale = Sale.find(params[:id])
