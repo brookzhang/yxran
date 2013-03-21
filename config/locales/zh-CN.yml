@@ -100,7 +100,7 @@ zh-CN:
   sales_maintain: '销售管理'
   members_maintain: '会员管理'
   events_maintain: '操作记录'
-  orders_maintain: '订单管理'
+  orders_maintain: '采购管理'
   transfers_maintain: '调货管理'
   account_info: '账号信息'
   role: '身份'
@@ -196,9 +196,9 @@ zh-CN:
   
   # order.
   #----------------------------------------------------------------------------
-  order: '订单'
+  order: '采购'
   select_product_first: '先选商品'
-  create_order: '创建订单'
+  create_order: '新采购单'
   select_product: '选择商品'
   
   
