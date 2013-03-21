@@ -1,5 +1,10 @@
 <table class="table table-condensed table-striped">  
   <tbody>
+    <tr>
+      <th colspan="3">
+        <%= link_to t(:select_member), members_path, :class => 'btn' if @member.nil?  %>
+      </th>
+    </tr>
     <% @carts.each do |cart| %>
     <tr>
       <td>
@@ -11,15 +16,42 @@
     <% end %>
     <tr>
       <td>
-        <% if @count == 0 %>
-          <%= link_to t(:add_product), products_path, :class => 'btn '  %>
-          <%= t(:none_cart)%>
-        <%else %>
+        <% if !@member.nil? %>
+        
+          <%= link_to t(:dismiss), new_sale_path(:dismiss => '1'), :class => 'btn btn-danger'  %>
+          <%= @member.name %>
+          <%= t(:score)%> : <%= @member.score %>
+          
+          <!-- use member score -->
+          <% if @member.score > 0 %>
+            <a data-toggle="modal" href="#score-input-<%= cart.id %>" class="btn btn-mini" type="button"><%= t(:use_score) %></a>
+            <div id="score-input-<%= cart.id %>" class="modal" style="display: none;">
+              <%= simple_form_for @sale, :url => new_sale_path, :html => {:method => :put, :class => 'form-horizontal' } do |f| %>
+                <div class="modal-header">
+                  <a class="close" data-dismiss="modal">&#215;</a>
+                  <h3><%= t(:use_score) %></h3>
+                </div>
+                <div class="modal-body">
+                  <%= f.input :used_score, :label => t(:used_score), :class => 'auto_focus' %>
+                </div>
+                <div class="modal-footer">
+                  <%= f.submit t(:use_score) , :class => "btn" %>
+                  <a class="btn" data-dismiss="modal" href="#"><%= t(:close) %></a>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+          
+          
+        <%end %>
+        
           <%= form_for @sale do |f| %>
-          <%= f.hidden_field :category  %>
-          <%= f.button t(:submit), :type => :submit, :class => 'btn btn-warning' %>
+            <%= f.hidden_field :category  %>
+            <%= f.button t(:create_sale_sheet), :type => :submit, :class => 'btn btn-warning' %>
           <%end %>
-        <%end%>
+        
+          <%= link_to t(:normal_sale), new_sale_path(:category => 'N'), :class => 'btn ' %>
+          <%= link_to t(:cost_sale), new_sale_path(:category => 'C'), :class => 'btn ' %>
       </td>         
     </tr>
   </tbody> 

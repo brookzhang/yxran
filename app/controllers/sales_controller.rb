@@ -11,7 +11,7 @@ class SalesController < ApplicationController
 
   def new
     @sale = Sale.new
-    @sale.category = params[:category]
+    #@sale.category = params[:category]
     
     @carts = Cart.where(" user_id = ? and store_id = ? ", current_user.id, current_user.store_id)
     @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
@@ -20,12 +20,11 @@ class SalesController < ApplicationController
   
 
   def create
+    @carts = Cart.where(" user_id = ? and store_id = ? ", current_user.id, current_user.store_id)
     @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
+    
     @sale = Sale.new(params[:sale])
-    @sale.store_id = current_user.store_id
-    @sale.user_id = current_user.id
-    @sale.member_id = @member.nil? ? nil : @member.id
-    if @sale.sale_add(current_user.store_id)
+    if @sale.create(@carts , @member)
       redirect_to sales_path, :notice => t(:created_ok)
     else
       redirect_to :back, :alert => t(:unable_to_create)

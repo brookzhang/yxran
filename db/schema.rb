@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
     t.integer  "store_id"
     t.integer  "user_id"
     t.integer  "quantity"
-    t.float    "used_score"
+    t.float    "score"
     t.float    "amount"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -132,25 +132,37 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
-  create_table "sales", :force => true do |t|
-    t.integer  "store_id"
+  create_table "sale_details", :force => true do |t|
     t.integer  "product_id"
-    t.integer  "member_id"
-    t.string   "category"
     t.integer  "quantity"
     t.float    "unit_price"
     t.float    "amount"
     t.float    "score"
-    t.float    "used_score"
     t.string   "remark"
     t.integer  "status",     :default => 1
-    t.integer  "user_id"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
 
-  add_index "sales", ["member_id"], :name => "index_sales_on_member_id"
-  add_index "sales", ["store_id", "product_id"], :name => "index_sales_on_store_id_and_product_id"
+  add_index "sale_details", ["product_id"], :name => "index_sale_details_on_product_id"
+
+  create_table "sales", :force => true do |t|
+    t.integer  "store_id"
+    t.integer  "member_id"
+    t.string   "category"
+    t.string   "discount_type"
+    t.integer  "quantity"
+    t.float    "amount"
+    t.float    "score"
+    t.float    "used_score"
+    t.string   "remark"
+    t.integer  "status",        :default => 1
+    t.integer  "user_id"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  add_index "sales", ["store_id", "member_id"], :name => "index_sales_on_store_id_and_member_id"
 
   create_table "stocks", :force => true do |t|
     t.integer  "product_id"

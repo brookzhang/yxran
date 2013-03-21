@@ -19,8 +19,8 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
       t.string :category  #sale type M-member buy, N-normal sale, C-cost sale
       t.string :discount_type #D-discount ,S-saved score
       t.integer :quantity
-      t.float :amount
-      t.float :score
+      t.float :amount       #actual amount 
+      t.float :score        #if discount_type == D, score = 0
       t.float :used_score
       t.string :remark
       t.integer :status, :default => 1 # 0-cancel
@@ -68,8 +68,8 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
     
 
     add_index(:members, [:name, :phone])
-    add_index(:sales, [:store_id, :product_id])
-    add_index(:sales, :member_id)
+    add_index(:sales, [:store_id, :member_id])
+    add_index(:sale_details, :product_id)
     add_index(:transfers, [:from_store_id, :to_store_id])
     add_index(:orders, [:store_id, :product_id ])
   end

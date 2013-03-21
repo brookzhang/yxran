@@ -2,15 +2,10 @@ class CartsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    session[:member_id] = params[:member_id] unless params[:member_id].nil?
-    session[:member_id] = nil if params[:dismiss] == '1'
     
-    @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
     @carts = Cart.list_by_user(current_user)
-    @sum_amount = 0
-    @sum_used_score = 0
-    @carts.each {|c| @sum_amount += c.amount; @sum_used_score += c.used_score}
-    
+    @sum_amount = @carts.sum {|c| c.amount  } 
+    @sum_score = @carts.sum {|c| c.score  } 
     
   end
 
@@ -19,7 +14,7 @@ class CartsController < ApplicationController
     @cart = Cart.new(params[:cart])
     @cart.store_id = current_user.store_id
     @cart.user_id = current_user.id
-    @cart.used_score = 0
+    @cart.score = 0
     @cart.amount = @cart.quantity * @cart.product.unit_price
     @cart.save
     
@@ -31,7 +26,6 @@ class CartsController < ApplicationController
 
   def edit
     @cart = Cart.find(params[:id])
-    @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
   end
 
 

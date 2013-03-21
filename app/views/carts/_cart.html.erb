@@ -3,37 +3,20 @@
     <div>
       <b><%= link_to cart.product.name, edit_cart_path(cart) %></b>
       &nbsp;&nbsp;
-      <% if !@member.nil? && @member.score > 0 %>
-      <a data-toggle="modal" href="#score-input-<%= cart.id %>" class="btn btn-mini" type="button"><%= t(:use_score) %></a>
-      <% end %>
     </div>
-    <strong><%= cart.quantity %><%= cart.product.measurement %></strong>
-    *  <%= cart.product.price %>
-    
-    <% if !@member.nil? %>
-    - <%= cart.used_score.nil? ? 0 : cart.used_score %><%= t(:scores) %>
-    <% end%>
-    
-    = <%= cart.quantity * cart.product.unit_price %> <%=t(:money)%>
-    [<strong><%= cart.amount %><%=t(:money)%></strong>]
-    
-    <%= link_to t(:delete), cart , :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini  btn-inverse'   %>
+    <div>
+      <strong><%= cart.quantity %><%= cart.product.measurement %></strong>
+      *  <%= cart.product.price %>
       
+      <% if !@member.nil? %>
+      - <%= cart.score.nil? ? 0 : cart.score %><%= t(:scores) %>
+      <% end%>
       
-    <div id="score-input-<%= cart.id %>" class="modal" style="display: none;">
-      <%= simple_form_for cart, :url => cart_path(cart), :html => {:method => :put, :class => 'form-horizontal' } do |f| %>
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal">&#215;</a>
-          <h3><%= t(:use_score) %></h3>
-        </div>
-        <div class="modal-body">
-          <%= f.input :used_score, :label => t(:used_score), :class => 'auto_focus' %>
-        </div>
-        <div class="modal-footer">
-          <%= f.submit t(:use_score) , :class => "btn" %>
-          <a class="btn" data-dismiss="modal" href="#"><%= t(:close) %></a>
-        </div>
-      <% end %>
+      = <%= cart.quantity * cart.product.unit_price %> <%=t(:money)%>
+      
+      <%= link_to t(:delete), cart , :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini  btn-inverse'   %>
     </div>
+      
+    
   </td>         
 </tr>
