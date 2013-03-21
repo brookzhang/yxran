@@ -7,6 +7,10 @@ class CartsController < ApplicationController
     
     @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
     @carts = Cart.list_by_user(current_user)
+    @sum_amount = 0
+    @sum_used_score = 0
+    @carts.each {|c| @sum_amount += c.amount; @sum_used_score += c.used_score}
+    
     
   end
 
@@ -41,8 +45,6 @@ class CartsController < ApplicationController
     end
     
     
-    
-    
     if @cart.save
       session[:cart_count] = Cart.count_by_user(current_user).to_s
       redirect_to carts_path, :notice => t(:updated_ok)
@@ -60,6 +62,10 @@ class CartsController < ApplicationController
     else
       redirect_to :back, :notice => t(:unable_to_delete)
     end
+  end
+  
+  def switch_discount
+    redirect_to carts_path
   end
   
   

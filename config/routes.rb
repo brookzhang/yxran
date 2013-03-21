@@ -13,6 +13,7 @@ Yxran::Application.routes.draw do
   resources :products
   resources :stocks
   resources :carts
+  match '/switch_discount',:to => 'carts#switch_discount'
   
 
   namespace :maintain do

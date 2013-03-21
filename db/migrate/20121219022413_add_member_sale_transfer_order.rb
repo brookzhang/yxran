@@ -15,11 +15,10 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
   
     create_table(:sales) do |t|
       t.references :store
-      t.references :product
       t.integer :member_id  #category=M , or is nil
       t.string :category  #sale type M-member buy, N-normal sale, C-cost sale
+      t.string :discount_type #D-discount ,S-saved score
       t.integer :quantity
-      t.float :unit_price
       t.float :amount
       t.float :score
       t.float :used_score
@@ -30,6 +29,17 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
       t.timestamps
     end
     
+    create_table(:sale_details) do |t|
+      t.references :product
+      t.integer :quantity
+      t.float :unit_price
+      t.float :amount
+      t.float :score
+      t.string :remark
+      t.integer :status, :default => 1 # 0-cancel
+      
+      t.timestamps
+    end
     
     create_table(:transfers) do |t|
       t.integer :from_store_id
