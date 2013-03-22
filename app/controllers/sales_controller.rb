@@ -10,21 +10,30 @@ class SalesController < ApplicationController
   end
 
   def new
-    @sale = Sale.new
-    #@sale.category = params[:category]
+    session[:category] = params[:category] unless params[:category].nil?
+    session[:member_id] = params[:member_id] unless params[:member_id].nil?
+    session[:member_id] = nil if session[:category] != "M" || params[:dismiss] == '1'
+
     
+    
+    
+    
+    @sale = Sale.new
+    @sale.category = session[:category]
+    @sale.member_id = session[:member_id].nil? ? nil : session[:member_id].to_i
+    
+    @member = @sale.member_id.nil? ? nil : Member.find(@sale.member_id) 
     @carts = Cart.where(" user_id = ? and store_id = ? ", current_user.id, current_user.store_id)
-    @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
+    
     
   end
   
 
   def create
     @carts = Cart.where(" user_id = ? and store_id = ? ", current_user.id, current_user.store_id)
-    @member = session[:member_id].nil? ? nil : Member.find(session[:member_id])
     
     @sale = Sale.new(params[:sale])
-    if @sale.create(@carts , @member)
+    if @sale.create(@carts)
       redirect_to sales_path, :notice => t(:created_ok)
     else
       redirect_to :back, :alert => t(:unable_to_create)

@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
   validates_presence_of :name, :measurement
   validates_uniqueness_of :name, :case_sensitive => false
   
-  def get_discount(member_level)
+  def discount(member_level)
     0.1
   end
   

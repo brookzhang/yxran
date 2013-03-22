@@ -29,11 +29,12 @@ rails g controller admin/Histories index new create edit update destroy
 
 $ git remote set-url origin git@github.com:user/repo.git
 
-
+sudo apt-get install build-essential zlib1g-dev libssl-dev libreadline-dev git-core curl libyaml-dev libcurl4-nss-dev libsqlite3-dev apache2-threaded-dev -y
 
 set HTTP_PROXY=http://172.30.4.63:3128
 set HTTP_PROXY=http://172.20.1.46:8999
 
+export http_proxy=http://172.30.4.63:3128
 export http_proxy=http://172.20.1.46:8999
 export https_proxy=http://172.20.1.46:8999
 $ git config --global http.proxy http://172.20.1.46:8999

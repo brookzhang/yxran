@@ -14,8 +14,10 @@ class CartsController < ApplicationController
     @cart = Cart.new(params[:cart])
     @cart.store_id = current_user.store_id
     @cart.user_id = current_user.id
+    @cart.unit_price = @cart.product.unit_price
+    @cart.discount = @cart.product.discount
+    @cart.amount = @cart.quantity * @cart.unit_price
     @cart.score = 0
-    @cart.amount = @cart.quantity * @cart.product.unit_price
     @cart.save
     
     session[:cart_count] = Cart.count_by_user(current_user).to_s

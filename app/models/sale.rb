@@ -1,5 +1,6 @@
 class Sale < ActiveRecord::Base
   has_many :histories
+  has_many :sale_details
   
   belongs_to :store
   belongs_to :member
@@ -15,7 +16,7 @@ class Sale < ActiveRecord::Base
   #validates_uniqueness_of :name, :case_sensitive => false
   
   
-  def create(carts, member)
+  def create(carts)
     
     
     ActiveRecord::Base.transaction do
@@ -23,29 +24,43 @@ class Sale < ActiveRecord::Base
         #create sale record
         self.store_id = carts.first.store_id
         self.user_id = carts.first.user_id
-        self.member_id = @member.nil? || self.category != 'M' ? nil : @member.id
-        self.score = carts.each {|c| c.score }.compact.reduce(:+)
-        self.amount = carts.each {|c| c.amount }.compact.reduce(:+)
-        self.used_score = carts.each {|c| c.used_score }.compact.reduce(:+)
+        self.score = carts.sum {|c| c.score }
+        self.amount = carts.sum {|c| c.amount }
+        #self.used_score = carts.sum {|c| c.used_score }
+        self.save
       
         #member sale & record score
         if self.category == 'M' && self.discount_type == 'S' 
-          self.score = self.amount / 10 
           @member = Member.find(self.member_id)
           @member.score += self.score
           @member.save
         end
         
-        self.save
-        
-        @stock = Stock.where(" store_id = ? and product_id = ? ", self.store_id, self.product_id).first
-        if @stock.nil?
-          @stock = Stock.new
-          @stock.store_id = self.store_id
-          @stock.product_id = self.product_id
+        #sale_details
+        carts.each do |c|
+          @sale_detail = SaleDetail.new(:product_id => c.product_id,
+                                        :quantity => c.quantity,
+                                        :unit_price = c.unit_price,
+                                        :amount = c.amount,
+                                        :score => c.score,
+                                        :status => 1
+                                        )
+          
+          @stock = Stock.where(" store_id = ? and product_id = ? ", self.store_id, @sale_detail.product_id).first
+          if @stock.nil?
+            @stock = Stock.new
+            @stock.store_id = self.store_id
+            @stock.product_id = self.product_id
+          end
+          @history = History.new(:adjust_type => 's',
+                                 :reference_id => self.id,
+                                 :remark => self.remark
+                                 )
+          @stock.record_update(self.quantity * (-1), @history)
         end
-        @history = History.new(:adjust_type => 's', :reference_id => self.id, :remark => self.remark)
-        @stock.record_update(self.quantity * (-1), @history)
+          
+        
+        
         
         true
         

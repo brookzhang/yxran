@@ -61,7 +61,7 @@ zh-CN:
   # sales.
   #----------------------------------------------------------------------------
   normal_sale: '零售'
-  member_sale: '会员购买'
+  member_sale: '会员'
   cost_sale: '消耗'
   sale_record: '销售记录'
   amount: '金额'

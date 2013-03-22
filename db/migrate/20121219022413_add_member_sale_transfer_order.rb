@@ -30,10 +30,12 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
     end
     
     create_table(:sale_details) do |t|
+      t.references :sale
       t.references :product
       t.integer :quantity
-      t.float :unit_price
+      t.float :unit_price   #unit price offen changes, record as a history
       t.float :amount
+      t.float :discount     #discount offen changes, record as a history
       t.float :score
       t.string :remark
       t.integer :status, :default => 1 # 0-cancel
