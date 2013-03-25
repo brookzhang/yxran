@@ -33,6 +33,7 @@ sudo apt-get install build-essential zlib1g-dev libssl-dev libreadline-dev git-c
 
 set HTTP_PROXY=http://172.30.4.63:3128
 set HTTP_PROXY=http://172.20.1.46:8999
+set HTTPS_PROXY=http://172.20.1.46:8999
 
 export http_proxy=http://172.30.4.63:3128
 export http_proxy=http://172.20.1.46:8999
