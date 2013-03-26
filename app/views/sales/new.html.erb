@@ -49,6 +49,8 @@
       <td>
         <%= f.hidden_field :category  %>
         <%= f.hidden_field :member_id  %>
+        <%= f.hidden_field :store_id, :value => current_user.store_id %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.button t(:create_sale_sheet), :type => :submit, :class => 'btn btn-warning' %>
 
       </td>         

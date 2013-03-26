@@ -10,6 +10,7 @@ zh-CN:
   
   # global.
   #----------------------------------------------------------------------------
+  add: '添加'
   create: '新增'
   edit: '编辑'
   update: '更新'
@@ -60,7 +61,7 @@ zh-CN:
   
   # sales.
   #----------------------------------------------------------------------------
-  normal_sale: '零售'
+  retail_sale: '零售'
   member_sale: '会员'
   cost_sale: '消耗'
   sale_record: '销售记录'
@@ -222,7 +223,7 @@ zh-CN:
   member_selected_ok: '已选好了会员'
   selected_member: '已选会员'
   add_ok: '添加成功'
-  add_product: '选商品'
+  add_product: '添加商品'
   score: '积分'
   scores: '分'
   used_score: '使用积分'

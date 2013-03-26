@@ -1,0 +1,20 @@
+<%if !@sale_details.nil? %>
+<table class="table  table-striped">
+	  <thead>
+      <tr>
+          <th><%= t(:product_name) %></th>
+          <th><%= t(:quantity) %></th>
+          <th><%= t(:created_at) %></th>                              
+      </tr>
+  </thead>   
+  <tbody>
+  <% @sale_details.each do |d| %>
+    <tr>
+        <td><%= d.product.name %></td>
+        <td><%= d.quantity.to_s %></td>
+        <td><%= d.created_at.to_s %></td>                             
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%end%>

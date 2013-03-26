@@ -6,6 +6,8 @@ class Stock < ActiveRecord::Base
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :product_id, :store_id, :quantity, :safe_stock, :remark
+  
+  attr_accessor :adjust_type, :reference_id, :change_qty, :change_remark
 
   
   validates_presence_of :product_id, :store_id
@@ -13,6 +15,24 @@ class Stock < ActiveRecord::Base
   
   
   #init stock
+  
+  
+  def save_change()
+    
+    
+          @stock = Stock.where(" store_id = ? and product_id = ? ", self.store_id, c.product_id).first
+          if @stock.nil?
+            @stock = Stock.new
+            @stock.store_id = self.store_id
+            @stock.product_id = self.product_id
+          end
+          @history = History.new(:adjust_type => 'S',
+                                 :reference_id => self.id,
+                                 :remark => self.remark
+                                 )
+          @stock.record_update(self.quantity * (-1), @history)
+    
+  end
   
   
   

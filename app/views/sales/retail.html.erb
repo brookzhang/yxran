@@ -1,0 +1,27 @@
+<table class="table table-condensed table-striped">  
+  <tbody>
+    
+    
+    <% @carts.each do |cart| %>
+    <tr>
+      <td>
+        <h4><%= cart.product.name %></h4>
+        <strong><%= cart.quantity %><%= cart.product.measurement %></strong>
+        [<strong><%= cart.amount %><%=t(:money)%></strong>]
+      </td>         
+    </tr>
+    <% end %>
+    
+    <%= form_for @sale do |f| %>
+    <tr>
+      <td>
+        <%= f.hidden_field :category  %>
+        <%= f.hidden_field :store_id, :value => current_user.store_id %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.button t(:create_sale_sheet), :type => :submit, :class => 'btn btn-warning' %>
+
+      </td>         
+    </tr>
+    <%end %>
+  </tbody> 
+</table>

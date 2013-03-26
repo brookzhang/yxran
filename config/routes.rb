@@ -10,6 +10,11 @@ Yxran::Application.routes.draw do
   resources :users
   resources :members
   resources :sales
+  match 'sale/retail', :to => 'sales#retail'
+  match 'sale/cost', :to => 'sales#cost'
+
+  
+  
   resources :products
   resources :stocks
   resources :carts

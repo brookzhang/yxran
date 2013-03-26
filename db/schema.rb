@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
     t.integer  "store_id"
     t.integer  "user_id"
     t.integer  "quantity"
-    t.float    "score"
+    t.float    "unit_price"
     t.float    "amount"
+    t.float    "discount"
+    t.float    "score"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -133,10 +135,12 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "sale_details", :force => true do |t|
+    t.integer  "sale_id"
     t.integer  "product_id"
     t.integer  "quantity"
     t.float    "unit_price"
     t.float    "amount"
+    t.float    "discount"
     t.float    "score"
     t.string   "remark"
     t.integer  "status",     :default => 1

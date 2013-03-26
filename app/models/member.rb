@@ -1,5 +1,5 @@
 class Member < ActiveRecord::Base
-  has_many :sales
+  #has_many :sales
   
 
   # Setup accessible (or protected) attributes for your model

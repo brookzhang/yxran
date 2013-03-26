@@ -4,8 +4,7 @@ class CartsController < ApplicationController
   def index
     
     @carts = Cart.list_by_user(current_user)
-    @sum_amount = @carts.sum {|c| c.amount  } 
-    @sum_score = @carts.sum {|c| c.score  } 
+    @sum_amount = @carts.sum {|c| c.amount.nil? ? 0 : c.amount  }
     
   end
 
@@ -15,9 +14,7 @@ class CartsController < ApplicationController
     @cart.store_id = current_user.store_id
     @cart.user_id = current_user.id
     @cart.unit_price = @cart.product.unit_price
-    @cart.discount = @cart.product.discount
     @cart.amount = @cart.quantity * @cart.unit_price
-    @cart.score = 0
     @cart.save
     
     session[:cart_count] = Cart.count_by_user(current_user).to_s
@@ -60,9 +57,6 @@ class CartsController < ApplicationController
     end
   end
   
-  def switch_discount
-    redirect_to carts_path
-  end
   
   
 end
