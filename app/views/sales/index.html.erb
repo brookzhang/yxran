@@ -3,10 +3,8 @@
 	  <thead>
       <tr>
           <th>id</th>
-          <th><%= t(:store) %></th>
           <th><%= t(:amount) %></th>
-          <th><%= t(:time) %></th>
-          <th></th>
+          <th><%= t(:sale_category) %></th>
           <th></th>                                      
       </tr>
   </thead>   
@@ -14,17 +12,14 @@
   <% @sales.each do |sale| %>
     <tr>
         <td><%= link_to '#'+sale.id.to_s, sale %></td>
-        <td><%= sale.store.name %></td>
         <td><%= sale.amount %></td>
-        <td><%= sale.created_at %></td>
-        <td>
-        </td>
+        <td><%= l(sale.category,"sale_category") %></td>
         <td></td>                                       
     </tr>
   <% end %>
   <tr>
     <td colspan="5">
-			<%= link_to t(:back), root_path, :class => 'btn'%>
+      <%= link_to t(:back), root_path, :class => 'btn'%>
     </td>
   </tr>
   </tbody>

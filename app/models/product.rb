@@ -20,4 +20,8 @@ class Product < ActiveRecord::Base
     self.unit_price.to_s << '/' << self.measurement
   end
   
+  def self.list_with_sub_category(category_id)
+    where(:category_id => Category.sub_id_array(category_id) << category_id)
+  end
+  
 end

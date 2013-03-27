@@ -14,52 +14,36 @@ class Stock < ActiveRecord::Base
   validates_uniqueness_of :product_id, :scope => :store_id
   
   
+  #callbacks
+  after_save :log_history
+  
+  
   #init stock
+  def self.fetch(store_id, product_id)
+    @stock = where(:store_id => store_id, :product_id => product_id).first
+    @stock = new(:store_id => store_id, :product_id => product_id) if @stock.nil?
+    @stock 
+  end
   
-  
-  def save_change()
-    
-    
-          @stock = Stock.where(" store_id = ? and product_id = ? ", self.store_id, c.product_id).first
-          if @stock.nil?
-            @stock = Stock.new
-            @stock.store_id = self.store_id
-            @stock.product_id = self.product_id
-          end
-          @history = History.new(:adjust_type => 'S',
-                                 :reference_id => self.id,
-                                 :remark => self.remark
-                                 )
-          @stock.record_update(self.quantity * (-1), @history)
-    
+  def self.exists(store_id, product_id)
+    !where(:store_id => store_id, :product_id => product_id).first.nil?
   end
   
   
   
-  #common method ,update stock
-  def record_update(quantity, history)
-    if quantity == 0
-      return
-    else
-      if self.id.nil?
-        self.quantity = quantity
-      else
-        self.quantity += quantity
-      end
-      
-      self.save
-      
-      history.stock_id = self.id
-      history.adjusted_by = quantity
-      history.adjusted_to = self.quantity
-      history.adjusted_at = DateTime.now
-      history.save
-    end
-    
-    
-    
-  end
   
+  protected
+  
+  def log_history()
+    @history = History.new(:stock_id => self.id,
+                           :adjust_type => self.adjust_type,
+                           :reference_id => self.reference_id,
+                           :adjusted_by => self.change_qty,
+                           :adjusted_to => self.quantity,
+                           :adjusted_at => DateTime.now,
+                           :remark => self.change_remark)
+    @history.save!
+  end
   
   
 end

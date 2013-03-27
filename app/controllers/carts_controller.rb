@@ -4,6 +4,7 @@ class CartsController < ApplicationController
   def index
     
     @carts = Cart.list_by_user(current_user)
+    session[:cart_count] = @carts.count
     @sum_amount = @carts.sum {|c| c.amount.nil? ? 0 : c.amount  }
     
   end
@@ -19,7 +20,8 @@ class CartsController < ApplicationController
     
     session[:cart_count] = Cart.count_by_user(current_user).to_s
     
-    redirect_to products_path(:category_id => @cart.product.category_id) # carts_path #, :notice => t(:add_ok)
+    @pre_category_id = session[:category_id].nil? ? 0 : session[:category_id]
+    redirect_to products_path(:category_id => @pre_category_id) # carts_path #, :notice => t(:add_ok)
   end
 
 

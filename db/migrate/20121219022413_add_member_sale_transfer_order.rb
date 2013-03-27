@@ -19,7 +19,6 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
       t.integer :member_id  #category=M , or is nil
       t.string :category  #sale type M-member buy, N-normal sale, C-cost sale
       t.string :discount_type #D-discount ,S-saved score
-      t.integer :quantity
       t.float :amount       #actual amount 
       t.float :score        #if discount_type == D, score = 0
       t.float :used_score

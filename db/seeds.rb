@@ -73,19 +73,21 @@ Discount.create([
 
 puts 'creating products'
 Product.create([
-  {:name => '铁观音秋茶2012', :category_id => '5', :description => '铁观音秋茶2012', :measurement => '克', :unit_price => '1.2'},
+  {:name => '西湖龙井2012', :category_id => '3', :description => '西湖龙井2012', :measurement => '克', :unit_price => '0.8' },
+  {:name => '正山小种2011', :category_id => '4', :description => '正山小种2011', :measurement => '克', :unit_price => '0.5' },
+  {:name => '铁观音秋茶2012', :category_id => '5', :description => '铁观音秋茶2012', :measurement => '克', :unit_price => '0.4'},
   {:name => '大益普洱2005', :category_id => '6', :description => '大益普洱2005', :measurement => '饼', :unit_price => '200' },
-  {:name => '正山小种2011', :category_id => '4', :description => '正山小种2011', :measurement => '克', :unit_price => '3.0' },
-  {:name => '西湖龙井2012', :category_id => '3', :description => '西湖龙井2012', :measurement => '克', :unit_price => '2.0' }
+  {:name => '久扬黑茶', :category_id => '7', :description => '久扬黑茶', :measurement => '饼', :unit_price => '80' },
+  {:name => '岩茶-肉桂', :category_id => '8', :description => '岩茶-肉桂', :measurement => '克', :unit_price => '0.2' }
 ], :without_protection => true)
 
 
 puts "creating stores"
 Store.create([
-  {:name => '总店', :category => 'c', :remark => 'XXX路XXX号'},
-  {:name => '信誉大街店', :category => 'p', :remark => '信誉大街XX号' },
-  {:name => '才培店', :category => 'i', :remark => '才培大厦一楼'},
-  {:name => '总部仓库', :category => 's', :remark => 'XXX路XXX号'}
+  {:name => '总店', :category => 'C', :remark => 'XXX路XXX号'},
+  {:name => '信誉大街店', :category => 'P', :remark => '信誉大街XX号' },
+  {:name => '才培店', :category => 'I', :remark => '才培大厦一楼'},
+  {:name => '总部仓库', :category => 'S', :remark => 'XXX路XXX号'}
 ], :without_protection => true)
 
 

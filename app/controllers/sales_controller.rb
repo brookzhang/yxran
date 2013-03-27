@@ -2,12 +2,12 @@ class SalesController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @sales = Sale.all
+    @sales = Sale.where(:user_id => current_user.id).order(" id desc ") 
   end
   
   def show
     @sale = Sale.find(params[:id])
-    @sale_details = SaleDetail.where(" sale_id = ? ", @sale.id)
+    @sale_details = SaleDetail.where( :sale_id => @sale.id)
   end
   
   
@@ -51,6 +51,7 @@ class SalesController < ApplicationController
     @sale = Sale.new(params[:sale])
     
     if @sale.create_sale(@carts)
+      session[:cart_count] = Cart.count_by_user(current_user).to_s
       redirect_to sales_path, :notice => t(:created_ok)
     else
       redirect_to :back, :alert => t(:unable_to_create) + @sale.store_id.to_s
