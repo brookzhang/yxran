@@ -7,8 +7,6 @@ class AddCart < ActiveRecord::Migration
       t.integer :quantity
       t.float :unit_price
       t.float :amount
-      t.float :discount
-      t.float :score
       
       t.timestamps
     end

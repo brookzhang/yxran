@@ -9,10 +9,12 @@ class Sale < ActiveRecord::Base
   
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :store_id, :member_id , :remark, :category, :discount_type, :amount, :score,:used_score, :status, :user_id
+  attr_accessible :store_id, :user_id, :member_id , :category, :amount, :actual_amount, :score,:used_score, :remark, :status
+  
+  attr_accessor :check_message
 
   
-  validates_presence_of :store_id
+  validates_presence_of :store_id, :actual_amount
   #validates_uniqueness_of :name, :case_sensitive => false
   
   def my_sales(user_id)
@@ -21,16 +23,16 @@ class Sale < ActiveRecord::Base
   
   
   def create_sale(carts)
+    if !check_sale
+      return false
+    end
+    
     begin
       self.transaction do
         #create sale record
-        self.score = carts.sum {|c| c.score.nil? ? 0 : c.score }
         self.amount = carts.sum {|c| c.amount.nil? ? 0 : c.amount }
-        self.used_score = 0  
-        self.discount_type = 'D'
-        self.used_score = 0
+        #self.used_score = 0
         self.status = 1
-        
         self.save!
         
         
@@ -41,8 +43,6 @@ class Sale < ActiveRecord::Base
                                         :quantity => c.quantity,
                                         :unit_price => c.unit_price,
                                         :amount => c.amount,
-                                        :discount => c.discount,
-                                        :score => c.score,
                                         :status => 1
                                         )
           
@@ -53,7 +53,7 @@ class Sale < ActiveRecord::Base
           @stock.adjust_type = 'S'
           @stock.reference_id = self.id
           @stock.change_qty = c.quantity * (-1)
-          @stock.change_remark = 'sale temp remark'
+          #@stock.change_remark = self.remark
           @stock.save!
           
         end
@@ -61,9 +61,11 @@ class Sale < ActiveRecord::Base
         
         
         #member sale & record score
-        if self.category == 'M' && self.discount_type == 'S' 
+        if self.category == 'M' && (self.score > 0 || self.used_score > 0)
           @member = Member.find(self.member_id)
-          @member.score += self.score
+          @member.score -= self.used_score if self.used_score > 0
+          @member.score += self.score if self.score > 0 
+          @member.all_score += self.score if self.score > 0 
           @member.save!
         end
         
@@ -75,10 +77,39 @@ class Sale < ActiveRecord::Base
       #logger.error "#{err.backtrace.join('\n')}"  
       logger.error "****************************"  
       #logger.debug "======= error output: " + err.to_s 
+      self.check_message = 'unable_to_create'
       false
     end
   end
   
+  
+  
+  private
+  
+  def check_sale()
+    self.check_message = 'pass' 
+    if self.category != 'M'
+      #maybe need check stock
+      #return true
+    end
+    
+    if self.category == 'M'
+      
+      if self.member_id.nil?
+        self.check_message = 'please_select_member'
+      else
+        @member = Member.find(self.member_id)
+        self.check_message = 'not_enough_score_to_use' if self.used_score > @member.score
+      end
+    end
+      
+    if self.check_message == 'pass' 
+      true
+    else
+      false
+    end
+    
+  end
   
   
 end

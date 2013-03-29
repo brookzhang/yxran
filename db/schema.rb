@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
     t.integer  "quantity"
     t.float    "unit_price"
     t.float    "amount"
-    t.float    "discount"
-    t.float    "score"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -87,11 +85,11 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
     t.string   "address"
     t.string   "remark"
     t.integer  "level",      :default => 0
-    t.float    "score"
-    t.float    "all_score"
+    t.float    "score",      :default => 0.0
+    t.float    "all_score",  :default => 0.0
     t.integer  "user_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "members", ["name", "phone"], :name => "index_members_on_name_and_phone"
@@ -141,7 +139,6 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
     t.float    "unit_price"
     t.float    "amount"
     t.float    "discount"
-    t.float    "score"
     t.string   "remark"
     t.integer  "status",     :default => 1
     t.datetime "created_at",                :null => false
@@ -152,18 +149,17 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
 
   create_table "sales", :force => true do |t|
     t.integer  "store_id"
+    t.integer  "user_id"
     t.integer  "member_id"
     t.string   "category"
-    t.string   "discount_type"
-    t.integer  "quantity"
     t.float    "amount"
-    t.float    "score"
-    t.float    "used_score"
+    t.float    "actual_amount"
+    t.float    "score",         :default => 0.0
+    t.float    "used_score",    :default => 0.0
     t.string   "remark"
     t.integer  "status",        :default => 1
-    t.integer  "user_id"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "sales", ["store_id", "member_id"], :name => "index_sales_on_store_id_and_member_id"

@@ -3,7 +3,7 @@
 	  <thead>
       <tr>
           <th>id</th>
-          <th><%= t(:amount) %></th>
+          <th><%= t(:actual_amount) %></th>
           <th><%= t(:sale_category) %></th>
           <th></th>                                      
       </tr>
@@ -12,7 +12,7 @@
   <% @sales.each do |sale| %>
     <tr>
         <td><%= link_to '#'+sale.id.to_s, sale %></td>
-        <td><%= sale.amount %></td>
+        <td><%= sale.actual_amount %></td>
         <td><%= l(sale.category,"sale_category") %></td>
         <td></td>                                       
     </tr>

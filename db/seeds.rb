@@ -25,8 +25,6 @@ Lookup.create([
   {:code => 'TE', :category =>'adjust_type', :description => '调货修改'},
   {:code => 'S', :category =>'adjust_type', :description => '销售'},
   {:code => 'SE', :category =>'adjust_type', :description => '销售修改'},
-  {:code => 'D', :category =>'discount_type', :description => '算折扣'},
-  {:code => 'S', :category =>'discount_type', :description => '记积分'},
   {:code => 'R', :category =>'sale_category', :description => '零售'},
   {:code => 'C', :category =>'sale_category', :description => '消耗'},
   {:code => 'M', :category =>'sale_category', :description => '会员'},

@@ -15,6 +15,10 @@ echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && . '$HOME/.rvm/scripts/rvm'" >> /home/
  
 source ~/.bashrc   #/refresh bash
  
+1.指导价格  实际销售金额
+2.店员自己选择值班店子
+3.调货 需要接收才到库
+4.折扣系统不在前台显示。 店员直接填写售价和积分。 后台监督，售价-积分 和 折扣 相差多大。
 
 
 rails g migration AddLookupProductStoreStockHistory

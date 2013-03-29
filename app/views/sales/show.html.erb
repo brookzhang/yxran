@@ -1,11 +1,11 @@
 <!--h3><%= t(:account_info) %></h3-->
 <p><%= t(:sale_id) %>: <%= '#' + @sale.id.to_s %></p>
 <p>[<%= @sale.store.name %>] &nbsp; <%= l(@sale.category,"sale_category") %> 
-  <%= @sale.amount %>
+  <%= @sale.actual_amount %>
 </p>
 <p>
   <% if @sale.category == 'M' %>
-    <%= t(:member) %>: <%= @sale.member.name %>
+    <%= t(:member) %>: <%= @member.name unless @member.nil? %>
   <%end%>
   <%= @sale.remark %> <%= @sale.created_at.to_s %>
 </p>
