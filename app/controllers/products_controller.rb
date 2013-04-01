@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @stock = Stock.where(" product_id =? and store_id = ? ", @product.id, current_user.store_id).first
-    @histories = @stock.nil? ? nil : History.where(" stock_id =? ", @stock.id)
+    @histories = @stock.nil? ? nil : StockHistory.where(" stock_id =? ", @stock.id)
     
     @cart = Cart.new
     

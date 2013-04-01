@@ -16,9 +16,23 @@ echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && . '$HOME/.rvm/scripts/rvm'" >> /home/
 source ~/.bashrc   #/refresh bash
  
 1.指导价格  实际销售金额
-2.店员自己选择值班店子
+2.店员自己选择值班店子 ,交接班 后来者可以把当前值班人挤下去. 挤下去的值班店为空,不能记帐
 3.调货 需要接收才到库
 4.折扣系统不在前台显示。 店员直接填写售价和积分。 后台监督，售价-积分 和 折扣 相差多大。
+5.交接班 金额 [handover]store_id, category, store_amount, remark, user_id
+6.支出记录 [expense]store_id, category, amount, remark, user_id
+7.收支明细 [balance]store_id, category, reference_id, amount, user_id
+
+sudo vi /opt/nginx/conf/nginx.conf
+sudo /opt/nginx/sbin/nginx
+sudo /opt/nginx/sbin/nginx -s reload    #重新加载配置文件
+sudo /opt/nginx/sbin/nginx -s reopen    #kill nginx，然后启动nginx
+sudo /opt/nginx/sbin/nginx -t  #检查修改过的配置文件是否正确
+
+ps -ef | grep nginx
+kill -QUIT 主进程号 #从容停止Nginx：
+kill -TERM 主进程号 #快速停止Nginx：
+pkill -9 nginx  #强制停止Nginx：
 
 
 rails g migration AddLookupProductStoreStockHistory
@@ -253,7 +267,6 @@ $ rspec spec/models/user_spec.rb -e "should have an encrypted password attribute
 $ sudo gem install heroku
 $ heroku keys:add               #follow steps ,add ssh public key
 $ heroku create
-
 $ git push heroku master
 $ heroku rake db:migrate
 $ [sudo] gem install taps

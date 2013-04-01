@@ -5,6 +5,36 @@ Yxran::Application.routes.draw do
 
 
 
+  get "handovers/index"
+
+  get "handovers/new"
+
+  get "handovers/create"
+
+  get "handovers/edit"
+
+  get "handovers/update"
+
+  get "handovers/destroy"
+
+  get "expenses/index"
+
+  get "expenses/show"
+
+  get "expenses/new"
+
+  get "expenses/create"
+
+  get "expenses/edit"
+
+  get "expenses/update"
+
+  get "expenses/destroy"
+
+  get "banlances/index"
+
+  get "banlances/show"
+
   devise_for :users
   
   resources :users

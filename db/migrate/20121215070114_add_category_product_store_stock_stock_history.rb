@@ -1,4 +1,4 @@
-class AddCategoryProductStoreStockHistory < ActiveRecord::Migration
+class AddCategoryProductStoreStockStockHistory < ActiveRecord::Migration
   def change
     
     create_table(:categories) do |t|
@@ -27,6 +27,7 @@ class AddCategoryProductStoreStockHistory < ActiveRecord::Migration
       t.string :name
       t.string :category  # store type
       t.string :remark
+      t.balance :float, :default => 0
       t.integer :status, :default => 1
       
       t.timestamps
@@ -43,7 +44,7 @@ class AddCategoryProductStoreStockHistory < ActiveRecord::Migration
       t.timestamps
     end
     
-    create_table(:histories) do |t|
+    create_table(:stock_histories) do |t|
       t.references :stock
       t.references :user
       t.string :adjust_type #adjust type
@@ -57,7 +58,7 @@ class AddCategoryProductStoreStockHistory < ActiveRecord::Migration
     add_index(:products, [:name, :category_id])
     add_index(:stores, [:name, :category])
     add_index(:stocks, [:product_id, :store_id ])
-    add_index(:histories, :stock_id )
-    add_index(:histories, [:user_id, :adjust_type, :adjusted_at ])
+    add_index(:stock_histories, :stock_id )
+    add_index(:stock_histories, [:user_id, :adjust_type, :adjusted_at ])
   end
 end

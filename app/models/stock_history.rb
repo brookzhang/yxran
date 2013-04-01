@@ -1,4 +1,4 @@
-class History < ActiveRecord::Base
+class StockHistory < ActiveRecord::Base
   belongs_to :stock
 
   # Setup accessible (or protected) attributes for your model

@@ -9,7 +9,7 @@ class Maintain::StocksController < ApplicationController
   
   def show
     @stock = Stock.find(params[:id])
-    @histories = History.where(" stock_id =? ", @stock.id)
+    @histories = StockHistory.where(" stock_id =? ", @stock.id)
   end
 
   def new

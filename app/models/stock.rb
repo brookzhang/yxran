@@ -35,7 +35,7 @@ class Stock < ActiveRecord::Base
   protected
   
   def log_history()
-    @history = History.new(:stock_id => self.id,
+    @history = StockHistory.new(:stock_id => self.id,
                            :adjust_type => self.adjust_type,
                            :reference_id => self.reference_id,
                            :adjusted_by => self.change_qty,

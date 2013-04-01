@@ -20,16 +20,9 @@ test:
 
 production: 
   adapter: postgresql 
-  database: d4j0se2rb3jeqp 
-  username: utnidooasgqzud
-  password: MqZDQsfwqlgo6KhUz96jTXSDs_
-  host: ec2-107-22-182-174.compute-1.amazonaws.com
+  database: yxran 
+  username: brook
+  password: brook
+  host: localhost
   reconnect: true 
 
-slave: 
-  adapter: postgresql 
-  database: yxran 
-  username: deploy 
-  password: MyP4ssW0rd 
-  host: ec2-50-16-40-223.compute-1.amazonaws.com 
-  reconnect: true 
