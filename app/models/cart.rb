@@ -17,7 +17,7 @@ class Cart < ActiveRecord::Base
   end
   
   def self.list_by_user(user)
-    self.where( :user_id => user.id , :store_id => user.store_id)
+    self.where( :user_id => user.id , :store_id => user.store_id.nil? ? 0 : user.store_id)
   end
   
   

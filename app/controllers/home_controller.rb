@@ -7,6 +7,8 @@ class HomeController < ApplicationController
     if session[:cart_count].nil?
       session[:cart_count] = Cart.count_by_user(current_user).to_s
     end
+    
+    
   end
   
   def show

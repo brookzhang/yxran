@@ -29,12 +29,25 @@ Lookup.create([
   {:code => 'C', :category =>'sale_category', :description => '消耗'},
   {:code => 'M', :category =>'sale_category', :description => '会员'},
   
+  {:code => 'T', :category =>'handover_status', :description => '接班'},
+  {:code => 'H', :category =>'handover_status', :description => '交班'},
+  
+  {:code => 'C', :category =>'expense_category', :description => '办公用品'},
+  {:code => 'D', :category =>'expense_category', :description => '整额支取'},
+  {:code => 'O', :category =>'expense_category', :description => '其他'},
+  
+  {:code => 'S', :category =>'balance_category', :description => '销售'},
+  {:code => 'E', :category =>'balance_category', :description => '开支'},
+  
+  
   {:code => 'admin', :category =>'role', :description => '管理员'},
   {:code => 'manager', :category =>'role', :description => '经理'},
   {:code => 'user', :category =>'role', :description => '店员'},
   {:code => '0', :category =>'member', :description => '普通会员'},
   {:code => '1', :category =>'member', :description => '高级会员'},
   {:code => '9', :category =>'member', :description => '贵宾'}
+  
+  
 ], :without_protection => true)
 
 puts "creating switches"
@@ -82,10 +95,10 @@ Product.create([
 
 puts "creating stores"
 Store.create([
-  {:name => '总店', :category => 'C', :remark => 'XXX路XXX号'},
-  {:name => '信誉大街店', :category => 'P', :remark => '信誉大街XX号' },
-  {:name => '才培店', :category => 'I', :remark => '才培大厦一楼'},
-  {:name => '总部仓库', :category => 'S', :remark => 'XXX路XXX号'}
+  {:name => '总店', :category => 'C', :balance => 1000, :remark => 'XXX路XXX号'},
+  {:name => '信誉大街店', :category => 'P', :balance => 800, :remark => '信誉大街XX号' },
+  {:name => '才培店', :category => 'I', :balance => 700, :remark => '才培大厦一楼'},
+  {:name => '总部仓库', :category => 'S', :balance => 600, :remark => 'XXX路XXX号'}
 ], :without_protection => true)
 
 
@@ -98,9 +111,9 @@ Role.create([
 
 puts 'creating users'
 User.create([
-  {:name => 'admin', :email => 'admin@yxran.com', :store_id => '1', :password => '123456', :password_confirmation => '123456'},
-  {:name => 'manager', :email => 'manager@yxran.com', :store_id => '2', :password => '123456', :password_confirmation => '123456'},
-  {:name => 'user', :email => 'user@yxran.com', :store_id => '3', :password => '123456', :password_confirmation => '123456'}
+  {:name => 'admin1', :email => 'admin@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
+  {:name => 'manager1', :email => 'manager@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
+  {:name => 'user1', :email => 'user@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'}
 ])
 
 puts 'Adding roles'

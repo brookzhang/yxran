@@ -66,6 +66,7 @@ zh-CN:
   member_sale: '会员'
   cost_sale: '消耗'
   sale_record: '销售记录'
+  sales: '销售记账'
   amount: '金额'
   buy_again: '再次购买'
   sale_category: '销售方式'
@@ -219,6 +220,7 @@ zh-CN:
   to_store: '调入'
   from_to_store_must_diffrent: '调货双方必须不一样'
   create_transfer: '创建调货'
+  transfer_receive: '调货接收'
   
   
   # cart.
@@ -241,4 +243,39 @@ zh-CN:
   to_be_discount: '算折扣'
   to_be_score: '存积分'
   create_sale_sheet: '生成销售单'
+  
+  
+  # handover.
+  #----------------------------------------------------------------------------
+  handovers: '交班接班'
+  hand_over: '交班'
+  take_over: '接班'
+  store_amount: '存额'
+  left_amount: '余额'
+  take_amount: '交付'
+  hand_amount: '接收'
+  take_remark: '接班备注'
+  hand_remark: '交班备注'
+  took_at: '接班时间'
+  handed_at: '交班时间'
+  you_can_not_take_over: '您目前不能接班'
+  handed_over_stores: '已交班店铺'
+  choose_a_store: '选择店铺'
+  
+  
+  # expense.
+  #----------------------------------------------------------------------------
+  expenses: '日常支出'
+  
+  
+  
+  # handover.
+  #----------------------------------------------------------------------------
+  
+  
+  
+  
+  
+  
+  
   

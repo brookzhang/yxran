@@ -23,11 +23,14 @@ class CreateBalanceExpenseHandover < ActiveRecord::Migration
     create_table(:handovers) do |t|
       t.references :store
       t.references :user
-      t.string :category
-      t.float :store_amount
-      t.string :remark
+      t.string :status
+      t.float :take_amount
+      t.float :hand_amount
+      t.string :take_remark
+      t.string :hand_remark
+      t.datetime :took_at
+      t.datetime :handed_at
       
-      t.timestamps
     end
     
 

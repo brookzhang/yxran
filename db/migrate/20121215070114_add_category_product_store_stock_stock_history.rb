@@ -26,8 +26,8 @@ class AddCategoryProductStoreStockStockHistory < ActiveRecord::Migration
     create_table(:stores) do |t|
       t.string :name
       t.string :category  # store type
+      t.float :balance, :default => 0
       t.string :remark
-      t.balance :float, :default => 0
       t.integer :status, :default => 1
       
       t.timestamps

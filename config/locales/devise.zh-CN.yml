@@ -22,8 +22,8 @@ zh-CN:
       timeout: '长时间没有操作,请重新登入.'
       inactive: '你的账号没激活.'
     sessions:
-      signed_in: '登进来了.'
-      signed_out: '退出了.'
+      signed_in: '欢迎进入易香然连锁店管理系统.'
+      signed_out: '您已退出了系统.'
     passwords:
       send_instructions: '你的邮箱几分钟内会收到一个邮件,里面告诉你怎么修改密码.'
       updated: '你的密码改好了,并且自动登入了.'

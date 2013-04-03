@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226071817) do
+ActiveRecord::Schema.define(:version => 20130401061535) do
+
+  create_table "balances", :force => true do |t|
+    t.integer  "store_id"
+    t.integer  "user_id"
+    t.string   "category"
+    t.integer  "reference_id"
+    t.float    "amount"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "balances", ["store_id", "user_id", "reference_id"], :name => "index_balances_on_store_id_and_user_id_and_reference_id"
 
   create_table "carts", :force => true do |t|
     t.integer  "product_id"
@@ -53,19 +65,31 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
 
   add_index "events", ["category", "user_id"], :name => "index_events_on_category_and_user_id"
 
-  create_table "histories", :force => true do |t|
-    t.integer  "stock_id"
+  create_table "expenses", :force => true do |t|
+    t.integer  "store_id"
     t.integer  "user_id"
-    t.string   "adjust_type"
-    t.integer  "reference_id"
-    t.integer  "adjusted_by"
-    t.integer  "adjusted_to"
-    t.datetime "adjusted_at"
+    t.string   "category"
+    t.float    "amount"
     t.string   "remark"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "histories", ["stock_id"], :name => "index_histories_on_stock_id"
-  add_index "histories", ["user_id", "adjust_type", "adjusted_at"], :name => "index_histories_on_user_id_and_adjust_type_and_adjusted_at"
+  add_index "expenses", ["store_id", "user_id"], :name => "index_expenses_on_store_id_and_user_id"
+
+  create_table "handovers", :force => true do |t|
+    t.integer  "store_id"
+    t.integer  "user_id"
+    t.string   "status"
+    t.float    "take_amount"
+    t.float    "hand_amount"
+    t.string   "take_remark"
+    t.string   "hand_remark"
+    t.datetime "took_at"
+    t.datetime "handed_at"
+  end
+
+  add_index "handovers", ["store_id", "user_id"], :name => "index_handovers_on_store_id_and_user_id"
 
   create_table "lookups", :force => true do |t|
     t.string   "code"
@@ -164,6 +188,20 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
 
   add_index "sales", ["store_id", "member_id"], :name => "index_sales_on_store_id_and_member_id"
 
+  create_table "stock_histories", :force => true do |t|
+    t.integer  "stock_id"
+    t.integer  "user_id"
+    t.string   "adjust_type"
+    t.integer  "reference_id"
+    t.integer  "adjusted_by"
+    t.integer  "adjusted_to"
+    t.datetime "adjusted_at"
+    t.string   "remark"
+  end
+
+  add_index "stock_histories", ["stock_id"], :name => "index_stock_histories_on_stock_id"
+  add_index "stock_histories", ["user_id", "adjust_type", "adjusted_at"], :name => "index_stock_histories_on_user_id_and_adjust_type_and_adjusted_at"
+
   create_table "stocks", :force => true do |t|
     t.integer  "product_id"
     t.integer  "store_id"
@@ -179,10 +217,11 @@ ActiveRecord::Schema.define(:version => 20121226071817) do
   create_table "stores", :force => true do |t|
     t.string   "name"
     t.string   "category"
+    t.float    "balance",    :default => 0.0
     t.string   "remark"
     t.integer  "status",     :default => 1
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "stores", ["name", "category"], :name => "index_stores_on_name_and_category"

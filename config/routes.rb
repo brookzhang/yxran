@@ -5,35 +5,6 @@ Yxran::Application.routes.draw do
 
 
 
-  get "handovers/index"
-
-  get "handovers/new"
-
-  get "handovers/create"
-
-  get "handovers/edit"
-
-  get "handovers/update"
-
-  get "handovers/destroy"
-
-  get "expenses/index"
-
-  get "expenses/show"
-
-  get "expenses/new"
-
-  get "expenses/create"
-
-  get "expenses/edit"
-
-  get "expenses/update"
-
-  get "expenses/destroy"
-
-  get "banlances/index"
-
-  get "banlances/show"
 
   devise_for :users
   
@@ -49,8 +20,12 @@ Yxran::Application.routes.draw do
   resources :stocks
   resources :carts
   match '/switch_discount',:to => 'carts#switch_discount'
+  resources :handovers
+  resources :expenses
+  resources :transfers
   
-
+  
+  
   namespace :maintain do
     match '/dashboard',:to => 'dashboard#index'
     resources :lookups
@@ -68,6 +43,9 @@ Yxran::Application.routes.draw do
     resources :stocks do
       resources :histories
     end
+    resources :handovers
+    resources :expenses
+    resources :balances
   end
   
   

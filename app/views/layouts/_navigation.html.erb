@@ -1,7 +1,7 @@
 <%= link_to t(:app_name), root_path, :class => 'brand' %>
 <ul class="nav">
   <% if user_signed_in? %>
-    <% if !current_user.store_id.nil? %>
+    <% if !current_user.store_id.nil? && current_user.has_role?(:user) %>
       <li><a href="<%=carts_path%>" class="cart_count" >
         <i class="icon-home"></i><%=current_user.store.name %>
         <% if !session[:cart_count].nil? && session[:cart_count].to_i > 0 %>
@@ -10,7 +10,7 @@
       </a></li>
       
     <% end %>
-    <% if current_user.has_role? :admin %>
+    <% if current_user.has_role?(:admin) %>
       <li><a href="<%=maintain_dashboard_path%>" >
         <i class="icon-th-large"></i><%=t(:maintain) %>
       </a></li>

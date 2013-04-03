@@ -1,2 +1,10 @@
-<h1>Handovers#new</h1>
-<p>Find me in app/views/handovers/new.html.erb</p>
+<%= simple_form_for @handover, :html => {:class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @handover %>
+  <%= f.association :store, :collection => @stores, :prompt => t(:choose_a_store), :label_method => lambda {|r| r.name + " " + t(:left_amount) + ":" + r.balance.to_s}, :label => t(:store_name) %>
+  <%= f.input :take_remark, :label => t(:take_remark) %>
+  <%= f.button :submit, t(:submit), :class => 'btn' %>
+  <%= link_to t(:back), :back, :class => 'btn' %>
+<% end %>
+
+

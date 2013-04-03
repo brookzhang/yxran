@@ -1,2 +1,34 @@
-<h1>Handovers#index</h1>
-<p>Find me in app/views/handovers/index.html.erb</p>
+<div class="span8">
+<table class="table table-condensed">
+  <thead>
+  <tr>
+    <th colspan="3">
+      <%= link_to t(:take_over), new_handover_path, :class => 'btn btn-warning' if current_user.store_id.nil?  %>
+      <%= link_to t(:hand_over), edit_handover_path(@handover), :class => 'btn btn-warning' unless current_user.store_id.nil?  %>
+    </th>
+  </tr>
+  </thead>
+  <thead>
+    <tr>
+        <th><%= t(:store) %></th>
+        <th><%= t(:take_amount) %> / <%= t(:hand_amount) %></th>
+        <th><%= t(:took_at) %></th>                                  
+    </tr>
+  </thead>   
+  <tbody>
+  <% @handovers.each do |h| %>
+    <tr>
+        <td><%= h.store.name %></td>
+        <td><%= h.take_amount %> / <%= h.hand_amount %></td>
+        <td><%= h.took_at %></td>
+        <td></td>                                       
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="5">
+      <%= link_to t(:back), root_path, :class => 'btn'%>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div> 
