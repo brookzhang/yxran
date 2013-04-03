@@ -35,6 +35,9 @@ class Sale < ActiveRecord::Base
         self.status = 1
         self.save!
         
+        @store = Store.find(self.store_id)
+        @store.balance += self.actual_amount
+        @store.save
         
         #sale_details
         carts.each do |c|

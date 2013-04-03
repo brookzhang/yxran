@@ -1,2 +1,11 @@
-<h1>Expenses#new</h1>
-<p>Find me in app/views/expenses/new.html.erb</p>
+<%= simple_form_for @expense, :html => {:class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @expense %>
+  <%= f.input :category, :label => t(:expense_category), :collection => @lookups, :prompt => t(:choose_expense_category), :label_method => :description, :value_method => :code, :required => true %>
+  
+  <%= f.input :amount, :label => t(:amount), :required => true %>
+  <%= f.input :remark, :label => t(:remark)  %>
+  <%= f.button :submit, t(:submit), :class => 'btn' %>
+  <%= link_to t(:back), :back, :class => 'btn' %>
+<% end %>
+

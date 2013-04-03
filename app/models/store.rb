@@ -10,9 +10,11 @@ class Store < ActiveRecord::Base
   
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :category, :remark , :status
+  attr_accessible :name, :category, :balance, :remark , :status
 
   
-  validates_presence_of :name 
+  validates_presence_of :name , :balance
   validates_uniqueness_of :name, :case_sensitive => false
+  validates_numericality_of :balance
+  
 end

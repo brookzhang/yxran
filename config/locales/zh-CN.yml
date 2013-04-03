@@ -252,13 +252,16 @@ zh-CN:
   take_over: '接班'
   store_amount: '存额'
   left_amount: '余额'
-  take_amount: '交付'
-  hand_amount: '接收'
+  take_amount: '接班余额'
+  hand_amount: '交班余额'
   take_remark: '接班备注'
   hand_remark: '交班备注'
   took_at: '接班时间'
   handed_at: '交班时间'
   you_can_not_take_over: '您目前不能接班'
+  you_have_took_over_a_store: '您已经有值班店铺了'
+  this_store_not_handed_over: '这个店铺还没交班'
+  you_took_over_ok: '您已开始接班该店铺'
   handed_over_stores: '已交班店铺'
   choose_a_store: '选择店铺'
   
@@ -266,6 +269,12 @@ zh-CN:
   # expense.
   #----------------------------------------------------------------------------
   expenses: '日常支出'
+  new_expense: '新增支出'
+  expense_category: '支出类型'
+  choose_expense_category: '选择支出类型'
+  new_expense_saved_ok: '新增支出已保存.'
+  new_expense_saved_failed: '新增支出失败!'
+  
   
   
   

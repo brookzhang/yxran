@@ -34,12 +34,15 @@
         <%= f.error_notification %>
         <%= display_base_errors @sale %>
         <%= f.input :actual_amount, :label => t(:actual_amount), :autofocus => true, :required => true  %>
-        <%if @member.score > 0 %>
-        <%= f.input :used_score, :label => t(:use_score) %>
-        <%else%>
-        <%= f.hidden_field :used_score, :value => 0  %>
-        <%end%>
+        
         <%= f.input :score, :label => t(:new_score) %>
+        
+        <%if @member.score > 0 %>
+          <%= f.input :used_score, :label => t(:use_score) %>
+        <%else%>
+          <%= f.hidden_field :used_score, :value => 0  %>
+        <%end%>
+        
         <%= f.input :remark, :label => t(:remark) %>
         <%= f.hidden_field :category  %>
         <%= f.hidden_field :member_id  %>

@@ -113,10 +113,12 @@ puts 'creating users'
 User.create([
   {:name => 'admin1', :email => 'admin@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
   {:name => 'manager1', :email => 'manager@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
-  {:name => 'user1', :email => 'user@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'}
+  {:name => 'usera', :email => 'a@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
+  {:name => 'userb', :email => 'b@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'}
 ])
 
 puts 'Adding roles'
 User.find(1).add_role :admin
 User.find(2).add_role :manager
 User.find(3).add_role :user
+User.find(4).add_role :user

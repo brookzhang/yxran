@@ -11,7 +11,7 @@
   <thead>
     <tr>
         <th><%= t(:store) %></th>
-        <th><%= t(:take_amount) %> / <%= t(:hand_amount) %></th>
+        <th><%= t(:take_over) %> / <%= t(:hand_over) %></th>
         <th><%= t(:took_at) %></th>                                  
     </tr>
   </thead>   
@@ -19,7 +19,7 @@
   <% @handovers.each do |h| %>
     <tr>
         <td><%= h.store.name %></td>
-        <td><%= h.take_amount %> / <%= h.hand_amount %></td>
+        <td><%= link_to h.take_amount.to_s + '/' + h.hand_amount.to_s, h  %></td>
         <td><%= h.took_at %></td>
         <td></td>                                       
     </tr>

@@ -30,7 +30,7 @@
   top:9px;
   left:3em;
   padding:0 3px;
-  margin-left:18px;
+  margin-left:-49px;
   color:#fff;
   line-height:1.5;
   background-color:#f00;
@@ -40,13 +40,13 @@
   position:absolute;
   width:0;
   height:0;
-  left:-11px;
+  left:14px;
   top:50%;
   margin-top:-6px;
   line-height:0;
-  border-color:transparent #f00 transparent transparent;
-  border-style:dashed solid dashed dashed;
-  border-width:6px 6px 3px 5px;
+  border-color:transparent transparent transparent #f00 ;
+  border-style:dashed dashed solid dashed;
+  border-width:6px 3px 5px 6px ;
   pointer-events:none;
 }
 

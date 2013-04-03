@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :histories
   has_many :members
   has_many :events
+  has_many :handovers
+  has_many :expenses
+  has_many :balances
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :store_id, :as => :admin
@@ -23,4 +26,6 @@ class User < ActiveRecord::Base
   
   validates_presence_of :name
   validates_uniqueness_of :name, :email, :case_sensitive => false
+  
+  
 end

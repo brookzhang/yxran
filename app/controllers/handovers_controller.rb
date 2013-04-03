@@ -4,7 +4,11 @@ class HandoversController < ApplicationController
   
   def index
     @handovers = Handover.where(:user_id => current_user.id).order(" id desc ")
-    @handover = @handovers.count > 0 ? @handovers..first : Handover.new
+    @handover = @handovers.count > 0 ? @handovers.first : Handover.new
+  end
+  
+  def show
+    @handover = Handover.find(params[:id])
   end
   
   def new
@@ -16,15 +20,24 @@ class HandoversController < ApplicationController
   def create
     
     @handover = Handover.new(params[:handover])
-    if !is_ok_to_take_over(@handover)
-      redirect_to :back, :alert => t(:you_can_not_take_over)
+    @store = Store.find(@handover.store_id)
+    
+    @handover.user_id = current_user.id
+    @handover.take_amount = @store.balance
+    @handover.took_at = Time.now
+    @handover.status = 1
+    
+    if !is_ok_to_take_over?(@handover)
+      redirect_to :back 
     else
-      @handover.category = 'T' #take over
-      @handover.store_id = current_user.store_id
-      @handover.take_amount = current_user.store.balance
-      @handover.take_amount = current_user.store.balance
-      @handover.took_at = Time.now
-      @handover.save
+      if @handover.save
+        current_user.store_id = @handover.store_id
+        session[:cart_count] = Cart.count_by_user(current_user).to_s
+        redirect_to handovers_path, :notice => t(:you_took_over_ok)
+      else
+        redirect_to handovers_path, :alert => t(:you_can_not_take_over)
+      end
+        
     end
     
     
@@ -33,6 +46,7 @@ class HandoversController < ApplicationController
   
   def edit
     @handover = Handover.find(params[:id])
+    @store = Store.find(@handover.store_id)
   end
   
   def update
@@ -49,8 +63,19 @@ class HandoversController < ApplicationController
   end
   
   def is_ok_to_take_over?(handover)
+    @is_ok = true
     
+    if !current_user.store_id.nil?
+      flash[:alert] = t(:you_have_took_over_a_store)
+      @is_ok = false
+    end
     
+    if User.where(:store_id => handover.store_id).count > 0
+      flash[:alert] = t(:this_store_not_handed_over)
+      @is_ok = false
+    end
+    
+    @is_ok
   end
 
 end
