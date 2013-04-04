@@ -5,7 +5,8 @@ class CreateBalanceExpenseHandover < ActiveRecord::Migration
       t.references :user
       t.string :category
       t.integer :reference_id
-      t.float :amount
+      t.float :adjust_by
+      t.float :adjust_to
       
       t.timestamps
     end

@@ -1,14 +1,20 @@
-<!--h3><%= t(:account_info) %></h3-->
-<p><%= t(:sale_id) %>: <%= '#' + @sale.id.to_s %></p>
-<p>[<%= @sale.store.name %>] &nbsp; <%= l(@sale.category,"sale_category") %> 
-  <%= @sale.actual_amount %>
-</p>
-<p>
-  <% if @sale.category == 'M' %>
-    <%= t(:member) %>: <%= @member.name unless @member.nil? %>
-  <%end%>
-  <%= @sale.remark %> <%= @sale.created_at.to_s %>
-</p>
 
-<%= render 'sale_details' %>
-<%= link_to t(:back), sales_path, :class => 'btn'%>
+<p><%= t(:store_name) %>: <%= @store.name %></p>
+<p><%= t(:take_amount) %>: <%= @handover.take_amount %> <%=t(:money)%></p>
+<p><%= t(:take_remark) %>: <%= @handover.take_remark %></p>
+<p><%= t(:took_at) %>: <%= @handover.took_at.to_s(:date_time) %></p>
+<p><%= t(:sale_amount) %>: +<%=@sale_amount %> <%=t(:money)%></p>
+<p><%= t(:expense_amount) %>: -<%=@expense_amount %> <%=t(:money)%></p>
+<% if @handover.hand_amount.nil? %>
+  <p><%= t(:store_balance) %>: <%= @store.balance %> <%=t(:money) %></p>
+<%else%>
+  <p><%= t(:hand_amount) %>: <%= @handover.hand_amount %> <%=t(:money) %></p>
+  <p><%= t(:hand_remark) %>: <%= @handover.hand_remark %></p>
+  <p><%= t(:handed_at) %>: <%= @handover.handed_at.to_s(:date_time) %></p>
+<%end%>
+
+<%= link_to t(:back), handovers_path, :class => 'btn'%>
+
+
+<%= render 'sales' %>
+<%= render 'expenses' %>

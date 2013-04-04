@@ -1,0 +1,24 @@
+<div class="span8">
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th><%= t(:store_name) %></th>
+          <th></th>                                      
+      </tr>
+  </thead>   
+  <tbody>
+  <% @stores.each do |store| %>
+    <tr>
+        <td><%= link_to store.name, [:admin, store]  %></td>
+        <td><%= link_to t(:sale), '#', :class => 'btn' %></td>                                       
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="5">
+      <%= link_to t(:create), new_admin_store_path, :class => 'btn' %>
+	  <%= link_to t(:back), admin_dashboard_path, :class => 'btn'%>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div> 

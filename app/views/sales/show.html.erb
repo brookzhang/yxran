@@ -7,7 +7,7 @@
   <% if @sale.category == 'M' %>
     <%= t(:member) %>: <%= @member.name unless @member.nil? %>
   <%end%>
-  <%= @sale.remark %> <%= @sale.created_at.to_s %>
+  <%= @sale.remark %> <%= @sale.created_at.to_s(:date_time) %>
 </p>
 
 <%= render 'sale_details' %>

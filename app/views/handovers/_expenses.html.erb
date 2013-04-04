@@ -1,0 +1,20 @@
+<%if !@expenses.nil? %>
+<table class="table  table-striped">
+	  <thead>
+      <tr>
+          <th><%= t(:expense) %></th>
+          <th><%= t(:category) %></th>   
+          <th><%= t(:time) %></th>                           
+      </tr>
+  </thead>   
+  <tbody>
+  <% @expenses.each do |e| %>
+    <tr>
+        <td><%= link_to '-' + e.amount.to_s, e %></td>    
+        <td><%= l(e.category,"expense_category") %></td>
+        <td><%= e.created_at.to_s(:duty_time) %></td>                             
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%end%>

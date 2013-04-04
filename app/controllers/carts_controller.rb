@@ -6,6 +6,7 @@ class CartsController < ApplicationController
     @carts = Cart.list_by_user(current_user)
     session[:cart_count] = @carts.count
     @sum_amount = @carts.sum {|c| c.amount.nil? ? 0 : c.amount  }
+    @store = Store.find(current_user.store_id)
     
   end
 

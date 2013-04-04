@@ -71,6 +71,7 @@ zh-CN:
   buy_again: '再次购买'
   sale_category: '销售方式'
   sale_id: '销售单号'
+  sale_amount: '销售总额'
   
   
   # members.
@@ -90,98 +91,6 @@ zh-CN:
   
   
   
-
-  # maintain.
-  #----------------------------------------------------------------------------
-  maintain: '管理'
-  lookups_maintain: '字典管理'
-  switches_maintain: '系统设定'
-  users_maintain: '用户管理'
-  categories_maintain: '商品分类'
-  products_maintain: '所有商品'
-  discounts_maintain: '折扣设定'
-  stores_maintain: '店子管理'
-  stocks_maintain: '库存管理'
-  sales_maintain: '销售管理'
-  members_maintain: '会员管理'
-  events_maintain: '操作记录'
-  orders_maintain: '采购管理'
-  transfers_maintain: '调货管理'
-  account_info: '账号信息'
-  role: '身份'
-  change_role: '身份调整'
-  updated_ok: '资料已更新'
-  unable_to_update: '没办法修改'
-  not_authorized_as_admin: '只有管理员有权限'
-  user_deleted: '账号已删除'
-  can_not_delete_yourself: '不能删除自己的账号'
-  
-  
-  # lookup.
-  #----------------------------------------------------------------------------
-  code: '编码'
-  category: '分组'
-  description: '描述'
-  remark: '备注'
-  sequence: '排序'
-  status: '状态'
-  
-  
-  # switch.
-  #----------------------------------------------------------------------------
-  key: '键'
-  value: '值'
-  
-  # category.
-  #----------------------------------------------------------------------------
-  category: '分类'
-  parent_category: '父类'
-  root_category: '总分类'
-  s_children: '的子分类'
-  create_product: '新增商品'
-  select_category_first: '先选好分类'
-  show_products: '查看所属商品'
-  change_category: '修改分类'
-  create_category: '新增分类'
-  create_sub_category: '新增子分类'
-  category_deleted: '分类已删除'
-  can_not_delete_category: '不能删除此分类'
-  
-  # product.
-  #----------------------------------------------------------------------------
-  product_name: '商品名称'
-  product: '商品'
-  measurement: '计量单位'
-  unit_price: '单价'
-  all_products: '所有商品'
-  
-  
-  # store.
-  #----------------------------------------------------------------------------
-  store_name: '店铺名称'
-  store: '店铺'
-  store_category: '店铺类型'
-  change_store: '店铺轮换'
-  please_select_member: '请选择会员'
-  
-  # stock.
-  #----------------------------------------------------------------------------
-  stock: '库存'
-  quantity: '数量'
-  stock_quantity: '当前库存'
-  safe_stock: '安全库存'
-  adjust_stock: '调整库存'
-  create_stock: '新增库存'
-  adjust_quantity: '调整数量'
-  stock_in_store: '店内库存'
-  
-  
-  # history.
-  #----------------------------------------------------------------------------
-  adjust_type: '类型'
-  adjusted_by: '变化'
-  adjusted_to: '结果'
-  adjusted_at: '日期'
   
   # sale.
   #----------------------------------------------------------------------------
@@ -198,11 +107,6 @@ zh-CN:
   discount: '折扣'
   discount_setting: '设定折扣'
   create_discount: '新增折扣'
-  
-  
-  # event.
-  #----------------------------------------------------------------------------
-  content: '内容'
   
   
   # order.
@@ -250,7 +154,7 @@ zh-CN:
   handovers: '交班接班'
   hand_over: '交班'
   take_over: '接班'
-  store_amount: '存额'
+  store_amount: '店内现金'
   left_amount: '余额'
   take_amount: '接班余额'
   hand_amount: '交班余额'
@@ -262,29 +166,142 @@ zh-CN:
   you_have_took_over_a_store: '您已经有值班店铺了'
   this_store_not_handed_over: '这个店铺还没交班'
   you_took_over_ok: '您已开始接班该店铺'
+  you_can_not_hand_over: '您目前不能交班'
+  you_handed_over_ok: '您已交班'
   handed_over_stores: '已交班店铺'
   choose_a_store: '选择店铺'
   
   
   # expense.
   #----------------------------------------------------------------------------
+  expense: '支出'
   expenses: '日常支出'
   new_expense: '新增支出'
   expense_category: '支出类型'
   choose_expense_category: '选择支出类型'
   new_expense_saved_ok: '新增支出已保存.'
   new_expense_saved_failed: '新增支出失败!'
+  expense_amount: '支出总额'
   
   
   
   
-  # handover.
+  
+
+  #----------------------------------------------------------------------------
+  # maintain.
+  #----------------------------------------------------------------------------
+  maintain: '管理'
+  users_maintain: '用户管理'
+  categories_maintain: '商品分类'
+  products_maintain: '所有商品'
+  discounts_maintain: '折扣设定'
+  stores_maintain: '店子管理'
+  stocks_maintain: '库存管理'
+  sales_maintain: '销售管理'
+  members_maintain: '会员管理'
+  events_maintain: '操作记录'
+  orders_maintain: '采购管理'
+  transfers_maintain: '调货管理'
+  account_info: '账号信息'
+  role: '身份'
+  change_role: '身份调整'
+  updated_ok: '资料已更新'
+  unable_to_update: '没办法修改'
+  not_authorized_as_admin: '只有管理员有权限'
+  user_deleted: '账号已删除'
+  can_not_delete_yourself: '不能删除自己的账号'
+  on_duty_list: '值班状态'
+  
+  # category.
+  #----------------------------------------------------------------------------
+  category: '分类'
+  parent_category: '父类'
+  root_category: '总分类'
+  s_children: '的子分类'
+  create_product: '新增商品'
+  select_category_first: '先选好分类'
+  show_products: '查看所属商品'
+  change_category: '修改分类'
+  create_category: '新增分类'
+  create_sub_category: '新增子分类'
+  category_deleted: '分类已删除'
+  can_not_delete_category: '不能删除此分类'
+  
+  # product.
+  #----------------------------------------------------------------------------
+  product_name: '商品名称'
+  product: '商品'
+  measurement: '计量单位'
+  unit_price: '单价'
+  all_products: '所有商品'
+  
+  
+  # store.
+  #----------------------------------------------------------------------------
+  store_name: '店铺名称'
+  store: '店铺'
+  store_category: '店铺类型'
+  change_store: '店铺轮换'
+  please_select_member: '请选择会员'
+  store_balance: '店内现金'
+  no_one_on_duty: '无人值班'
+  
+  # stock.
+  #----------------------------------------------------------------------------
+  stock: '库存'
+  quantity: '数量'
+  stock_quantity: '当前库存'
+  safe_stock: '安全库存'
+  adjust_stock: '调整库存'
+  create_stock: '新增库存'
+  adjust_quantity: '调整数量'
+  stock_in_store: '店内库存'
+  
+  
+  # history.
+  #----------------------------------------------------------------------------
+  adjust_type: '类型'
+  adjusted_by: '变化'
+  adjusted_to: '结果'
+  adjusted_at: '日期'
+  
+  
+  # history.
   #----------------------------------------------------------------------------
   
   
   
+
+  #----------------------------------------------------------------------------
+  # admin.
+  #----------------------------------------------------------------------------
+  admin: '设定'
+  lookups_admin: '字典设定'
+  switches_admin: '系统设定'
+  
+  # lookup.
+  #----------------------------------------------------------------------------
+  code: '编码'
+  category: '分组'
+  description: '描述'
+  remark: '备注'
+  sequence: '排序'
+  status: '状态'
   
   
+  # switch.
+  #----------------------------------------------------------------------------
+  key: '键'
+  value: '值'
+  
+  
+  # balance.
+  #----------------------------------------------------------------------------
+  content: '内容'
+  adjust_by: '调整额'
+  adjust_to: '调整到'
+  balance_category: '调整类型'
   
   
   

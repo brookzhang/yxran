@@ -9,6 +9,21 @@ class HandoversController < ApplicationController
   
   def show
     @handover = Handover.find(params[:id])
+    @store = Store.find(@handover.store_id)
+    @sales = Sale.where(:store_id => @handover.store_id,
+                        :user_id => @handover.user_id,
+                        :created_at => (@handover.took_at)..(@handover.handed_at.nil? ? Time.now : @handover.handed_at)
+                       )
+    
+    @expenses = Expense.where(:store_id => @handover.store_id,
+                        :user_id => @handover.user_id,
+                        :created_at => (@handover.took_at)..(@handover.handed_at.nil? ? Time.now : @handover.handed_at)
+                        )
+    
+    
+    @sale_amount = @sales.sum{|s| s.actual_amount}
+    @expense_amount = @expenses.sum{|e| e.amount}
+                        
   end
   
   def new
@@ -47,9 +62,32 @@ class HandoversController < ApplicationController
   def edit
     @handover = Handover.find(params[:id])
     @store = Store.find(@handover.store_id)
+    @sales = Sale.where(:store_id => @handover.store_id,
+                        :user_id => @handover.user_id,
+                        :created_at => (@handover.took_at)..(@handover.handed_at.nil? ? Time.now : @handover.handed_at)
+                       )
+    
+    @expenses = Expense.where(:store_id => @handover.store_id,
+                        :user_id => @handover.user_id,
+                        :created_at => (@handover.took_at)..(@handover.handed_at.nil? ? Time.now : @handover.handed_at)
+                        )
+    @sale_amount = @sales.sum{|s| s.actual_amount}
+    @expense_amount = @expenses.sum{|e| e.amount}
   end
   
   def update
+    @handover = Handover.find(params[:id])
+    @store = Store.find(@handover.store_id)
+    @handover.hand_remark = params[:handover][:hand_remark]
+    @handover.hand_amount = @store.balance
+    @handover.handed_at = Time.now
+    @handover.save
+    
+    if @handover.save
+      redirect_to handovers_path, :notice => t(:you_handed_over_ok)
+    else
+      redirect_to handovers_path, :alert => t(:you_can_not_hand_over)
+    end
     
   end
   

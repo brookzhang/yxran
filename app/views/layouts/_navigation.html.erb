@@ -10,9 +10,15 @@
       </a></li>
       
     <% end %>
-    <% if current_user.has_role?(:admin) %>
+    <% if current_user.has_role?(:manager) %>
       <li><a href="<%=maintain_dashboard_path%>" >
         <i class="icon-th-large"></i><%=t(:maintain) %>
+      </a></li>
+    <% end %>
+    
+    <% if current_user.has_role?(:admin) %>
+      <li><a href="<%=admin_dashboard_path%>" >
+        <i class="icon-cog"></i><%=t(:admin) %>
       </a></li>
     <% end %>
     

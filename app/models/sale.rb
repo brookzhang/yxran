@@ -17,6 +17,9 @@ class Sale < ActiveRecord::Base
   validates_presence_of :store_id, :actual_amount
   #validates_uniqueness_of :name, :case_sensitive => false
   
+  validates_numericality_of :actual_amount, :greater_than => 0
+  validates_numericality_of :amount 
+  
   def my_sales(user_id)
     where(:user_id => user_id).order(" id desc ")
   end

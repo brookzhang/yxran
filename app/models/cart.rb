@@ -12,6 +12,10 @@ class Cart < ActiveRecord::Base
   #validates_uniqueness_of :product_id, :scope => :store_id
   
   
+  validates_numericality_of :quantity, :greater_than => 0
+  validates_numericality_of :amount, :greater_than => 0
+  
+  
   def self.count_by_user(user)
     list_by_user(user).count
   end

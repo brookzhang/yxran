@@ -1,0 +1,2 @@
+module Admin::SwitchesHelper
+end

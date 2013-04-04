@@ -5,7 +5,7 @@
 <p><%= t(:remark) %>: <%= @member.remark %></p>
 <p><%= t(:member_level) %>: <%= l(@member.level,'member') %></p>
 <p><%= t(:score) %>: <%= @member.score %></p>
-<p><%= t(:created_at) %>: <%= @member.created_at.to_date %></p>
+<p><%= t(:created_at) %>: <%= @member.created_at.to_s(:date_time) %></p>
 
 <p>
   <%= link_to t(:select_member), new_sale_path(:member_id => @member), :class => 'btn btn-warning' %>

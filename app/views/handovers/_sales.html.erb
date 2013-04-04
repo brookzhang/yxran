@@ -1,0 +1,20 @@
+<%if !@sales.nil? %>
+<table class="table  table-striped">
+	  <thead>
+      <tr>
+          <th><%= t(:sale) %></th>
+          <th><%= t(:category) %></th>   
+          <th><%= t(:time) %></th>                           
+      </tr>
+  </thead>   
+  <tbody>
+  <% @sales.each do |s| %>
+    <tr>
+        <td><%= link_to '+' + s.actual_amount.to_s, s %></td>    
+        <td><%= l(s.category,"sale_category") %></td>
+        <td><%= s.created_at.to_s(:duty_time) %></td>                             
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%end%>

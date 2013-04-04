@@ -8,7 +8,7 @@ class SalesController < ApplicationController
   def show
     @sale = Sale.find(params[:id])
     @sale_details = SaleDetail.where( :sale_id => @sale.id)
-    @member = @sale.member_id > 0 ? Member.find(@sale.member_id) : nil
+    @member = @sale.member_id.nil? ? nil : Member.find(@sale.member_id)
   end
   
   
@@ -16,6 +16,7 @@ class SalesController < ApplicationController
     #retail sale, no discount
     @sale = Sale.new(:category => 'R')
     @carts = Cart.list_by_user(current_user)
+    @sale.actual_amount = @carts.sum {|c| c.amount.nil? ? 0 : c.amount }
     
   end
   
@@ -51,6 +52,7 @@ class SalesController < ApplicationController
     
     if @sale.create_sale(@carts)
       session[:cart_count] = 0
+      session[:member_id] = nil
       redirect_to sales_path, :notice => t(:created_ok)
     else
       redirect_to :back, :alert => t(@sale.check_message)

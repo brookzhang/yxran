@@ -28,16 +28,13 @@ Yxran::Application.routes.draw do
   
   namespace :maintain do
     match '/dashboard',:to => 'dashboard#index'
-    resources :lookups
-    resources :switches
+    resources :categories
     resources :products
     resources :stores
     resources :users
-    resources :categories
     resources :discounts
     resources :sales
     resources :members
-    resources :events
     resources :orders
     resources :transfers
     resources :stocks do
@@ -48,6 +45,13 @@ Yxran::Application.routes.draw do
     resources :balances
   end
   
+  namespace :admin do
+    match '/dashboard',:to => 'dashboard#index'
+    resources :lookups
+    resources :switches
+    resources :events
+    
+  end
   
   authenticated :user do
     root :to => 'home#index'

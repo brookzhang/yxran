@@ -1,0 +1,10 @@
+<!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:store_name) %>: <%= @store.name %></p>
+<p><%= t(:store_category) %>: <%= l(@store.category,"store") %></p>
+<p><%= t(:remark) %>: <%= @store.remark %></p>
+<p><%= t(:created_at) %>: <%= @store.created_at.to_date %></p>
+<p>
+  <%= link_to t(:edit), edit_admin_store_path(@store), :class => 'btn'%>
+  <%= link_to(t(:delete), admin_store_path(@store), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
+  <%= link_to t(:back), admin_stores_path, :class => 'btn'%>
+</p>

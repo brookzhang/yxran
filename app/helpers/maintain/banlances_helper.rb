@@ -1,0 +1,2 @@
+module Maintain::BanlancesHelper
+end

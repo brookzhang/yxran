@@ -1,2 +1,0 @@
-module Maintain::LookupsHelper
-end

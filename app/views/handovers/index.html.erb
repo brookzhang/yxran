@@ -20,7 +20,7 @@
     <tr>
         <td><%= h.store.name %></td>
         <td><%= link_to h.take_amount.to_s + '/' + h.hand_amount.to_s, h  %></td>
-        <td><%= h.took_at %></td>
+        <td><%= h.took_at.to_s(:date_time) %></td>
         <td></td>                                       
     </tr>
   <% end %>

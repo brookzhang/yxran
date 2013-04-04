@@ -3,15 +3,16 @@
   <tr>
     <th colspan="3">
       <%= link_to t(:add_product), products_path, :class => 'btn '  %>
-      <%= t(:none_cart) if @count == 0 %>
+      <%= t(:store_amount) %>: <%=@store.balance.to_s + t(:money) %>
     </th>
   </tr>
   </thead>
   
   <tbody>
-  <% @carts.each do |cart| %>
-    <%= render cart %>
-  <% end %>
+    <%#= t(:none_cart) if @carts.count == 0 %>
+    <% @carts.each do |cart| %>
+      <%= render cart %>
+    <% end %>
   </tbody>
   
   <% if @carts.count > 0 %>

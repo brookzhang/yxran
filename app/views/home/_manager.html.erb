@@ -1,0 +1,11 @@
+
+<% if current_user.has_role? :manager %>
+  <p class="text-center"><%=t(:on_duty_list)%>:</p>
+  <% @stores.each do |store| %>
+    <dl class="dl-horizontal">
+      <dt><%=store.name %> : </dt>
+      <dd ><%=store.users.first.nil? ? t(:no_one_on_duty) : store.users.first.name%></dd>
+    </dl>
+  <%end%>
+<%end%>
+

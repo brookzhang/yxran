@@ -1,4 +1,4 @@
-class Admin::BanlancesController < ApplicationController
+class Maintain::BanlancesController < ApplicationController
   def index
   end
 
