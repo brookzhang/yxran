@@ -34,6 +34,7 @@ zh-CN:
   created_ok: '添加成功'
   unable_to_create: '添加失败'
   unable_to_delete: '删除失败'
+  list_all: '所有记录'
   
   
   # sessions.
@@ -45,7 +46,7 @@ zh-CN:
   
   # users.
   #----------------------------------------------------------------------------
-  name: '名称'
+  user_name: '姓名'
   email: '邮箱'
   password: '密码'
   password_confirmation: '再输入一次密码'
@@ -151,6 +152,7 @@ zh-CN:
   
   # handover.
   #----------------------------------------------------------------------------
+  handover: '值班'
   handovers: '交班接班'
   hand_over: '交班'
   take_over: '接班'
@@ -170,6 +172,7 @@ zh-CN:
   you_handed_over_ok: '您已交班'
   handed_over_stores: '已交班店铺'
   choose_a_store: '选择店铺'
+  
   
   
   # expense.
@@ -212,6 +215,9 @@ zh-CN:
   user_deleted: '账号已删除'
   can_not_delete_yourself: '不能删除自己的账号'
   on_duty_list: '值班状态'
+  last_handovers: '最近交接班'
+  
+  
   
   # category.
   #----------------------------------------------------------------------------
@@ -246,6 +252,7 @@ zh-CN:
   please_select_member: '请选择会员'
   store_balance: '店内现金'
   no_one_on_duty: '无人值班'
+  on_duty: '值班'
   
   # stock.
   #----------------------------------------------------------------------------
@@ -283,7 +290,7 @@ zh-CN:
   # lookup.
   #----------------------------------------------------------------------------
   code: '编码'
-  category: '分组'
+  look_category: '分组'
   description: '描述'
   remark: '备注'
   sequence: '排序'

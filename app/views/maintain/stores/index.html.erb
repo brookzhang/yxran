@@ -3,18 +3,16 @@
 	  <thead>
       <tr>
           <th><%= t(:store_name) %></th>
-          <th></th>
-          <th></th>                                      
+          <th><%= t(:store_balance) %></th>
+          <th><%= t(:on_duty) %></th>
       </tr>
   </thead>   
   <tbody>
   <% @stores.each do |store| %>
     <tr>
         <td><%= link_to store.name, [:maintain, store]  %></td>
-        <td>
-			<%= link_to t(:stock), maintain_stocks_path(:store_id => store), :class => 'btn' %>
-        </td>
-        <td><%= link_to t(:sale), '#', :class => 'btn' %></td>                                       
+        <td><%= store.balance %> <%=t(:money)%></td> 
+        <td><%=store.users.first.nil? ? t(:no_one_on_duty) : store.users.first.name%></td>
     </tr>
   <% end %>
   <tr>

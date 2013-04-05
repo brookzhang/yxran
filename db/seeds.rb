@@ -39,6 +39,11 @@ Lookup.create([
   {:code => 'S', :category =>'balance_category', :description => '销售'},
   {:code => 'E', :category =>'balance_category', :description => '开支'},
   
+  {:code => '0', :category =>'user_status', :description => '禁用'},
+  {:code => '1', :category =>'user_status', :description => '正常'},
+  
+  {:code => '0', :category =>'store_status', :description => '禁用'},
+  {:code => '1', :category =>'store_status', :description => '正常'},
   
   {:code => 'admin', :category =>'role', :description => '管理员'},
   {:code => 'manager', :category =>'role', :description => '经理'},

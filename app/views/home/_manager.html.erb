@@ -1,11 +1,21 @@
 
-<% if current_user.has_role? :manager %>
-  <p class="text-center"><%=t(:on_duty_list)%>:</p>
-  <% @stores.each do |store| %>
-    <dl class="dl-horizontal">
-      <dt><%=store.name %> : </dt>
-      <dd ><%=store.users.first.nil? ? t(:no_one_on_duty) : store.users.first.name%></dd>
-    </dl>
-  <%end%>
+<table class="table">
+  <caption ><%=t(:on_duty_list)%></caption>
+<% @stores.each do |store| %>
+  <tr class="<%=store.users.first.nil? ? 'warning' : 'success'%>">
+    <td ><%= link_to store.name, [:maintain,store] %></td>
+    <td ><%= store.balance%> <%=t(:money)%></td>
+    <td><%=store.users.first.nil? ? t(:no_one_on_duty) : store.users.first.name%></td>
+  </tr>
 <%end%>
+</table>
 
+<p><%=t(:last_handovers)%></p>
+<% @handovers.each do |h| %>
+  <p>
+    <%=h.store.name%> 
+    <%=h.user.name%> 
+    <%=t(:take_over)%><%=h.took_at.to_s(:duty_time)%>
+    <%=%><%=h.handed_at.nil? ? '' : t(:hand_over) + h.handed_at.to_s(:duty_time)%> 
+  </p>
+<%end%>

@@ -13,6 +13,7 @@ class HomeController < ApplicationController
     
     if current_user.has_role? :manager
       @stores = Store.all
+      @handovers = Handover.limit(10).order(" id desc ")
       
     end
     
