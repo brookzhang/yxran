@@ -29,12 +29,14 @@ zh-CN:
   date: '日期'
   time: '时间'
   search: '搜索'
-  money: '元'
+  money: '钱'
+  currency: '元'
   are_you_sure_to_delete: '真的要删吗?'
   created_ok: '添加成功'
   unable_to_create: '添加失败'
   unable_to_delete: '删除失败'
   list_all: '所有记录'
+  name: '名称'
   
   
   # sessions.
@@ -46,7 +48,8 @@ zh-CN:
   
   # users.
   #----------------------------------------------------------------------------
-  user_name: '姓名'
+  employee_name: '店员姓名'
+  employee: '店员'
   email: '邮箱'
   password: '密码'
   password_confirmation: '再输入一次密码'
@@ -57,9 +60,9 @@ zh-CN:
   edit_account: '修改账号'
   cancel_account: '注销账号'
   location: '值班店铺'
-  user: '店员'
-  user_updated: '店员信息已更新'
-  unable_to_update_user: '店员信息不能修改'
+  user: '用户'
+  user_updated: '用户信息已更新'
+  unable_to_update_user: '用户信息不能修改'
   
   # sales.
   #----------------------------------------------------------------------------
@@ -197,7 +200,7 @@ zh-CN:
   maintain: '管理'
   users_maintain: '用户管理'
   categories_maintain: '商品分类'
-  products_maintain: '所有商品'
+  products_maintain: '商品管理'
   discounts_maintain: '折扣设定'
   stores_maintain: '店子管理'
   stocks_maintain: '库存管理'
@@ -206,6 +209,9 @@ zh-CN:
   events_maintain: '操作记录'
   orders_maintain: '采购管理'
   transfers_maintain: '调货管理'
+  handovers_maintain: '值班管理'
+  expenses_maintain: '支出管理'
+  
   account_info: '账号信息'
   role: '身份'
   change_role: '身份调整'
@@ -253,6 +259,7 @@ zh-CN:
   store_balance: '店内现金'
   no_one_on_duty: '无人值班'
   on_duty: '值班'
+  balance: '现金'
   
   # stock.
   #----------------------------------------------------------------------------

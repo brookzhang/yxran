@@ -1,13 +1,13 @@
-<!--h3><%= t(:account_info) %></h3-->
-<p><%= t(:store_name) %>: <%= @sale.store.name %></p>
-<p><%= t(:product_name) %>: <%= @sale.product.name %></p>
-<p><%= t(:quantity) %>: <%= @sale.quantity %></p>
-<p><%= t(:amount) %>: <%= @sale.amount %></p>
-<% if @sale.category == 'M' %>
-<p><%= t(:member) %>: <%= @sale.member.name %></p>
-<p><%= t(:score) %>: <%= @sale.score %></p>
-<%end%>
-<p><%= t(:remark) %>: <%= @sale.remark %></p>
-<p><%= t(:user) %>: <%= @sale.user.name unless @sale.user_id.nil? %></p>
-<p><%= t(:created_at) %>: <%= @sale.created_at.to_date %></p>
+<p><%= t(:sale_id) %>: <%= '#' + @sale.id.to_s %></p>
+<p>[<%= @sale.store.name %>] &nbsp; <%= l(@sale.category,"sale_category") %> 
+  <%= @sale.actual_amount %>
+</p>
+<p>
+  <% if @sale.category == 'M' %>
+    <%= t(:member) %>: <%= @member.name unless @member.nil? %>
+  <%end%>
+  <%= @sale.remark %> <%= @sale.created_at.to_s(:date_time) %>
+</p>
+
+<%= render 'sale_details' %>
 <%= link_to t(:back), maintain_sales_path, :class => 'btn'%>

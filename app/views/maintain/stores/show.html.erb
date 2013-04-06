@@ -4,7 +4,8 @@
     <%= @store.remark.nil? ? '' : '(' + @store.remark + ')' %>
   </strong>
 </p>
-<p><%= t(:remark) %>: <%= @store.remark %></p>
+<p><%= t(:on_duty) %>: <%= @user.nil? ? t(:no_one_on_duty) : @user.name %></p>
+<p><%= t(:balance) %>: <%= @store.balance %> <%=t(:currency)%></p>
 
 <div class="input-append">
   <a class="btn <%='btn-info' if @addition == 'stock'%>" href="<%= maintain_store_path(@store) + "?addition=stock" %>" >

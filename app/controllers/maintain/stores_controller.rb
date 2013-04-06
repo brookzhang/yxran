@@ -7,6 +7,7 @@ class Maintain::StoresController < ApplicationController
     @store = Store.find(params[:id])
     @stocks = Stock.where(" store_id =? ", @store.id)
     @addition = params[:addition].nil? ? 'stock' : params[:addition]
+    @user = User.where(:store_id => @store.id).first
     
     case @addition
     when 'sale'

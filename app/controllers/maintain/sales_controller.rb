@@ -1,10 +1,12 @@
 class Maintain::SalesController < ApplicationController
   def index
-    @sales = Sale.all
+    @sales = Sale.includes(:user, :store).order(" id desc ")
   end
   
   def show
     @sale = Sale.find(params[:id])
+    @sale_details = SaleDetail.where( :sale_id => @sale.id)
+    @member = @sale.member_id.nil? ? nil : Member.find(@sale.member_id)
   end
 
   def edit

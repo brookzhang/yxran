@@ -1,12 +1,5 @@
-<%if !@sale_details.nil? %>
-<table class="table  table-striped">
-  <!--<thead>
-    <tr>
-      <th><%= t(:product_name) %></th>
-      <th><%= t(:quantity) %></th>
-      <th><%= t(:created_at) %></th>                              
-    </tr>
-  </thead>-->   
+<%unless @sale_details.nil? %>
+<table class="table  table-striped"> 
   <tbody>
   <% @sale_details.each do |d| %>
     <tr>

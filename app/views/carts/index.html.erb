@@ -3,7 +3,7 @@
   <tr>
     <th colspan="3">
       <%= link_to t(:add_product), products_path, :class => 'btn '  %>
-      <%= t(:store_amount) %>: <%=@store.balance.to_s + t(:money) %>
+      <%= t(:store_amount) %>: <%=@store.balance.to_s + t(:currency) %>
     </th>
   </tr>
   </thead>
@@ -20,7 +20,7 @@
     <tr>
       <td colspan="3">
         
-        <%= t(:sum_amount)%>: <%=@sum_amount.to_s %> <%=t(:money)%>
+        <%= t(:sum_amount)%>: <%=@sum_amount.to_s %> <%=t(:currency)%>
         <div>
           
           <%= link_to t(:retail_sale), sale_retail_path, :class => 'btn ' %>

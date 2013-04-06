@@ -4,7 +4,7 @@
 <% @stores.each do |store| %>
   <tr class="<%=store.users.first.nil? ? 'warning' : 'success'%>">
     <td ><%= link_to store.name, [:maintain,store] %></td>
-    <td ><%= store.balance%> <%=t(:money)%></td>
+    <td ><%= store.balance%> <%=t(:currency)%></td>
     <td><%=store.users.first.nil? ? t(:no_one_on_duty) : store.users.first.name%></td>
   </tr>
 <%end%>

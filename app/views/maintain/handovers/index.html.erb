@@ -1,0 +1,29 @@
+<div class="span8">
+<table class="table table-condensed">
+  <thead>
+    <tr>
+        <th><%= t(:store) %></th>
+        <th><%= t(:user) %></th>
+        <th><%= t(:take_over) %> ~ <%= t(:hand_over) %></th>
+        <th><%= t(:took_at) %></th>
+        <th><%= t(:handed_at) %></th>
+    </tr>
+  </thead>   
+  <tbody>
+  <% @handovers.each do |h| %>
+    <tr>
+        <td><%= h.store.name %></td>
+        <td><%= h.user.name %></td>
+        <td><%= link_to h.take_amount.to_s + ' ~ ' + h.hand_amount.to_s, [:maintain, h]  %></td>
+        <td><%= h.took_at.to_s(:date_time) %></td>
+        <td><%= h.handed_at.nil? ? '' : h.handed_at.to_s(:date_time) %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="5">
+      <%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div> 

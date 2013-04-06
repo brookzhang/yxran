@@ -1,10 +1,10 @@
 <p><%= t(:store_name) %>: <%= @store.name %></p>
 <p><%= t(:took_at) %>: <%= @handover.took_at.to_s(:date_time) %></p>
-<p><%= t(:take_amount) %>: <%= @handover.take_amount %> <%=t(:money)%></p>
-<p><%= t(:sale_amount) %>: +<%=@sale_amount %> <%=t(:money)%></p>
-<p><%= t(:expense_amount) %>: -<%=@expense_amount %> <%=t(:money)%></p>
-<p><%= t(:store_balance) %>: <%=@store.balance %> <%=t(:money)%></p>
-<p><%= t(:hand_amount) %>: <%= @store.balance %> <%=t(:money)%></p>
+<p><%= t(:take_amount) %>: <%= @handover.take_amount %> <%=t(:currency)%></p>
+<p><%= t(:sale_amount) %>: +<%=@sale_amount %> <%=t(:currency)%></p>
+<p><%= t(:expense_amount) %>: -<%=@expense_amount %> <%=t(:currency)%></p>
+<p><%= t(:store_balance) %>: <%=@store.balance %> <%=t(:currency)%></p>
+<p><%= t(:hand_amount) %>: <%= @store.balance %> <%=t(:currency)%></p>
 
 <%= simple_form_for @handover, :html => {:class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>

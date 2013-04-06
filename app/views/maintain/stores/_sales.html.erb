@@ -12,7 +12,7 @@
   <% @sales.each do |sale| %>
     <tr>
         <td><%= l(sale.category, 'sale_category') %></td>
-        <td><%= link_to sale.amount.to_s + t(:money), [:maintain,sale] %></td>
+        <td><%= link_to sale.amount.to_s + t(:currency), [:maintain,sale] %></td>
         <td><%= sale.created_at.to_s(:date_time) %>
         </td>                                    
     </tr>

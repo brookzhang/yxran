@@ -1,5 +1,6 @@
 
 <p><%= t(:store_name) %>: <%= @store.name %></p>
+<p><%= t(:employee_name) %>: <%= @user.name %></p>
 <p><%= t(:take_amount) %>: <%= @handover.take_amount %> <%=t(:currency)%></p>
 <p><%= t(:take_remark) %>: <%= @handover.take_remark %></p>
 <p><%= t(:took_at) %>: <%= @handover.took_at.to_s(:date_time) %></p>
@@ -13,7 +14,7 @@
   <p><%= t(:handed_at) %>: <%= @handover.handed_at.to_s(:date_time) %></p>
 <%end%>
 
-<%= link_to t(:back), handovers_path, :class => 'btn'%>
+<%= link_to t(:back), maintain_handovers_path, :class => 'btn'%>
 
 
 <%= render 'sales' %>

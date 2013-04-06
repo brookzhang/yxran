@@ -17,13 +17,13 @@
       <td>
         <h4><%= cart.product.name %></h4>
         <strong><%= cart.quantity %><%= cart.product.measurement %></strong>
-        [<strong><%= cart.amount %><%=t(:money)%></strong>]
+        [<strong><%= cart.amount %><%=t(:currency)%></strong>]
       </td>         
     </tr>
     <% end %>
     <tr>
       <td>
-        <%=t(:sum_amount)%>: <%=@amount%> <%=t(:money)%>
+        <%=t(:sum_amount)%>: <%=@amount%> <%=t(:currency)%>
       </td>         
     </tr>
     
