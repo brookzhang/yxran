@@ -18,7 +18,8 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
     t.integer  "user_id"
     t.string   "category"
     t.integer  "reference_id"
-    t.float    "amount"
+    t.float    "adjust_by"
+    t.float    "adjust_to"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -266,6 +267,7 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
     t.datetime "updated_at",                             :null => false
     t.string   "name"
     t.integer  "store_id"
+    t.integer  "status",                 :default => 1
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
