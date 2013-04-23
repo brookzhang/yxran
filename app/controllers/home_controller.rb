@@ -4,7 +4,6 @@ class HomeController < ApplicationController
   def index
     #session[:member_id] = 100
     #session.delete :member_id
-    @is_disabled = ''
     
     if current_user.has_role? :user
       session[:cart_count] = Cart.count_by_user(current_user).to_s if session[:cart_count].nil?

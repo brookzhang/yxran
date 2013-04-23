@@ -1,4 +1,3 @@
-
 <table class="table table-condensed">
 	  <thead>
       <tr>
@@ -14,7 +13,7 @@
         <td><%= link_to member.name, member %></td>
         <td><%= member.phone %></td>
         <td><%= member.score %></td>
-        <td><%= link_to t(:select),  carts_path(:member_id => member.id), :class => 'btn' %>
+        <td><%= link_to t(:select),  new_sale_path(:member_id => member.id), :class => 'btn' %>
         </td>                                    
     </tr>
   <% end %>
