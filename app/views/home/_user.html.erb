@@ -1,15 +1,15 @@
 <p>
-  <%= link_to t(:sales), sales_path, :class => 'btn btn-primary btn-large' %>
-  <%= link_to t(:expenses), expenses_path, :class => 'btn btn-primary btn-large' %>
+  <%= link_to t(:sales), sales_path, :class => 'btn btn-primary btn-large ', :disabled => 'disabled' %>
+  <%= link_to t(:expenses), expenses_path, :class => 'btn btn-primary btn-large'+ @is_disabled %>
 </p>
 <p>
-  <%= link_to t(:member_search), members_path, :class => 'btn btn-primary btn-large' %>
-  <%= link_to t(:stock_in_store), stocks_path, :class => 'btn btn-primary btn-large' %>
+  <%= link_to t(:member_search), members_path, :class => 'btn btn-primary btn-large'+ @is_disabled %>
+  <%= link_to t(:stock_in_store), stocks_path, :class => 'btn btn-primary btn-large'+ @is_disabled %>
 </p>
 <p>
-  <%= link_to t(:transfer_receive), transfers_path, :class => 'btn btn-primary btn-large' %>
+  <%= link_to t(:transfer_receive), transfers_path, :class => 'btn btn-primary btn-large'+ @is_disabled %>
 </p>
 <p>
-  <%= link_to t(:handovers), handovers_path, :class => 'btn btn-primary btn-large' %>
+  <%= link_to t(:handovers), handovers_path, :class => 'btn btn-info btn-large' %>
   <%= link_to t(:my_account), user_path(current_user), :class => 'btn btn-info btn-large' %>
 </p>

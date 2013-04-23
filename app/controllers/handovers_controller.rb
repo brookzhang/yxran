@@ -41,10 +41,12 @@ class HandoversController < ApplicationController
     @handover.take_amount = @store.balance
     @handover.took_at = Time.now
     @handover.status = 1
-    
     if !is_ok_to_take_over?(@handover)
       redirect_to :back 
     else
+      
+      #logger.error "****************************2#{@handover.user_id}"  
+      
       if @handover.save
         current_user.store_id = @handover.store_id
         session[:cart_count] = Cart.count_by_user(current_user).to_s
@@ -81,7 +83,7 @@ class HandoversController < ApplicationController
     @handover.hand_remark = params[:handover][:hand_remark]
     @handover.hand_amount = @store.balance
     @handover.handed_at = Time.now
-    @handover.save
+    #@handover.save
     
     if @handover.save
       redirect_to handovers_path, :notice => t(:you_handed_over_ok)
