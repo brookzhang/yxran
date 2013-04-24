@@ -101,7 +101,7 @@ zh-CN:
   # sale.
   #----------------------------------------------------------------------------
   sale: '销售'
-  actual_amount: '实收'
+  actual_amount: '实收现金'
   not_enough_score_to_use: '会员积分没有那么多'
   reserve_score: '保留积分'
   new_score: '新增积分'

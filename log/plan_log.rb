@@ -8,7 +8,13 @@
 普通会员升高级会员，销售量达到  ，包含积分购买量
 
 
-
+1.指导价格  实际销售金额
+2.店员自己选择值班店子 ,交接班 后来者可以把当前值班人挤下去. 挤下去的值班店为空,不能记帐
+3.调货 需要接收才到库
+4.折扣系统不在前台显示。 店员直接填写售价和积分。 后台监督，售价-积分 和 折扣 相差多大。
+5.交接班 金额 [handover]store_id, category, store_amount, remark, user_id
+6.支出记录 [expense]store_id, category, amount, remark, user_id
+7.收支明细 [balance]store_id, category, reference_id, amount, user_id
 
 
 
