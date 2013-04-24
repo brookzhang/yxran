@@ -2,7 +2,7 @@
   <%= simple_form_for product, :url => new_cart_path(), :html => {:method => :put, :class => 'form-horizontal' } do |f| %>
     <div class="modal-header">
       <a class="close" data-dismiss="modal">&#215;</a>
-      <h3><%= t(:change_category) %></h3>
+      <h3><%= t(:change_category) %> <%=product.stock.quantity %></h3>
     </div>
     <div class="modal-body">
       <%= f.input :quantity %>

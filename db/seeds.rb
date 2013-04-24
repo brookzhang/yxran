@@ -106,6 +106,29 @@ Store.create([
   {:name => '总部仓库', :category => 'S', :balance => 600, :remark => 'XXX路XXX号'}
 ], :without_protection => true)
 
+puts "inserting inventory"
+Stock.create([
+  {:product_id => 1, :store_id => 1, :quantity => 41000, :safe_stock => 5000, :remark => '西湖龙井'},
+  {:product_id => 2, :store_id => 1, :quantity => 31000, :safe_stock => 5000, :remark => '正山小种'},
+  {:product_id => 3, :store_id => 1, :quantity => 21000, :safe_stock => 5000, :remark => '铁观音秋茶'},
+  {:product_id => 4, :store_id => 1, :quantity => 31000, :safe_stock => 5000, :remark => '大益普洱'},
+  {:product_id => 5, :store_id => 1, :quantity => 21000, :safe_stock => 5000, :remark => '久扬黑茶'},
+  {:product_id => 6, :store_id => 1, :quantity => 41000, :safe_stock => 5000, :remark => '岩茶'},
+  {:product_id => 1, :store_id => 2, :quantity => 42000, :safe_stock => 5000, :remark => '西湖龙井'},
+  {:product_id => 2, :store_id => 2, :quantity => 32000, :safe_stock => 5000, :remark => '正山小种'},
+  {:product_id => 3, :store_id => 2, :quantity => 22000, :safe_stock => 5000, :remark => '铁观音秋茶'},
+  {:product_id => 4, :store_id => 2, :quantity => 32000, :safe_stock => 5000, :remark => '大益普洱'},
+  {:product_id => 5, :store_id => 2, :quantity => 22000, :safe_stock => 5000, :remark => '久扬黑茶'},
+  {:product_id => 6, :store_id => 2, :quantity => 42000, :safe_stock => 5000, :remark => '岩茶'},
+  {:product_id => 1, :store_id => 3, :quantity => 43000, :safe_stock => 5000, :remark => '西湖龙井'},
+  {:product_id => 2, :store_id => 3, :quantity => 33000, :safe_stock => 5000, :remark => '正山小种'},
+  {:product_id => 3, :store_id => 3, :quantity => 23000, :safe_stock => 5000, :remark => '铁观音秋茶'},
+  {:product_id => 4, :store_id => 3, :quantity => 33000, :safe_stock => 5000, :remark => '大益普洱'},
+  {:product_id => 5, :store_id => 3, :quantity => 23000, :safe_stock => 5000, :remark => '久扬黑茶'},
+  {:product_id => 6, :store_id => 3, :quantity => 43000, :safe_stock => 5000, :remark => '岩茶'}
+  
+])
+
 
 puts 'creating roles'
 Role.create([
@@ -117,7 +140,7 @@ Role.create([
 puts 'creating users'
 User.create([
   {:name => 'admin1', :email => 'admin@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
-  {:name => 'manager1', :email => 'manager@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
+  {:name => 'manager1', :email => 'm@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
   {:name => 'usera', :email => 'a@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
   {:name => 'userb', :email => 'b@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'}
 ])

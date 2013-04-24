@@ -11,7 +11,7 @@
   <% @histories.each do |history| %>
     <tr>
         <td><%= l(history.adjust_type,"adjust_type") %></td>
-        <td><%= '+' unless history.adjusted_by < 0 %><%= history.adjusted_by %></td>
+        <td><%= '+' unless  history.adjusted_by.nil? ? 0 : history.adjusted_by < 0  %><%= history.adjusted_by %></td>
         <td><%= history.adjusted_at.to_date %></td>                             
     </tr>
   <% end %>

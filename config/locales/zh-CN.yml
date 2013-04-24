@@ -70,12 +70,14 @@ zh-CN:
   member_sale: '会员'
   cost_sale: '消耗'
   sale_record: '销售记录'
-  sales: '销售记账'
+  sales: '销售摘要'
   amount: '金额'
   buy_again: '再次购买'
   sale_category: '销售方式'
   sale_id: '销售单号'
   sale_amount: '销售总额'
+  record_a_sale: '记一单'
+  
   
   
   # members.
@@ -104,6 +106,7 @@ zh-CN:
   reserve_score: '保留积分'
   new_score: '新增积分'
   switch_member: '更换'
+  record_a_sale: '记一笔单'
   
   
   # discount.
@@ -151,6 +154,7 @@ zh-CN:
   to_be_discount: '算折扣'
   to_be_score: '存积分'
   create_sale_sheet: '生成销售单'
+  view_carts: '查看货单'
   
   
   # handover.

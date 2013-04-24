@@ -22,7 +22,9 @@ class CartsController < ApplicationController
     session[:cart_count] = Cart.count_by_user(current_user).to_s
     
     @pre_category_id = session[:category_id].nil? ? 0 : session[:category_id]
-    redirect_to products_path(:category_id => @pre_category_id) # carts_path #, :notice => t(:add_ok)
+    #redirect_to products_path(:category_id => @pre_category_id) # carts_path #, :notice => t(:add_ok)
+    redirect_to stocks_path 
+    
   end
 
 

@@ -5,8 +5,9 @@ class ProductsController < ApplicationController
     category_id = params[:category_id].nil? ? 0 : params[:category_id].to_i
     @category = category_id == 0 ? nil : Category.find(category_id)
     @categories = Category.where(" parent_id = ? ", category_id )
-    @products = Product.list_with_sub_category(category_id)
+    @products = Product.for_sale(category_id,current_user.store_id)
     #@products = where( " category_id = ? ", category_id)
+    #@products = Product.for_sale(category_id)
     @cart = Cart.new
     
     session[:category_id] = category_id

@@ -6,6 +6,7 @@ class StocksController < ApplicationController
     @stock.store_id = current_user.store.id
     @stock.product_id = params[:product_id]
     @stocks = find_stocks(@stock)
+    @cart = Cart.new
     
   end
   
