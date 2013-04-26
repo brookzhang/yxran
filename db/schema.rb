@@ -119,11 +119,20 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
 
   add_index "members", ["name", "phone"], :name => "index_members_on_name_and_phone"
 
-  create_table "orders", :force => true do |t|
-    t.integer  "store_id"
+  create_table "order_details", :force => true do |t|
+    t.integer  "order_id"
     t.integer  "product_id"
     t.integer  "quantity"
     t.float    "amount"
+    t.string   "remark"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "order_details", ["product_id"], :name => "index_order_details_on_product_id"
+
+  create_table "orders", :force => true do |t|
+    t.integer  "store_id"
     t.string   "remark"
     t.integer  "status",     :default => 1
     t.integer  "user_id"
@@ -131,7 +140,7 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
     t.datetime "updated_at",                :null => false
   end
 
-  add_index "orders", ["store_id", "product_id"], :name => "index_orders_on_store_id_and_product_id"
+  add_index "orders", ["store_id"], :name => "index_orders_on_store_id"
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -238,16 +247,27 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
 
   add_index "switches", ["key", "value"], :name => "index_switches_on_key_and_value"
 
-  create_table "transfers", :force => true do |t|
-    t.integer  "from_store_id"
-    t.integer  "to_store_id"
+  create_table "transfer_details", :force => true do |t|
+    t.integer  "transfer_id"
     t.integer  "product_id"
     t.integer  "quantity"
     t.string   "remark"
-    t.integer  "status",        :default => 1
-    t.integer  "user_id"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "transfer_details", ["product_id"], :name => "index_transfer_details_on_product_id"
+
+  create_table "transfers", :force => true do |t|
+    t.integer  "from_store_id"
+    t.integer  "to_store_id"
+    t.string   "transfer_remark"
+    t.string   "receive_remark"
+    t.integer  "status",          :default => 1
+    t.integer  "transferer_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "transfers", ["from_store_id", "to_store_id"], :name => "index_transfers_on_from_store_id_and_to_store_id"

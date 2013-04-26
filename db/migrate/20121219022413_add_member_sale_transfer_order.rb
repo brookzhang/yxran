@@ -42,13 +42,23 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
     end
     
     create_table(:transfers) do |t|
-      t.integer :from_store_id
-      t.integer :to_store_id
+      t.belongs_to :from_store
+      t.belongs_to :to_store
+      t.string :transfer_remark
+      t.string :receive_remark
+      t.integer :status, :default => 0 # 0-temp, 1-transfered , 2-received, 3-partial received , 9-cancel 
+      t.belongs_to :transferer
+      t.belongs_to :receiver
+      
+      t.timestamps
+    end
+    
+    create_table(:transfer_details) do |t|
+      t.references :transfer
       t.references :product
       t.integer :quantity
       t.string :remark
-      t.integer :status, :default => 1 # 0-cancel, 1-picked up, 2-received
-      t.references :user
+      t.integer :status, :default => 0 # 0-temp, 1-transfered , 2-received , 9-cancel
       
       t.timestamps
     end
@@ -56,9 +66,6 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
     
     create_table(:orders) do |t|
       t.references :store
-      t.references :product
-      t.integer :quantity
-      t.float :amount
       t.string :remark
       t.integer :status, :default => 1 # 0-cancel, 1-ordered, 2-received
       t.references :user
@@ -66,11 +73,24 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
       t.timestamps
     end
     
+    create_table(:order_details) do |t|
+      t.references :order
+      t.references :product
+      t.integer :quantity
+      t.float :amount
+      t.string :remark
+      
+      t.timestamps
+    end
+      
+    
 
     add_index(:members, [:name, :phone])
     add_index(:sales, [:store_id, :member_id])
     add_index(:sale_details, :product_id)
     add_index(:transfers, [:from_store_id, :to_store_id])
-    add_index(:orders, [:store_id, :product_id ])
+    add_index(:transfer_details, :product_id)
+    add_index(:orders, :store_id)
+    add_index(:order_details, :product_id )
   end
 end

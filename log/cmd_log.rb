@@ -15,13 +15,11 @@ echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && . '$HOME/.rvm/scripts/rvm'" >> /home/
  
 source ~/.bashrc   #/refresh bash
  
-1.指导价格  实际销售金额
-2.店员自己选择值班店子 ,交接班 后来者可以把当前值班人挤下去. 挤下去的值班店为空,不能记帐
-3.调货 需要接收才到库
-4.折扣系统不在前台显示。 店员直接填写售价和积分。 后台监督，售价-积分 和 折扣 相差多大。
-5.交接班 金额 [handover]store_id, category, store_amount, remark, user_id
-6.支出记录 [expense]store_id, category, amount, remark, user_id
-7.收支明细 [balance]store_id, category, reference_id, amount, user_id
+
+
+/var/app/yxran
+sudo chown -R nobody /var/app/yxran  #<-- set nginx user has permission on yxran
+sudo chmod 777 /var/app/yxran/db  #<-- set write permission of sqlite db
 
 sudo vi /opt/nginx/conf/nginx.conf
 sudo /opt/nginx/sbin/nginx
@@ -33,6 +31,14 @@ ps -ef | grep nginx
 kill -QUIT 主进程号 #从容停止Nginx：
 kill -TERM 主进程号 #快速停止Nginx：
 pkill -9 nginx  #强制停止Nginx：
+
+        listen      80 default;
+        server_name  localhost;
+        root /root/app/yxran/public;
+        passenger_enabled on;
+        rails_env development;
+
+
 
 
 rails g migration AddLookupProductStoreStockHistory

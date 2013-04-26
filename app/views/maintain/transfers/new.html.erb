@@ -1,12 +1,9 @@
 <%= simple_form_for [:maintain,@transfer], :html => {:class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors @transfer %>
-  <%= f.input :product, :label => t(:product_name), :input_html => {:value => @transfer.product.name, :disabled => true } %>
-  <%= f.input :product_id, :as => :hidden, :input_html => {:value => @transfer.product_id } %>
-  <%= f.input :from_store_id, :label => t(:from_store), :collection => @stores, :required => true, :autofocus => true %> 
-  <%= f.input :to_store_id, :label => t(:to_store), :collection => @stores, :required => true, :autofocus => true %> 
-  <%= f.input :quantity, :label => t(:quantity), :required => true %>
-  <%= f.input :remark, :label => t(:remark) %>
+  <%= f.input :from_store_id, :label => t(:from_store), :collection => @stores, :prompt => t(:choose_from_store), :required => true, :autofocus => true %> 
+  <%= f.input :to_store_id, :label => t(:to_store), :collection => @stores, :prompt => t(:choose_to_store), :required => true, :autofocus => true %> 
+  <%= f.input :transfer_remark, :label => t(:transfer_remark) %>
   <div class="control-group">
     <div class="controls">
       <%= f.button :submit, t(:submit), :class => 'btn' %>

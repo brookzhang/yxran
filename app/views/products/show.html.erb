@@ -7,7 +7,7 @@
     <a data-toggle="modal" href="#add_cart-options-<%= @product.id %>" class="btn btn-warning" type="button"><%= t(:add_to_cart) %></a>
     
     &nbsp;&nbsp;&nbsp;
-    <%= link_to t(:back), products_path, :class => 'btn'%>
+    <%= link_to t(:back), stocks_path, :class => 'btn'%>
     
     <div id="add_cart-options-<%= @product.id %>" class="modal" style="display: none;">
       <%= simple_form_for @cart , :url => carts_path, :method => :post,  :html => {:class => 'form-horizontal' } do |f| %>

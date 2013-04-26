@@ -1,10 +1,8 @@
 <!--h3><%= t(:account_info) %></h3-->
-<p><%= t(:from_store) %>: <%= @transfer.from_store.name %></p>
-<p><%= t(:to_store) %>: <%= @transfer.to_store.name %></p>
-<p><%= t(:product) %>: <%= @transfer.product.name %></p>
-<p><%= t(:quantity) %>: <%= @transfer.quantity %></p>
-<p><%= t(:remark) %>: <%= @transfer.remark %></p>
-<p><%= t(:creator) %>: <%= @transfer.user.name %></p>
+<p>[<%= @transfer.from_store.name %>] -> [<%= @transfer.to_store.name %>]</p>
+<p><%= t(:sum_amount) %>: <%= @transfer.amount_sum %></p>
+<p><%= t(:transfer_remark) %>: <%= @transfer.transfer_remark %></p>
+<p><%= t(:transferer) %>: <%= @transfer.transferer.name %></p>
 <p><%= t(:status) %>: <%= @transfer.status %></p>
 <p><%= t(:created_at) %>: <%= @transfer.created_at.to_date %></p>
 <%= link_to t(:edit), edit_maintain_transfer_path(@transfer), :class => 'btn'%>
