@@ -1,24 +1,6 @@
 Yxran::Application.routes.draw do
   
-  
 
-
-
-
-
-  get "expenses/index"
-
-  get "expenses/show"
-
-  get "expenses/edit"
-
-  get "expenses/update"
-
-  get "expenses/destroy"
-
-  get "handovers/index"
-
-  get "handovers/show"
 
   devise_for :users
   
@@ -49,8 +31,12 @@ Yxran::Application.routes.draw do
     resources :discounts
     resources :sales
     resources :members
-    resources :orders
-    resources :transfers
+    resources :orders do
+      resources :order_details
+    end
+    resources :transfers do
+      resources :transfer_details
+    end
     resources :stocks do
       resources :histories
     end

@@ -1,0 +1,25 @@
+<div class="span8">
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th><%= t(:product) %></th>
+          <th><%= t(:stock) %></th>
+          <th></th>                                      
+      </tr>
+  </thead>   
+  <tbody>
+    <% @stocks.each do |stock| %>
+	  <tr>
+        <td><%= stock.product.name %></td>
+        <td><%= stock.quantity %> <%= stock.product.measurement %></td>            
+      </tr>
+       
+    <% end %>
+	<tr>
+	  <td colspan="3">
+        <%# =link_to t(:view_carts), carts_path, :class =>'btn btn-primary' %>
+	  </td>
+	</tr>
+  </tbody>
+</table>
+</div> 

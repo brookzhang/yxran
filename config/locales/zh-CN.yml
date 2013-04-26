@@ -132,7 +132,12 @@ zh-CN:
   from_to_store_must_diffrent: '调货双方必须不一样'
   create_transfer: '创建调货'
   transfer_receive: '调货接收'
-  
+  transfer_id: '调货单号'
+  transfer_remark: '调货备注'
+  choose_from_store: '选择调出仓'
+  choose_to_store: '选择调入仓'
+  transferer: '调货人'
+  receiver: '接收人'
   
   # cart.
   #----------------------------------------------------------------------------

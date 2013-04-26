@@ -1,7 +1,6 @@
 class Maintain::TransfersController < ApplicationController
   def index
-    @product = params[:product_id].nil? ? nil : Category.find(params[:product_id])
-    @transfers = transfers_list(@product)
+    @transfers = Transfer.all
   end
   
   def show
@@ -9,25 +8,20 @@ class Maintain::TransfersController < ApplicationController
   end
 
   def new
+    @transfer = Transfer.new
     @stores = Store.all
-    if params[:product_id].nil?
-      redirect_to maintain_products_path, :notice => t(:select_product_first)
-    else
-      @transfer = Transfer.new
-      @transfer.product_id = params[:product_id]
-    end
   end
 
   def create
     @transfer = Transfer.new(params[:transfer])
-    @transfer.status = '1'
-    @transfer.user_id = current_user.id
+    @transfer.status = 0
+    @transfer.transferer_id = current_user.id
     
     if @transfer.from_store_id == @transfer.to_store_id
       redirect_to :back, :notice => t(:from_to_store_must_diffrent)
     else
-      if @transfer.transfer_add
-        redirect_to maintain_transfers_path, :notice => t(:created_ok)
+      if @transfer.save
+        redirect_to new_maintain_transfer_transfer_detail_path(@transfer), :notice => t(:created_ok)
       else
         redirect_to :back, :alert => t(:unable_to_create)
       end
