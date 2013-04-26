@@ -5,4 +5,5 @@ class Maintain::ExpensesController < ApplicationController
 
   def show
   end
+  
 end
