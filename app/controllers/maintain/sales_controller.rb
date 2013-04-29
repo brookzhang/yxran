@@ -1,4 +1,4 @@
-class Maintain::SalesController < ApplicationController
+class Maintain::SalesController < Maintain::ApplicationController
   def index
     @sales = Sale.includes(:user, :store).order(" id desc ")
   end

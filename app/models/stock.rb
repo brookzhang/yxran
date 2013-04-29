@@ -5,7 +5,7 @@ class Stock < ActiveRecord::Base
   
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :product_id, :store_id, :quantity, :safe_stock, :remark
+  attr_accessible :product_id, :store_id, :quantity, :safe_stock, :remark, :adjust_type
   
   attr_accessor :adjust_type, :reference_id, :change_qty, :change_remark
 
@@ -29,12 +29,19 @@ class Stock < ActiveRecord::Base
     !where(:store_id => store_id, :product_id => product_id).first.nil?
   end
   
+  def self.get_quantity(store_id, product_id)
+    @stock = self.fetch(store_id, product_id)
+    @stock.quantity.nil? ? 0 : @stock.quantity
+  end
   
   
   
   protected
   
   def log_history()
+    self.change_qty = self.change_qty.nil? ? 0 : self.change_qty
+    self.change_qty = self.change_qty == 0 ? self.quantity : self.change_qty
+    
     @history = StockHistory.new(:stock_id => self.id,
                            :adjust_type => self.adjust_type,
                            :reference_id => self.reference_id,

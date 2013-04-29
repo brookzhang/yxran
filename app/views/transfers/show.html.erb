@@ -1,2 +1,15 @@
-<h1>Transfers#show</h1>
-<p>Find me in app/views/transfers/show.html.erb</p>
+<p>[<%= @transfer.from_store.name %>] -> [<%= @transfer.to_store.name %>]
+  [<%= l(@transfer.status,'transfer_status') %>]
+</p>
+<p><%= t(:transfer_remark) %>: <%= @transfer.transfer_remark %></p>
+<p><%= t(:receive_remark) %>: <%= @transfer.receive_remark %></p>
+<p><%= t(:transferer) %>: <%= @transfer.transferer.name %>
+  <%= t(:transfered_at) %>: <%= @transfer.transfered_at.to_date unless @transfer.transfered_at.nil? %>
+</p>
+<p><%= t(:receiver) %>: <%= @transfer.receiver.name unless @transfer.receiver.nil? %>
+  <%= t(:received_at) %>: <%= @transfer.received_at.to_date unless @transfer.received_at.nil? %>
+</p>
+<%= link_to t(:back), transfers_path, :class => 'btn'%>
+<%= link_to t(:confirm_to_receive), edit_transfer_path(@transfer), :class => 'btn' if @transfer.status == 1 %>
+
+<%= render 'transfer_details' %>

@@ -1,5 +1,4 @@
-class Maintain::UsersController < ApplicationController
-  before_filter :authenticate_user!
+class Maintain::UsersController < Maintain::ApplicationController
   
   def index
     #authorize! :index, @user, :message => t(:not_authorized_as_admin)

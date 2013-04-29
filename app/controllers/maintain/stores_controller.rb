@@ -1,4 +1,4 @@
-class Maintain::StoresController < ApplicationController
+class Maintain::StoresController < Maintain::ApplicationController
   def index
     @stores = Store.all
   end

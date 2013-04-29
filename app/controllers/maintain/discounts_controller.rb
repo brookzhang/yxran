@@ -1,4 +1,4 @@
-class Maintain::DiscountsController < ApplicationController
+class Maintain::DiscountsController < Maintain::ApplicationController
   def index
     @category = params[:category_id].nil? ? nil : Category.find(params[:category_id])
     @discounts = discounts_list(@category)

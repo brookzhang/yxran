@@ -19,6 +19,7 @@ Lookup.create([
   {:code => 'P', :category =>'store', :description => '分店'},
   {:code => 'I', :category =>'store', :description => '入驻'},
   {:code => 'S', :category =>'store', :description => '仓库'},
+  {:code => 'I', :category =>'adjust_type', :description => '初始库存'},
   {:code => 'O', :category =>'adjust_type', :description => '订单'},
   {:code => 'OE', :category =>'adjust_type', :description => '订单修改'},
   {:code => 'T', :category =>'adjust_type', :description => '调货'},
@@ -44,6 +45,12 @@ Lookup.create([
   
   {:code => '0', :category =>'store_status', :description => '禁用'},
   {:code => '1', :category =>'store_status', :description => '正常'},
+  
+  {:code => '0', :category =>'transfer_status', :description => '准备中'},
+  {:code => '1', :category =>'transfer_status', :description => '已出货'},
+  {:code => '2', :category =>'transfer_status', :description => '已接收'},
+  {:code => '3', :category =>'transfer_status', :description => '部分接收'},
+  {:code => '9', :category =>'transfer_status', :description => '已取消'},
   
   {:code => 'admin', :category =>'role', :description => '管理员'},
   {:code => 'manager', :category =>'role', :description => '经理'},
@@ -108,24 +115,24 @@ Store.create([
 
 puts "inserting inventory"
 Stock.create([
-  {:product_id => 1, :store_id => 1, :quantity => 41000, :safe_stock => 5000, :remark => '西湖龙井'},
-  {:product_id => 2, :store_id => 1, :quantity => 31000, :safe_stock => 5000, :remark => '正山小种'},
-  {:product_id => 3, :store_id => 1, :quantity => 21000, :safe_stock => 5000, :remark => '铁观音秋茶'},
-  {:product_id => 4, :store_id => 1, :quantity => 31000, :safe_stock => 5000, :remark => '大益普洱'},
-  {:product_id => 5, :store_id => 1, :quantity => 21000, :safe_stock => 5000, :remark => '久扬黑茶'},
-  {:product_id => 6, :store_id => 1, :quantity => 41000, :safe_stock => 5000, :remark => '岩茶'},
-  {:product_id => 1, :store_id => 2, :quantity => 42000, :safe_stock => 5000, :remark => '西湖龙井'},
-  {:product_id => 2, :store_id => 2, :quantity => 32000, :safe_stock => 5000, :remark => '正山小种'},
-  {:product_id => 3, :store_id => 2, :quantity => 22000, :safe_stock => 5000, :remark => '铁观音秋茶'},
-  {:product_id => 4, :store_id => 2, :quantity => 32000, :safe_stock => 5000, :remark => '大益普洱'},
-  {:product_id => 5, :store_id => 2, :quantity => 22000, :safe_stock => 5000, :remark => '久扬黑茶'},
-  {:product_id => 6, :store_id => 2, :quantity => 42000, :safe_stock => 5000, :remark => '岩茶'},
-  {:product_id => 1, :store_id => 3, :quantity => 43000, :safe_stock => 5000, :remark => '西湖龙井'},
-  {:product_id => 2, :store_id => 3, :quantity => 33000, :safe_stock => 5000, :remark => '正山小种'},
-  {:product_id => 3, :store_id => 3, :quantity => 23000, :safe_stock => 5000, :remark => '铁观音秋茶'},
-  {:product_id => 4, :store_id => 3, :quantity => 33000, :safe_stock => 5000, :remark => '大益普洱'},
-  {:product_id => 5, :store_id => 3, :quantity => 23000, :safe_stock => 5000, :remark => '久扬黑茶'},
-  {:product_id => 6, :store_id => 3, :quantity => 43000, :safe_stock => 5000, :remark => '岩茶'}
+  {:product_id => 1, :store_id => 1, :quantity => 41000, :safe_stock => 5000, :remark => '西湖龙井', :adjust_type => 'I'},
+  {:product_id => 2, :store_id => 1, :quantity => 31000, :safe_stock => 5000, :remark => '正山小种', :adjust_type => 'I'},
+  {:product_id => 3, :store_id => 1, :quantity => 21000, :safe_stock => 5000, :remark => '铁观音秋茶', :adjust_type => 'I'},
+  {:product_id => 4, :store_id => 1, :quantity => 31000, :safe_stock => 5000, :remark => '大益普洱', :adjust_type => 'I'},
+  {:product_id => 5, :store_id => 1, :quantity => 21000, :safe_stock => 5000, :remark => '久扬黑茶', :adjust_type => 'I'},
+  {:product_id => 6, :store_id => 1, :quantity => 41000, :safe_stock => 5000, :remark => '岩茶', :adjust_type => 'I'},
+  {:product_id => 1, :store_id => 2, :quantity => 42000, :safe_stock => 5000, :remark => '西湖龙井', :adjust_type => 'I'},
+  {:product_id => 2, :store_id => 2, :quantity => 32000, :safe_stock => 5000, :remark => '正山小种', :adjust_type => 'I'},
+  {:product_id => 3, :store_id => 2, :quantity => 22000, :safe_stock => 5000, :remark => '铁观音秋茶', :adjust_type => 'I'},
+  {:product_id => 4, :store_id => 2, :quantity => 32000, :safe_stock => 5000, :remark => '大益普洱', :adjust_type => 'I'},
+  {:product_id => 5, :store_id => 2, :quantity => 22000, :safe_stock => 5000, :remark => '久扬黑茶', :adjust_type => 'I'},
+  {:product_id => 6, :store_id => 2, :quantity => 42000, :safe_stock => 5000, :remark => '岩茶', :adjust_type => 'I'},
+  {:product_id => 1, :store_id => 3, :quantity => 43000, :safe_stock => 5000, :remark => '西湖龙井', :adjust_type => 'I'},
+  {:product_id => 2, :store_id => 3, :quantity => 33000, :safe_stock => 5000, :remark => '正山小种', :adjust_type => 'I'},
+  {:product_id => 3, :store_id => 3, :quantity => 23000, :safe_stock => 5000, :remark => '铁观音秋茶', :adjust_type => 'I'},
+  {:product_id => 4, :store_id => 3, :quantity => 33000, :safe_stock => 5000, :remark => '大益普洱', :adjust_type => 'I'},
+  {:product_id => 5, :store_id => 3, :quantity => 23000, :safe_stock => 5000, :remark => '久扬黑茶', :adjust_type => 'I'},
+  {:product_id => 6, :store_id => 3, :quantity => 43000, :safe_stock => 5000, :remark => '岩茶', :adjust_type => 'I'}
   
 ])
 

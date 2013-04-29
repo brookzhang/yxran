@@ -1,4 +1,4 @@
-class Maintain::CategoriesController < ApplicationController
+class Maintain::CategoriesController < Maintain::ApplicationController
   def index
     @parent_category = params[:parent_id].nil? || params[:parent_id]=='0' ? nil : Category.find(params[:parent_id])
     @categories = categories_list(@parent_category)

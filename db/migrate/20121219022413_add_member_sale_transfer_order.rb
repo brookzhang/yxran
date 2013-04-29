@@ -49,6 +49,8 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
       t.integer :status, :default => 0 # 0-temp, 1-transfered , 2-received, 3-partial received , 9-cancel 
       t.belongs_to :transferer
       t.belongs_to :receiver
+      t.datetime :transfered_at
+      t.datetime :received_at
       
       t.timestamps
     end

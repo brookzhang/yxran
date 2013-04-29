@@ -1,10 +1,11 @@
-class Maintain::TransfersController < ApplicationController
+class Maintain::TransfersController < Maintain::ApplicationController
   def index
     @transfers = Transfer.all
   end
   
   def show
     @transfer = Transfer.find(params[:id])
+    @transfer_details = TransferDetail.where(:transfer_id => @transfer.id)
   end
 
   def new
@@ -31,6 +32,7 @@ class Maintain::TransfersController < ApplicationController
 
   def edit
     @transfer = Transfer.find(params[:id])
+    @stores = Store.all
   end
 
   def update
@@ -44,6 +46,36 @@ class Maintain::TransfersController < ApplicationController
   end
 
   def destroy
+    @transfer = Transfer.find(params[:id])
+    if @transfer.status == 0
+      if @transfer.destroy
+        redirect_to maintain_transfers_path, :notice => t(:deleted_ok)
+      else
+        redirect_to :back, :alert => t(:unable_to_delete)
+      end
+    else
+      redirect_to :back, :alert => t(:already_transfered_can_not_delete)
+    end
+    
+  end
+  
+  
+  def transfer
+    @transfer = Transfer.find(params[:id])
+    if @transfer.is_ok_to_transfer?
+      if @transfer.transfer
+        redirect_to maintain_transfer_path(@transfer), :notice => t(:transfered_out_ok)
+      else
+        redirect_to maintain_transfer_path(@transfer), :alert => t(:unable_to_transfer_out)
+      end
+    else
+      redirect_to :back, :alert => t(:not_enough_stock_to_transfer)
+    end
+    
+    
+      
+    
+    
   end
   
   

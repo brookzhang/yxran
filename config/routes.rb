@@ -35,8 +35,13 @@ Yxran::Application.routes.draw do
       resources :order_details
     end
     resources :transfers do
+      member do
+        get :transfer
+      end
       resources :transfer_details
     end
+    #match 'transfer/transfer', :to => 'transfer#transfer'
+    
     resources :stocks do
       resources :histories
     end

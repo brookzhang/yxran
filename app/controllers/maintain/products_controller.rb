@@ -1,4 +1,4 @@
-class Maintain::ProductsController < ApplicationController
+class Maintain::ProductsController < Maintain::ApplicationController
   def index
     @category = params[:category_id].nil? ? nil : Category.find(params[:category_id])
     @products = products_list(@category)

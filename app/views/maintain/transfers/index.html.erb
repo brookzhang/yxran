@@ -4,10 +4,8 @@
       <tr>
           <th><%= t(:transfer_id) %></th>
           <th><%= t(:from_store) %></th>
-          <th><%= t(:from_store) %></th>
-          <th><%= t(:to_store) %></th>
-          <th><%= t(:sum_amount) %></th>   
-          <th><%= t(:transfer_remark) %></th>    
+          <th><%= t(:to_store) %></th>   
+          <th><%= t(:status) %></th>    
           <th><%= t(:created_at) %></th>                      
       </tr>
   </thead>   
@@ -16,9 +14,8 @@
     <tr>
         <td><%= link_to '#' + transfer.id.to_s, [:maintain, transfer] %></td>
         <td><%= link_to transfer.from_store.name, maintain_store_path(transfer.from_store) %></td>
-        <td><%= link_to transfer.to_store.name, maintain_store_path(transfer.to_store) %></td>
-        <td><%= transfer.amount_sum %></td>       
-        <td><%= transfer.transfer_remark %></td>           
+        <td><%= link_to transfer.to_store.name, maintain_store_path(transfer.to_store) %></td>     
+        <td><%= l(transfer.status, 'transfer_status') %></td>           
         <td><%= transfer.created_at.to_date %></td>                      
     </tr>
   <% end %>

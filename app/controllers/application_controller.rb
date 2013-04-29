@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   before_filter :set_locale
+  before_filter :authenticate_user! #, :only => [:show]
   
   check_authorization :unless => :do_not_check_authorization?
   

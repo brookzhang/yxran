@@ -1,4 +1,4 @@
-class Maintain::StocksController < ApplicationController
+class Maintain::StocksController < Maintain::ApplicationController
   def index
     @stock = Stock.new
     @stock.store_id = params[:store_id]

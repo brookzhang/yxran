@@ -12,7 +12,7 @@ zh-CN:
   #----------------------------------------------------------------------------
   add: '添加'
   create: '新增'
-  edit: '编辑'
+  edit: '修改'
   update: '更新'
   delete: '删除'
   submit: '提交'
@@ -35,6 +35,7 @@ zh-CN:
   created_ok: '添加成功'
   unable_to_create: '添加失败'
   unable_to_delete: '删除失败'
+  deleted_ok: '已删除'
   list_all: '所有记录'
   name: '名称'
   
@@ -134,10 +135,25 @@ zh-CN:
   transfer_receive: '调货接收'
   transfer_id: '调货单号'
   transfer_remark: '调货备注'
+  transfered_at: '出货时间'
+  receive_remark: '收货备注'
+  received_at: '收货时间'
   choose_from_store: '选择调出仓'
   choose_to_store: '选择调入仓'
   transferer: '调货人'
   receiver: '接收人'
+  quantity_sum: '总量'
+  quantity_to_transfer: '出货数量'
+  add_more: '继续添加'
+  view_transfer: '查看调货单'
+  confirm_to_transfer_out: '确认出货'
+  transfered_out_ok: '调货单已出货'
+  unable_to_transfer_out: '无法出货'
+  not_enough_stock_to_transfer: '调出仓的库存不够出货'
+  already_transfered_can_not_delete: '已出货，不能删除'
+  confirm_to_receive: '确认收货'
+  received_ok: '收货完成'
+  received_failed: '收货失败'
   
   # cart.
   #----------------------------------------------------------------------------
@@ -231,6 +247,7 @@ zh-CN:
   can_not_delete_yourself: '不能删除自己的账号'
   on_duty_list: '值班状态'
   last_handovers: '最近交接班'
+  only_allow_manager_in: '只有管理员能进入'
   
   
   

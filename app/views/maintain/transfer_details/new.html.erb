@@ -3,24 +3,28 @@
 	<table class="table table-condensed">
 			<thead>
 				<tr>
-						<th></th>
 						<th><%= t(:product) %></th>
 						<th><%= t(:stock) %></th>
+						<th><%= t(:quantity_to_transfer) %></th>
 						<th></th>                                      
 				</tr>
 		</thead>   
 		<tbody>
 			<% @stocks.each do |stock| %>
 			<tr>
-					<td><%= f.check_box :product_id %></td>
 					<td><%= stock.product.name %></td>
-					<td><%= stock.quantity %> <%= stock.product.measurement %></td>            
+					<td><%= stock.quantity %> <%= stock.product.measurement %></td>  
+					<td><%= text_field_tag "product_id[#{stock.product_id}]", 0 %>
+						<%= TransferDetail.get_quantity(@transfer.id, stock.product_id) %>
+					</td>          
 				</tr>
 				 
 			<% end %>
 		<tr>
 			<td colspan="3">
-					<%= f.submit  t(:submit), :class => 'btn' %>
+					<%= link_to t(:view_transfer), [:maintain, @transfer], :class => 'btn btn-primary' %>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<%= f.submit  t(:add), :class => 'btn' unless @stocks.count == 0 %>
 			</td>
 		</tr>
 		</tbody>

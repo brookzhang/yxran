@@ -252,8 +252,9 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
     t.integer  "product_id"
     t.integer  "quantity"
     t.string   "remark"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "status",      :default => 0
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   add_index "transfer_details", ["product_id"], :name => "index_transfer_details_on_product_id"
@@ -263,9 +264,11 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
     t.integer  "to_store_id"
     t.string   "transfer_remark"
     t.string   "receive_remark"
-    t.integer  "status",          :default => 1
+    t.integer  "status",          :default => 0
     t.integer  "transferer_id"
     t.integer  "receiver_id"
+    t.datetime "transfered_at"
+    t.datetime "received_at"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end

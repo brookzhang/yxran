@@ -1,4 +1,4 @@
-class Maintain::HandoversController < ApplicationController
+class Maintain::HandoversController < Maintain::ApplicationController
   def index
     @handovers = Handover.includes(:user).order(" id desc ")
   end
