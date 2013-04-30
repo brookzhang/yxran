@@ -1,59 +1,82 @@
 class Maintain::OrdersController < Maintain::ApplicationController
   
   def index
-    @product = params[:product_id].nil? ? nil : Category.find(params[:product_id])
-    @orders = orders_list(@product)
+    @orders = Order.all
   end
   
   def show
     @order = Order.find(params[:id])
+    @order_details = OrderDetail.where(:order_id => @order.id)
   end
 
   def new
-    @stores = Store.all
-    if params[:product_id].nil?
-      redirect_to maintain_products_path, :notice => t(:select_product_first)
-    else
-      @order = Order.new
-      @order.product_id = params[:product_id]
-    end
+    @order = Order.new
+    @stores = Store.where(:category => 'S')
   end
 
   def create
     @order = Order.new(params[:order])
-    @order.status = '1'
+    @order.status = 0
     @order.user_id = current_user.id
     
-    
-    if @order.order_add
-      redirect_to maintain_orders_path, :notice => t(:created_ok)
+    if @order.save
+      redirect_to new_maintain_order_order_detail_path(@order), :notice => t(:created_ok)
     else
       redirect_to :back, :alert => t(:unable_to_create)
     end
     
   end
 
+
+
   def edit
     @order = Order.find(params[:id])
+    @stores = Store.all
   end
+
+
 
   def update
     @order = Order.find(params[:id])
-    #redirect_to maintain_order_path(@order), :notice => @order.order_edit(params[:order][:quantity].to_i).to_s
-    if @order.order_edit(params[:order][:quantity].to_i)
-      redirect_to maintain_order_path(@order), :notice => t(:updated_ok)
-    else
-      redirect_to maintain_order_path(@order), :alert => t(:unable_to_update)
-    end
+    @order.update_attributes(params[:order])
+    redirect_to maintain_order_path(@order)
   end
 
+
+
+
   def destroy
+    @order = Order.find(params[:id])
+    if @order.status == 0
+      if @order.destroy
+        redirect_to maintain_orders_path, :notice => t(:deleted_ok)
+      else
+        redirect_to :back, :alert => t(:unable_to_delete)
+      end
+    else
+      redirect_to :back, :alert => t(:already_ordered_can_not_delete)
+    end
+    
   end
   
   
-  def orders_list(product)
-    conditions = {}
-    conditions[:product_id] = product.id unless product.nil?
-    Order.find(:all, :conditions => conditions)
+  
+  
+  
+  
+  def order
+    @order = Order.find(params[:id])
+    if @order.is_ok_to_order?
+      if @order.order
+        redirect_to maintain_order_path(@order), :notice => t(:ordered_out_ok)
+      else
+        redirect_to maintain_order_path(@order), :alert => t(:unable_to_order_out)
+      end
+    else
+      redirect_to :back, :alert => t(:not_enough_stock_to_order)
+    end
+    
   end
+  
+  
 end

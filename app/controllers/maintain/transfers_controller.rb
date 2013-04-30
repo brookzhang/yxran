@@ -30,20 +30,23 @@ class Maintain::TransfersController < Maintain::ApplicationController
     
   end
 
+
+
   def edit
     @transfer = Transfer.find(params[:id])
     @stores = Store.all
   end
 
+
+
   def update
     @transfer = Transfer.find(params[:id])
-    #redirect_to maintain_transfer_path(@transfer), :notice => @transfer.transfer_edit(params[:transfer][:quantity].to_i).to_s
-    if @transfer.transfer_edit(params[:transfer][:quantity].to_i)
-      redirect_to maintain_transfer_path(@transfer), :notice => t(:updated_ok)
-    else
-      redirect_to maintain_transfer_path(@transfer), :alert => t(:unable_to_update)
-    end
+    @transfer.update_attributes(params[:transfer])
+    redirect_to maintain_transfer_path(@transfer)
   end
+
+
+
 
   def destroy
     @transfer = Transfer.find(params[:id])
@@ -60,6 +63,10 @@ class Maintain::TransfersController < Maintain::ApplicationController
   end
   
   
+  
+  
+  
+  
   def transfer
     @transfer = Transfer.find(params[:id])
     if @transfer.is_ok_to_transfer?
@@ -72,16 +79,7 @@ class Maintain::TransfersController < Maintain::ApplicationController
       redirect_to :back, :alert => t(:not_enough_stock_to_transfer)
     end
     
-    
-      
-    
-    
   end
   
   
-  def transfers_list(product)
-    conditions = {}
-    conditions[:product_id] = product.id unless product.nil?
-    Transfer.find(:all, :conditions => conditions)
-  end
 end

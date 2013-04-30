@@ -1,10 +1,8 @@
 <%= simple_form_for [:maintain,@order], :html => {:class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors @order %>
-  <%= f.input :product, :label => t(:product_name), :input_html => {:value => @order.product.name, :disabled => true } %>
-  <%= f.input :store, :label => t(:store), :input_html => {:value => @order.store.name, :disabled => true } %> 
-  <%= f.input :quantity, :label => t(:quantity), :required => true %>
-  <%= f.input :amount, :label => t(:amount)%>
+  <%= f.input :store_id, :label => t(:store), :collection => @stores, :prompt => t(:choose_store), :required => true, :autofocus => true %>
+  
   <%= f.input :remark, :label => t(:remark) %>
   <div class="control-group">
     <div class="controls">

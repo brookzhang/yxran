@@ -78,6 +78,7 @@ zh-CN:
   sale_id: '销售单号'
   sale_amount: '销售总额'
   record_a_sale: '记一单'
+  select_product: '选择商品'
   
   
   
@@ -108,6 +109,7 @@ zh-CN:
   new_score: '新增积分'
   switch_member: '更换'
   record_a_sale: '记一笔单'
+  select_product_first: '先选商品'
   
   
   # discount.
@@ -119,10 +121,11 @@ zh-CN:
   
   # order.
   #----------------------------------------------------------------------------
-  order: '采购'
-  select_product_first: '先选商品'
-  create_order: '新采购单'
-  select_product: '选择商品'
+  order: '订单'
+  create_order: '新增订单'
+  choose_warehouse: '选择仓库'
+  quantity_to_order: '订购数量'
+  view_order: '查看订单'
   
   
   # transfer.

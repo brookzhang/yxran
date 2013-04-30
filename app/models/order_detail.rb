@@ -5,7 +5,9 @@ class OrderDetail < ActiveRecord::Base
   
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible  :product_id , :quantity, :amount, :remark 
+  attr_accessible  :product_id , :quantity, :amount, :remark
+  
+  attr_accessor :product_name
 
   
   validates_presence_of  :product_id , :quantity 

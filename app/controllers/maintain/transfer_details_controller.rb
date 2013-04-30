@@ -1,6 +1,5 @@
 class Maintain::TransferDetailsController < Maintain::ApplicationController
-  def index
-  end
+
 
   def new
     @transfer = Transfer.find(params[:transfer_id])
@@ -29,11 +28,6 @@ class Maintain::TransferDetailsController < Maintain::ApplicationController
     
   end
 
-  def edit
-  end
-
-  def update
-  end
 
   def destroy
     @transfer = Transfer.find(params[:transfer_id])
@@ -43,7 +37,8 @@ class Maintain::TransferDetailsController < Maintain::ApplicationController
     else
       redirect_to :back, :alert => t(:unable_to_delete)
     end
-    
-    
   end
+  
+  
+  
 end

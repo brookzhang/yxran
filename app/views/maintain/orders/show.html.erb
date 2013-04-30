@@ -1,12 +1,16 @@
-<!--h3><%= t(:account_info) %></h3-->
-<p><%= t(:store) %>: <%= @order.store.name %></p>
-<p><%= t(:product) %>: <%= @order.product.name %></p>
-<p><%= t(:quantity) %>: <%= @order.quantity %></p>
-<p><%= t(:amount) %>: <%= @order.amount %></p>
+
+<p><%= t(:remark) %>: <%= @order.store.name %></p>
+<p><%= t(:status) %>: <%= l(@order.status,'order_status') %></p>
 <p><%= t(:remark) %>: <%= @order.remark %></p>
-<p><%= t(:creator) %>: <%= @order.user.name %></p>
-<p><%= t(:status) %>: <%= @order.status %></p>
-<p><%= t(:created_at) %>: <%= @order.created_at.to_date %></p>
-<%= link_to t(:edit), edit_maintain_order_path(@order), :class => 'btn'%>
-<%= link_to(t(:delete), maintain_order_path(@order), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
+<p><%= t(:receive_remark) %>: <%= @order.receive_remark %></p>
+<p><%= t(:orderer) %>: <%= @order.user.name %>
+  <%= t(:ordered_at) %>: <%= @order.updated_at.to_date unless @order.updated_at.nil? %>
+</p>
 <%= link_to t(:back), maintain_orders_path, :class => 'btn'%>
+<%= link_to t(:edit), edit_maintain_order_path(@order), :class => 'btn' if @order.status == 0 %>
+<%= link_to(t(:delete), maintain_order_path(@order), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  if @order.status == 0  %>
+
+<%= render 'order_details' %>
+
+<%= link_to t(:add_more), new_maintain_order_order_detail_path(@order), :class => 'btn'  if @order.status == 0 %>
+<%= link_to t(:confirm_to_order), order_maintain_order_path(@order), :class => 'btn'  if @order.status == 0 %>

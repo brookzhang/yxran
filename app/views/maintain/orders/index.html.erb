@@ -2,22 +2,18 @@
 <table class="table table-condensed">
 	  <thead>
       <tr>
-          <th><%= t(:store) %></th>
-          <th><%= t(:product) %></th>
-          <th><%= t(:quantity) %></th>
-          <th><%= t(:amount) %></th>   
-          <th><%= t(:remark) %></th>    
+          <th><%= t(:order_id) %></th>
+          <th><%= t(:store) %></th> 
+          <th><%= t(:status) %></th>    
           <th><%= t(:created_at) %></th>                      
       </tr>
   </thead>   
   <tbody>
   <% @orders.each do |order| %>
     <tr>
-        <td><%= link_to order.store.name, maintain_store_path(order.store) %></td>
-        <td><%= link_to order.product.name, maintain_product_path(order.product)  %></td>
-        <td><%= link_to order.quantity, [:maintain, order] %></td> 
-        <td><%= order.amount %></td>           
-        <td><%= order.remark %></td>           
+        <td><%= link_to '#' + order.id.to_s, [:maintain, order] %></td>
+        <td><%= link_to order.store.name, maintain_store_path(order.store) %></td>     
+        <td><%= l(order.status, 'order_status') %></td>           
         <td><%= order.created_at.to_date %></td>                      
     </tr>
   <% end %>

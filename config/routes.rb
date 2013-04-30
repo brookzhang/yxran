@@ -2,6 +2,12 @@ Yxran::Application.routes.draw do
   
 
 
+  get "order_details/new"
+
+  get "order_details/create"
+
+  get "order_details/destroy"
+
   devise_for :users
   
   resources :users
@@ -32,6 +38,9 @@ Yxran::Application.routes.draw do
     resources :sales
     resources :members
     resources :orders do
+      member do
+        get :order
+      end
       resources :order_details
     end
     resources :transfers do
