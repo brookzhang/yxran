@@ -79,6 +79,14 @@ zh-CN:
   sale_amount: '销售总额'
   record_a_sale: '记一单'
   select_product: '选择商品'
+  sale: '销售'
+  actual_amount: '实收现金'
+  not_enough_score_to_use: '会员积分没有那么多'
+  reserve_score: '保留积分'
+  new_score: '新增积分'
+  switch_member: '更换'
+  record_a_sale: '记一笔单'
+  select_product_first: '先选商品'
   
   
   
@@ -97,19 +105,6 @@ zh-CN:
   
   
   
-  
-  
-  
-  # sale.
-  #----------------------------------------------------------------------------
-  sale: '销售'
-  actual_amount: '实收现金'
-  not_enough_score_to_use: '会员积分没有那么多'
-  reserve_score: '保留积分'
-  new_score: '新增积分'
-  switch_member: '更换'
-  record_a_sale: '记一笔单'
-  select_product_first: '先选商品'
   
   
   # discount.
