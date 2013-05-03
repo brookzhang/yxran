@@ -11,7 +11,7 @@ class Member < ActiveRecord::Base
   #validates_uniqueness_of :phone, :case_sensitive => false
   
   
-  scope :by_name, lambda{ |name| where(" name like ? ", '%' + name + '%') if !(name.nil? && name == '' )}
+  scope :by_name, lambda{ |name| where(" name like ? ", '%' + name + '%') if !name.nil? && name != '' }
   scope :by_phone, lambda{ |phone| where(" phone = ? ", phone) if !phone.nil? && phone != '' }
   
   

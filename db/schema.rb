@@ -209,8 +209,8 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
     t.string   "remark"
   end
 
+  add_index "stock_histories", ["adjust_type"], :name => "index_stock_histories_on_adjust_type"
   add_index "stock_histories", ["stock_id"], :name => "index_stock_histories_on_stock_id"
-  add_index "stock_histories", ["user_id", "adjust_type", "adjusted_at"], :name => "index_stock_histories_on_user_id_and_adjust_type_and_adjusted_at"
 
   create_table "stocks", :force => true do |t|
     t.integer  "product_id"

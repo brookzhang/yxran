@@ -33,6 +33,19 @@ kill -QUIT 主进程号 #从容停止Nginx：
 kill -TERM 主进程号 #快速停止Nginx：
 pkill -9 nginx  #强制停止Nginx：
 
+#///////////////  server start
+sudo /etc/init.d/postgresql start
+sudo /opt/nginx/sbin/nginx
+
+#///////////////  server stop
+ps -ef | grep nginx
+kill -quit 2104
+sudo /etc/init.d/postgresql stop
+
+
+
+
+
         listen      80 default;
         server_name  localhost;
         root /root/app/yxran/public;
@@ -58,22 +71,7 @@ sudo apt-get install build-essential zlib1g-dev libssl-dev libreadline-dev git-c
 172.30.6.70
 42.96.185.57
 
-连接特定的 DNS 后缀: 
-描述: Realtek PCIe GBE Family Controller
-物理地址: ‎F4-6D-04-73-CF-AB
-已启用 DHCP: 是
-IPv4 地址: 172.30.5.246
-IPv4 子网掩码: 255.255.252.0
-获得租约的时间: 2013年3月29日 10:27:09
-租约过期的时间: 2013年4月6日 10:27:07
-IPv4 默认网关: 172.30.4.31
-IPv4 DHCP 服务器: 172.30.4.72
-IPv4 DNS 服务器: 172.30.4.72, 172.30.4.73
-IPv4 WINS 服务器: 172.30.4.72, 172.30.4.73
-已启用 NetBIOS over Tcpip: 是
-连接-本地 IPv6 地址: fe80::f868:5559:96a4:1a34%12
-IPv6 默认网关: 
-IPv6 DNS 服务器: 
+
 
 set HTTP_PROXY=http://172.30.4.63:3128
 set HTTPS_PROXY=http://172.30.4.63:3128
