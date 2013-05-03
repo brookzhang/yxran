@@ -59,6 +59,6 @@ class AddCategoryProductStoreStockStockHistory < ActiveRecord::Migration
     add_index(:stores, [:name, :category])
     add_index(:stocks, [:product_id, :store_id ])
     add_index(:stock_histories, :stock_id )
-    add_index(:stock_histories, [:user_id, :adjust_type, :adjusted_at ])
+    add_index(:stock_histories, :adjust_type ])
   end
 end

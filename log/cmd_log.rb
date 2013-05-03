@@ -15,7 +15,8 @@ echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && . '$HOME/.rvm/scripts/rvm'" >> /home/
  
 source ~/.bashrc   #/refresh bash
  
-
+postgresql fengfeng
+postgres linux honghong
 
 /var/app/yxran
 sudo chown -R nobody /var/app/yxran  #<-- set nginx user has permission on yxran
