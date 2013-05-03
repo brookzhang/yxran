@@ -1,7 +1,8 @@
 class Product < ActiveRecord::Base
   has_many :stocks
-  has_many :sales
-  has_many :orders
+  has_many :sale_details
+  has_many :order_details
+  has_many :transfer_details
   
   belongs_to :category
 

@@ -3,7 +3,7 @@ class HandoversController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @handovers = Handover.where(:user_id => current_user.id).order(" id desc ")
+    @handovers = Handover.where(:user_id => current_user.id).paginate(:page => params[:page]).order('id DESC')
     @handover = @handovers.count > 0 ? @handovers.first : Handover.new
   end
   

@@ -1,6 +1,6 @@
 class Stock < ActiveRecord::Base
   has_many :histories
-  belongs_to :store
+  has_and_belongs_to_many :stores
   belongs_to :product
   
   
@@ -12,6 +12,12 @@ class Stock < ActiveRecord::Base
   
   validates_presence_of :product_id, :store_id
   validates_uniqueness_of :product_id, :scope => :store_id
+  
+  
+  scope :in_store, lambda { |store_id| where( :store_id => store_id ) }
+  scope :by_category, lambda { |category_id| joins(:product).where(:products => {:category_id => Category.sub_id_array(category_id) << category_id }) }
+  scope :has_stock, where(" quantity > 0 ")
+  
   
   
   #callbacks

@@ -10,6 +10,7 @@ gem 'sqlite3'
 gem 'thin'
 gem 'pg'
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -36,6 +37,8 @@ gem "cancan", ">= 1.6.8"
 gem "rolify", ">= 3.2.0"
 gem "simple_form", ">= 2.0.3"
 gem "quiet_assets", ">= 1.0.1", :group => :development
+gem 'will_paginate', '~> 3.0'
+gem 'bootstrap-will_paginate'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -3,6 +3,11 @@
 
 zh-CN:
   
+  will_paginate:
+    previous_label: '←'
+    next_label: '→'
+  
+  
   # site info.
   #----------------------------------------------------------------------------
   app_name: '易香然'

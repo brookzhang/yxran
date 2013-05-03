@@ -157,3 +157,31 @@ User.find(1).add_role :admin
 User.find(2).add_role :manager
 User.find(3).add_role :user
 User.find(4).add_role :user
+
+puts 'Adding members'
+Member.create([
+  {:name => '
+张观博', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
+  {:name => '
+张欣竹', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
+  {:name => '
+张欣阳', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
+  {:name => '
+张晨菲', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
+  {:name => '
+张涵韵', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
+  {:name => '
+张晨曦', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
+  {:name => '
+张晓朋', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
+  {:name => '
+张子辰', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
+  {:name => '
+张展旭', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
+  {:name => '
+张怡萍', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
+  {:name => '
+张浩然', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
+  {:name => '
+张继欣', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4}
+])

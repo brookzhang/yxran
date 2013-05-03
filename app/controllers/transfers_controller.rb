@@ -1,6 +1,6 @@
 class TransfersController < ApplicationController
   def index
-    @transfers = Transfer.where(" to_store_id = :to_store_id and status > 0 and status < 9 ", {:to_store_id => current_user.store_id} )
+    @transfers = Transfer.where(" to_store_id = :to_store_id and status > 0 and status < 9 ", {:to_store_id => current_user.store_id} ).paginate(:page => params[:page], :per_page => 5).order('id DESC')
   end
 
   def show

@@ -2,7 +2,7 @@ class SalesController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @sales = Sale.where(:user_id => current_user.id).order(" id desc ") 
+    @sales = Sale.where(:user_id => current_user.id).paginate(:page => params[:page]).order('id DESC')
   end
   
   def show
