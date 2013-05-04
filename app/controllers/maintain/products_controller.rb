@@ -1,7 +1,11 @@
 class Maintain::ProductsController < Maintain::ApplicationController
   def index
-    @category = params[:category_id].nil? ? nil : Category.find(params[:category_id])
-    @products = products_list(@category)
+    #@category = params[:category_id].nil? ? nil : Category.find(params[:category_id])
+    #@products = products_list(@category)
+    @products = Product.by_name(params[:name]).by_category_name(params[:category_name]).includes(:category).paginate(:page => params[:page]).order("id desc")
+    @product = Product.new
+    @product.name = params[:name]
+    @product.category_name = params[:category_name]
   end
   
   def show
@@ -46,10 +50,5 @@ class Maintain::ProductsController < Maintain::ApplicationController
   end
   
   
-  def products_list(category)
-    conditions = {}
-    conditions[:category_id] = category.id unless category.nil?
-    Product.find(:all, :conditions => conditions)
-  end
   
 end

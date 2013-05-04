@@ -7,9 +7,7 @@
           <th><%= t(:category) %></th>
           <th><%= t(:employee) %></th>
           <th><%= t(:amount) %></th>
-          <th><%= t(:time) %></th>
-          <th></th>
-          <th></th>                                      
+          <th><%= t(:time) %></th>                                     
       </tr>
   </thead>   
   <tbody>
@@ -20,14 +18,16 @@
         <td><%= l(sale.category, 'sale_category') %></td>
         <td><%= sale.user.name %></td>
         <td><%= sale.amount.to_s %></td>
-        <td><%= sale.created_at.to_s(:date_time) %></td>
-        <td>
-        </td>
-        <td></td>                                       
+        <td><%= sale.created_at.to_s(:date_time) %></td>                                    
     </tr>
   <% end %>
   <tr>
-    <td colspan="5">
+    <td colspan="6">
+			<%= will_paginate @sales %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="6">
 			<%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
     </td>
   </tr>

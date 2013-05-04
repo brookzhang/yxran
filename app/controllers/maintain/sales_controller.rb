@@ -1,6 +1,6 @@
 class Maintain::SalesController < Maintain::ApplicationController
   def index
-    @sales = Sale.includes(:user, :store).order(" id desc ")
+    @sales = Sale.includes(:user, :store).paginate(:page => params[:page]).order("id desc")
   end
   
   def show

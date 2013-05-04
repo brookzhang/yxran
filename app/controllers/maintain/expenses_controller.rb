@@ -1,6 +1,6 @@
 class Maintain::ExpensesController < Maintain::ApplicationController
   def index
-    @expenses = Expense.order(" id desc ")
+    @expenses = Expense.paginate(:page => params[:page]).order(" id desc ")
   end
 
   def show

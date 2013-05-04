@@ -21,6 +21,11 @@
   <% end %>
   <tr>
     <td colspan="5">
+      <%= will_paginate @transfers %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">
       <%= link_to t(:create), new_maintain_transfer_path, :class => 'btn' %>
 	  <%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
     </td>

@@ -1,11 +1,17 @@
-<h2>注册</h2>
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
+<h2>Sign up</h2>
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
-  <%= display_base_errors resource %>
-  <%= f.input :name, :label => "名称", :autofocus => true %> 
-  <%= f.input :email, :label => "用邮箱登入", :required => true %>
-  <%= f.input :password, :label => "密码", :required => true %>
-  <%= f.input :password_confirmation, :label => "再输入一次密码", :required => true %>
-  <%= f.button :submit, '注册', :class => 'btn-primary' %>
+
+  <div class="form-inputs">
+    <%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.input :password, :required => true %>
+    <%= f.input :password_confirmation, :required => true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Sign up" %>
+  </div>
 <% end %>
+
 <%= render "devise/shared/links" %>

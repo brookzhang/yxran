@@ -1,17 +1,18 @@
 class Maintain::OrdersController < Maintain::ApplicationController
   
   def index
-    @orders = Order.all
+    @orders = Order.paginate(:page => params[:page]).order("id desc")
   end
   
   def show
     @order = Order.find(params[:id])
-    @order_details = OrderDetail.where(:order_id => @order.id)
+    @order_details = OrderDetail.where(:order_id => @order.id).order("product_id asc")
   end
 
   def new
     @order = Order.new
-    @stores = Store.where(:category => 'S')
+    #@stores = Store.where(:category => 'S')
+    @stores = Store.all
   end
 
   def create
@@ -20,7 +21,7 @@ class Maintain::OrdersController < Maintain::ApplicationController
     @order.user_id = current_user.id
     
     if @order.save
-      redirect_to new_maintain_order_order_detail_path(@order), :notice => t(:created_ok)
+      redirect_to [:maintain, @order], :notice => t(:created_ok)
     else
       redirect_to :back, :alert => t(:unable_to_create)
     end
@@ -60,20 +61,20 @@ class Maintain::OrdersController < Maintain::ApplicationController
   end
   
   
-  
-  
-  
-  
-  def order
+  def clear
     @order = Order.find(params[:id])
-    if @order.is_ok_to_order?
-      if @order.order
-        redirect_to maintain_order_path(@order), :notice => t(:ordered_out_ok)
-      else
-        redirect_to maintain_order_path(@order), :alert => t(:unable_to_order_out)
-      end
+    ActiveRecord::Base.connection.execute(" delete from order_details where order_id = #{@order.id}")
+    redirect_to [:maintain, @order]
+  end
+  
+  
+  
+  def confirm
+    @order = Order.find(params[:id])
+    if @order.order_confirm
+      redirect_to maintain_order_path(@order), :notice => t(:order_confirmed_ok)
     else
-      redirect_to :back, :alert => t(:not_enough_stock_to_order)
+      redirect_to maintain_order_path(@order), :alert => t(:unable_to_order_out)
     end
     
   end

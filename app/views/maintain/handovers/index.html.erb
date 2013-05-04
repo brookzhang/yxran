@@ -21,6 +21,11 @@
   <% end %>
   <tr>
     <td colspan="5">
+      <%= will_paginate @handovers %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">
       <%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
     </td>
   </tr>

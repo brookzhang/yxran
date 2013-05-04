@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   #devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
-  devise :database_authenticatable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
   
   belongs_to :store
   
@@ -21,11 +21,23 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :store_id, :as => :admin
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :store_id
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :account
   # attr_accessible :title, :body
   
-  validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false
+  attr_accessor :login
   
+  validates_presence_of :name, :account
+  #validates_uniqueness_of :name, :email, :case_sensitive => false
+  validates_uniqueness_of :name, :account, :case_sensitive => false
+  
+  
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(account) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions).first
+    end
+  end
   
 end

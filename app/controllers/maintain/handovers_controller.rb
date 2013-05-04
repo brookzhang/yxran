@@ -1,6 +1,6 @@
 class Maintain::HandoversController < Maintain::ApplicationController
   def index
-    @handovers = Handover.includes(:user).order(" id desc ")
+    @handovers = Handover.includes(:user).paginate(:page => params[:page]).order('id DESC')
   end
 
   def show

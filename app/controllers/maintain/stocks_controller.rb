@@ -2,14 +2,15 @@ class Maintain::StocksController < Maintain::ApplicationController
   def index
     @stock = Stock.new
     @stock.store_id = params[:store_id]
-    @stock.product_id = params[:product_id]
-    @stocks = find_stocks(@stock)
+    @stock.product_name = params[:product_name]
+    @stores = Store.all
+    @stocks = Stock.in_store(params[:store_id]).by_product(params[:product_name]).paginate(:page => params[:page], :per_page => 8).order('id DESC')
     
   end
   
   def show
     @stock = Stock.find(params[:id])
-    @histories = StockHistory.where(" stock_id =? ", @stock.id)
+    @histories = StockHistory.where(" stock_id =? ", @stock.id).paginate(:page => params[:page], :per_page => 5).order('id DESC')
   end
 
   def new

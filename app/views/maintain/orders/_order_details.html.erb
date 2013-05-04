@@ -4,10 +4,10 @@
   <% @order_details.each do |t| %>
     <tr>
         <td><%= t.product.name %></td>
-        <td><%= t.quantity.to_s + t.product.measurement %>
-          / <%= Stock.get_quantity(@order.store_id, t.product_id).to_s + t.product.measurement %>
+        <td align="right"><%= t.quantity.to_s  %>
+          [<%= Stock.get_quantity(@order.store_id, t.product_id)%>]
         </td>
-        <td><%= link_to(t(:delete), maintain_order_order_detail_path(@order,t), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>     </td>
+        <td><%= t.product.measurement %></td>
                
     </tr>
   <% end %>

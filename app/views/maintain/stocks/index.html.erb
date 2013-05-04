@@ -1,4 +1,11 @@
 <div class="span8">
+
+<%=form_tag maintain_stocks_path, :method => 'get', :class => "form-inline" do%>
+	<%= select_tag :store_id, options_from_collection_for_select(@stores, "id", "name", @stock.store_id), :prompt => t(:choose_a_store) %>
+	<%= text_field_tag :product_name, @stock.product_name, :placeholder => t(:product_name), :class => "input-small" %>
+  <button type="submit" class="btn"><%=t(:search)%></button>
+<%end%>
+
 <table class="table table-condensed">
 	  <thead>
       <tr>
@@ -19,6 +26,11 @@
         </td>                                    
     </tr>
   <% end %>
+  <tr>
+    <td colspan="3">
+      <%= will_paginate @stocks %>
+    </td>
+  </tr>
   <tr>
     <td colspan="5">
       <%#= link_to t(:create_stock), new_maintain_stock_path, :class => 'btn' %>

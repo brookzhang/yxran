@@ -8,7 +8,7 @@ class StocksController < ApplicationController
     
     
     @stock = Stock.new
-    @stocks = Stock.in_store(current_user.store.id).by_category(category_id).has_stock.paginate(:page => params[:page], :per_page => 5).order('id DESC')
+    @stocks = Stock.in_store(current_user.store.id).in_category(category_id).has_stock.paginate(:page => params[:page], :per_page => 5).order('id DESC')
     
     @cart = Cart.new
     

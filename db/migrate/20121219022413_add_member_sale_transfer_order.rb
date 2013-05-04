@@ -69,7 +69,7 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
     create_table(:orders) do |t|
       t.references :store
       t.string :remark
-      t.integer :status, :default => 1 # 0-cancel, 1-ordered, 2-received
+      t.integer :status, :default => 0 
       t.references :user
       
       t.timestamps

@@ -2,6 +2,14 @@ Yxran::Application.routes.draw do
   
 
 
+  get "order_imports/new"
+
+  get "order_imports/create"
+
+  get "order_import/new"
+
+  get "order_import/create"
+
   get "order_details/new"
 
   get "order_details/create"
@@ -39,9 +47,11 @@ Yxran::Application.routes.draw do
     resources :members
     resources :orders do
       member do
-        get :order
+        get :confirm
+        get :clear
       end
       resources :order_details
+      resources :order_imports
     end
     resources :transfers do
       member do

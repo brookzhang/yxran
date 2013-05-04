@@ -7,6 +7,10 @@ zh-CN:
     previous_label: '←'
     next_label: '→'
   
+  activerecord:
+    errors:
+      messages:
+        record_invalid: '数据无效'
   
   # site info.
   #----------------------------------------------------------------------------
@@ -15,6 +19,7 @@ zh-CN:
   
   # global.
   #----------------------------------------------------------------------------
+  new: '新建'
   add: '添加'
   create: '新增'
   edit: '修改'
@@ -43,6 +48,7 @@ zh-CN:
   deleted_ok: '已删除'
   list_all: '所有记录'
   name: '名称'
+  import: '导入'
   
   
   # sessions.
@@ -51,6 +57,7 @@ zh-CN:
   sign_out: '退出'
   sign_up: '注册'
   remember_me: '记住我'
+  login: '帐号'
   
   # users.
   #----------------------------------------------------------------------------
@@ -122,11 +129,20 @@ zh-CN:
   # order.
   #----------------------------------------------------------------------------
   order: '订单'
+  order_id: '订单号'
   create_order: '新增订单'
   choose_warehouse: '选择仓库'
   quantity_to_order: '订购数量'
   view_order: '查看订单'
-  
+  confirm_to_order: '确认采购单'
+  import_excel: '导入excel'
+  clear_imported: '清空内容'
+  choose_a_file: '选择导入文件'
+  content_is_nil: '请填入所有内容'
+  import_order_successfully: '导入订单成功。'
+  import_failed: '导入失败'
+  prohibited_from_completing: '导致无法导入成功'
+  order_confirmed_ok: '订单确认成功。'
   
   # transfer.
   #----------------------------------------------------------------------------
@@ -257,6 +273,7 @@ zh-CN:
   # category.
   #----------------------------------------------------------------------------
   category: '分类'
+  category_name: '分类名称'
   parent_category: '父类'
   root_category: '总分类'
   s_children: '的子分类'
@@ -289,6 +306,8 @@ zh-CN:
   no_one_on_duty: '无人值班'
   on_duty: '值班'
   balance: '现金'
+  choose_store_category: '选择店铺类型'
+  initial_balance: '初始现金'
   
   # stock.
   #----------------------------------------------------------------------------

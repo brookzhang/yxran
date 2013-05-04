@@ -30,4 +30,7 @@
 <%= render :partial => 'expenses' if @addition == 'expense' %>
 <%= render :partial => 'handovers' if @addition == 'handover' %>
 
-<p><%= link_to t(:back), maintain_stores_path, :class => 'btn'%></p>
+<p>
+  <%= link_to t(:edit), edit_maintain_store_path(@store), :class => 'btn'%>
+  <%= link_to t(:back), maintain_stores_path, :class => 'btn'%>
+</p>

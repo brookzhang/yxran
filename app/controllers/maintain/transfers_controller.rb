@@ -1,6 +1,6 @@
 class Maintain::TransfersController < Maintain::ApplicationController
   def index
-    @transfers = Transfer.all
+    @transfers = Transfer.paginate(:page => params[:page]).order("id desc")
   end
   
   def show

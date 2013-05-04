@@ -5,8 +5,7 @@
       <tr>
           <th><%= t(:name) %></th>
           <th><%= t(:role) %></th>
-          <th></th>
-          <th></th>                                      
+          <th></th>                               
       </tr>
   </thead>   
   <tbody>
@@ -14,11 +13,17 @@
     <tr>
         <td><%= link_to user.name, [:maintain, user] %></td>
         <td><%= t(user.roles.first.name) unless user.roles.first.nil? %></td>
-        <td>
-        </td>
         <td></td>                                       
     </tr>
   <% end %>
+  <tr>
+		<td colspan="3"><%= will_paginate @users %></td>
+	</tr>
+  <tr>
+		<td colspan="3">
+      <%= link_to t(:new), new_maintain_user_path, :class => 'btn' %>
+    </td>
+	</tr>
   </tbody>
 </table>
 </div>

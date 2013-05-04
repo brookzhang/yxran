@@ -16,7 +16,13 @@
     </tr>
   <% end %>
   <tr>
+    <td colspan="3">
+      <%= will_paginate @stores %>
+    </td>
+  </tr>
+  <tr>
     <td colspan="5">
+	  <%= link_to t(:new), new_maintain_store_path, :class => 'btn'%>
 	  <%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
     </td>
   </tr>

@@ -2,7 +2,7 @@ class Maintain::UsersController < Maintain::ApplicationController
   
   def index
     #authorize! :index, @user, :message => t(:not_authorized_as_admin)
-    @users = User.all
+    @users = User.paginate(:page => params[:page])
   end
 
   def show

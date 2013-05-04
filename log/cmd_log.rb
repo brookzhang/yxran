@@ -43,7 +43,7 @@ kill -quit 2104
 sudo /etc/init.d/postgresql stop
 
 
-
+bundle exec rake assets:precompile 
 
 
         listen      80 default;

@@ -1,7 +1,8 @@
 class Maintain::DiscountsController < Maintain::ApplicationController
   def index
-    @category = params[:category_id].nil? ? nil : Category.find(params[:category_id])
-    @discounts = discounts_list(@category)
+    #@category = params[:category_id].nil? ? nil : Category.find(params[:category_id])
+    #@discounts = discounts_list(@category)
+    @discounts = Discount.paginate(:page => params[:page]).order("id desc")
   end
   
   def show

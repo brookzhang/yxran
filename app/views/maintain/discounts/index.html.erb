@@ -20,7 +20,12 @@
     </tr>
   <% end %>
   <tr>
-    <td colspan="5">
+    <td colspan="4">
+	  <%= will_paginate @discounts %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
       <%#= link_to t(:create_discount), new_maintain_discount_path(:category_id => @category.nil? ? nil : @category.id), :class => 'btn' %>
 	  <%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
     </td>

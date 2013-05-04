@@ -8,7 +8,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-
 puts "creating lookups"
 Lookup.create([
   {:code => 'S', :category =>'event', :description => '修改设定' },
@@ -52,6 +51,10 @@ Lookup.create([
   {:code => '3', :category =>'transfer_status', :description => '部分接收'},
   {:code => '9', :category =>'transfer_status', :description => '已取消'},
   
+  {:code => '0', :category =>'order_status', :description => '准备中'},
+  {:code => '1', :category =>'order_status', :description => '已入仓'},
+  
+  
   {:code => 'admin', :category =>'role', :description => '管理员'},
   {:code => 'manager', :category =>'role', :description => '经理'},
   {:code => 'user', :category =>'role', :description => '店员'},
@@ -94,48 +97,6 @@ Discount.create([
   {:category_id => 2, :member_level => '9', :discount => 0.15 }
 ], :without_protection => true)
 
-puts 'creating products'
-Product.create([
-  {:name => '西湖龙井2012', :category_id => '3', :description => '西湖龙井2012', :measurement => '克', :unit_price => '0.8' },
-  {:name => '正山小种2011', :category_id => '4', :description => '正山小种2011', :measurement => '克', :unit_price => '0.5' },
-  {:name => '铁观音秋茶2012', :category_id => '5', :description => '铁观音秋茶2012', :measurement => '克', :unit_price => '0.4'},
-  {:name => '大益普洱2005', :category_id => '6', :description => '大益普洱2005', :measurement => '饼', :unit_price => '200' },
-  {:name => '久扬黑茶', :category_id => '7', :description => '久扬黑茶', :measurement => '饼', :unit_price => '80' },
-  {:name => '岩茶-肉桂', :category_id => '8', :description => '岩茶-肉桂', :measurement => '克', :unit_price => '0.2' }
-], :without_protection => true)
-
-
-puts "creating stores"
-Store.create([
-  {:name => '总店', :category => 'C', :balance => 1000, :remark => 'XXX路XXX号'},
-  {:name => '信誉大街店', :category => 'P', :balance => 800, :remark => '信誉大街XX号' },
-  {:name => '才培店', :category => 'I', :balance => 700, :remark => '才培大厦一楼'},
-  {:name => '总部仓库', :category => 'S', :balance => 600, :remark => 'XXX路XXX号'}
-], :without_protection => true)
-
-puts "inserting inventory"
-Stock.create([
-  {:product_id => 1, :store_id => 1, :quantity => 41000, :safe_stock => 5000, :remark => '西湖龙井', :adjust_type => 'I'},
-  {:product_id => 2, :store_id => 1, :quantity => 31000, :safe_stock => 5000, :remark => '正山小种', :adjust_type => 'I'},
-  {:product_id => 3, :store_id => 1, :quantity => 21000, :safe_stock => 5000, :remark => '铁观音秋茶', :adjust_type => 'I'},
-  {:product_id => 4, :store_id => 1, :quantity => 31000, :safe_stock => 5000, :remark => '大益普洱', :adjust_type => 'I'},
-  {:product_id => 5, :store_id => 1, :quantity => 21000, :safe_stock => 5000, :remark => '久扬黑茶', :adjust_type => 'I'},
-  {:product_id => 6, :store_id => 1, :quantity => 41000, :safe_stock => 5000, :remark => '岩茶', :adjust_type => 'I'},
-  {:product_id => 1, :store_id => 2, :quantity => 42000, :safe_stock => 5000, :remark => '西湖龙井', :adjust_type => 'I'},
-  {:product_id => 2, :store_id => 2, :quantity => 32000, :safe_stock => 5000, :remark => '正山小种', :adjust_type => 'I'},
-  {:product_id => 3, :store_id => 2, :quantity => 22000, :safe_stock => 5000, :remark => '铁观音秋茶', :adjust_type => 'I'},
-  {:product_id => 4, :store_id => 2, :quantity => 32000, :safe_stock => 5000, :remark => '大益普洱', :adjust_type => 'I'},
-  {:product_id => 5, :store_id => 2, :quantity => 22000, :safe_stock => 5000, :remark => '久扬黑茶', :adjust_type => 'I'},
-  {:product_id => 6, :store_id => 2, :quantity => 42000, :safe_stock => 5000, :remark => '岩茶', :adjust_type => 'I'},
-  {:product_id => 1, :store_id => 3, :quantity => 43000, :safe_stock => 5000, :remark => '西湖龙井', :adjust_type => 'I'},
-  {:product_id => 2, :store_id => 3, :quantity => 33000, :safe_stock => 5000, :remark => '正山小种', :adjust_type => 'I'},
-  {:product_id => 3, :store_id => 3, :quantity => 23000, :safe_stock => 5000, :remark => '铁观音秋茶', :adjust_type => 'I'},
-  {:product_id => 4, :store_id => 3, :quantity => 33000, :safe_stock => 5000, :remark => '大益普洱', :adjust_type => 'I'},
-  {:product_id => 5, :store_id => 3, :quantity => 23000, :safe_stock => 5000, :remark => '久扬黑茶', :adjust_type => 'I'},
-  {:product_id => 6, :store_id => 3, :quantity => 43000, :safe_stock => 5000, :remark => '岩茶', :adjust_type => 'I'}
-  
-])
-
 
 puts 'creating roles'
 Role.create([
@@ -148,40 +109,97 @@ puts 'creating users'
 User.create([
   {:name => 'admin1', :email => 'admin@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
   {:name => 'manager1', :email => 'm@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
-  {:name => 'usera', :email => 'a@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
-  {:name => 'userb', :email => 'b@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'}
 ])
 
 puts 'Adding roles'
 User.find(1).add_role :admin
 User.find(2).add_role :manager
-User.find(3).add_role :user
-User.find(4).add_role :user
 
-puts 'Adding members'
-Member.create([
-  {:name => '
-张观博', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
-  {:name => '
-张欣竹', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
-  {:name => '
-张欣阳', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
-  {:name => '
-张晨菲', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
-  {:name => '
-张涵韵', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
-  {:name => '
-张晨曦', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
-  {:name => '
-张晓朋', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
-  {:name => '
-张子辰', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
-  {:name => '
-张展旭', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
-  {:name => '
-张怡萍', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
-  {:name => '
-张浩然', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
-  {:name => '
-张继欣', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4}
-])
+
+if ENV["RAILS_ENV"] != 'production'
+  
+  puts 'creating products'
+  Product.create([
+    {:name => '西湖龙井2012', :category_id => '3', :description => '西湖龙井2012', :measurement => '克', :unit_price => '0.8' },
+    {:name => '正山小种2011', :category_id => '4', :description => '正山小种2011', :measurement => '克', :unit_price => '0.5' },
+    {:name => '铁观音秋茶2012', :category_id => '5', :description => '铁观音秋茶2012', :measurement => '克', :unit_price => '0.4'},
+    {:name => '大益普洱2005', :category_id => '6', :description => '大益普洱2005', :measurement => '饼', :unit_price => '200' },
+    {:name => '久扬黑茶', :category_id => '7', :description => '久扬黑茶', :measurement => '饼', :unit_price => '80' },
+    {:name => '岩茶-肉桂', :category_id => '8', :description => '岩茶-肉桂', :measurement => '克', :unit_price => '0.2' }
+  ], :without_protection => true)
+  
+  
+  puts "creating stores"
+  Store.create([
+    {:name => '总店', :category => 'C', :balance => 1000, :remark => 'XXX路XXX号'},
+    {:name => '信誉大街店', :category => 'P', :balance => 800, :remark => '信誉大街XX号' },
+    {:name => '才培店', :category => 'I', :balance => 700, :remark => '才培大厦一楼'},
+    {:name => '总部仓库', :category => 'S', :balance => 600, :remark => 'XXX路XXX号'}
+  ], :without_protection => true)
+  
+  puts "inserting inventory"
+  Stock.create([
+    {:product_id => 1, :store_id => 1, :quantity => 41000, :safe_stock => 5000, :remark => '西湖龙井', :adjust_type => 'I'},
+    {:product_id => 2, :store_id => 1, :quantity => 31000, :safe_stock => 5000, :remark => '正山小种', :adjust_type => 'I'},
+    {:product_id => 3, :store_id => 1, :quantity => 21000, :safe_stock => 5000, :remark => '铁观音秋茶', :adjust_type => 'I'},
+    {:product_id => 4, :store_id => 1, :quantity => 31000, :safe_stock => 5000, :remark => '大益普洱', :adjust_type => 'I'},
+    {:product_id => 5, :store_id => 1, :quantity => 21000, :safe_stock => 5000, :remark => '久扬黑茶', :adjust_type => 'I'},
+    {:product_id => 6, :store_id => 1, :quantity => 41000, :safe_stock => 5000, :remark => '岩茶', :adjust_type => 'I'},
+    {:product_id => 1, :store_id => 2, :quantity => 42000, :safe_stock => 5000, :remark => '西湖龙井', :adjust_type => 'I'},
+    {:product_id => 2, :store_id => 2, :quantity => 32000, :safe_stock => 5000, :remark => '正山小种', :adjust_type => 'I'},
+    {:product_id => 3, :store_id => 2, :quantity => 22000, :safe_stock => 5000, :remark => '铁观音秋茶', :adjust_type => 'I'},
+    {:product_id => 4, :store_id => 2, :quantity => 32000, :safe_stock => 5000, :remark => '大益普洱', :adjust_type => 'I'},
+    {:product_id => 5, :store_id => 2, :quantity => 22000, :safe_stock => 5000, :remark => '久扬黑茶', :adjust_type => 'I'},
+    {:product_id => 6, :store_id => 2, :quantity => 42000, :safe_stock => 5000, :remark => '岩茶', :adjust_type => 'I'},
+    {:product_id => 1, :store_id => 3, :quantity => 43000, :safe_stock => 5000, :remark => '西湖龙井', :adjust_type => 'I'},
+    {:product_id => 2, :store_id => 3, :quantity => 33000, :safe_stock => 5000, :remark => '正山小种', :adjust_type => 'I'},
+    {:product_id => 3, :store_id => 3, :quantity => 23000, :safe_stock => 5000, :remark => '铁观音秋茶', :adjust_type => 'I'},
+    {:product_id => 4, :store_id => 3, :quantity => 33000, :safe_stock => 5000, :remark => '大益普洱', :adjust_type => 'I'},
+    {:product_id => 5, :store_id => 3, :quantity => 23000, :safe_stock => 5000, :remark => '久扬黑茶', :adjust_type => 'I'},
+    {:product_id => 6, :store_id => 3, :quantity => 43000, :safe_stock => 5000, :remark => '岩茶', :adjust_type => 'I'}
+    
+  ])
+  
+  
+  puts 'creating users'
+  User.create([
+    {:name => 'usera', :email => 'a@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
+    {:name => 'userb', :email => 'b@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'}
+  ])
+  
+  puts 'Adding roles'
+  User.find(3).add_role :user
+  User.find(4).add_role :user
+  
+  puts 'Adding members'
+  Member.create([
+    {:name => '
+  张观博', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
+    {:name => '
+  张欣竹', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
+    {:name => '
+  张欣阳', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
+    {:name => '
+  张晨菲', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
+    {:name => '
+  张涵韵', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
+    {:name => '
+  张晨曦', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
+    {:name => '
+  张晓朋', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
+    {:name => '
+  张子辰', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
+    {:name => '
+  张展旭', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
+    {:name => '
+  张怡萍', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
+    {:name => '
+  张浩然', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
+    {:name => '
+  张继欣', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4}
+  ])  
+  
+  
+end
+
+
