@@ -1,0 +1,16 @@
+<!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:name) %>: <%= @user.name %></p>
+<p><%= t(:email) %>: <%= @user.email if @user.email %></p>
+<p>
+  <%= t(:role) %>: <%= t(@user.roles.first.name) unless @user.roles.first.nil? %>
+  <% unless @user.has_role? :admin %>
+  <a data-toggle="modal" href="#role-options-<%= @user.id %>" class="btn btn-mini btn-warning" type="button"><%= t(:change_role) %></a>
+  <%= render :partial => 'role' %>
+  <%end%>
+</p>
+<p><%= t(:created_at) %>: <%= @user.created_at.to_date %></p>
+
+
+<%= link_to t(:edit), edit_maintain_user_path(@user), :class => 'btn'%>
+<%= link_to(t(:delete), maintain_user_path(@user), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn') unless @user == current_user %>
+<%= link_to t(:back), maintain_users_path, :class => 'btn'%>

@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :get_user, :only => [:show, :edit, :update, :update_password] 
+  before_filter :require_owner, :only => [:show, :edit, :update, :update_password]
   
   def show
     @user = User.find(params[:id])
-    @stores = Store.all
   end
   
   def edit
@@ -12,20 +12,32 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @store = Store.find(params[:user][:store_id])
-    unless @store.nil?
-      if current_user.store_id != @store.id
-        current_user.store_id = @store.id
-        session[:cart_count] = Cart.count_by_user(current_user).to_s
-      end
-    end
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
     
-    
-    if @user.update_attributes(params[:user])
+    if @user.save
       redirect_to @user, :notice => t(:user_updated)
     else
       redirect_to @user, :alert => t(:unable_to_update_user)
     end
+  end
+  
+  def update_password
+    @user = User.find(current_user.id)
+    if @user.update_with_password(params[:user])
+      # Sign in the user by passing validation in case his password changed
+      sign_in @user, :bypass => true
+      redirect_to @user, :notice => t(:password_changed_successfully)
+    else
+      render :edit
+    end
+  end
+  
+  
+  
+  protected
+  def get_user
+    @user = User.find(params[:id])
   end
 
 end

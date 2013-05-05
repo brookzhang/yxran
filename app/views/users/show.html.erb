@@ -1,9 +1,10 @@
 <!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:account) %>: <%= @user.account %></p>
 <p><%= t(:name) %>: <%= @user.name %></p>
 <p><%= t(:email) %>: <%= @user.email if @user.email %></p>
-<p><%= t(:role) %>: <%= t(@user.roles.first.name) unless @user.roles.first.nil? %></p>
+<p><%= t(:role) %>: <%= l(@user.roles.first.name,'role') unless @user.roles.first.nil? %></p>
 <p><%= t(:created_at) %>: <%= @user.created_at.to_date %></p>
 
 
-<%#= link_to t(:edit), edit_user_path(@user), :class => 'btn'%>
+<%= link_to t(:modify_password), edit_user_path(@user), :class => 'btn' %>
 <%= link_to t(:back), root_path, :class => 'btn'%>

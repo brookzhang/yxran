@@ -24,20 +24,28 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :account
   # attr_accessible :title, :body
   
-  attr_accessor :login
+  attr_accessor :login 
   
-  validates_presence_of :name, :account
+  validates_presence_of :email, :account
   #validates_uniqueness_of :name, :email, :case_sensitive => false
-  validates_uniqueness_of :name, :account, :case_sensitive => false
+  validates_uniqueness_of :email, :account, :case_sensitive => false
+  
   
   
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions).where(["lower(account) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      where(conditions).where(["lower(account) = :value OR lower(email) = :value and status = 1 ", { :value => login.downcase }]).first
     else
       where(conditions).first
     end
+  end
+  
+  def is_owned_by?(agent)
+    self.id == agent.id
+    # or, if you can safely assume the agent is always a User, you can 
+    # avoid the additional user query:
+    # self.owner_id == agent.id
   end
   
 end

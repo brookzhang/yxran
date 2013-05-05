@@ -12,6 +12,15 @@ class Handover < ActiveRecord::Base
   #validates_numericality_of :take_amount, :greater_than => 0
   #validates_numericality_of :hand_amount, :greater_than => 0
   
+  
+  
+  def is_owned_by?(agent)
+    self.user == agent
+    # or, if you can safely assume the agent is always a User, you can 
+    # avoid the additional user query:
+    # self.owner_id == agent.id
+  end
+  
   private
   
   def user_take_over

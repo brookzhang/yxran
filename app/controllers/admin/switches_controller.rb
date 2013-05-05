@@ -1,4 +1,4 @@
-class Admin::SwitchesController < ApplicationController
+class Admin::SwitchesController < Admin::ApplicationController
   def index
     @switchs = Switch.all
   end

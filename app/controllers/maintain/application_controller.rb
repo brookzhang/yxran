@@ -2,7 +2,7 @@ class Maintain::ApplicationController < ApplicationController
   before_filter :require_manager
   
   
-  
+  WillPaginate.per_page = 10
   
   
   private

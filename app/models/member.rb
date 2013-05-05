@@ -15,5 +15,8 @@ class Member < ActiveRecord::Base
   scope :by_phone, lambda{ |phone| where(" phone = ? ", phone) if !phone.nil? && phone != '' }
   
   
+  def is_ok_to_destroy?
+    self.score == 0 && !Sale.exists?(:member_id => self.id) 
+  end
   
 end

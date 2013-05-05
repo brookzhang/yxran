@@ -10,6 +10,13 @@ class Expense < ActiveRecord::Base
   after_save :update_store_balance
   
   
+  def is_owned_by?(agent)
+    self.user == agent
+    # or, if you can safely assume the agent is always a User, you can 
+    # avoid the additional user query:
+    # self.owner_id == agent.id
+  end
+  
   
   private
   

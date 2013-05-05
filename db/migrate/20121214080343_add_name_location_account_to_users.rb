@@ -1,4 +1,4 @@
-class AddNameLocationToUsers < ActiveRecord::Migration
+class AddNameLocationAccountToUsers < ActiveRecord::Migration
   def change
     add_column :users, :name, :string
     add_column :users, :store_id, :integer

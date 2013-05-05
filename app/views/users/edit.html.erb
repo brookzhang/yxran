@@ -1,12 +1,15 @@
-<h3><%= t(:account_info) %></h3>
-<p><%= t(:name) %>: <%= @user.name %></p>
-<p><%= t(:email) %>: <%= @user.email if @user.email %></p>
-<p>
-  <%= t(:role) %>: <%= t(@user.roles.first.name) unless @user.roles.first.nil? %>
-  
-</p>
-<p><%= t(:created_at) %>: <%= @user.created_at.to_date %></p>
 
+<%= simple_form_for(@user, :url => { :action => "update_password" } , :html => {:class => 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @user %>
+  <%= f.input :password, :label => t(:new_password) , :autofocus => true %>
+  <%= f.input :password_confirmation, :label => t(:password_confirmation)%>
+  <%= f.input :current_password, :label => t(:current_password) %> 
+  <div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, t(:submit), :class => 'btn' %>
+      <%= link_to t(:back), @user, :class => 'btn' %>
+    </div>
+  </div>
+<% end %>
 
-<%= link_to t(:edit), edit_user_path(@user), :class => 'btn'%>
-<%= link_to t(:back), user_path(@user), :class => 'btn'%>

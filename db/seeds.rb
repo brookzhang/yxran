@@ -39,8 +39,8 @@ Lookup.create([
   {:code => 'S', :category =>'balance_category', :description => '销售'},
   {:code => 'E', :category =>'balance_category', :description => '开支'},
   
-  {:code => '0', :category =>'user_status', :description => '禁用'},
-  {:code => '1', :category =>'user_status', :description => '正常'},
+  {:code => '0', :category =>'user_status', :description => '锁定'},
+  {:code => '1', :category =>'user_status', :description => '可用'},
   
   {:code => '0', :category =>'store_status', :description => '禁用'},
   {:code => '1', :category =>'store_status', :description => '正常'},
@@ -55,8 +55,8 @@ Lookup.create([
   {:code => '1', :category =>'order_status', :description => '已入仓'},
   
   
-  {:code => 'admin', :category =>'role', :description => '管理员'},
-  {:code => 'manager', :category =>'role', :description => '经理'},
+  {:code => 'admin', :category =>'role', :description => '系统管理员'},
+  {:code => 'manager', :category =>'role', :description => '主管'},
   {:code => 'user', :category =>'role', :description => '店员'},
   {:code => '0', :category =>'member', :description => '普通会员'},
   {:code => '1', :category =>'member', :description => '高级会员'},
@@ -107,13 +107,21 @@ Role.create([
 
 puts 'creating users'
 User.create([
-  {:name => 'admin1', :email => 'admin@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
-  {:name => 'manager1', :email => 'm@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
+  {:account => 'yxrana', :name => '管理员', :email => 'admin@yxran.com', :password => '123456', :password_confirmation => '123456'},
+  {:account => 'yxranm', :name => '经理', :email => 'manager@yxran.com', :password => '123456', :password_confirmation => '123456'},
 ])
 
 puts 'Adding roles'
 User.find(1).add_role :admin
 User.find(2).add_role :manager
+
+
+
+
+
+
+
+
 
 
 if ENV["RAILS_ENV"] != 'production'
@@ -163,8 +171,8 @@ if ENV["RAILS_ENV"] != 'production'
   
   puts 'creating users'
   User.create([
-    {:name => 'usera', :email => 'a@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'},
-    {:name => 'userb', :email => 'b@yxran.com', :store_id => nil, :password => '123456', :password_confirmation => '123456'}
+    {:account => 'dian01', :name => '店员甲', :email => 'a@yxran.com', :password => '123456', :password_confirmation => '123456'},
+    {:account => 'dian02', :name => '店员乙', :email => 'b@yxran.com', :password => '123456', :password_confirmation => '123456'}
   ])
   
   puts 'Adding roles'

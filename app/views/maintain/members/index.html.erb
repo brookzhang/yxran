@@ -4,24 +4,24 @@
       <tr>
           <th><%= t(:name) %></th>
           <th><%= t(:member_level) %></th>
-          <th><%= t(:score) %></th>
-          <th></th>
-          <th></th>                                      
+          <th><%= t(:score) %></th>                                     
       </tr>
   </thead>   
   <tbody>
   <% @members.each do |member| %>
     <tr>
         <td><%= link_to member.name, [:maintain, member] %></td>
-        <td><%= member.level %></td>
-        <td><%= member.score%></td>
-        <td>
-        </td>
-        <td></td>                                       
+        <td><%= l(member.level,'member') %></td>
+        <td><%= member.score%></td>                                      
     </tr>
   <% end %>
   <tr>
-    <td colspan="5">
+    <td colspan="3">
+			<%= will_paginate @members%>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
 			<%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
     </td>
   </tr>

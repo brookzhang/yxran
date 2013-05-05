@@ -1,6 +1,10 @@
 class ExpensesController < ApplicationController
+  
+  before_filter :get_expense, :only => [:show, :edit, :update] 
+  before_filter :require_owner, :only => [:show, :edit, :update]
+  
   def index
-    @expenses = Expense.where(:user_id => current_user.id).order(" id desc ")
+    @expenses = Expense.where(:user_id => current_user.id).paginate(:page => params[:page]).order(" id desc ")
   end
 
   def show
@@ -30,5 +34,10 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
+  end
+  
+  protected
+  def get_expense
+    @expense = Expense.find(params[:id])
   end
 end

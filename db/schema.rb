@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
   create_table "orders", :force => true do |t|
     t.integer  "store_id"
     t.string   "remark"
-    t.integer  "status",     :default => 1
+    t.integer  "status",     :default => 0
     t.integer  "user_id"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
@@ -291,6 +291,7 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
     t.string   "name"
     t.integer  "store_id"
     t.integer  "status",                 :default => 1
+    t.string   "account"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

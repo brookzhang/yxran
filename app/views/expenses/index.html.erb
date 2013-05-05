@@ -21,10 +21,10 @@
     <tr>
         <td><%= e.store.name %></td>
         <td><%= l(e.category,"expense_category")  %></td>
-        <td><%= e.amount %></td>
-        <td></td>                                       
+        <td><%= e.amount %></td>                                     
     </tr>
   <% end %>
+  <tr><td colspan="3"><%= will_paginate @expenses %></td></tr>
   </tbody>
 </table>
 </div> 

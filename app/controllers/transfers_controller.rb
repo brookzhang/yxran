@@ -1,4 +1,8 @@
 class TransfersController < ApplicationController
+  
+  before_filter :get_transfer, :only => [:show, :edit, :update] 
+  before_filter :require_owner, :only => [:show, :edit, :update]
+  
   def index
     @transfers = Transfer.where(" to_store_id = :to_store_id and status > 0 and status < 9 ", {:to_store_id => current_user.store_id} ).paginate(:page => params[:page], :per_page => 5).order('id DESC')
   end
@@ -23,6 +27,11 @@ class TransfersController < ApplicationController
       redirect_to :back, :alert => t(:received_failed)
     end
     
+  end
+  
+  protected
+  def get_transfer
+    @transfer = Transfer.find(params[:id])
   end
 end
 

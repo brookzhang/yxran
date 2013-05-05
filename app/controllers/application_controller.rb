@@ -10,7 +10,19 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path, :alert => exception.message
   end
   
+  WillPaginate.per_page = 5
   
+  
+  
+  protected
+  # relies on the presence of an instance variable named after the controller
+  def require_owner
+    #object = instance_variable_get("@#{controller_name.singularize.camelize.underscore}") 
+    object = instance_variable_get("@#{self.controller_name.singularize}")
+    unless current_user && object.is_owned_by?(current_user)
+      redirect_to root_path, :alert => t(:you_have_no_access_with_this)
+    end
+  end
   
   
   private

@@ -1,14 +1,16 @@
-<h3><%= t(:account_info) %></h3>
-<p><%= t(:name) %>: <%= @user.name %></p>
-<p><%= t(:email) %>: <%= @user.email if @user.email %></p>
-<p>
-  <%= t(:role) %>: <%= t(@user.roles.first.name) unless @user.roles.first.nil? %>
-  
-  <a data-toggle="modal" href="#role-options-<%= @user.id %>" class="btn btn-mini btn-warning" type="button"><%= t(:change_role) %></a>
-  <%= render :partial => 'role' %>
-</p>
-<p><%= t(:created_at) %>: <%= @user.created_at.to_date %></p>
+<%= simple_form_for [:maintain,@user], :html => {:class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @user %>
+  <%= f.input :account, :label => t(:account) %>
+  <%= f.input :name, :label => t(:user_name), :autofocus => true %>
+  <%= f.input :email, :label => t(:email) %> 
+  <%= f.input :password, :label => t(:password) %> 
+  <div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, t(:submit), :class => 'btn' %>
+      <%= link_to t(:back), maintain_users_path, :class => 'btn' %>
+    </div>
+  </div>
+<% end %>
 
 
-<%= link_to t(:edit), edit_maintain_user_path(@user), :class => 'btn'%>
-<%= link_to t(:back), maintain_user_path(@user), :class => 'btn'%>

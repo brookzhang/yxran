@@ -19,6 +19,12 @@
         <td><%= link_to t(:confirm_to_receive), edit_transfer_path(transfer), :class => 'btn' if transfer.status == 1 %></td>               
     </tr>
   <% end %>
+  
+  <tr>
+    <td colspan="5">
+	  <%= will_paginate @transfers %>
+    </td>
+  </tr>
   <tr>
     <td colspan="5">
 	  <%= link_to t(:back), root_path, :class => 'btn'%>

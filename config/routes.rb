@@ -2,23 +2,13 @@ Yxran::Application.routes.draw do
   
 
 
-  get "order_imports/new"
 
-  get "order_imports/create"
-
-  get "order_import/new"
-
-  get "order_import/create"
-
-  get "order_details/new"
-
-  get "order_details/create"
-
-  get "order_details/destroy"
-
-  devise_for :users
-  
-  resources :users
+  devise_for :users, :skip => [:registrations]
+  resources :users do
+    member do
+      put :update_password
+    end
+  end
   resources :members
   resources :sales
   match 'sale/retail', :to => 'sales#retail'
@@ -41,7 +31,12 @@ Yxran::Application.routes.draw do
     resources :categories
     resources :products
     resources :stores
-    resources :users
+    resources :users do
+      member do
+        get :lock
+        get :unlock
+      end
+    end
     resources :discounts
     resources :sales
     resources :members
@@ -74,6 +69,7 @@ Yxran::Application.routes.draw do
     resources :lookups
     resources :switches
     resources :events
+    resources :users
     
   end
   

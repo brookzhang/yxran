@@ -11,6 +11,19 @@ zh-CN:
     errors:
       messages:
         record_invalid: '数据无效'
+      models:
+        user:
+          attributes:
+            password:
+              too_short: '新密码太短，最少6位。'
+            current_password:
+              invalid: '当前密码输入错误。'
+        member:
+          attributes:
+            name:
+              blank: '会员名称不能为空.'
+            phone:
+              blank: '会员电话不能为空。'
   
   # site info.
   #----------------------------------------------------------------------------
@@ -49,6 +62,7 @@ zh-CN:
   list_all: '所有记录'
   name: '名称'
   import: '导入'
+  you_have_no_access_with_this: '你没有这个权限.'
   
   
   # sessions.
@@ -66,6 +80,9 @@ zh-CN:
   email: '邮箱'
   password: '密码'
   password_confirmation: '再输入一次密码'
+  new_password: '新密码'
+  password_changed_failed: '密码修改失败.'
+  password_changed_successfully: '密码修改成功.'
   current_password: '当前密码'
   if_no_change_leave_empty: '如果不想改的话就让它空着'
   need_current_password_for_confirm: "需要输入当前的密码以确认修改"
@@ -76,6 +93,23 @@ zh-CN:
   user: '用户'
   user_updated: '用户信息已更新'
   unable_to_update_user: '用户信息不能修改'
+  user_created: '新用户创建成功。'
+  unable_to_add_role: '不能设定身份.'
+  unable_to_create_user: '不能新建用户。'
+  account: '帐号'
+  user_name: '姓名'
+  are_you_sure_to_lock_user: '确定要锁定帐号？'
+  lock: '锁定'
+  unlock: '恢复'
+  are_you_sure_to_unlock_user: '确定要恢复帐号？'
+  user_locked: '用户已被锁定，将无法登陆系统'
+  user_locked_failed: '用户锁定失败。'
+  user_unlocked: '用户已被恢复，可以正常登陆系统。'
+  user_unlocked_failed: '用户恢复失败。'
+  modify_password: '修改密码'
+  pre_password: '原密码'
+  member_has_sales_or_scores_can_not_delete: '这个会员有积分或有购买记录，无法删除。'
+  
   
   # sales.
   #----------------------------------------------------------------------------
@@ -114,6 +148,7 @@ zh-CN:
   member_level: '会员级别'
   creator: '创建人'
   dismiss: '取消'
+  member_level: '会员等级'
   
   
   
@@ -266,8 +301,8 @@ zh-CN:
   can_not_delete_yourself: '不能删除自己的账号'
   on_duty_list: '值班状态'
   last_handovers: '最近交接班'
-  only_allow_manager_in: '只有管理员能进入'
-  
+  only_allow_manager_in: '只允许主管进入'
+  only_allow_admin_in: '只允许系统管理员进入'
   
   
   # category.

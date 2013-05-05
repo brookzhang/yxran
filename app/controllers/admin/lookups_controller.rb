@@ -1,4 +1,4 @@
-class Admin::LookupsController < ApplicationController
+class Admin::LookupsController < Admin::ApplicationController
   def index
     @lookups = Lookup.all
   end

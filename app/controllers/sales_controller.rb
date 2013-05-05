@@ -1,5 +1,7 @@
 class SalesController < ApplicationController
-  before_filter :authenticate_user!
+  
+  before_filter :get_sale, :only => [:show, :edit, :update] 
+  before_filter :require_owner, :only => [:show, :edit, :update]
   
   def index
     @sales = Sale.where(:user_id => current_user.id).paginate(:page => params[:page]).order('id DESC')
@@ -77,6 +79,11 @@ class SalesController < ApplicationController
     end
   end
   
+  
+  protected
+  def get_sale
+    @sale = Sale.find(params[:id])
+  end
   
   
 end
