@@ -29,8 +29,11 @@ Lookup.create([
   {:code => 'C', :category =>'sale_category', :description => '消耗'},
   {:code => 'M', :category =>'sale_category', :description => '会员'},
   
-  {:code => 'T', :category =>'handover_status', :description => '接班'},
-  {:code => 'H', :category =>'handover_status', :description => '交班'},
+  {:code => '1', :category =>'sale_status', :description => '已入账'},
+  {:code => '9', :category =>'sale_status', :description => '已撤销'},
+  
+  {:code => '0', :category =>'handover_status', :description => '接班'},
+  {:code => '1', :category =>'handover_status', :description => '交班'},
   
   {:code => 'C', :category =>'expense_category', :description => '办公用品'},
   {:code => 'D', :category =>'expense_category', :description => '整额支取'},

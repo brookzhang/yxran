@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
   create_table "handovers", :force => true do |t|
     t.integer  "store_id"
     t.integer  "user_id"
-    t.string   "status"
+    t.integer  "status"
     t.float    "take_amount"
     t.float    "hand_amount"
     t.string   "take_remark"

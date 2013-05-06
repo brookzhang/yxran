@@ -10,9 +10,13 @@ Yxran::Application.routes.draw do
     end
   end
   resources :members
-  resources :sales
-  match 'sale/retail', :to => 'sales#retail'
-  match 'sale/cost', :to => 'sales#cost'
+  resources :sales do
+    member do
+      get :retail
+      get :cost
+      get :cancel
+    end
+  end
 
   
   

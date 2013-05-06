@@ -5,7 +5,7 @@
           <th><%=t(:sale_id)%></th>
           <th><%= t(:actual_amount) %></th>
           <th><%= t(:sale_category) %></th>
-          <th></th>                                      
+          <th><%= t(:status) %></th>                                      
       </tr>
   </thead>   
   <tbody>
@@ -14,16 +14,16 @@
         <td><%= link_to '#'+sale.id.to_s, sale %></td>
         <td><%= sale.actual_amount %></td>
         <td><%= l(sale.category,"sale_category") %></td>
-        <td></td>                                       
+        <td><%= l(sale.status, "sale_status") %></td>                                       
     </tr>
   <% end %>
   <tr>
-    <td colspan="5">
+    <td colspan="4">
       <%= will_paginate @sales %>
     </td>
   </tr>
   <tr>
-    <td colspan="5">
+    <td colspan="4">
       <%= link_to t(:back), root_path, :class => 'btn'%>
       <%= link_to t(:record_a_sale), stocks_path, :class => 'btn btn-warning' %>
     </td>

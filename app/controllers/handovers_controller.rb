@@ -13,11 +13,13 @@ class HandoversController < ApplicationController
     @store = Store.find(@handover.store_id)
     @sales = Sale.where(:store_id => @handover.store_id,
                         :user_id => @handover.user_id,
+                        :status => 1,
                         :created_at => (@handover.took_at)..(@handover.handed_at.nil? ? Time.now : @handover.handed_at)
                        )
     
     @expenses = Expense.where(:store_id => @handover.store_id,
                         :user_id => @handover.user_id,
+                        :status => 1,
                         :created_at => (@handover.took_at)..(@handover.handed_at.nil? ? Time.now : @handover.handed_at)
                         )
     
@@ -41,7 +43,7 @@ class HandoversController < ApplicationController
     @handover.user_id = current_user.id
     @handover.take_amount = @store.balance
     @handover.took_at = Time.now
-    @handover.status = 1
+    @handover.status = 0
     if !is_ok_to_take_over?(@handover)
       redirect_to :back 
     else
@@ -84,6 +86,7 @@ class HandoversController < ApplicationController
     @handover.hand_remark = params[:handover][:hand_remark]
     @handover.hand_amount = @store.balance
     @handover.handed_at = Time.now
+    @handover.status = 1
     #@handover.save
     
     if @handover.save

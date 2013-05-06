@@ -7,8 +7,14 @@
   <% if @sale.category == 'M' %>
     <%= t(:member) %>: <%= @member.name unless @member.nil? %>
   <%end%>
-  <%= @sale.remark %> <%= @sale.created_at.to_s(:date_time) %>
+  &nbsp;&nbsp;
+  <%= t(:status) %>: <%= l(@sale.status.to_s, 'sale_status') %>
+</p>
+<p><%= t(:created_at) %>: <%= @sale.created_at.to_s(:date_time) %>
+</p>
+<p><%= t(:remark) %>: <%= @sale.remark %>
 </p>
 
 <%= render 'sale_details' %>
+<%= link_to t(:cancel), cancel_sale_path(@sale), :class => 'btn' if @sale.is_on_duty? && @sale.status == 1 %>
 <%= link_to t(:back), sales_path, :class => 'btn'%>

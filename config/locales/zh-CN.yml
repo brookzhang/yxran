@@ -120,8 +120,8 @@ zh-CN:
   sales: '销售摘要'
   amount: '金额'
   buy_again: '再次购买'
-  sale_category: '销售方式'
-  sale_id: '销售单号'
+  sale_category: '类型'
+  sale_id: '单号'
   sale_amount: '销售总额'
   record_a_sale: '记一单'
   select_product: '选择商品'
@@ -133,6 +133,10 @@ zh-CN:
   switch_member: '更换'
   record_a_sale: '记一笔单'
   select_product_first: '先选商品'
+  unable_to_cancel: '不能撤销'
+  member_has_not_enough_score: '会员积分不足以撤销此单。'
+  not_enough_balance_to_cancel: '店内剩余金额不足以撤销此单。'
+  sale_canceled_ok: '销售单已撤销成功。'
   
   
   

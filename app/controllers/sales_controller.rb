@@ -77,15 +77,24 @@ class SalesController < ApplicationController
 
 
   def edit
-    @sale = Sale.find(params[:id])
+    #@sale = Sale.find(params[:id])
   end
 
   def update
+    #@sale = Sale.find(params[:id])
+    #if @sale.update_attributes(params[:sale])
+    #  redirect_to sale_path(@sale), :notice => t(:updated_ok)
+    #else
+    #  redirect_to sale_path(@sale), :alert => t(:unable_to_update)
+    #end
+  end
+  
+  def cancel
     @sale = Sale.find(params[:id])
-    if @sale.update_attributes(params[:sale])
-      redirect_to sale_path(@sale), :notice => t(:updated_ok)
+    if @sale.cancel
+      redirect_to sales_path, :notice => t(:sale_canceled_ok)
     else
-      redirect_to sale_path(@sale), :alert => t(:unable_to_update)
+      redirect_to :back, :alert => t(@sale.check_message)
     end
   end
   

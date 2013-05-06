@@ -8,6 +8,7 @@ class Handover < ActiveRecord::Base
   
   attr_accessible :store_id, :user_id, :status, :take_amount, :hand_amount,
                   :take_remark, :hand_remark, :took_at, :handed_at
+  #status 0-took over, 1-handed over
   
   #validates_numericality_of :take_amount, :greater_than => 0
   #validates_numericality_of :hand_amount, :greater_than => 0
