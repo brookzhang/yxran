@@ -7,7 +7,14 @@ class MembersController < ApplicationController
     @member.phone = params[:phone]
     
     #@members = members_search(@member)
-    @members = Member.by_name(params[:name]).by_phone(params[:phone]).paginate(:page => params[:page], :per_page => 5).order('id DESC')
+    #@members = Member.by_name(params[:name]).by_phone(params[:phone]).paginate(:page => params[:page], :per_page => 5).order('id DESC')
+    
+    if (params[:name].nil? || params[:name].empty?) && (params[:phone].nil? || params[:phone].empty?)
+      @members = nil
+    else
+      @members = Member.by_name(params[:name]).by_phone(params[:phone]).order('id DESC').limit(5)
+    end
+    
   end
 
   def show
@@ -61,4 +68,6 @@ class MembersController < ApplicationController
     #end
     
   end
+  
+  
 end

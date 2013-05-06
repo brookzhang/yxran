@@ -57,6 +57,9 @@
       <% end %>
       </td>         
     </tr>
+    <%else%>
+      
+    <tr><td><%= link_to t(:back), :back, :class => 'btn' %></td></tr>
     <%end %>
   </tbody> 
 </table>

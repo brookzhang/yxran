@@ -9,6 +9,6 @@
 
 <p>
   <%= link_to t(:select_member), new_sale_path(:member_id => @member), :class => 'btn btn-warning' %>
-  <%= link_to t(:edit), edit_member_path(@member), :class => 'btn' if @member.user_id == current_user.id %>
+  <%#= link_to t(:edit), edit_member_path(@member), :class => 'btn' if @member.user_id == current_user.id %>
   <%= link_to t(:back), members_path, :class => 'btn'%>
 </p>

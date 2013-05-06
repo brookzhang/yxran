@@ -16,7 +16,7 @@
       <%= simple_form_for @sale, :html => {:class => 'form-horizontal' } do |f| %>
         <%= f.error_notification %>
         <%= display_base_errors @sale %>
-        <%= f.input :actual_amount, :label => t(:actual_amount), :autofocus => true, :required => true   %>
+        <%= f.input :actual_amount, :label => t(:actual_amount), :autofocus => true    %>
         
         <%= f.input :remark, :label => t(:remark) %>
         <%= f.hidden_field :category  %>

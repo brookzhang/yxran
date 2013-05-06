@@ -17,7 +17,7 @@ class Sale < ActiveRecord::Base
   validates_presence_of :store_id, :actual_amount
   #validates_uniqueness_of :name, :case_sensitive => false
   
-  validates_numericality_of :actual_amount, :greater_than => 0
+  validates_numericality_of :actual_amount, :greater_than_or_equal_to => 0
   validates_numericality_of :amount 
   
   def my_sales(user_id)
@@ -33,13 +33,17 @@ class Sale < ActiveRecord::Base
     begin
       self.transaction do
         #create sale record
+        if self.category == 'C'
+          self.actual_amount = 0
+        end
+        
         self.amount = carts.sum {|c| c.amount.nil? ? 0 : c.amount }
         #self.used_score = 0
         self.status = 1
         self.save!
         
         @store = Store.find(self.store_id)
-        @store.balance += self.actual_amount
+        #@store.balance += self.actual_amount
         @store.save
         
         #sale_details

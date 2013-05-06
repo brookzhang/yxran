@@ -57,7 +57,17 @@ class SalesController < ApplicationController
       session[:member_id] = nil
       redirect_to sales_path, :notice => t(:created_ok)
     else
-      redirect_to :back, :alert => t(@sale.check_message)
+      case @sale.category
+      when "C"
+        render :cost
+      when "R"
+        render :retail
+      when "M"
+        render :new
+      else
+        render :new
+      end 
+      #redirect_to :back, :alert => t(@sale.check_message)
     end   
     
     
