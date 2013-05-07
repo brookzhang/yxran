@@ -3,11 +3,94 @@ class Expense < ActiveRecord::Base
   belongs_to :user
   
   attr_accessible :amount, :category, :remark, :store_id, :user_id, :status
+  # status 1-active  9-cancel
   
-  validates_numericality_of :amount, :greater_than => 0
+  attr_accessor :check_message
+  
+  validates_numericality_of :amount, :greater_than_or_equal_to => 0
   
   
-  after_save :update_store_balance
+  #after_save :update_store_balance
+  
+  
+  
+  
+  def create_balance
+    begin
+      self.transaction do
+        self.save!
+        
+        @store = Store.find(self.store_id)
+        @store.balance -= self.amount
+        @store.save!
+        
+        #:adjust_by, :adjust_to, :category, :reference_id, :store_id, :user_id
+        @balance = Balance.new
+        @balance.adjust_by = self.amount
+        @balance.adjust_to = @store.balance
+        @balance.category = 'E'
+        @balance.reference_id = self.id
+        @balance.store_id = self.store_id
+        @balance.user_id = self.user_id
+        @balance.save!
+        
+        
+      end
+      true
+    rescue => err
+      logger.error "****************************"  
+      logger.error "#{err.message}"  
+      #logger.error "#{err.backtrace.join('\n')}"  
+      logger.error "****************************"  
+      #logger.debug "======= error output: " + err.to_s 
+      self.check_message = 'unable_to_create'
+      false
+    end
+  end
+  
+  
+  
+  #*************************
+  # for user on duty, could cancel expense
+  #*************************
+  def cancel
+    if !is_on_duty?
+      return false
+    end
+    
+    begin
+      self.transaction do
+        #create sale record
+        self.status = 9
+        self.save!
+        
+        @store = Store.find(self.store_id)
+        @store.balance += self.amount
+        @store.save!
+        
+        @balance = Balance.new
+        @balance.adjust_by = self.amount
+        @balance.adjust_to = @store.balance
+        @balance.category = 'E'
+        @balance.reference_id = self.id
+        @balance.store_id = self.store_id
+        @balance.user_id = self.user_id
+        @balance.save!
+        
+      end
+      true
+    rescue => err
+      logger.error "****************************"  
+      logger.error "#{err.message}"  
+      #logger.error "#{err.backtrace.join('\n')}"  
+      logger.error "****************************"  
+      #logger.debug "======= error output: " + err.to_s 
+      self.check_message = 'unable_to_cancel'
+      false
+    end
+  end
+  
+  
   
   
   def is_owned_by?(agent)
@@ -18,18 +101,22 @@ class Expense < ActiveRecord::Base
   end
   
   
-  private
-  
-  def update_store_balance
-    @store = Store.find(self.store_id)
-    @store.balance -= self.amount
-    #@store.balance = nil
-    if @store.save
-      return true
+  def is_on_duty?
+    @handover = Handover.where(:user_id => self.user_id,
+                               :store_id => self.store_id,
+                               :status => 0
+                               ).order("id desc").first
+    if self.user.store_id.nil? || @handover.nil? 
+      false
+    elsif @handover.took_at <= self.created_at
+      true
     else
-      raise ActiveRecord::Rollback
-      return false
+      false
     end
   end
+  
+  
+  
+  
   
 end

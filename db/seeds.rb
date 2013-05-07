@@ -39,6 +39,9 @@ Lookup.create([
   {:code => 'D', :category =>'expense_category', :description => '整额支取'},
   {:code => 'O', :category =>'expense_category', :description => '其他'},
   
+  {:code => '1', :category =>'expense_status', :description => '已入账'},
+  {:code => '9', :category =>'expense_status', :description => '已撤销'},
+  
   {:code => 'S', :category =>'balance_category', :description => '销售'},
   {:code => 'E', :category =>'balance_category', :description => '开支'},
   

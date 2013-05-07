@@ -1,2 +1,15 @@
-<h1>Expenses#show</h1>
-<p>Find me in app/views/expenses/show.html.erb</p>
+<!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:id) %>: <%= '#' + @expense.id.to_s %></p>
+<p>[<%= @expense.store.name %>]  
+  <%= @expense.amount %> <%= t(:currency) %>
+</p>
+<p><%= t(:status) %>: <%= l(@expense.status.to_s, 'expense_status') %>
+  <%= t(:category) %>: <%= l(@expense.category.to_s, 'expense_category') %>
+</p>
+<p><%= t(:remark) %>: <%= @expense.remark %>
+</p>
+<p><%= t(:created_at) %>: <%= @expense.created_at.to_s(:date_time) %>
+</p>
+
+<%= link_to t(:cancel), cancel_expense_path(@expense), :class => 'btn' if @expense.is_on_duty? && @expense.status == 1 %>
+<%= link_to t(:back), expenses_path, :class => 'btn'%>

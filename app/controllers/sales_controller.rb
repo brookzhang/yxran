@@ -1,7 +1,7 @@
 class SalesController < ApplicationController
   
-  before_filter :get_sale, :only => [:show, :edit, :update] 
-  before_filter :require_owner, :only => [:show, :edit, :update]
+  before_filter :get_sale, :only => [:show, :edit, :update, :cancel] 
+  before_filter :require_owner, :only => [:show, :edit, :update, :cancel]
   
   def index
     @sales = Sale.where(:user_id => current_user.id).paginate(:page => params[:page]).order('id DESC')

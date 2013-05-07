@@ -3,7 +3,7 @@ class Maintain::TransferDetailsController < Maintain::ApplicationController
 
   def new
     @transfer = Transfer.find(params[:transfer_id])
-    @stocks = Stock.where(:store_id => @transfer.from_store_id)
+    @stocks = Stock.where(" store_id = ? and quantity > 0 ", @transfer.from_store_id).paginate(:page => params[:page])
     @transfer_detail = TransferDetail.new
   end
 

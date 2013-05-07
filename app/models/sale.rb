@@ -44,7 +44,7 @@ class Sale < ActiveRecord::Base
         
         @store = Store.find(self.store_id)
         @store.balance += self.actual_amount
-        @store.save
+        @store.save!
         
         #:adjust_by, :adjust_to, :category, :reference_id, :store_id, :user_id
         @balance = Balance.new
@@ -54,7 +54,7 @@ class Sale < ActiveRecord::Base
         @balance.reference_id = self.id
         @balance.store_id = self.store_id
         @balance.user_id = self.user_id
-        @balance.save
+        @balance.save!
         
         #sale_details
         carts.each do |c|
@@ -133,7 +133,7 @@ class Sale < ActiveRecord::Base
         @balance.reference_id = self.id
         @balance.store_id = self.store_id
         @balance.user_id = self.user_id
-        @balance.save
+        @balance.save!
         
         @sale_details = SaleDetail.where(:sale_id => self.id) 
         @sale_details.each do |s|

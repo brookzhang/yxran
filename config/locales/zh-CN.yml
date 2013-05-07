@@ -60,9 +60,11 @@ zh-CN:
   unable_to_delete: '删除失败'
   deleted_ok: '已删除'
   list_all: '所有记录'
+  id: '单号'
   name: '名称'
   import: '导入'
   you_have_no_access_with_this: '你没有这个权限.'
+  
   
   
   # sessions.
@@ -271,6 +273,7 @@ zh-CN:
   new_expense_saved_ok: '新增支出已保存.'
   new_expense_saved_failed: '新增支出失败!'
   expense_amount: '支出总额'
+  expense_canceled_ok: '支出已撤销.'
   
   
   

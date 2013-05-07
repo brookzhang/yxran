@@ -72,8 +72,9 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
     t.string   "category"
     t.float    "amount"
     t.string   "remark"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "status",     :default => 1
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "expenses", ["store_id", "user_id"], :name => "index_expenses_on_store_id_and_user_id"
@@ -81,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
   create_table "handovers", :force => true do |t|
     t.integer  "store_id"
     t.integer  "user_id"
-    t.integer  "status"
+    t.integer  "status",      :default => 0
     t.float    "take_amount"
     t.float    "hand_amount"
     t.string   "take_remark"

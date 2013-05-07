@@ -23,9 +23,12 @@ Yxran::Application.routes.draw do
   resources :products
   resources :stocks
   resources :carts
-  match '/switch_discount',:to => 'carts#switch_discount'
   resources :handovers
-  resources :expenses
+  resources :expenses do
+    member do
+      get :cancel
+    end
+  end
   resources :transfers
   
   

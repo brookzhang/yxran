@@ -11,20 +11,22 @@
   </thead>
   <thead>
     <tr>
-        <th><%= t(:store) %></th>
+        <th><%= t(:id) %></th>
         <th><%= t(:category) %></th>
-        <th><%= t(:amount) %></th>                                  
+        <th><%= t(:amount) %></th>    
+        <th><%= t(:status) %></th>                                
     </tr>
   </thead>   
   <tbody>
   <% @expenses.each do |e| %>
     <tr>
-        <td><%= e.store.name %></td>
+        <td><%= link_to '#' + e.id.to_s, e %></td>
         <td><%= l(e.category,"expense_category")  %></td>
-        <td><%= e.amount %></td>                                     
+        <td><%= e.amount %></td>             
+        <td><%= l(e.status,"expense_status")  %></td>                        
     </tr>
   <% end %>
-  <tr><td colspan="3"><%= will_paginate @expenses %></td></tr>
+  <tr><td colspan="4"><%= will_paginate @expenses %></td></tr>
   </tbody>
 </table>
 </div> 

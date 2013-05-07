@@ -5,8 +5,7 @@
 				<tr>
 						<th><%= t(:product) %></th>
 						<th><%= t(:stock) %></th>
-						<th><%= t(:quantity_to_transfer) %></th>
-						<th></th>                                      
+						<th><%= t(:quantity_to_transfer) %></th>                                     
 				</tr>
 		</thead>   
 		<tbody>
@@ -20,6 +19,7 @@
 				</tr>
 				 
 			<% end %>
+			<tr><td colspan="3"><%= will_paginate @stocks %></td></tr>
 		<tr>
 			<td colspan="3">
 					<%= link_to t(:view_transfer), [:maintain, @transfer], :class => 'btn btn-primary' %>
