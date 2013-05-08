@@ -11,9 +11,11 @@ Yxran::Application.routes.draw do
   end
   resources :members
   resources :sales do
-    member do
+    collection do
       get :retail
       get :cost
+    end
+    member do
       get :cancel
     end
   end

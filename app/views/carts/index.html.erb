@@ -23,9 +23,9 @@
         <%= t(:sum_amount)%>: <%=@sum_amount.to_s %> <%=t(:currency)%>
         <div>
           
-          <%= link_to t(:retail_sale), sale_retail_path, :class => 'btn ' %>
+          <%= link_to t(:retail_sale), retail_sales_path, :class => 'btn ' %>
           &nbsp;&nbsp;
-          <%= link_to t(:cost_sale), sale_cost_path, :class => 'btn ' %>
+          <%= link_to t(:cost_sale), cost_sales_path, :class => 'btn ' %>
           &nbsp;&nbsp;
           <%= link_to t(:member_sale), new_sale_path, :class => 'btn btn-warning ' %>
           
