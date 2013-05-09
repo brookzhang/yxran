@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :get_member, :only => [:show] 
+  before_filter :require_owner, :only => [:show]
   
   def index
     @member = Member.new
@@ -39,11 +40,6 @@ class MembersController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
   
   def select_member
     session[:member_id] = params[:member_id]
@@ -52,6 +48,12 @@ class MembersController < ApplicationController
   
   def cancel_member
     session.delete :member_id
+  end
+  
+  
+  protected
+  def get_member
+    @member = Member.find(params[:id])
   end
   
   

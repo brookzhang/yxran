@@ -19,4 +19,15 @@ class Member < ActiveRecord::Base
     self.score == 0 && !Sale.exists?(:member_id => self.id) 
   end
   
+  
+  
+  
+  def is_owned_by?(agent)
+    self.user_id == agent.id
+    # or, if you can safely assume the agent is always a User, you can 
+    # avoid the additional user query:
+    # self.owner_id == agent.id
+  end
+  
+  
 end
