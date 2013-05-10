@@ -1,4 +1,6 @@
 
+<p><%= link_to t(:my_account), user_path(current_user), :class => 'btn  btn-large' %></p>
+  
 <table class="table">
   <caption ><%=t(:on_duty_list)%></caption>
 <% @stores.each do |store| %>

@@ -1,4 +1,4 @@
-class Maintain::OrderImportsController < Maintain::ApplicationController
+class Stocker::OrderImportsController < Stocker::ApplicationController
   def new
     @order = Order.find(params[:order_id])
     @order_import = OrderImport.new
@@ -9,7 +9,7 @@ class Maintain::OrderImportsController < Maintain::ApplicationController
     @order_import = OrderImport.new(params[:order_import])
     if @order_import.valid?
       if @order_import.save(@order)
-        redirect_to [:maintain, @order], notice: t(:import_order_successfully)
+        redirect_to [:stocker, @order], notice: t(:import_order_successfully)
       else
         render :back, :alert => t(:import_failed)
       end 

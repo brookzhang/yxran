@@ -1,0 +1,28 @@
+
+<table class="table  table-striped">
+  <thead>
+    <tr>
+        <th><%= t(:adjust_type) %></th>
+        <th><%= t(:adjusted_by) %></th>
+        <th><%= t(:adjusted_to) %></th>
+        <th><%= t(:remark) %></th>
+        <th><%= t(:adjusted_at) %></th>                              
+    </tr>
+  </thead>   
+  <tbody>
+  <% @histories.each do |history| %>
+    <tr>
+        <td><%= l(history.adjust_type,"adjust_type") %></td>
+        <td><%= '+' unless history.adjusted_by.nil? ? 0 : history.adjusted_by < 0 %><%= history.adjusted_by %></td>
+        <td><%= history.adjusted_to %></td>
+        <td><%= history.remark %></td>
+        <td><%= history.adjusted_at.to_date %></td>                             
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="5">
+      <%= will_paginate @histories %>
+    </td>
+  </tr>
+  </tbody>
+</table>

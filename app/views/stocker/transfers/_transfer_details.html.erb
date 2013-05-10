@@ -1,12 +1,12 @@
 <%unless @transfer_details.nil? %>
-<table class="table  table-striped"> 
+<table class="table  table-striped">
   <thead>
     <tr>
         <th><%= t(:product_name) %></th>
         <th><%= t(:quantity) %> / <%= t(:from_stock)%> / <%= t(:to_stock)%></th>
         <th></th>                          
     </tr>
-  </thead> 
+  </thead>  
   <tbody>
   <% @transfer_details.each do |t| %>
     <tr>
@@ -17,7 +17,8 @@
           
           <%= t.product.measurement %>
         </td>
-   
+        <td><%= link_to(t(:delete), stocker_transfer_transfer_detail_path(@transfer,t), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>     </td>
+               
     </tr>
   <% end %>
   </tbody>

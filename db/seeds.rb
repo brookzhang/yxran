@@ -108,6 +108,7 @@ puts 'creating roles'
 Role.create([
   { :name => 'admin' }, 
   { :name => 'manager' }, 
+  { :name => 'stocker' }, 
   { :name => 'user' }
 ], :without_protection => true)
 
@@ -115,11 +116,15 @@ puts 'creating users'
 User.create([
   {:account => 'yxrana', :name => '管理员', :email => 'admin@yxran.com', :password => '123456', :password_confirmation => '123456'},
   {:account => 'yxranm', :name => '经理', :email => 'manager@yxran.com', :password => '123456', :password_confirmation => '123456'},
+  {:account => 'fengyang', :name => '老板', :email => 'fengyang@yxran.com', :password => '123456', :password_confirmation => '123456'},
+  {:account => 'ku01', :name => '库管员1', :email => 'stocker@yxran.com', :password => '123456', :password_confirmation => '123456'},
 ])
 
 puts 'Adding roles'
 User.find(1).add_role :admin
 User.find(2).add_role :manager
+User.find(3).add_role :manager
+User.find(4).add_role :stocker
 
 
 
@@ -182,8 +187,8 @@ if ENV["RAILS_ENV"] != 'production'
   ])
   
   puts 'Adding roles'
-  User.find(3).add_role :user
-  User.find(4).add_role :user
+  User.find(5).add_role :user
+  User.find(6).add_role :user
   
   puts 'Adding members'
   Member.create([

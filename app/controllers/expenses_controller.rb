@@ -1,5 +1,6 @@
 class ExpensesController < ApplicationController
   
+  before_filter :require_user
   before_filter :get_expense, :only => [:show, :edit, :update, :cancel] 
   before_filter :require_owner, :only => [:show, :edit, :update, :cancel]
   

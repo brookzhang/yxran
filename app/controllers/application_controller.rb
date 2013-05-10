@@ -24,6 +24,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def require_user
+    if !current_user.has_role?(:user)
+      redirect_to root_path, :alert => t(:only_allow_user_in)
+    end
+  end
+  
   
   private
   def do_not_check_authorization?

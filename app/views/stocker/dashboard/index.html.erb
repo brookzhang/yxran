@@ -1,0 +1,10 @@
+
+
+  <p>
+    <%= link_to t(:orders_maintain), stocker_orders_path, :class => 'btn btn-primary' %>
+    <%= link_to t(:transfers_maintain), stocker_transfers_path, :class => 'btn btn-primary' %>
+  </p>
+  <p>
+    <%= link_to t(:stocks_maintain), stocker_stocks_path, :class => 'btn btn-info' %>
+    <%= link_to t(:my_account), stocker_user_path(current_user), :class => 'btn  btn-large' %>
+  </p>

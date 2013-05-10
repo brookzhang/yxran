@@ -64,6 +64,7 @@ zh-CN:
   name: '名称'
   import: '导入'
   you_have_no_access_with_this: '你没有这个权限.'
+  operator: '操作人'
   
   
   
@@ -214,6 +215,8 @@ zh-CN:
   confirm_to_receive: '确认收货'
   received_ok: '收货完成'
   received_failed: '收货失败'
+  from_stock: '出仓'
+  to_stock: '入仓'
   
   # cart.
   #----------------------------------------------------------------------------
@@ -293,7 +296,7 @@ zh-CN:
   sales_maintain: '销售管理'
   members_maintain: '会员管理'
   events_maintain: '操作记录'
-  orders_maintain: '采购管理'
+  orders_maintain: '入库管理'
   transfers_maintain: '调货管理'
   handovers_maintain: '值班管理'
   expenses_maintain: '支出管理'
@@ -310,7 +313,17 @@ zh-CN:
   last_handovers: '最近交接班'
   only_allow_manager_in: '只允许主管进入'
   only_allow_admin_in: '只允许系统管理员进入'
+  only_allow_stocker_in: '只允许库管员进入'
+  only_allow_user_in: '只允许店员进入'
   
+  
+  
+  #----------------------------------------------------------------------------
+  # stocker.
+  #----------------------------------------------------------------------------
+  orders_into_stock: '采购入库'
+  transfers_in_stores: '店铺调货'
+  all_stocks: '所有库存'
   
   # category.
   #----------------------------------------------------------------------------

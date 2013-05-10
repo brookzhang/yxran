@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  before_filter :require_user
   before_filter :get_member, :only => [:show] 
   before_filter :require_owner, :only => [:show]
   

@@ -1,5 +1,5 @@
 <%unless @order_details.nil? %>
-<table class="table  table-striped">
+<table class="table  table-striped"> 
   <thead>
     <tr>
         <th><%= t(:product_name) %></th>
@@ -11,8 +11,8 @@
     <tr>
         <td><%= t.product.name %></td>
         <td align="right"><%= t.quantity.to_s  %>
-          / <%= Stock.get_quantity(@order.store_id, t.product_id)%>
-          <%= t.product.measurement %>
+           / <%= Stock.get_quantity(@order.store_id, t.product_id)%>
+           <%= t.product.measurement %>
         </td>
                
     </tr>

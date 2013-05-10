@@ -9,7 +9,9 @@ Yxran::Application.routes.draw do
       put :update_password
     end
   end
+  
   resources :members
+  
   resources :sales do
     collection do
       get :retail
@@ -34,7 +36,7 @@ Yxran::Application.routes.draw do
   resources :transfers
   
   
-  
+  ### maintainer
   namespace :maintain do
     match '/dashboard',:to => 'dashboard#index'
     resources :categories
@@ -49,20 +51,8 @@ Yxran::Application.routes.draw do
     resources :discounts
     resources :sales
     resources :members
-    resources :orders do
-      member do
-        get :confirm
-        get :clear
-      end
-      resources :order_details
-      resources :order_imports
-    end
-    resources :transfers do
-      member do
-        get :transfer
-      end
-      resources :transfer_details
-    end
+    resources :orders
+    resources :transfers
     #match 'transfer/transfer', :to => 'transfer#transfer'
     
     resources :stocks do
@@ -73,6 +63,9 @@ Yxran::Application.routes.draw do
     resources :balances
   end
   
+  
+  
+  ### admin
   namespace :admin do
     match '/dashboard',:to => 'dashboard#index'
     resources :lookups
@@ -81,6 +74,40 @@ Yxran::Application.routes.draw do
     resources :users
     
   end
+  
+  
+  
+  ### stocker
+  namespace :stocker do
+    resources :orders do
+      member do
+        get :confirm
+        get :clear
+      end
+      resources :order_details
+      resources :order_imports
+    end
+    
+    resources :transfers do
+      member do
+        get :transfer
+      end
+      resources :transfer_details
+    end
+    
+    resources :stocks do
+      resources :histories
+    end
+    
+    resources :users do
+      member do
+        put :update_password
+      end
+    end
+  end
+  
+  
+  
   
   authenticated :user do
     root :to => 'home#index'

@@ -1,5 +1,6 @@
 class TransfersController < ApplicationController
   
+  before_filter :require_user
   before_filter :get_transfer, :only => [:show, :edit, :update] 
   before_filter :require_owner, :only => [:show, :edit, :update]
   

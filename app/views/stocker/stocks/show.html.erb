@@ -1,0 +1,13 @@
+<!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:product_name) %>: <%= @stock.product.name %></p>
+<p><%= t(:store_name) %>: <%= @stock.store.name %></p>
+<p><%= t(:quantity) %>: <%= @stock.quantity %></p>
+<p><%= t(:safe_stock) %>: <%= @stock.safe_stock %></p>
+<p><%= t(:remark) %>: <%= @stock.remark %></p>
+<p><%= t(:created_at) %>: <%= @stock.created_at.to_date %></p>
+<p><%= link_to t(:edit), edit_stocker_stock_path(@stock), :class => 'btn'%>
+<%= link_to t(:back), stocker_stocks_path, :class => 'btn'%>
+</p>
+
+
+  <%= render 'histories' %>

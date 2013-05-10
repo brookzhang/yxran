@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :require_user
   
   def index
     category_id = params[:category_id].nil? ? 0 : params[:category_id].to_i

@@ -1,5 +1,5 @@
 <div class="span8">
-	<%=form_for [:maintain,@order,@order_detail] do |f| %>
+	<%=form_for [:stocker,@order,@order_detail] do |f| %>
 	<table class="table table-condensed">
 			<thead>
 				<tr>
@@ -21,7 +21,7 @@
 			<% end %>
 		<tr>
 			<td colspan="3">
-					<%= link_to t(:view_order), [:maintain, @order], :class => 'btn btn-primary' %>
+					<%= link_to t(:view_order), [:stocker, @order], :class => 'btn btn-primary' %>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<%= f.submit  t(:add), :class => 'btn' %>
 			</td>

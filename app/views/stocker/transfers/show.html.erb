@@ -10,7 +10,11 @@
 <p><%= t(:receiver) %>: <%= @transfer.receiver.name unless @transfer.receiver.nil? %>
   <%= t(:received_at) %>: <%= @transfer.received_at.to_date unless @transfer.received_at.nil? %>
 </p>
-<%= link_to t(:back), maintain_transfers_path, :class => 'btn'%>
+<%= link_to t(:back), stocker_transfers_path, :class => 'btn'%>
+<%= link_to t(:edit), edit_stocker_transfer_path(@transfer), :class => 'btn' if @transfer.status == 0 %>
+<%= link_to(t(:delete), stocker_transfer_path(@transfer), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  if @transfer.status == 0  %>
 
 <%= render 'transfer_details' %>
 
+<%= link_to t(:add_more), new_stocker_transfer_transfer_detail_path(@transfer), :class => 'btn'  if @transfer.status == 0 %>
+<%= link_to t(:confirm_to_transfer_out), transfer_stocker_transfer_path(@transfer), :class => 'btn'  if @transfer.status == 0 %>

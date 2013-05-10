@@ -3,6 +3,10 @@
 <%= render 'user' %>
 <%end%>
 
+<% if current_user.has_role? :stocker %>
+  <%= render 'stocker' %>
+<%end%>
+
 <% if current_user.has_role? :manager %>
   <%= render 'manager' %>
 <%end%>

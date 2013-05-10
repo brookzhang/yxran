@@ -1,7 +1,8 @@
-<%= simple_form_for [:maintain,@order], :html => {:class => 'form-horizontal' } do |f| %>
+<%= simple_form_for [:stocker,@order], :html => {:class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors @order %>
-  <%= f.input :store_id, :label => t(:store), :collection => @stores, :prompt => t(:choose_warehouse), :required => true, :autofocus => true %> 
+  <%= f.input :store_id, :label => t(:store), :collection => @stores, :prompt => t(:choose_store), :required => true, :autofocus => true %>
+  
   <%= f.input :remark, :label => t(:remark) %>
   <div class="control-group">
     <div class="controls">
@@ -9,5 +10,6 @@
       <%= link_to t(:back), :back, :class => 'btn' %>
     </div>
   </div>
+  
 <% end %>
 

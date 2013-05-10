@@ -1,4 +1,4 @@
-class Maintain::OrderDetailsController < Maintain::ApplicationController
+class Stocker::OrderDetailsController < Stocker::ApplicationController
   def new
     @order = Order.find(params[:order_id])
     @products = Product.all
@@ -31,7 +31,7 @@ class Maintain::OrderDetailsController < Maintain::ApplicationController
     @order = Order.find(params[:order_id])
     @order_detail = OrderDetail.find(params[:id])
     if @order_detail.destroy
-      redirect_to [:maintain, @order], :notice => t(:deleted_ok)
+      redirect_to [:stocker, @order], :notice => t(:deleted_ok)
     else
       redirect_to :back, :alert => t(:unable_to_delete)
     end

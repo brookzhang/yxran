@@ -12,9 +12,9 @@
   <tbody>
   <% @transfers.each do |transfer| %>
     <tr>
-        <td><%= link_to '#' + transfer.id.to_s, [:maintain, transfer] %></td>
-        <td><%= link_to transfer.from_store.name, maintain_store_path(transfer.from_store) %></td>
-        <td><%= link_to transfer.to_store.name, maintain_store_path(transfer.to_store) %></td>     
+        <td><%= link_to '#' + transfer.id.to_s, [:stocker, transfer] %></td>
+        <td><%= transfer.from_store.name %></td>
+        <td><%= transfer.to_store.name %></td>     
         <td><%= l(transfer.status, 'transfer_status') %></td>           
         <td><%= transfer.created_at.to_date %></td>                      
     </tr>
@@ -26,7 +26,8 @@
   </tr>
   <tr>
     <td colspan="5">
-	  <%= link_to t(:back), maintain_dashboard_path, :class => 'btn'%>
+      <%= link_to t(:create), new_stocker_transfer_path, :class => 'btn' %>
+	  <%= link_to t(:back), root_path, :class => 'btn'%>
     </td>
   </tr>
   </tbody>

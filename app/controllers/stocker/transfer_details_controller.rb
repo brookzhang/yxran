@@ -1,4 +1,4 @@
-class Maintain::TransferDetailsController < Maintain::ApplicationController
+class Stocker::TransferDetailsController < Stocker::ApplicationController
 
 
   def new
@@ -33,7 +33,7 @@ class Maintain::TransferDetailsController < Maintain::ApplicationController
     @transfer = Transfer.find(params[:transfer_id])
     @transfer_detail = TransferDetail.find(params[:id])
     if @transfer_detail.destroy
-      redirect_to [:maintain, @transfer], :notice => t(:deleted_ok)
+      redirect_to [:stocker, @transfer], :notice => t(:deleted_ok)
     else
       redirect_to :back, :alert => t(:unable_to_delete)
     end
