@@ -17,7 +17,7 @@
           
           <%= t.product.measurement %>
         </td>
-        <td><%= link_to(t(:delete), stocker_transfer_transfer_detail_path(@transfer,t), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>     </td>
+        <td><%= link_to(t(:delete), stocker_transfer_transfer_detail_path(@transfer,t), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  if @transfer.status == 0 %>     </td>
                
     </tr>
   <% end %>

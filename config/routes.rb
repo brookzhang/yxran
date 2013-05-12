@@ -82,7 +82,7 @@ Yxran::Application.routes.draw do
     resources :orders do
       member do
         get :confirm
-        get :clear
+        get :cancel
       end
       resources :order_details
       resources :order_imports

@@ -1,5 +1,8 @@
 class Stocker::OrdersController < Stocker::ApplicationController
   
+  before_filter :get_order, :only => [:show, :edit, :update, :cancel] 
+  before_filter :require_owner, :only => [:edit, :update, :cancel]
+  
   def index
     @orders = Order.paginate(:page => params[:page]).order("id desc")
   end
@@ -61,13 +64,6 @@ class Stocker::OrdersController < Stocker::ApplicationController
   end
   
   
-  def clear
-    @order = Order.find(params[:id])
-    ActiveRecord::Base.connection.execute(" delete from order_details where order_id = #{@order.id}")
-    redirect_to [:stocker, @order]
-  end
-  
-  
   
   
   def confirm
@@ -80,5 +76,22 @@ class Stocker::OrdersController < Stocker::ApplicationController
     
   end
   
+  
+  
+  def cancel
+    @order = Order.find(params[:id])
+    if @order.cancel
+      redirect_to stocker_orders_path, :notice => t(:order_canceled_ok)
+    else
+      redirect_to :back, :alert => t(@sale.check_message)
+    end
+  end
+  
+  
+  
+  protected
+  def get_order
+    @order = Order.find(params[:id])
+  end
   
 end

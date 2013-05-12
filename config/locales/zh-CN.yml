@@ -28,6 +28,16 @@ zh-CN:
           attributes:
             quantity:
               greater_than: '数量必须大于0.'
+        product:
+          attributes:
+            category_id:
+              blank: '分类不能为空'
+            name:
+              blank: '商品名称不能为空'
+            measurement:
+              blank: '计量单位不能为空'
+            unit_price:
+              blank: '单价不能为空'
   
   # site info.
   #----------------------------------------------------------------------------
@@ -69,6 +79,7 @@ zh-CN:
   import: '导入'
   you_have_no_access_with_this: '你没有这个权限.'
   operator: '操作人'
+  are_you_sure_to_cancel: '真的要撤销吗?'
   
   
   
@@ -179,7 +190,8 @@ zh-CN:
   create_order: '新增入库'
   choose_warehouse: '选择仓库'
   quantity_to_order: '入库数量'
-  view_order: '查看订单'
+  order_to_store: '入库店铺'
+  view_order: '查看入库单'
   confirm_to_order: '确认入库'
   import_excel: '导入excel'
   clear_details: '清空'
@@ -192,6 +204,7 @@ zh-CN:
   add_on_hand: '手动添加'
   add_to_order: '入库'
   add_new_product: '新品入库'
+  add_to_order_ok: '已添加到入库单。'
   
   # transfer.
   #----------------------------------------------------------------------------
@@ -245,7 +258,7 @@ zh-CN:
   all_used_scores: '已用总积分'
   to_be_discount: '算折扣'
   to_be_score: '存积分'
-  create_sale_sheet: '生成销售单'
+  create_sale_shehet: '生成销售单'
   view_carts: '查看货单'
   
   
@@ -338,6 +351,7 @@ zh-CN:
   category: '分类'
   category_name: '分类名称'
   parent_category: '父类'
+  super_category: '大类'
   root_category: '全部'
   s_children: '的子分类'
   create_product: '新增商品'

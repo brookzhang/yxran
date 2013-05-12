@@ -7,12 +7,14 @@ class Product < ActiveRecord::Base
   belongs_to :category
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :description, :category_id, :measurement, :unit_price, :status
+  attr_accessible :name, :description, :category_id, :measurement, :unit_price, :super_category_id
   
   attr_accessor :category_name, :super_category_id
   
-  validates_presence_of :name, :measurement
+  validates_presence_of :name, :measurement, :category_id, :unit_price
   validates_uniqueness_of :name, :case_sensitive => false
+  validates_numericality_of :unit_price, :greater_than => 0
+  
   
   scope :by_name, lambda { |name| where("name like ? ", '%'+name+'%') unless name.nil? || name == ''}
   scope :by_category_name, lambda { |name| where("category_id in (select id from categories where name = ? )", name) unless name.nil? || name == '' }

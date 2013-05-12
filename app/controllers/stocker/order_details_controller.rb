@@ -10,7 +10,7 @@ class Stocker::OrderDetailsController < Stocker::ApplicationController
     @order_detail = OrderDetail.new(params[:order_detail])
     @order_detail.order_id = @order.id
     if @order_detail.save
-      redirect_to :back, :notice => t(:add_ok)
+      redirect_to :back, :notice => t(:add_to_order_ok)
     else
       redirect_to :back, :alert => t(:add_failed) + @order_detail.errors.first.to_s
     end

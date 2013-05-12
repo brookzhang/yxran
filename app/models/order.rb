@@ -18,8 +18,8 @@ class Order < ActiveRecord::Base
         self.status = 1
         self.save
         
-        @order_detail = OrderDetail.where(:order_id => self.id )
-        @order_detail.each do |d|
+        @order_details = OrderDetail.where(:order_id => self.id )
+        @order_details.each do |d|
           @stock = Stock.fetch(self.store_id, d.product_id)
           @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
           @stock.quantity += d.quantity 
@@ -30,48 +30,77 @@ class Order < ActiveRecord::Base
         end
         
         true
-      rescue
+      rescue => err
+        logger.error "****************************"  
+        logger.error "#{err.message}"  
+        #logger.error "#{err.backtrace.join('\n')}"  
+        logger.error "****************************"  
+        #logger.debug "======= error output: " + err.to_s 
+        self.check_message = 'unable_to_confirm'
         false
       end
-      
     end
   end
   
   
-  def order_add()
-    update_stock(self.quantity, 'o')
-  end
   
   
-  
-  def order_edit(new_quantity)
-    change_quantity = new_quantity - self.quantity
-    self.quantity = new_quantity
+  #*************************
+  # for owner, could cancel order
+  #*************************
+  def cancel
+    if !is_ok_to_cancel?
+      return false
+    end
     
-    update_stock(change_quantity, 'oe')
-  end
-  
-  def update_stock(change_quantity,adjust_type)
     ActiveRecord::Base.transaction do
       begin
+        self.status = 9
         self.save
-        @stock = Stock.where(" store_id = ? and product_id = ? ", self.store_id, self.product_id).first
-        if @stock.nil?
-          @stock = Stock.new
-          @stock.store_id = self.store_id
-          @stock.product_id = self.product_id
+        
+        @order_details = OrderDetail.where(:order_id => self.id )
+        @order_details.each do |d|
+          @stock = Stock.fetch(self.store_id, d.product_id)
+          @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
+          @stock.quantity -= d.quantity 
+          @stock.adjust_type = 'O'
+          @stock.reference_id = d.id
+          @stock.change_qty = d.quantity * (-1)
+          @stock.save!
         end
         
-        @history = History.new(:adjust_type => adjust_type, :reference_id => self.id, :remark => self.remark)
-        @stock.record_update(change_quantity, @history)
         true
-      rescue
+      rescue => err
+        logger.error "****************************"  
+        logger.error "#{err.message}"  
+        #logger.error "#{err.backtrace.join('\n')}"  
+        logger.error "****************************"  
+        #logger.debug "======= error output: " + err.to_s 
+        self.check_message = 'unable_to_cancel'
         false
       end
       
     end
+  end
+  
+  
+  
+  def is_owned_by?(agent)
+    self.user == agent
+  end
+  
+  
+  private
+  def is_ok_to_cancel?
+    self.check_message = 'pass'
+    @order_details = OrderDetail.where(:order_id => self.id )
+    @order_details.each do |d|
+      if d.quantity > Stock.get_quantity(self.store_id, d.product_id) 
+        self.check_message = 'not_enough_balance_to_cancel' if self.check_message == 'pass' 
+      end
+    end
     
-      
+    self.check_message == 'pass'  
   end
   
 end
