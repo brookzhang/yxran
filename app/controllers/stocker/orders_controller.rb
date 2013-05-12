@@ -69,6 +69,7 @@ class Stocker::OrdersController < Stocker::ApplicationController
   
   
   
+  
   def confirm
     @order = Order.find(params[:id])
     if @order.order_confirm

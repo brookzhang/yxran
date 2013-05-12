@@ -24,6 +24,10 @@ zh-CN:
               blank: '会员名称不能为空.'
             phone:
               blank: '会员电话不能为空。'
+        order_detail:
+          attributes:
+            quantity:
+              greater_than: '数量必须大于0.'
   
   # site info.
   #----------------------------------------------------------------------------
@@ -170,21 +174,24 @@ zh-CN:
   
   # order.
   #----------------------------------------------------------------------------
-  order: '订单'
-  order_id: '订单号'
-  create_order: '新增订单'
+  order: '入库'
+  order_id: '入库单号'
+  create_order: '新增入库'
   choose_warehouse: '选择仓库'
-  quantity_to_order: '订购数量'
+  quantity_to_order: '入库数量'
   view_order: '查看订单'
-  confirm_to_order: '确认采购单'
+  confirm_to_order: '确认入库'
   import_excel: '导入excel'
-  clear_imported: '清空内容'
+  clear_details: '清空'
   choose_a_file: '选择导入文件'
   content_is_nil: '请填入所有内容'
-  import_order_successfully: '导入订单成功。'
+  import_order_successfully: '导入入库单成功。'
   import_failed: '导入失败'
   prohibited_from_completing: '导致无法导入成功'
-  order_confirmed_ok: '订单确认成功。'
+  order_confirmed_ok: '入库确认成功。'
+  add_on_hand: '手动添加'
+  add_to_order: '入库'
+  add_new_product: '新品入库'
   
   # transfer.
   #----------------------------------------------------------------------------
@@ -228,6 +235,7 @@ zh-CN:
   member_selected_ok: '已选好了会员'
   selected_member: '已选会员'
   add_ok: '添加成功'
+  add_failed: '添加失败'
   add_product: '添加商品'
   score: '积分'
   scores: '分'
@@ -330,7 +338,7 @@ zh-CN:
   category: '分类'
   category_name: '分类名称'
   parent_category: '父类'
-  root_category: '总分类'
+  root_category: '全部'
   s_children: '的子分类'
   create_product: '新增商品'
   select_category_first: '先选好分类'
@@ -340,6 +348,8 @@ zh-CN:
   create_sub_category: '新增子分类'
   category_deleted: '分类已删除'
   can_not_delete_category: '不能删除此分类'
+  choose_super_category: '选择大分类'
+  choose_category: '选择分类'
   
   # product.
   #----------------------------------------------------------------------------

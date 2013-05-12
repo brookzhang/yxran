@@ -13,6 +13,8 @@ class OrderDetail < ActiveRecord::Base
   validates_presence_of  :product_id , :quantity 
   #validates_uniqueness_of :name, :case_sensitive => false
   
+  validates_numericality_of :quantity, :greater_than => 0
+  
    
   
 end

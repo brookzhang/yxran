@@ -7,22 +7,14 @@ class Stocker::OrderDetailsController < Stocker::ApplicationController
 
   def create
     @order = Order.find(params[:order_id])
-    params[:product_id].keys.each do |p|
-      if params[:product_id][p].to_i > 0
-        #need to check errors
-        @order_detail = OrderDetail.where(:order_id => @order.id, :product_id => p).first
-        if @order_detail.nil?
-          @order_detail = OrderDetail.new(:order_id => @order.id,
-                                                :product_id => p,
-                                                :quantity => params[:product_id][p])
-        else
-          @order_detail.quantity += params[:product_id][p].to_i
-        end
-        @order_detail.save!  
-      end
+    @order_detail = OrderDetail.new(params[:order_detail])
+    @order_detail.order_id = @order.id
+    if @order_detail.save
+      redirect_to :back, :notice => t(:add_ok)
+    else
+      redirect_to :back, :alert => t(:add_failed) + @order_detail.errors.first.to_s
     end
     
-    redirect_to :back, :notice => t(:add_ok)
     
   end
 

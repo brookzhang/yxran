@@ -1,0 +1,28 @@
+
+
+  <div class="input-append">
+  <a class="btn btn-primary " href="<%=stocker_order_products_path(@order, :category_id => 0)%>" >
+    <%=t(:root_category) %> <i class="icon-chevron-right  icon-white"></i>
+  </a>
+      
+  <% if !@category.nil? && @category.parent_id != 0 %>
+    <a class="btn btn-info " href="<%=stocker_order_products_path(@order, :category_id => @category.parent)%>" >
+      <%=@category.parent.name %> <i class="icon-chevron-right  icon-white"></i>
+    </a>
+  <%end%>
+  
+  <% if !@category.nil? %>
+    <a class="btn btn-info " href="<%=stocker_order_products_path(@order, :category_id => @category)%>" >
+      <%=@category.name %> <i class="icon-chevron-right  icon-white"></i>
+    </a>
+  <%end%>
+  </div>
+
+
+  <div>
+
+  <%@categories.each do |category|%>
+      <%=link_to(category.name, stocker_order_products_path(@order, :category_id => category), :class => 'btn') %>
+  <%end%>
+
+</div>

@@ -1,0 +1,34 @@
+<script>
+$(document).ready(function() {
+$('#product_super_category_id').change(function() {
+  $.ajax({
+    url: "<%= update_sub_categories_stocker_order_products_path(@order) %>",
+    data: {
+      parent_id : $('#product_super_category_id').val()
+    },
+    dataType: "script"
+  });
+});
+
+});
+</script>
+
+<%= simple_form_for [:stocker, @order,@product], :html => {:class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @product %>
+  <%= f.input :super_category_id, :label => t(:root_category), collection: @super_categories, :prompt => t(:choose_super_category) %>
+  
+  <%= f.input :category_id, :label => t(:category), collection: @categories  %>
+  
+  <%= f.input :name, :label => t(:product_name), :autofocus => true %> 
+  <%= f.input :description, :label => t(:description), :required => true %>
+  <%= f.input :measurement, :label => t(:measurement), :required => true %>
+  <%= f.input :unit_price, :label => t(:unit_price) + ' /' + t(:currency), :required => true %>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, t(:submit), :class => 'btn' %>
+      <%= link_to t(:back), :back, :class => 'btn' %>
+    </div>
+  </div>
+<% end %>
+

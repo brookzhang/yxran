@@ -1,0 +1,30 @@
+<div class="span8">
+  <%= render 'category' %>
+  <% if @products.count > 0 %>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th><%= t(:product_name) %></th>
+        <th><%= t(:unit_price) %></th>
+        <th></th>   
+      </tr>
+    </thead>   
+    <tbody>
+    <% @products.each do |product| %>
+	  <%= render product %>
+    <% end %>
+    </tbody>
+	<tr>
+	  <td colspan="3">
+			 <%= will_paginate @products %>
+	  </td>
+	</tr>
+	<tr>
+	  <td colspan="3">
+			 <%= link_to t(:add_new_product), new_stocker_order_product_path(@order), :class => 'btn' %>
+			 <%= link_to t(:back), stocker_order_path(@order), :class => 'btn' %>
+	  </td>
+	</tr>
+  </table>
+  <%end%>
+</div> 

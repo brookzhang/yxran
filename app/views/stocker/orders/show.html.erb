@@ -1,13 +1,17 @@
 
-<p><%= t(:store) %>: <%= @order.store.name %></p>
-<p><%= t(:status) %>: <%= l(@order.status,'order_status') %></p>
+<p><%= t(:store) %>: <%= @order.store.name %>
+  <%= t(:status) %>: <%= l(@order.status,'order_status') %></p>
 <p><%= t(:remark) %>: <%= @order.remark %></p>
 <%= link_to t(:back), stocker_orders_path, :class => 'btn'%>
 <%= link_to t(:edit), edit_stocker_order_path(@order), :class => 'btn' if @order.status == 0 %>
 <%= link_to(t(:delete), stocker_order_path(@order), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  if @order.status == 0  %>
 
 <%= render 'order_details' %>
-
+<p>
+<%= link_to t(:add_on_hand), stocker_order_products_path(@order), :class => 'btn'  if @order.status == 0 %>
 <%= link_to t(:import_excel), new_stocker_order_order_import_path(@order), :class => 'btn'  if @order.status == 0 %>
-<%= link_to t(:clear_imported), clear_stocker_order_path(@order), :class => 'btn'  if @order.status == 0 %>
+<%#= link_to t(:clear_details), clear_stocker_order_path(@order), :class => 'btn'  if @order.status == 0 %>
+</p>
+<p>
 <%= link_to t(:confirm_to_order), confirm_stocker_order_path(@order), :class => 'btn btn-warning'  if @order.status == 0 %>
+</p>

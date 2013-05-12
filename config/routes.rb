@@ -86,7 +86,14 @@ Yxran::Application.routes.draw do
       end
       resources :order_details
       resources :order_imports
+      resources :products do
+        collection do
+          get :update_sub_categories
+          
+        end
+      end
     end
+    
     
     resources :transfers do
       member do

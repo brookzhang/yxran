@@ -9,13 +9,16 @@ class Product < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :description, :category_id, :measurement, :unit_price, :status
   
-  attr_accessor :category_name
+  attr_accessor :category_name, :super_category_id
   
   validates_presence_of :name, :measurement
   validates_uniqueness_of :name, :case_sensitive => false
   
   scope :by_name, lambda { |name| where("name like ? ", '%'+name+'%') unless name.nil? || name == ''}
   scope :by_category_name, lambda { |name| where("category_id in (select id from categories where name = ? )", name) unless name.nil? || name == '' }
+  
+  scope :in_category, lambda { |category_id| where(:category_id => Category.sub_id_array(category_id) << category_id ) }
+  
   
   #scope :for_sale, joins(:stocks).where(" products.category_id in ? and stocks.quantity > 0 ", Category.sub_id_array(category_id) << category_id)
   #scope :for_sale, where(:products => Category.sub_id_array(category_id) << category_id   )
