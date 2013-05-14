@@ -12,8 +12,8 @@
   <thead>
     <tr>
         <th><%= t(:id) %></th>
-        <th><%= t(:category) %></th>
         <th><%= t(:amount) %></th>    
+        <th><%= t(:remark) %></th>   
         <th><%= t(:status) %></th>                                
     </tr>
   </thead>   
@@ -21,8 +21,8 @@
   <% @expenses.each do |e| %>
     <tr>
         <td><%= link_to '#' + e.id.to_s, e %></td>
-        <td><%= l(e.category,"expense_category")  %></td>
-        <td><%= e.amount %></td>             
+        <td><%= e.amount %></td>                                               
+        <td><%= e.remark %></td>
         <td><%= l(e.status,"expense_status")  %></td>                        
     </tr>
   <% end %>

@@ -40,6 +40,7 @@ gem "quiet_assets", ">= 1.0.1", :group => :development
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
 gem 'roo'
+gem 'uuidtools'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

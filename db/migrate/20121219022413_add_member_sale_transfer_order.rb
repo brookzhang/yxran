@@ -9,6 +9,7 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
       t.float :score, :default => 0  #buy something ,add score . need a score using history
       t.float :all_score , :default => 0
       t.references :user  #creator
+      t.string :uuid 
       
       t.timestamps
     end
@@ -16,14 +17,14 @@ class AddMemberSaleTransferOrder < ActiveRecord::Migration
     create_table(:sales) do |t|
       t.references :store
       t.references :user
-      t.integer :member_id  #category=M , or is nil
-      t.string :category  #sale type M-member buy, N-normal sale, C-cost sale
+      t.integer :member_id  
+      t.string :category  
       t.float :amount       #standard amount 
       t.float :actual_amount       #actual amount , include used_score
       t.float :score, :default => 0        
       t.float :used_score, :default => 0
       t.string :remark
-      t.integer :status, :default => 1 # 0-cancel
+      t.integer :status, :default => 1 
       
       t.timestamps
     end

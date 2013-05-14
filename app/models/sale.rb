@@ -10,6 +10,9 @@ class Sale < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :store_id, :user_id, :member_id , :category, :amount, :actual_amount, :score,:used_score, :remark, :status
+  #status : 1-recorded 9-cancel
+  #category : sale type M-member buy, R-retail sale, C-cost sale
+  
   
   attr_accessor :check_message
 

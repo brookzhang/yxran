@@ -1,3 +1,4 @@
+
 class User < ActiveRecord::Base
   rolify
   # Include default devise modules. Others available are:
@@ -20,8 +21,8 @@ class User < ActiveRecord::Base
   has_many :balances
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :role_ids, :store_id, :as => :admin
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :account
+  attr_accessible :role_ids, :as => :admin
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :account, :store_id
   # attr_accessible :title, :body
   
   attr_accessor :login 

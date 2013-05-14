@@ -1,7 +1,9 @@
 class Member < ActiveRecord::Base
+  set_primary_key "uuid"
+  
+  include UUIDHelper
   has_many :sales
   belongs_to :user
-  
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :phone, :address, :remark, :level, :score, :user_id

@@ -25,8 +25,60 @@ class Ability
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
     user ||= User.new # guest user (not logged in)
+    
+    
+    #
+    # admin
+    #
     if user.has_role? :admin
-      can :manage, :all
+      #can :manage, :all
     end
+    
+    
+    
+    #
+    # manager
+    #
+    if user.has_role? :manager
+      
+    end
+    
+    
+    
+    
+    #
+    # user
+    #
+    if user.has_role? :user
+      can :read, [Sale, Expense, Handover, User]
+      can :manage, User, :id => user.id
+      
+      if user.store_id
+        # on duty  
+        can :update, Handover, :status => 0, :user_id => user.id
+        can :manage, Sale, :status => 1, :user_id => user.id, :store_id => user.store_id
+        can :manage, Expense, :status => 1, :user_id => user.id, :store_id => user.store_id
+      else
+        can :create, Handover
+      end
+      
+      
+      
+    end
+    
+    
+    #
+    # stocker
+    #
+    if user.has_role? :stocker
+      
+      
+    end
+    
+    
   end
+  
+  
+  
+  
 end

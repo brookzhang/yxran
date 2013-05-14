@@ -3,16 +3,16 @@
   <thead>
     <tr>
         <th><%= t(:store) %></th>
-        <th><%= t(:category) %></th>
-        <th><%= t(:amount) %></th>                                  
+        <th><%= t(:amount) %></th>  
+        <th><%= t(:remark) %></th>                                
     </tr>
   </thead>   
   <tbody>
   <% @expenses.each do |e| %>
     <tr>
         <td><%= e.store.name %></td>
-        <td><%= l(e.category,"expense_category")  %></td>
         <td><%= e.amount %></td>                                    
+        <td><%= e.remark %></td>
     </tr>
   <% end %>
     <tr>

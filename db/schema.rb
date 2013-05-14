@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
     t.float    "score",      :default => 0.0
     t.float    "all_score",  :default => 0.0
     t.integer  "user_id"
+    t.string   "uuid"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
   end

@@ -1,7 +1,6 @@
 class MembersController < ApplicationController
   before_filter :require_user
   before_filter :get_member, :only => [:show] 
-  before_filter :require_owner, :only => [:show]
   
   def index
     @member = Member.new
@@ -20,7 +19,7 @@ class MembersController < ApplicationController
   end
 
   def show
-    @member = Member.find(params[:id])
+    @member = Member.find(params[:uuid])
   end
   
   def new
@@ -54,7 +53,7 @@ class MembersController < ApplicationController
   
   protected
   def get_member
-    @member = Member.find(params[:id])
+    @member = Member.find(params[:uuid])
   end
   
   
