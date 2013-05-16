@@ -192,33 +192,33 @@ if ENV["RAILS_ENV"] != 'production'
   
   puts 'Adding members'
   Member.create([
-    {:name => '
+    {:uuid => UUIDTools::UUID.random_create().to_s, :name => '
   张观博', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
-    {:name => '
+    {:uuid => UUIDTools::UUID.random_create().to_s, :name => '
   张欣竹', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
-    {:name => '
+    {:uuid => UUIDTools::UUID.random_create().to_s, :name => '
   张欣阳', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
-    {:name => '
+    {:uuid => UUIDTools::UUID.random_create().to_s, :name => '
   张晨菲', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
-    {:name => '
+    {:uuid => UUIDTools::UUID.random_create().to_s, :name => '
   张涵韵', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
-    {:name => '
+    {:uuid => UUIDTools::UUID.random_create().to_s, :name => '
   张晨曦', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
-    {:name => '
+    {:uuid => UUIDTools::UUID.random_create().to_s, :name => '
   张晓朋', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
-    {:name => '
+    {:uuid => UUIDTools::UUID.random_create().to_s, :name => '
   张子辰', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
-    {:name => '
+    {:uuid => UUIDTools::UUID.random_create().to_s, :name => '
   张展旭', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
-    {:name => '
+    {:uuid => UUIDTools::UUID.random_create().to_s, :name => '
   张怡萍', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4},
-    {:name => '
+    {:uuid => UUIDTools::UUID.random_create().to_s, :name => '
   张浩然', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 3},
-    {:name => '
+    {:uuid => UUIDTools::UUID.random_create().to_s, :name => '
   张继欣', :phone => '13312345678', :address => 'XX市XX路XX号', :remark => '测试会员', :user_id => 4}
   ])  
   
-  
+  puts 'The End'
 end
 
 

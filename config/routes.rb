@@ -11,6 +11,8 @@ Yxran::Application.routes.draw do
   end
   
   resources :members
+  match '/viewmember' => 'members#view'
+ 
   
   resources :sales do
     collection do

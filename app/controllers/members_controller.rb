@@ -1,6 +1,7 @@
 class MembersController < ApplicationController
   before_filter :require_user
-  before_filter :get_member, :only => [:show] 
+  #before_filter :get_member, :only => [:show] 
+  #before_filter :require_owner, :only => [:show, :edit, :update, :cancel]
   
   def index
     @member = Member.new
@@ -13,14 +14,19 @@ class MembersController < ApplicationController
     if (params[:name].nil? || params[:name].empty?) && (params[:phone].nil? || params[:phone].empty?)
       @members = nil
     else
-      @members = Member.by_name(params[:name]).by_phone(params[:phone]).order('id DESC').limit(5)
+      @members = Member.by_name(params[:name]).by_phone(params[:phone]).order('id DESC')#.limit(5)
     end
     
   end
-
-  def show
-    @member = Member.find(params[:uuid])
+  
+  def view
+    @member = Member.find_by_uuid(params[:uuid])
+    
   end
+  
+  #def show
+  #  @member = Member.find(params[:id])
+  #end
   
   def new
     @member = Member.new
@@ -33,10 +39,11 @@ class MembersController < ApplicationController
     @member.level = 0
     @member.score = 0
     @member.user_id = current_user.id
+    @member.uuid = UUIDTools::UUID.random_create().to_s
     if @member.save
       redirect_to  @member , :notice => t(:created_ok)
     else
-      redirect_to :back, :alert => t(:unable_to_create)
+      render :new# :back, :alert => t(:unable_to_create)
     end
   end
 
@@ -53,7 +60,7 @@ class MembersController < ApplicationController
   
   protected
   def get_member
-    @member = Member.find(params[:uuid])
+    @member = Member.find(params[:id])
   end
   
   
