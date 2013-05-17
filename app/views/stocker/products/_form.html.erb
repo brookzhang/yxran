@@ -2,7 +2,7 @@
 $(document).ready(function() {
 $('#product_super_category_id').change(function() {
   $.ajax({
-    url: "<%= update_sub_categories_stocker_order_products_path(@order) %>",
+    url: "<%= refresh_sub_categories_path %>",
     data: {
       parent_id : $('#product_super_category_id').val()
     },

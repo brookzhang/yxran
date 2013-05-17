@@ -1,10 +1,27 @@
+<script>
+$(document).ready(function() {
+$('#product_super_category_id').change(function() {
+  $.ajax({
+    url: "<%= refresh_sub_categories_path %>",
+    data: {
+      parent_id : $('#product_super_category_id').val()
+    },
+    dataType: "script"
+  });
+});
+
+});
+</script>
+
 <%= simple_form_for [:maintain,@product], :html => {:class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors @product %>
-  <%= f.input :category, :label => t(:category), :input_html => {:value => @product.category.name, :disabled => true } %>
-  <%= f.input :category_id, :as => :hidden, :input_html => {:value => @product.category_id } %>
-  <%= f.input :name, :label => t(:product_name), :autofocus => true %> 
-  <%= f.input :description, :label => t(:description), :required => true %>
+  <%= f.input :super_category_id, :label => t(:super_category), collection: @super_categories, :prompt => t(:super_category) %>
+  
+  <%= f.input :category_id, :label => t(:category), collection: @categories, :prompt => t(:category) %>
+  
+  <%= f.input :name, :label => t(:product_name), :required => true, :autofocus => true %> 
+  <%= f.input :description, :label => t(:description) %>
   <%= f.input :measurement, :label => t(:measurement), :required => true %>
   <%= f.input :unit_price, :label => t(:unit_price) + ' /' + t(:currency), :required => true %>
   <div class="control-group">

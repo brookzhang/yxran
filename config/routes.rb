@@ -37,12 +37,21 @@ Yxran::Application.routes.draw do
   end
   resources :transfers
   
+  resources :categories do
+    collection do
+      get :refresh_sub
+      
+    end
+  end
+  
+  
   
   ### maintainer
   namespace :maintain do
     match '/dashboard',:to => 'dashboard#index'
     resources :categories
     resources :products
+    resources :product_imports
     resources :stores
     resources :users do
       member do
@@ -53,6 +62,7 @@ Yxran::Application.routes.draw do
     resources :discounts
     resources :sales
     resources :members
+    resources :member_imports
     resources :orders
     resources :transfers
     #match 'transfer/transfer', :to => 'transfer#transfer'
@@ -88,12 +98,7 @@ Yxran::Application.routes.draw do
       end
       resources :order_details
       resources :order_imports
-      resources :products do
-        collection do
-          get :update_sub_categories
-          
-        end
-      end
+      resources :products
     end
     
     

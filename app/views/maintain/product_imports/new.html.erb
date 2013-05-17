@@ -1,0 +1,21 @@
+<h3><%=t(:import_excel)%></h3>
+
+
+
+<%= form_for [:maintain, @product_import] do |f| %>
+  <% if @product_import.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@product_import.errors.count, "error") %> <%=t(:prohibited_from_completing)%> :</h4>
+      <ul>
+      <% @product_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.file_field :file, :class => 'btn' %>
+  </div>
+  <div class="buttons"><%= f.submit  t(:import) , :class => 'btn btn-warning'%></div>
+<% end %>

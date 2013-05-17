@@ -38,6 +38,26 @@ zh-CN:
               blank: '计量单位不能为空'
             unit_price:
               blank: '单价不能为空'
+              
+              
+  activemodel:
+    errors:
+      models:
+        product_import:
+          attributes:
+            base:
+              content_is_nil: '内容是空白的'
+              wrong_format: '格式错误'
+        order_import:
+          attributes:
+            base:
+              content_is_nil: '内容是空白的'
+              wrong_format: '格式错误'
+        member_import:
+          attributes:
+            base:
+              content_is_nil: '内容是空白的'
+              wrong_format: '格式错误'
   
   # site info.
   #----------------------------------------------------------------------------
@@ -171,7 +191,7 @@ zh-CN:
   creator: '创建人'
   dismiss: '取消'
   member_level: '会员等级'
-  
+  import_members_successfully: '会员导入成功'
   
   
   
@@ -372,6 +392,7 @@ zh-CN:
   measurement: '计量单位'
   unit_price: '单价'
   all_products: '所有商品'
+  import_products_successfully: '产品导入成功'
   
   
   # store.

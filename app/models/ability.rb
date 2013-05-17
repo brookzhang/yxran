@@ -50,17 +50,17 @@ class Ability
     # user
     #
     if user.has_role? :user
-      can :read, [Sale, Expense, Handover, User]
-      can :manage, User, :id => user.id
-      
-      if user.store_id
-        # on duty  
-        can :update, Handover, :status => 0, :user_id => user.id
-        can :manage, Sale, :status => 1, :user_id => user.id, :store_id => user.store_id
-        can :manage, Expense, :status => 1, :user_id => user.id, :store_id => user.store_id
-      else
-        can :create, Handover
-      end
+      #can :read, [Sale, Expense, Handover, User]
+      #can :manage, User, :id => user.id
+      #
+      #if user.store_id
+      #  # on duty  
+      #  can :update, Handover, :status => 0, :user_id => user.id
+      #  can :manage, Sale, :status => 1, :user_id => user.id, :store_id => user.store_id
+      #  can :manage, Expense, :status => 1, :user_id => user.id, :store_id => user.store_id
+      #else
+      #  can :create, Handover
+      #end
       
       
       

@@ -1,10 +1,6 @@
-<!--h3><%= t(:account_info) %></h3-->
 <p><%= t(:name) %>: <%= @product.name %></p>
 <p><%= t(:description) %>: <%= @product.description %></p>
-<p><%= t(:category) %>: <%= @product.category.name %>
-  <a data-toggle="modal" href="#category-options-<%= @product.id %>" class="btn btn-mini btn-warning" type="button"><%= t(:change_category) %></a>
-  <%= render :partial => 'category' %>
-</p>
+<p><%= t(:category) %>: <%= @product.category.name %></p>
 <p><%= t(:measurement) %>: <%= @product.measurement %></p>
 <p><%= t(:unit_price) %>: <%= @product.unit_price %></p>
 <p><%= t(:created_at) %>: <%= @product.created_at.to_date %></p>
@@ -12,10 +8,7 @@
 <%= link_to(t(:delete), maintain_product_path(@product), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
 <%= link_to t(:back), maintain_products_path, :class => 'btn'%>
 </p>
-<p>
-  <%= link_to(t(:create_order), new_maintain_order_path(:product_id => @product.id), :class => 'btn') %>
-  <%= link_to(t(:create_transfer), new_maintain_transfer_path(:product_id => @product.id), :class => 'btn') %>
-</p>
+
 
 
 <%= render :partial => 'maintain/stocks/list_stores' %>

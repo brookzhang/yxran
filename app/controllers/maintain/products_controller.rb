@@ -1,11 +1,15 @@
 class Maintain::ProductsController < Maintain::ApplicationController
   def index
-    #@category = params[:category_id].nil? ? nil : Category.find(params[:category_id])
-    #@products = products_list(@category)
-    @products = Product.by_name(params[:name]).by_category_name(params[:category_name]).includes(:category).paginate(:page => params[:page]).order("id desc")
-    @product = Product.new
-    @product.name = params[:name]
-    @product.category_name = params[:category_name]
+    
+    @product = Product.new(params[:product])
+    category_id = @product.category_id.nil? ? 0 : @product.category_id
+    category_id = category_id == 0 ? (@product.super_category_id.nil? ? 0 : @product.super_category_id) : category_id
+    
+    @products = Product.in_category(category_id).by_name(@product.name).paginate(:page => params[:page], :per_page => 5).order(" id desc ")
+    
+    @array_super = Category.where(:parent_id => 0).map{|c|[c.name,c.id]}.insert(0, t(:super_category))
+    @array_sub = @product.super_category_id.nil? && @product.super_category_id == 0 ? [] : Category.where(:parent_id => @product.super_category_id).map{|c|[c.name,c.id]}
+    @array_sub.insert(0, t(:category))
   end
   
   def show
@@ -15,12 +19,9 @@ class Maintain::ProductsController < Maintain::ApplicationController
   end
 
   def new
-    if params[:category_id].nil?
-      redirect_to maintain_categories_path, :notice => t(:select_category_first)
-    else
-      @product = Product.new
-      @product.category_id = params[:category_id]
-    end
+    @super_categories = Category.where(:parent_id => 0)
+    @categories = [].insert(0, t(:category))
+    @product = Product.new
   end
 
   def create
@@ -34,7 +35,12 @@ class Maintain::ProductsController < Maintain::ApplicationController
   end
 
   def edit
+    
     @product = Product.find(params[:id])
+    @product.super_category_id = @product.category.parent_id
+    
+    @super_categories = Category.where(:parent_id => 0)
+    @categories = Category.where(:parent_id => @product.super_category_id)
   end
 
   def update
@@ -50,5 +56,9 @@ class Maintain::ProductsController < Maintain::ApplicationController
   end
   
   
+  
+  def select_file
+    
+  end
   
 end
