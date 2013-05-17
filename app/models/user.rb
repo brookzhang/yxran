@@ -22,15 +22,17 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :as => :admin
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :account, :store_id
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :account, :store_id, :role
   # attr_accessible :title, :body
   
-  attr_accessor :login 
+  attr_accessor :login, :role
   
-  validates_presence_of :email, :account
+  
+  validates_presence_of :email, :account, :role
   #validates_uniqueness_of :name, :email, :case_sensitive => false
   validates_uniqueness_of :email, :account, :case_sensitive => false
   
+  after_create :set_role
   
   
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -47,6 +49,10 @@ class User < ActiveRecord::Base
     # or, if you can safely assume the agent is always a User, you can 
     # avoid the additional user query:
     # self.owner_id == agent.id
+  end
+  
+  def set_role
+    self.add_role self.role 
   end
   
 end

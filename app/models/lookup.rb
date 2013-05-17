@@ -14,4 +14,8 @@ class Lookup < ActiveRecord::Base
   def self.get_one_by_description(category,description)
     where(:category => category, :description => description).first
   end
+  
+  def self.list(category)
+    where(:category => category)
+  end
 end

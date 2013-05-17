@@ -63,6 +63,7 @@ Lookup.create([
   
   {:code => 'admin', :category =>'role', :description => '系统管理员'},
   {:code => 'manager', :category =>'role', :description => '主管'},
+  {:code => 'stocker', :category =>'role', :description => '库管'},
   {:code => 'user', :category =>'role', :description => '店员'},
   {:code => '0', :category =>'member', :description => '普通会员'},
   {:code => '1', :category =>'member', :description => '高级会员'},
@@ -112,19 +113,19 @@ Role.create([
   { :name => 'user' }
 ], :without_protection => true)
 
-puts 'creating users'
+puts 'creating users with roles'
 User.create([
-  {:account => 'yxrana', :name => '管理员', :email => 'admin@yxran.com', :password => '123456', :password_confirmation => '123456'},
-  {:account => 'yxranm', :name => '经理', :email => 'manager@yxran.com', :password => '123456', :password_confirmation => '123456'},
-  {:account => 'fengyang', :name => '老板', :email => 'fengyang@yxran.com', :password => '123456', :password_confirmation => '123456'},
-  {:account => 'ku01', :name => '库管员1', :email => 'stocker@yxran.com', :password => '123456', :password_confirmation => '123456'},
+  {:account => 'yxrana', :name => '管理员', :email => 'admin@yxran.com', :password => '123456', :password_confirmation => '123456', :role => 'admin'},
+  {:account => 'yxranm', :name => '经理', :email => 'manager@yxran.com', :password => '123456', :password_confirmation => '123456', :role => 'manager'},
+  {:account => 'fengyang', :name => '老板', :email => 'fengyang@yxran.com', :password => '123456', :password_confirmation => '123456', :role => 'manager'},
+  {:account => 'ku01', :name => '库管员1', :email => 'stocker@yxran.com', :password => '123456', :password_confirmation => '123456', :role => 'stocker'},
 ])
 
-puts 'Adding roles'
-User.find(1).add_role :admin
-User.find(2).add_role :manager
-User.find(3).add_role :manager
-User.find(4).add_role :stocker
+#puts 'Adding roles'
+#User.find(1).add_role :admin
+#User.find(2).add_role :manager
+#User.find(3).add_role :manager
+#User.find(4).add_role :stocker
 
 
 
@@ -180,15 +181,15 @@ if ENV["RAILS_ENV"] != 'production'
   ])
   
   
-  puts 'creating users'
+  puts 'creating users and roles'
   User.create([
-    {:account => 'dian01', :name => '店员甲', :email => 'a@yxran.com', :password => '123456', :password_confirmation => '123456'},
-    {:account => 'dian02', :name => '店员乙', :email => 'b@yxran.com', :password => '123456', :password_confirmation => '123456'}
+    {:account => 'dian01', :name => '店员甲', :email => 'a@yxran.com', :password => '123456', :password_confirmation => '123456', :role => 'user'},
+    {:account => 'dian02', :name => '店员乙', :email => 'b@yxran.com', :password => '123456', :password_confirmation => '123456', :role => 'user'}
   ])
   
-  puts 'Adding roles'
-  User.find(5).add_role :user
-  User.find(6).add_role :user
+  #puts 'Adding roles'
+  #User.find(5).add_role :user
+  #User.find(6).add_role :user
   
   puts 'Adding members'
   Member.create([

@@ -11,18 +11,17 @@ class Maintain::UsersController < Maintain::ApplicationController
   
   def new
     @user = User.new
+    @user.role = 'user'
+    @roles = Lookup.list("role").where(:code => [:user, :stocker]).map{|r| [r.description, r.code]}
   end
   
   def create
     @user = User.new(params[:user])
-    if @user.save!
-      if @user.add_role(:user)
-        redirect_to [:maintain,@user], :notice => t(:user_created)
-      else
-        redirect_to :back, :alert => t(:unable_to_add_role)
-      end
+    if @user.save
+      redirect_to [:maintain,@user], :notice => t(:user_created)
     else
-      redirect_to :back, :alert => t(:unable_to_create_user)
+      @roles = Lookup.list("role").where(:code => [:user, :stocker]).map{|r| [r.description, r.code]}
+      render :new
     end
   end
   

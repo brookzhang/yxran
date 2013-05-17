@@ -23,15 +23,20 @@ class MemberImport
     
     (2..details.last_row).map do |i|
       member = Member.find_by_name(details.cell(i,1)) 
-      if member.nil?
+      if member.nil? && details.cell(i,1).size > 0
         member = Member.new
         
         member.name = details.cell(i,1)
-        member.phone = details.cell(i,2)
+        if details.cell(i,2).is_a?(Integer)
+          member.phone = details.cell(i,2).to_i.to_s
+        end
+        
+        member.phone = details.cell(i,2).to_i.to_s
         member.address = details.cell(i,3)
         member.remark = details.cell(i,4)
         member.level = details.cell(i,5)
         member.score = details.cell(i,6)
+        member.all_score = member.score > 0 ? member.score : 0
         member.user_id = user_id
         member.uuid = UUIDTools::UUID.random_create().to_s
         
@@ -60,7 +65,23 @@ class MemberImport
         end
       end
         
+      if details.cell(i,1).nil? || details.cell(i,1).size == 0
+        errors.add(:base, "#{i}:A  wrong name.")
+      end
+        
+      if details.cell(i,2).nil? || details.cell(i,2).size == 0
+        errors.add(:base, "#{i}:B  wrong phone.")
+      end
       
+      
+      
+      if !details.cell(i,5).to_i.is_a?(Integer)
+        errors.add(:base, "#{i}:E  wrong level.")
+      end
+      if !details.cell(i,6).to_i.is_a?(Integer)
+        errors.add(:base, "#{i}:F  wrong score.")
+      end
+        
       member = Member.find_by_name(details.cell(i,1)) 
       if member.nil?
         member = Member.new
@@ -69,13 +90,8 @@ class MemberImport
           errors.add(:base, "#{i}:E  level not exists#{details.cell(i,5)}.")
         end
         
+        #errors.add(:base, "#{i}:E  level not exists#{details.cell(i,5)},uuid=#{UUIDTools::UUID.random_create().to_s}.")
         
-        if !details.cell(i,5).to_i.is_a?(Integer)
-          errors.add(:base, "#{i}:E  wrong level.")
-        end
-        if !details.cell(i,6).to_i.is_a?(Integer)
-          errors.add(:base, "#{i}:F  wrong score.")
-        end
         
       end 
       

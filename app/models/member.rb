@@ -7,10 +7,10 @@ class Member < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :phone, :address, :remark, :level, :score, :user_id, :uuid
-
+  
   
   validates_presence_of :name, :phone, :uuid
-  validates_uniqueness_of :name, :phone, :case_sensitive => false
+  validates_uniqueness_of :name, :scope => :phone, :case_sensitive => false
   #validates_uniqueness_of :uuid, :case_sensitive => false
   
   
