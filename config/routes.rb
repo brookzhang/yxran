@@ -35,7 +35,14 @@ Yxran::Application.routes.draw do
       get :cancel
     end
   end
-  resources :transfers
+  
+  resources :transfers do
+    member do
+      get :transfer
+      get :receive
+    end
+    resources :transfer_details
+  end
   
   resources :categories do
     collection do

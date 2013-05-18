@@ -98,9 +98,12 @@ class Transfer < ActiveRecord::Base
   
   
   def is_owned_by?(agent)
-    self.to_store.id == agent.store_id
-    # or, if you can safely assume the agent is always a User, you can 
-    # avoid the additional user query:
-    # self.owner_id == agent.id
+    self.transferer_id == agent.id
   end
+  
+  
+  def is_receiver?(user)
+    self.to_store_id == user.store_id
+  end
+  
 end

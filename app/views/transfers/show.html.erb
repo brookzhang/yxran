@@ -2,7 +2,7 @@
   [<%= l(@transfer.status,'transfer_status') %>]
 </p>
 <p><%= t(:transfer_remark) %>: <%= @transfer.transfer_remark %></p>
-<p><%= t(:receive_remark) %>: <%= @transfer.receive_remark %></p>
+<!--<p><%= t(:receive_remark) %>: <%= @transfer.receive_remark %></p>-->
 <p><%= t(:transferer) %>: <%= @transfer.transferer.name %>
   <%= t(:transfered_at) %>: <%= @transfer.transfered_at.to_date unless @transfer.transfered_at.nil? %>
 </p>
@@ -10,6 +10,11 @@
   <%= t(:received_at) %>: <%= @transfer.received_at.to_date unless @transfer.received_at.nil? %>
 </p>
 <%= link_to t(:back), transfers_path, :class => 'btn'%>
-<%= link_to t(:confirm_to_receive), edit_transfer_path(@transfer), :class => 'btn' if @transfer.status == 1 %>
+<%= link_to t(:confirm_to_receive), receive_transfer_path(@transfer), :class => 'btn' if @transfer.status == 1 && @transfer.is_receiver?(current_user) %>
+<%= link_to t(:edit), edit_transfer_path(@transfer), :class => 'btn' if @transfer.status == 0 %>
+<%= link_to(t(:delete), transfer_path(@transfer), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  if @transfer.status == 0  %>
 
 <%= render 'transfer_details' %>
+
+<%= link_to t(:add_more), new_transfer_transfer_detail_path(@transfer), :class => 'btn'  if @transfer.status == 0 %>
+<%= link_to t(:confirm_to_transfer_out), transfer_transfer_path(@transfer), :class => 'btn'  if @transfer.status == 0 %>
