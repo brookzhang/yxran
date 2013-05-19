@@ -63,6 +63,7 @@ Yxran::Application.routes.draw do
         get :sale_products_report
         get :sale_amount_by_store_report
         get :sale_amount_by_user_report
+        get :sale_discount_report
       end
     end
     

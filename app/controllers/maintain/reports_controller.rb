@@ -2,7 +2,8 @@ class Maintain::ReportsController < Maintain::ApplicationController
   before_filter :get_sale_search, :only => [:sale_details_report,
                                             :sale_products_report,
                                             :sale_amount_by_store_report,
-                                            :sale_amount_by_user_report
+                                            :sale_amount_by_user_report,
+                                            :sale_discount_report
                                             ]
   
   def index
@@ -18,7 +19,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
                         inner join users on sales.user_id = users.id ",
                        :conditions => @conditions,
                        :order => " sale_details.id desc "
-                       ) unless @conditions.size == 0
+                       ) 
   end
   
   
@@ -32,7 +33,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
                        :conditions => @conditions,
                        :group => " sale_details.product_id, products.measurement, products.name ",
                        :order => " quantity desc "
-                       ) unless @conditions.size == 0
+                       ) 
     
     
   end
@@ -46,7 +47,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
                        :conditions => @conditions,
                        :group => " stores.name ",
                        :order => " actual_amount desc "
-                       ) unless @conditions.size == 0
+                       ) 
     
   end
   
@@ -57,11 +58,24 @@ class Maintain::ReportsController < Maintain::ApplicationController
                        :conditions => @conditions,
                        :group => " users.name ",
                        :order => " actual_amount desc "
-                       ) unless @conditions.size == 0
+                       ) 
   end
   
   
   
+  def sale_discount_report
+    @sales = Sale.find(:all,
+                       :select => " sales.*,  stores.name as store_name, lookups.description as category_name, users.name as user_name,
+                       ((sales.actual_amount - sales.score) / (sales.amount - sales.used_score)) as discount,
+                       members.name as member_name, members.level as member_level ",
+                       :from => " sales inner join stores on sales.store_id = stores.id and sales.category in ('M','R') 
+                        inner join lookups on sales.category = lookups.code and lookups.category = 'sale_category'
+                        left join members on sales.member_id = members.id
+                        inner join users on sales.user_id = users.id ",
+                       :conditions => @conditions,
+                       :order => " discount asc "
+                       ) 
+  end
   
   
   

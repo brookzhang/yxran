@@ -196,13 +196,6 @@ zh-CN:
   
   
   
-  # discount.
-  #----------------------------------------------------------------------------
-  discount: '折扣'
-  discount_setting: '设定折扣'
-  create_discount: '新增折扣'
-  
-  
   # order.
   #----------------------------------------------------------------------------
   order: '入库'
@@ -275,6 +268,7 @@ zh-CN:
   scores: '分'
   used_score: '已用积分'
   use_score: '抵扣积分'
+  yield_score: '产生积分'
   sum_amount: '总额'
   all_used_scores: '已用总积分'
   to_be_discount: '算折扣'
@@ -468,6 +462,17 @@ zh-CN:
   
   
   
+  
+  # discount.
+  #----------------------------------------------------------------------------
+  discount: '折扣'
+  discount_setting: '设定折扣'
+  create_discount: '新增折扣'
+  
+  
+  
+  
+  
   # Reports.
   #----------------------------------------------------------------------------
   reports: '报表'
@@ -477,10 +482,12 @@ zh-CN:
   sale_products_report: '销售商品汇总报表'
   sale_amount_by_store_report: '销售业绩报表(店铺)'
   sale_amount_by_user_report: '销售业绩报表(店员)'
+  sale_discount_report: '销售折扣报表'
   expenses_reports: '支出报表'
   all_stores: '所有店铺'
   all_categories: '所有类型'
   sum_amount: '总金额'
+  set_amount: '定价金额'
   today: '今天'
   yesterday: '昨天'
   this_week: '本周'
