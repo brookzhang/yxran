@@ -484,6 +484,7 @@ zh-CN:
   sale_amount_by_user_report: '销售业绩报表(店员)'
   sale_discount_report: '销售折扣报表'
   expenses_reports: '支出报表'
+  stocks_reports: '库存报表'
   all_stores: '所有店铺'
   all_categories: '所有类型'
   sum_amount: '总金额'
