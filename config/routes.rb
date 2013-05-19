@@ -56,6 +56,16 @@ Yxran::Application.routes.draw do
   ### maintainer
   namespace :maintain do
     match '/dashboard',:to => 'dashboard#index'
+    resources :reports do
+      #match '/sale_details_report', :to => 'reports#sale_details_report'
+      collection do
+        get :sale_details_report
+        get :sale_products_report
+        get :sale_amount_by_store_report
+        get :sale_amount_by_user_report
+      end
+    end
+    
     resources :categories
     resources :products
     resources :product_imports
@@ -109,12 +119,6 @@ Yxran::Application.routes.draw do
     end
     
     
-    resources :transfers do
-      member do
-        get :transfer
-      end
-      resources :transfer_details
-    end
     
     resources :stocks do
       resources :histories

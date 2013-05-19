@@ -59,6 +59,7 @@ Lookup.create([
   
   {:code => '0', :category =>'order_status', :description => '准备中'},
   {:code => '1', :category =>'order_status', :description => '已入仓'},
+  {:code => '9', :category =>'order_status', :description => '已取消'},
   
   
   {:code => 'admin', :category =>'role', :description => '系统管理员'},

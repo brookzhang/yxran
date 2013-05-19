@@ -41,7 +41,7 @@ class MembersController < ApplicationController
     @member.user_id = current_user.id
     @member.uuid = UUIDTools::UUID.random_create().to_s
     if @member.save
-      redirect_to  @member , :notice => t(:created_ok)
+      redirect_to  viewmember_path(:uuid => @member.uuid) , :notice => t(:created_ok)
     else
       render :new# :back, :alert => t(:unable_to_create)
     end

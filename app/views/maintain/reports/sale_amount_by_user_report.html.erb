@@ -1,0 +1,25 @@
+<div class="span8">
+  
+	<form class="form-search" action="<%=sale_amount_by_user_report_maintain_reports_path%>" method="get" >
+		<%= render 'sale_search' %>
+	</form>
+	
+  <% if @sales.count > 0 %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th><%= t(:user_name) %></th>
+        <th><%= t(:sum_amount) %></th>
+      </tr>
+    </thead>   
+    <tbody>
+    <% @sales.each do |s| %>
+	  <tr>
+			<td><%= s.user_name %></td>   
+			<td><%= s.actual_amount %> <%=t(:currency)%></td>
+		</tr>
+		<% end %>
+    </tbody>
+  </table>
+  <%end%>
+</div> 

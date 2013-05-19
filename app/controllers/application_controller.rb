@@ -30,6 +30,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def require_manager
+    if !current_user.has_role?(:manager)
+      redirect_to root_path, :alert => t(:only_allow_stocker_in)
+    end
+  end
+  
   
   private
   def do_not_check_authorization?

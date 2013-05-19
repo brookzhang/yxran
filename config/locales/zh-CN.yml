@@ -175,7 +175,7 @@ zh-CN:
   member_has_not_enough_score: '会员积分不足以撤销此单。'
   not_enough_balance_to_cancel: '店内剩余金额不足以撤销此单。'
   sale_canceled_ok: '销售单已撤销成功。'
-  
+  create_sale_sheet: '生成销售单'
   
   
   # members.
@@ -225,6 +225,7 @@ zh-CN:
   add_to_order: '入库'
   add_new_product: '新品入库'
   add_to_order_ok: '已添加到入库单。'
+  order_canceled_ok: '入库单撤销成功.'
   
   # transfer.
   #----------------------------------------------------------------------------
@@ -464,6 +465,31 @@ zh-CN:
   adjust_by: '调整额'
   adjust_to: '调整到'
   balance_category: '调整类型'
+  
+  
+  
+  # Reports.
+  #----------------------------------------------------------------------------
+  reports: '报表'
+  
+  sales_reports: '销售报表'
+  sale_details_report: '销售明细报表'
+  sale_products_report: '销售商品汇总报表'
+  sale_amount_by_store_report: '销售业绩报表(店铺)'
+  sale_amount_by_user_report: '销售业绩报表(店员)'
+  expenses_reports: '支出报表'
+  all_stores: '所有店铺'
+  all_categories: '所有类型'
+  sum_amount: '总金额'
+  today: '今天'
+  yesterday: '昨天'
+  this_week: '本周'
+  last_week: '上周'
+  this_month: '本月'
+  last_month: '上月'
+  
+  
+  
   
   
   

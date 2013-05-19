@@ -11,9 +11,15 @@
       
     <% end %>
     <% if current_user.has_role?(:manager) %>
+      
+      <li><a href="<%=maintain_reports_path%>" >
+        <i class="icon-list-alt"></i><%=t(:reports) %>
+      </a></li>
+      
       <li><a href="<%=maintain_dashboard_path%>" >
         <i class="icon-th-large"></i><%=t(:maintain) %>
       </a></li>
+      
     <% end %>
     
     <% if current_user.has_role?(:admin) %>

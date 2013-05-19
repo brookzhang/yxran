@@ -83,7 +83,7 @@ class Stocker::OrdersController < Stocker::ApplicationController
     if @order.cancel
       redirect_to stocker_orders_path, :notice => t(:order_canceled_ok)
     else
-      redirect_to :back, :alert => t(@sale.check_message)
+      redirect_to :back, :alert => t(@order.check_message)
     end
   end
   

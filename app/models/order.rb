@@ -8,8 +8,11 @@ class Order < ActiveRecord::Base
   attr_accessible :store_id , :remark, :status, :user_id
   #status 0-prepare, 1-ordered, 9-canceled
   
+  attr_accessor :check_message
+  
   validates_presence_of :store_id 
   #validates_uniqueness_of :name, :case_sensitive => false
+  
   
   
   def order_confirm
