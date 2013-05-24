@@ -2,3 +2,21 @@
 tea store web app, record sales,customers,stocks,orders,transfers, show sale reports.
 under developing...
 
+
+git clone git@github.com:brookzhang/yxran.git
+
+cd yxran
+
+bundle install
+cp config/database.yml.sqlite3 database.yml 
+
+rake db:create
+rake db:migrate
+rake db:seed
+
+rails s
+
+test acc:
+dian01  123456
+ku01    123456
+yxranm  123456
