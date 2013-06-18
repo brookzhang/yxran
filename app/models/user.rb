@@ -25,10 +25,10 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :account, :store_id, :role
   # attr_accessible :title, :body
   
-  attr_accessor :login, :role
+  attr_accessor :login, :roles
   
   
-  validates_presence_of :email, :account#, :role
+  validates_presence_of :email, :account, :role
   #validates_uniqueness_of :name, :email, :case_sensitive => false
   validates_uniqueness_of :email, :account, :case_sensitive => false
   
@@ -57,10 +57,8 @@ class User < ActiveRecord::Base
   end
   
   def set_role
-    self.role.is_a?
-    self.add_role self.role
     self.role.each do |r|
-      self.add_role r
+      self.add_role(r) 
     end
   end
   
