@@ -1,7 +1,7 @@
 <div class="span12">
   
 	<form class="form-search" action="<%=sale_discount_report_maintain_reports_path%>" method="get" >
-		<%= render 'sale_search' %>
+		<%= render 'report_search', :seach_filters => @search_filters %>
 	</form>
 	
   <% if @sales.count > 0 %>

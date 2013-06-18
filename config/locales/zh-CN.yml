@@ -100,6 +100,7 @@ zh-CN:
   you_have_no_access_with_this: '你没有这个权限.'
   operator: '操作人'
   are_you_sure_to_cancel: '真的要撤销吗?'
+  all: '全部'
   
   
   
@@ -158,7 +159,7 @@ zh-CN:
   sales: '销售摘要'
   amount: '金额'
   buy_again: '再次购买'
-  sale_category: '类型'
+  #sale_category: '类型'
   sale_id: '单号'
   sale_amount: '销售总额'
   record_a_sale: '记一单'
@@ -325,7 +326,7 @@ zh-CN:
   maintain: '管理'
   users_maintain: '用户管理'
   categories_maintain: '商品分类'
-  products_maintain: '商品管理'
+  products_maintain: '品名更改'
   discounts_maintain: '折扣设定'
   stores_maintain: '店子管理'
   stocks_maintain: '库存管理'
@@ -418,8 +419,8 @@ zh-CN:
   
   # history.
   #----------------------------------------------------------------------------
-  adjust_type: '类型'
-  adjusted_by: '变化'
+  
+  adjusted_by: '变量'
   adjusted_to: '结果'
   adjusted_at: '日期'
   
@@ -445,6 +446,20 @@ zh-CN:
   remark: '备注'
   sequence: '排序'
   status: '状态'
+  event: '事件'
+  adjust_type: '变动'
+  sale_category: '销售类型'
+  sale_status: '销售状态'
+  handover_status: '交接班状态'
+  #expense_category: '支出类别'
+  expense_status: '支出状态'
+  #balance_category: '现金流'
+  user_status: '账号状态'
+  store_status: '仓库状态'
+  transfer_status: '调货状态'
+  order_status: '入库状态'
+  
+  
   
   
   # switch.
@@ -456,9 +471,7 @@ zh-CN:
   # balance.
   #----------------------------------------------------------------------------
   content: '内容'
-  adjust_by: '调整额'
-  adjust_to: '调整到'
-  balance_category: '调整类型'
+  balance_category: '现金流'
   
   
   
@@ -480,11 +493,16 @@ zh-CN:
   sales_reports: '销售报表'
   sale_details_report: '销售明细报表'
   sale_products_report: '销售商品汇总报表'
-  sale_amount_by_store_report: '销售业绩报表(店铺)'
-  sale_amount_by_user_report: '销售业绩报表(店员)'
+  sale_amount_by_store_report: '销售业绩报表(按店铺)'
+  sale_amount_by_user_report: '销售业绩报表(按店员)'
   sale_discount_report: '销售折扣报表'
   expenses_reports: '支出报表'
+  expense_details_report: '支出明细报表'
+  expense_amount_by_store_report: '支出统计报表(按店铺)'
+  expense_amount_by_user_report: '支出统计报表(按店员)'
   stocks_reports: '库存报表'
+  stock_details_report: '库存总览表'
+  stock_movement_histories_report: '库存变动历史报表'
   all_stores: '所有店铺'
   all_categories: '所有类型'
   sum_amount: '总金额'

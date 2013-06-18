@@ -2,7 +2,7 @@ class Maintain::UsersController < Maintain::ApplicationController
   
   def index
     #authorize! :index, @user, :message => t(:not_authorized_as_admin)
-    @users = User.paginate(:page => params[:page]).order("id desc")
+    @users = User.employees.paginate(:page => params[:page]).order("id desc")
   end
 
   def show
@@ -28,6 +28,8 @@ class Maintain::UsersController < Maintain::ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    @user.role = @user.roles.map{|r| r.name}
+    @roles = Lookup.list("role").where(:code => [:user, :stocker]).map{|r| [r.description, r.code]}
   end
 
   def update
@@ -35,11 +37,12 @@ class Maintain::UsersController < Maintain::ApplicationController
     @user.account = params[:user][:account]
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
-    @user.password = params[:user][:password]
+    @user.password = params[:user][:password] unless params[:user][:password].empty?
     
     if @user.save
       redirect_to [:maintain,@user], :notice => t(:user_updated)
     else
+      @roles = Lookup.list("role").where(:code => [:user, :stocker]).map{|r| [r.description, r.code]}
       render :edit #:back, :alert => t(:unable_to_update_user)
     end
   end

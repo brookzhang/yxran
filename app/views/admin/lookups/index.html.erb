@@ -2,26 +2,28 @@
 <table class="table table-condensed">
 	  <thead>
       <tr>
-          <th><%= t(:code) %></th>
           <th><%= t(:category) %></th>
+          <th><%= t(:code) %></th>
           <th><%= t(:description) %></th>
-          <th></th>
           <th></th>                                      
       </tr>
   </thead>   
   <tbody>
   <% @lookups.each do |lookup| %>
     <tr>
+        <td><%= t(lookup.category) %></td>
         <td><%= lookup.code %></td>
-        <td><%= lookup.category %></td>
         <td><%= link_to lookup.description, [:admin, lookup] %></td>
-        <td>
-        </td>
         <td></td>                                       
     </tr>
   <% end %>
   <tr>
-    <td colspan="5">
+    <td colspan="3">
+      <%= will_paginate %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
       <%= link_to t(:create), new_admin_lookup_path, :class => 'btn' %>
 			<%= link_to t(:back), admin_dashboard_path, :class => 'btn'%>
     </td>

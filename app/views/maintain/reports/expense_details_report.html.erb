@@ -1,0 +1,35 @@
+<div class="span12">
+  
+	<form class="form-search" action="<%=expense_details_report_maintain_reports_path%>" method="get" >
+		<%= render 'report_search', :seach_filters => @search_filters %>
+	</form>
+	
+  <% if @expenses.count > 0 %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th><%= t(:store_name) %></th>
+        <th><%= t(:expense_category) %></th>
+        <th><%= t(:amount) %></th>
+        <th><%= t(:remark) %></th>
+        <th><%= t(:date) %></th>
+        <th><%= t(:user_name) %></th>
+      </tr>
+    </thead>   
+    <tbody>
+    <% @expenses.each do |e| %>
+	  <tr>
+			<td><%= e.store_name%></td>
+			<td><%= e.category_name %></td>  
+			<td><%= e.amount %> <%= t(:currency)%></td>
+			<td><%= e.remark %></td>  
+			<td><%= e.created_at.to_s(:date_time) %></td> 
+			<td><%= e.user_name %></td> 
+			
+			
+		</tr>
+		<% end %>
+    </tbody>
+  </table>
+  <%end%>
+</div> 

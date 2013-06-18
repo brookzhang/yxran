@@ -49,10 +49,10 @@ class Sale < ActiveRecord::Base
         @store.balance += self.actual_amount
         @store.save!
         
-        #:adjust_by, :adjust_to, :category, :reference_id, :store_id, :user_id
+        #:adjusted_by, :adjusted_to, :category, :reference_id, :store_id, :user_id
         @balance = Balance.new
-        @balance.adjust_by = self.actual_amount
-        @balance.adjust_to = @store.balance
+        @balance.adjusted_by = self.actual_amount
+        @balance.adjusted_to = @store.balance
         @balance.category = 'S'
         @balance.reference_id = self.id
         @balance.store_id = self.store_id
@@ -130,8 +130,8 @@ class Sale < ActiveRecord::Base
         @store.save!
         
         @balance = Balance.new
-        @balance.adjust_by = self.actual_amount * (-1)
-        @balance.adjust_to = @store.balance
+        @balance.adjusted_by = self.actual_amount * (-1)
+        @balance.adjusted_to = @store.balance
         @balance.category = 'S'
         @balance.reference_id = self.id
         @balance.store_id = self.store_id

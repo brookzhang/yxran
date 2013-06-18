@@ -24,10 +24,10 @@ class Expense < ActiveRecord::Base
         @store.balance -= self.amount
         @store.save!
         
-        #:adjust_by, :adjust_to, :category, :reference_id, :store_id, :user_id
+        #:adjusted_by, :adjusted_to, :category, :reference_id, :store_id, :user_id
         @balance = Balance.new
-        @balance.adjust_by = self.amount
-        @balance.adjust_to = @store.balance
+        @balance.adjusted_by = self.amount
+        @balance.adjusted_to = @store.balance
         @balance.category = 'E'
         @balance.reference_id = self.id
         @balance.store_id = self.store_id
@@ -69,8 +69,8 @@ class Expense < ActiveRecord::Base
         @store.save!
         
         @balance = Balance.new
-        @balance.adjust_by = self.amount
-        @balance.adjust_to = @store.balance
+        @balance.adjusted_by = self.amount
+        @balance.adjusted_to = @store.balance
         @balance.category = 'E'
         @balance.reference_id = self.id
         @balance.store_id = self.store_id

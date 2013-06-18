@@ -18,4 +18,5 @@ class Lookup < ActiveRecord::Base
   def self.list(category)
     where(:category => category)
   end
+  
 end

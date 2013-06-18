@@ -28,9 +28,14 @@ class User < ActiveRecord::Base
   attr_accessor :login, :role
   
   
-  validates_presence_of :email, :account, :role
+  validates_presence_of :email, :account#, :role
   #validates_uniqueness_of :name, :email, :case_sensitive => false
   validates_uniqueness_of :email, :account, :case_sensitive => false
+  
+  
+  scope :by_category_name, lambda { |name| where("category_id in (select id from categories where name = ? )", name) unless name.nil? || name == '' }
+  scope :employees, joins(:roles).where(" roles.name not in ('admin','manager') ")
+  
   
   after_create :set_role
   
@@ -52,7 +57,19 @@ class User < ActiveRecord::Base
   end
   
   def set_role
-    self.add_role self.role 
+    self.role.is_a?
+    self.add_role self.role
+    self.role.each do |r|
+      self.add_role r
+    end
+  end
+  
+  def list_roles
+    roles = ''
+    if self.roles.count > 0
+      roles = self.roles.map{|r| Lookup.get_one('role',r.name).description }.join(",")
+    end
+    roles
   end
   
 end

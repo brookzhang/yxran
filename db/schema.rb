@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
     t.integer  "user_id"
     t.string   "category"
     t.integer  "reference_id"
-    t.float    "adjust_by"
-    t.float    "adjust_to"
+    t.float    "adjusted_by"
+    t.float    "adjusted_to"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

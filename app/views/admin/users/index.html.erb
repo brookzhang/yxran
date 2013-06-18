@@ -11,8 +11,8 @@
   <tbody>
   <% @users.each do |user| %>
     <tr>
-        <td><%= link_to user.name, [:maintain, user] %></td>
-        <td><%= l(user.roles.first.name,"role") unless user.roles.first.nil? %></td>
+        <td><%= link_to user.name, [:admin, user] %></td>
+        <td><%= user.roles.map{|r| l(r.name,'role')}.join(",") %></td>
         <td></td>                                       
     </tr>
   <% end %>
@@ -21,7 +21,7 @@
 	</tr>
   <tr>
 		<td colspan="3">
-      <%= link_to t(:new), new_maintain_user_path, :class => 'btn' %>
+      <%= link_to t(:new), new_admin_user_path, :class => 'btn' %>
     </td>
 	</tr>
   </tbody>

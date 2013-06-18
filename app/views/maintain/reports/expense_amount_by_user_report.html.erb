@@ -1,22 +1,22 @@
 <div class="span6">
   
-	<form class="form-search" action="<%=sale_amount_by_user_report_maintain_reports_path%>" method="get" >
+	<form class="form-search" action="<%=expense_amount_by_user_report_maintain_reports_path%>" method="get" >
 		<%= render 'report_search', :seach_filters => @search_filters %>
 	</form>
 	
-  <% if @sales.count > 0 %>
+  <% if @expenses.count > 0 %>
   <table class="table table-bordered">
     <thead>
       <tr>
         <th><%= t(:user_name) %></th>
-        <th><%= t(:sum_amount) %></th>
+        <th><%= t(:amount) %></th>
       </tr>
     </thead>   
     <tbody>
-    <% @sales.each do |s| %>
+    <% @expenses.each do |e| %>
 	  <tr>
-			<td><%= s.user_name %></td>   
-			<td><%= s.actual_amount %> <%=t(:currency)%></td>
+			<td><%= e.user_name %></td>   
+			<td><%= e.amount %> <%=t(:currency)%></td>
 		</tr>
 		<% end %>
     </tbody>

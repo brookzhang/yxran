@@ -9,8 +9,17 @@
     </ul>
   </li>
   <li><%=t(:expenses_reports)%>
+    <ul>
+      <li><%= link_to t(:expense_details_report), expense_details_report_maintain_reports_path, :class => '' %></li>
+      <li><%= link_to t(:expense_amount_by_store_report), expense_amount_by_store_report_maintain_reports_path, :class => '' %></li>
+      <li><%= link_to t(:expense_amount_by_user_report), expense_amount_by_user_report_maintain_reports_path, :class => '' %></li>
+    </ul>
   </li>
   <li><%=t(:stocks_reports)%>
+    <ul>
+      <li><%= link_to t(:stock_details_report), stock_details_report_maintain_reports_path, :class => '' %></li>
+      <li><%= link_to t(:stock_movement_histories_report), stock_movement_histories_report_maintain_reports_path, :class => '' %></li>
+    </ul>
   </li>
 </ol>
 

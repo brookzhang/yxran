@@ -1,0 +1,33 @@
+<div class="span12">
+  
+	<form class="form-search" action="<%=stock_movement_histories_report_maintain_reports_path%>" method="get" >
+		<%= render 'report_search', :seach_filters => @search_filters %>
+	</form>
+	
+  <% if @stocks.count > 0 %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th><%= t(:store_name) %></th>
+        <th><%= t(:product_name) %></th>
+        <th><%= t(:adjust_type) %></th>
+        <th><%= t(:adjusted_by) %></th>
+        <th><%= t(:adjusted_to) %></th>
+        <th><%= t(:remark) %></th>
+      </tr>
+    </thead>   
+    <tbody>
+    <% @stocks.each do |s| %>
+	  <tr>
+		<td><%= s.store_name%></td>
+		<td><%= s.product_name %></td>  
+		<td><%= s.adjust_type %></td>  
+		<td><%= s.adjusted_by %> <%= s.measurement %></td>  
+		<td><%= s.adjusted_to %> <%= s.measurement %></td>
+		<td><%= s.remark %></td>  
+      </tr>
+	<% end %>
+    </tbody>
+  </table>
+  <%end%>
+</div> 

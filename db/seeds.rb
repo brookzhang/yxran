@@ -152,10 +152,13 @@ if ENV["RAILS_ENV"] != 'production'
   
   puts "creating stores"
   Store.create([
-    {:name => '总店', :category => 'C', :balance => 1000, :remark => 'XXX路XXX号'},
-    {:name => '信誉大街店', :category => 'P', :balance => 800, :remark => '信誉大街XX号' },
-    {:name => '才培店', :category => 'I', :balance => 700, :remark => '才培大厦一楼'},
-    {:name => '总部仓库', :category => 'S', :balance => 600, :remark => 'XXX路XXX号'}
+    {:name => '总库', :category => 'S', :balance => 1000, :remark => '总仓库'},
+    {:name => '财', :category => 'P', :balance => 800, :remark => '财培茶馆' },
+    {:name => '中', :category => 'P', :balance => 700, :remark => '中心路中茶专营店'},
+    {:name => '商', :category => 'P', :balance => 600, :remark => '建设大街工商银行对过'},
+    {:name => '农', :category => 'P', :balance => 600, :remark => '农业局楼下'},
+    {:name => '盛', :category => 'I', :balance => 600, :remark => '盛华茶叶超市'},
+    {:name => '衡水店', :category => 'P', :balance => 600, :remark => '阜城鹏元'}
   ], :without_protection => true)
   
   puts "inserting inventory"

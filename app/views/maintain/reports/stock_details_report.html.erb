@@ -1,0 +1,29 @@
+<div class="span12">
+  
+	<form class="form-search" action="<%=stock_details_report_maintain_reports_path%>" method="get" >
+		<%= render 'report_search', :seach_filters => @search_filters %>
+	</form>
+	
+  <% if @stocks.count > 0 %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th><%= t(:store_name) %></th>
+        <th><%= t(:product_name) %></th>
+        <th><%= t(:quantity) %></th>
+        <th><%= t(:remark) %></th>
+      </tr>
+    </thead>   
+    <tbody>
+    <% @stocks.each do |s| %>
+	  <tr>
+		<td><%= s.store_name%></td>
+		<td><%= s.product_name %></td>  
+		<td><%= s.quantity %> <%= s.measurement %></td>
+		<td><%= s.remark %></td>  
+      </tr>
+	<% end %>
+    </tbody>
+  </table>
+  <%end%>
+</div> 

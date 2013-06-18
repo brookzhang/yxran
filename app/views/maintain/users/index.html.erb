@@ -12,7 +12,7 @@
   <% @users.each do |user| %>
     <tr>
         <td><%= link_to user.name, [:maintain, user] %></td>
-        <td><%= l(user.roles.first.name,"role") unless user.roles.first.nil? %></td>
+        <td><%= user.roles.map{|r| l(r.name,'role')}.join(",") %></td>
         <td></td>                                       
     </tr>
   <% end %>

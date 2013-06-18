@@ -1,6 +1,7 @@
 class Admin::LookupsController < Admin::ApplicationController
   def index
-    @lookups = Lookup.all
+    
+    @lookups = Lookup.paginate(:page => params[:page]).order(" id desc ")
   end
   
   def show
@@ -16,7 +17,7 @@ class Admin::LookupsController < Admin::ApplicationController
     @lookup.sequence = '1'
     @lookup.status = '1'
     if @lookup.save
-      redirect_to maintain_lookups_path, :notice => t(:created_ok)
+      redirect_to admin_lookups_path, :notice => t(:created_ok)
     else
       redirect_to :back, :alert => t(:unable_to_create)
     end
@@ -30,9 +31,9 @@ class Admin::LookupsController < Admin::ApplicationController
   def update
     @lookup = Lookup.find(params[:id])
     if @lookup.update_attributes(params[:lookup])
-      redirect_to maintain_lookup_path(@lookup), :notice => t(:updated_ok)
+      redirect_to admin_lookup_path(@lookup), :notice => t(:updated_ok)
     else
-      redirect_to maintain_lookup_path(@lookup), :alert => t(:unable_to_update)
+      redirect_to admin_lookup_path(@lookup), :alert => t(:unable_to_update)
     end
   end
 
