@@ -10,8 +10,15 @@
       </a></li>
       
     <% end %>
+    
+    
+    <% if current_user.has_role?(:stocker) %>
+      <li><a href="<%=stocker_dashboard_path%>" >
+        <i class="icon-cog"></i><%=t(:stocker) %>
+      </a></li>
+    <% end %>
+    
     <% if current_user.has_role?(:manager) %>
-      
       <li><a href="<%=maintain_reports_path%>" >
         <i class="icon-list-alt"></i><%=t(:reports) %>
       </a></li>
@@ -19,7 +26,6 @@
       <li><a href="<%=maintain_dashboard_path%>" >
         <i class="icon-th-large"></i><%=t(:maintain) %>
       </a></li>
-      
     <% end %>
     
     <% if current_user.has_role?(:admin) %>
@@ -27,6 +33,11 @@
         <i class="icon-cog"></i><%=t(:admin) %>
       </a></li>
     <% end %>
+    
+    
+    <li><a href="<%=user_path(current_user)%>" data-method="delete" rel="nofollow" >
+      <i class="icon-user"></i><%=t(:account) %>
+    </a></li>
     
     <li><a href="<%=destroy_user_session_path%>" data-method="delete" rel="nofollow" >
       <i class="icon-off"></i><%=t(:sign_out) %>

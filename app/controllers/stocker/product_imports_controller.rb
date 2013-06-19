@@ -1,4 +1,4 @@
-class Maintain::ProductImportsController < Maintain::ApplicationController
+class Stocker::ProductImportsController < Stocker::ApplicationController
   def new
     @product_import = ProductImport.new
   end
@@ -7,7 +7,7 @@ class Maintain::ProductImportsController < Maintain::ApplicationController
     @product_import = ProductImport.new(params[:product_import])
     if @product_import.valid?
       if @product_import.import
-        redirect_to maintain_products_path, notice: t(:import_products_successfully)
+        redirect_to stocker_products_path, notice: t(:import_products_successfully)
       else
         render :back, :alert => t(:import_failed)
       end 

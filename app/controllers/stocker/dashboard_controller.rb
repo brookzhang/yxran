@@ -1,4 +1,4 @@
-class Maintain::DashboardController < Maintain::ApplicationController
+class Stocker::DashboardController < Stocker::ApplicationController
   def index
   end
 end

@@ -1,4 +1,3 @@
-
 <script>
 $(document).ready(function() {
 $('#product_super_category_id').change(function() {
@@ -14,7 +13,7 @@ $('#product_super_category_id').change(function() {
 });
 </script>
 
-<form class="form-search" action="<%=stocker_products_path%>" method="get" >
+<form class="form-search" action="<%=stocker_order_order_details_path(@order)%>" method="get" >
   <div class="input-append">
     <select name="product[super_category_id]" id="product_super_category_id" class="span1">
       <%= options_for_select(@array_super, @product.super_category_id) %>
@@ -26,4 +25,3 @@ $('#product_super_category_id').change(function() {
     <button type="submit" class="btn" ><%=t(:search)%></button>
   </div>
 </form>
-

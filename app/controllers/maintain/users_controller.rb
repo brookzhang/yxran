@@ -2,7 +2,12 @@ class Maintain::UsersController < Maintain::ApplicationController
   
   def index
     #authorize! :index, @user, :message => t(:not_authorized_as_admin)
-    @users = User.employees.paginate(:page => params[:page]).order("id desc")
+    if current_user.has_role?(:admin)
+      @users = User.paginate(:page => params[:page]).order("id desc")
+    else 
+      @users = User.employees.paginate(:page => params[:page]).order("id desc")
+    end
+    
   end
 
   def show
@@ -20,7 +25,7 @@ class Maintain::UsersController < Maintain::ApplicationController
     if @user.save
       redirect_to [:maintain,@user], :notice => t(:user_created)
     else
-      @roles = Lookup.list("role").where(:code => [:user, :stocker]).map{|r| [r.description, r.code]}
+      @roles = roles_allowed
       render :new
     end
   end
@@ -29,7 +34,7 @@ class Maintain::UsersController < Maintain::ApplicationController
   def edit
     @user = User.find(params[:id])
     @user.role = @user.roles.map{|r| r.name}
-    @roles = Lookup.list("role").where(:code => [:user, :stocker]).map{|r| [r.description, r.code]}
+    @roles = roles_allowed
   end
 
   def update
@@ -37,12 +42,16 @@ class Maintain::UsersController < Maintain::ApplicationController
     @user.account = params[:user][:account]
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
-    @user.password = params[:user][:password] unless params[:user][:password].empty?
+    @user.password = params[:user][:password] unless params[:user][:password].blank?
+    #@user.role = params[:user][:role].inject{|r,result| result + ',' + r unless r.blank? }
+    @user.role = params[:user][:role].delete_if{|r| r.blank?}.join(",")
+    #@user.role = @user.role.blank? ? nil : @user.role
     
+    #render :text => @user.role
     if @user.save
       redirect_to [:maintain,@user], :notice => t(:user_updated)
     else
-      @roles = Lookup.list("role").where(:code => [:user, :stocker]).map{|r| [r.description, r.code]}
+      @roles = roles_allowed
       render :edit #:back, :alert => t(:unable_to_update_user)
     end
   end
@@ -75,6 +84,21 @@ class Maintain::UsersController < Maintain::ApplicationController
     else
       redirect_to :back, :alert => t(:user_unlocked_failed)
     end
+  end
+  
+  
+  
+  
+  
+  private
+  def roles_allowed
+    if current_user.has_role?(:admin)
+      roles = Lookup.list("role").map{|r| [r.description, r.code]}
+    else
+      roles = Lookup.list("role").where(:code => [:user, :stocker]).map{|r| [r.description, r.code]}
+    end
+    roles
+    
   end
   
 end

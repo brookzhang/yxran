@@ -1,35 +1,14 @@
-<!--h3><%= t(:account_info) %></h3-->
-<p><%= @product.name %>
-  [<%= @product.unit_price %><%=t(:currency)%> / <%= @product.measurement %>]
+<p><%= t(:name) %>: <%= @product.name %></p>
+<p><%= t(:description) %>: <%= @product.description %></p>
+<p><%= t(:category) %>: <%= @product.category.name %></p>
+<p><%= t(:measurement) %>: <%= @product.measurement %></p>
+<p><%= t(:unit_price) %>: <%= @product.unit_price %></p>
+<p><%= t(:created_at) %>: <%= @product.created_at.to_date %></p>
+<p><%= link_to t(:edit), edit_stocker_product_path(@product), :class => 'btn'%>
+<%= link_to(t(:delete), stocker_product_path(@product), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
+<%= link_to t(:back), stocker_products_path, :class => 'btn'%>
 </p>
-<p><%= t(:stock_quantity) %>: <%= @stock.nil? ? 0 : @stock.quantity %></p>
-<p><%= t(:description) %>: <%= @product.description%></p>
-<p>
-    <a data-toggle="modal" href="#add_cart-options-<%= @product.id %>" class="btn btn-warning" type="button"><%= t(:add_to_order) %></a>
-    
-    &nbsp;&nbsp;&nbsp;
-    <%= link_to t(:back), stocker_order_products_path(@order) , :class => 'btn'%>
-    
-    <div id="add_cart-options-<%= @product.id %>" class="modal" style="display: none;">
-      <%= simple_form_for @order_detail , :url => stocker_order_order_details_path, :method => :post, :html => {:class => 'form-horizontal' } do |f| %>
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal">&#215;</a>
-          <h3><%= t(:add_to_order) %> </h3>
-        </div>
-        <div class="modal-body">
-          <%= f.input :quantity, :label => t(:quantity) + ' /' + @product.measurement, :class => 'auto_focus' %>
-          <%= f.input :product_id, :as => :hidden, :input_html =>{:value => @product.id} %>
-        </div>
-        <div class="modal-body">
-          <%= f.input :remark, :label => t(:remark)  %>
-        </div>
-        <div class="modal-footer">
-          <%= f.submit t(:add_to_order) , :class => "btn", :input_html => { 'data-dismiss' => "modal"} %>
-          <a class="btn"  data-dismiss="modal" href="#"><%= t(:back)%></a>
-        </div>
-      <% end %>
-    </div>
-    
-    
-</p>
-<%= render 'histories' %>
+
+
+
+<%= render :partial => 'stocker/stocks/list_stores' %>

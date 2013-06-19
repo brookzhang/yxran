@@ -1,22 +1,29 @@
-<%= simple_form_for [:stocker,@order,@order_detail], :html => {:class => 'form-horizontal' } do |f| %>
-  <%= f.error_notification %>
-  <%= display_base_errors @order_detail %>
-	
-	<%= f.simple_fields_for :product do |product_form| %>
-	
-		<%= product_form.input :name, :label => t(:product_name), :autofocus => true %> 
-		<%= product_form.input :category, :label => t(:category)  %>
-		<%= product_form.input :category_id, :as => :hidden %>
-		<%= product_form.input :description, :label => t(:description), :required => true %>
-		<%= product_form.input :measurement, :label => t(:measurement), :required => true %>
-		<%= product_form.input :unit_price, :label => t(:unit_price) + ' /' + t(:currency), :required => true %>
-	<% end%>
-	<%= f.input :quantity, :label => t(:quantity) %>
-	<%= f.input :remark, :label => t(:remark) %>
-  <div class="control-group">
-    <div class="controls">
-      <%= f.button :submit, t(:submit), :class => 'btn' %>
-      <%= link_to t(:back), :back, :class => 'btn' %>
-    </div>
-  </div>
-<% end %>
+<div class="span8">
+  <%= render 'category' %>
+  <% if @products.count > 0 %>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th><%= t(:product_name) %></th>
+        <th><%= t(:unit_price) %></th>
+        <th></th>   
+      </tr>
+    </thead>   
+    <tbody>
+    <% @products.each do |product| %>
+	  <%= render product %>
+    <% end %>
+    </tbody>
+	<tr>
+	  <td colspan="3">
+			 <%= will_paginate @products %>
+	  </td>
+	</tr>
+	<tr>
+	  <td colspan="3">
+			 <%= link_to t(:view_order), stocker_order_path(@order), :class => 'btn' %>
+	  </td>
+	</tr>
+  </table>
+  <%end%>
+</div> 

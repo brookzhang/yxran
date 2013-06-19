@@ -73,8 +73,6 @@ Yxran::Application.routes.draw do
     end
     
     resources :categories
-    resources :products
-    resources :product_imports
     resources :stores
     resources :users do
       member do
@@ -114,6 +112,9 @@ Yxran::Application.routes.draw do
   
   ### stocker
   namespace :stocker do
+    match '/dashboard', :to => 'dashboard#index'
+    resources :products
+    resources :product_imports
     resources :orders do
       member do
         get :confirm

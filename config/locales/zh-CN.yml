@@ -18,26 +18,28 @@ zh-CN:
               too_short: '新密码太短，最少6位。'
             current_password:
               invalid: '当前密码输入错误。'
+            role:
+              blank: '至少有一个身份吧。'
         member:
           attributes:
             name:
-              blank: '会员名称不能为空.'
+              blank: '会员名称不能为空。'
             phone:
               blank: '会员电话不能为空。'
         order_detail:
           attributes:
             quantity:
-              greater_than: '数量必须大于0.'
+              greater_than: '数量必须大于0。'
         product:
           attributes:
             category_id:
-              blank: '分类不能为空'
+              blank: '分类不能为空。'
             name:
-              blank: '商品名称不能为空'
+              blank: '商品名称不能为空。'
             measurement:
-              blank: '计量单位不能为空'
+              blank: '计量单位不能为空。'
             unit_price:
-              blank: '单价不能为空'
+              blank: '单价不能为空。'
               
               
   activemodel:
@@ -46,18 +48,18 @@ zh-CN:
         product_import:
           attributes:
             base:
-              content_is_nil: '内容是空白的'
-              wrong_format: '格式错误'
+              content_is_nil: '内容是空白的。'
+              wrong_format: '格式错误。'
         order_import:
           attributes:
             base:
-              content_is_nil: '内容是空白的'
-              wrong_format: '格式错误'
+              content_is_nil: '内容是空白的。'
+              wrong_format: '格式错误。'
         member_import:
           attributes:
             base:
-              content_is_nil: '内容是空白的'
-              wrong_format: '格式错误'
+              content_is_nil: '内容是空白的。'
+              wrong_format: '格式错误。'
   
   # site info.
   #----------------------------------------------------------------------------
@@ -358,6 +360,7 @@ zh-CN:
   #----------------------------------------------------------------------------
   # stocker.
   #----------------------------------------------------------------------------
+  stocker: '库管'
   orders_into_stock: '采购入库'
   transfers_in_stores: '店铺调货'
   all_stocks: '所有库存'

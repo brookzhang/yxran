@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :account, :store_id, :role
   # attr_accessible :title, :body
   
-  attr_accessor :login, :roles
+  attr_accessor :login, :role
   
   
   validates_presence_of :email, :account, :role
@@ -34,10 +34,10 @@ class User < ActiveRecord::Base
   
   
   scope :by_category_name, lambda { |name| where("category_id in (select id from categories where name = ? )", name) unless name.nil? || name == '' }
-  scope :employees, joins(:roles).where(" roles.name not in ('admin','manager') ")
+  scope :employees, where(" id not in (select user_id from users_roles where role_id in (select id from roles where name in ('admin','manager'))) ")
   
   
-  after_create :set_role
+  after_save :set_role
   
   
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -57,9 +57,16 @@ class User < ActiveRecord::Base
   end
   
   def set_role
-    self.role.each do |r|
-      self.add_role(r) 
+    unless self.role.blank?
+      logger.error "---------start-----------"
+      self.remove_all_roles
+      logger.error "removed all roles"
+      self.role.split(',').each do |r|
+        self.add_role r
+      end
+      logger.error "----------end----------"
     end
+    
   end
   
   def list_roles
@@ -68,6 +75,12 @@ class User < ActiveRecord::Base
       roles = self.roles.map{|r| Lookup.get_one('role',r.name).description }.join(",")
     end
     roles
+  end
+  
+  def remove_all_roles
+    self.roles.each do |role|
+      self.remove_role role.name
+    end
   end
   
 end
