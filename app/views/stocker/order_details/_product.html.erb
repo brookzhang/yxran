@@ -13,9 +13,6 @@
           <%= f.input :quantity, :label => t(:quantity) + ' /' + product.measurement, :class => 'auto_focus' %>
           <%= f.input :product_id, :as => :hidden, :input_html =>{:value => product.id} %>
         </div>
-        <div class="modal-body">
-          <%= f.input :remark, :label => t(:remark)  %>
-        </div>
         <div class="modal-footer">
           <%= f.submit t(:add_to_order) , :class => "btn", :input_html => { 'data-dismiss' => "modal"} %>
           <a class="btn"  data-dismiss="modal" href="#"><%= t(:back)%></a>

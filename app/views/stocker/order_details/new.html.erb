@@ -11,7 +11,7 @@
     </thead>   
     <tbody>
     <% @products.each do |product| %>
-	  <%= render product %>
+	  <%= render 'product', :product => product %>
     <% end %>
     </tbody>
 	<tr>
