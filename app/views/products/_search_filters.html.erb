@@ -23,7 +23,7 @@ $(document).ready(function() {
 });
 </script>
 
-<form class="form-search" action="<%=new_stocker_order_order_detail_path(@order)%>" method="get" >
+<form class="form-search" action="<%=url%>" method="get" >
   <div class="input-append">
     <select name="product[super_category_id]" id="product_super_category_id" class="span1">
       <%= options_for_select(@array_super, @product.super_category_id) %>

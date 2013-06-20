@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :require_user
+  #before_filter :require_user  #not must be, ajax data get from here
   
   def index
     category_id = params[:category_id].nil? ? 0 : params[:category_id].to_i
@@ -28,4 +28,11 @@ class ProductsController < ApplicationController
     conditions[:category_id] = category.id unless category.nil?
     Product.find(:all, :conditions => conditions)
   end
+  
+  def list_by_category
+    category_id = params[:category_id].blank? ? 0 : params[:category_id].to_i
+    @products = Product.where(:category_id => category_id).order(" id desc ").map{|c| [c.name, c.id]}.insert(0, t(:all_products))
+  end
+  
+  
 end

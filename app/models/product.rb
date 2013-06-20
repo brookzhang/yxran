@@ -16,10 +16,11 @@ class Product < ActiveRecord::Base
   validates_numericality_of :unit_price, :greater_than => 0
   
   
-  scope :by_name, lambda { |name| where("name like ? ", '%'+name+'%') unless name.nil? || name == ''}
-  scope :by_category_name, lambda { |name| where("category_id in (select id from categories where name = ? )", name) unless name.nil? || name == '' }
+  scope :by_name, lambda { |name| where("name like ? ", '%'+name+'%').order(" id desc ") unless name.nil? || name == ''}
+  scope :by_category_name, lambda { |name| where("category_id in (select id from categories where name = ? )", name).order(" id desc ") unless name.nil? || name == '' }
+  scope :by_category, lambda { |super_id, category_id| category_id.to_i > 0 ? where(:category_id => category_id ).order(" id desc ") : where(:category_id => Category.sub_id_array(super_id) ).order(" id desc ") }
   
-  scope :in_category, lambda { |category_id| where(:category_id => Category.sub_id_array(category_id) << category_id ) }
+  scope :in_category, lambda { |category_id| where(:category_id => Category.sub_id_array(category_id) << category_id ).order(" id desc ") }
   
   
   #scope :for_sale, joins(:stocks).where(" products.category_id in ? and stocks.quantity > 0 ", Category.sub_id_array(category_id) << category_id)

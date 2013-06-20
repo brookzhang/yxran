@@ -25,9 +25,9 @@
 </p>
 <p>
   
-  <%= link_to(t(:show_products), maintain_products_path(:category_id => @category.id), :class => 'btn')  unless @category.parent_id == 0 %>
+  <%= link_to(t(:show_products), stocker_products_path(:category_id => @category.id), :class => 'btn')  unless @category.parent_id == 0 %>
   
-  <%= link_to(t(:create_product), new_maintain_product_path(:category_id => @category.id), :class => 'btn')  unless @category.parent_id == 0 %>
+  <%= link_to(t(:create_product), new_stocker_product_path(:category_id => @category.id), :class => 'btn')  unless @category.parent_id == 0 %>
   
   <%= link_to t(:back), maintain_categories_path(:parent_id => @category.parent_id), :class => 'btn'%>
 </p>

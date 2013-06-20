@@ -388,6 +388,7 @@ zh-CN:
   #----------------------------------------------------------------------------
   product_name: '商品名称'
   product: '商品'
+  products: '商品'
   measurement: '计量单位'
   unit_price: '单价'
   all_products: '所有商品'

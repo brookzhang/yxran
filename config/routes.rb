@@ -26,7 +26,11 @@ Yxran::Application.routes.draw do
 
   
   
-  resources :products
+  resources :products do
+    collection do
+      get :list_by_category
+    end
+  end
   resources :stocks
   resources :carts
   resources :handovers
