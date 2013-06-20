@@ -20,8 +20,4 @@
     <%=%><%=h.handed_at.nil? ? '' : t(:hand_over) + h.handed_at.to_s(:duty_time)%> 
   </p>
 <%end%>
-<%#= datepicker_input "user","birthday" %>
-<input type="text" class="datepicker" id="datepicker" >
-$(function() {
-  $('.datepicker').datepicker();
-});
+<%= datepicker_input "user","birthday" %>
