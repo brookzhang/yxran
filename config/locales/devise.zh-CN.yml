@@ -14,7 +14,7 @@ zh-CN:
   devise:
     failure:
       already_authenticated: '你已经登入了.'
-      unauthenticated: '你得先登入系统.'
+      unauthenticated: '请先登入系统.'
       unconfirmed: '你得先确认账号.'
       locked: '你的账号被锁了.'
       invalid: '邮箱或密码不能用.'

@@ -1,4 +1,4 @@
-<%= link_to t(:app_name), root_path, :class => 'brand' %>
+
 <ul class="nav">
   <% if user_signed_in? %>
     <% if !current_user.store_id.nil? && current_user.has_role?(:user) %>
@@ -34,12 +34,19 @@
       </a></li>
     <% end %>
     
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="my_account"><i class="icon-user"></i><%=t(:account) %> <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="<%=user_path(current_user)%>"><%=t(:my_account) %></a></li>
+        <li><a href="<%=destroy_user_session_path%>" data-method="delete" rel="nofollow"><%=t(:sign_out) %></a></li>
+      </ul>
+    </li>
     
     <li><a href="<%=user_path(current_user)%>" >
       <i class="icon-user"></i><%=t(:account) %>
     </a></li>
     
-    <li><a href="<%=destroy_user_session_path%>" data-method="delete" rel="nofollow" >
+    <li><a href="<%=destroy_user_session_path%>" >
       <i class="icon-off"></i><%=t(:sign_out) %>
     </a></li>
   <% end %>

@@ -5,8 +5,7 @@
         <div>
         <%= link_to @member.nil? ? t(:select_member) : t(:switch_member) , members_path, :class => 'btn'%>
         <%if !@member.nil? %>
-          <%= @member.name %>
-          <%= t(:score)%> : <%= @member.score %>
+          <%= @member.name %>(<%= l(@member.level, 'member')%> -  <%= @member.score %><%= t(:scores)%>)
         <%end %>
         </div>
       </th>
@@ -31,19 +30,19 @@
     <tr>
       <td>
       <%= simple_form_for @sale, :html => {:class => 'form-horizontal' } do |f| %>
-        <%= f.error_notification %>
-        <%= display_base_errors @sale %>
-        <%= f.input :actual_amount, :label => t(:actual_amount), :autofocus => true, :required => true  %>
         
-        <%= f.input :score, :label => t(:new_score) %>
+        <%= display_base_errors @sale %>
+        <%= f.input :actual_amount, :label => t(:actual_amount), :input_html =>{:class => 'input-small'} , :autofocus => true, :required => true  %>
+        
+        <%= f.input :score, :label => t(:new_score), :input_html =>{:class => 'input-small'} %>
         
         <%if @member.score > 0 %>
-          <%= f.input :used_score, :label => t(:use_score) %>
+          <%= f.input :used_score, :label => t(:use_score), :input_html =>{:class => 'input-small'} %>
         <%else%>
           <%= f.hidden_field :used_score, :value => 0  %>
         <%end%>
         
-        <%= f.input :remark, :label => t(:remark) %>
+        <%= f.input :remark, :label => t(:remark), :input_html =>{:class => 'input-small'} %>
         <%= f.hidden_field :category  %>
         <%= f.hidden_field :member_id  %>
         

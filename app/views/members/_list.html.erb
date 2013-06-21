@@ -1,21 +1,22 @@
 <table class="table table-condensed">
 	  <thead>
       <tr>
-          <th><%= t(:name) %></th>
-          <th><%= t(:phone) %></th>
-          <th><%= t(:score) %></th>
+          <th><%= t(:member_name) %>-<%= t(:phone) %></th>
+          <th><%= t(:member_level) %></th>
           <th></th>                                   
       </tr>
   </thead>   
   <tbody>
   <% @members.each do |member| %>
     <tr>
-        <td><%= link_to member.name, viewmember_path(:uuid => member.uuid) %></td>
-        <td><%= member.phone %></td>
-        <td><%= member.score %></td>
+        <td><%= link_to member.name + '-' + member.phone, viewmember_path(:uuid => member.uuid) %></td>
+        <td><%= l(member.level, 'member') %></td>
         <td><%= link_to t(:select),  new_sale_path(:member_id => member.id), :class => 'btn' %>
         </td>                                    
     </tr>
   <% end %>
+    <tr>
+      <td colspan="3"><%= will_paginate @members %></td>
+    </tr>
   </tbody>
 </table>

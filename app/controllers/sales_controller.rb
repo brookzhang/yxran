@@ -38,6 +38,7 @@ class SalesController < ApplicationController
     
     @sale = Sale.new(:category => 'M')
     @sale.member_id = session[:member_id].nil? ? nil : session[:member_id].to_i
+    @sale.score = nil
     
     @member = @sale.member_id.nil? ? nil : Member.find(@sale.member_id) 
     @carts = Cart.list_by_user(current_user)
@@ -48,6 +49,7 @@ class SalesController < ApplicationController
 
   def create
     @carts = Cart.list_by_user(current_user)
+    @amount = @carts.sum {|c| c.amount.nil? ? 0 : c.amount }
     
     @sale = Sale.new(params[:sale])
     @sale.user_id = current_user.id
@@ -61,12 +63,11 @@ class SalesController < ApplicationController
       case @sale.category
       when "C"
         render :cost
-      when "R"
-        render :retail
       when "M"
+        @member = @sale.member_id.nil? ? nil : Member.find(@sale.member_id) 
         render :new
       else
-        render :new
+        render :retail
       end 
       #redirect_to :back, :alert => t(@sale.check_message)
     end   

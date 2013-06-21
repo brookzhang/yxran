@@ -42,6 +42,11 @@ zh-CN:
             unit_price:
               blank: '单价不能为空。'
               
+        sale:
+          attributes:
+            actual_amount:
+              blank: '请填写实收现金的金额。'
+              
               
   activemodel:
     errors:
@@ -185,8 +190,8 @@ zh-CN:
   # members.
   #----------------------------------------------------------------------------
   member_search: '会员查询'
-  member_name: '会员姓名'
-  phone: '电话号码'
+  member_name: '姓名'
+  phone: '电话'
   score: '积分'
   address: '地址'
   create_member: '新会员'

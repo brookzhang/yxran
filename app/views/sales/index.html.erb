@@ -3,29 +3,27 @@
 	  <thead>
       <tr>
           <th><%=t(:sale_id)%></th>
-          <th><%= t(:actual_amount) %></th>
-          <th><%= t(:sale_category) %></th>
+          <th><%= t(:amount) %></th>
           <th><%= t(:status) %></th>                                      
       </tr>
   </thead>   
   <tbody>
   <% @sales.each do |sale| %>
     <tr>
-        <td><%= link_to '#'+sale.id.to_s, sale %></td>
-        <td><%= sale.actual_amount %></td>
-        <td><%= l(sale.category,"sale_category") %></td>
-        <td><%= l(sale.status, "sale_status") %></td>                                       
+        <td><%= link_to  '#'+sale.id.to_s+l(sale.category,"sale_category"), sale %></td>
+        <td ><%= sale.actual_amount %><%= t(:currency)%></td>
+        <td><%= l(sale.status, "sale_status") %> <%=sale.created_at.to_s(:short_date)  %></td>                                       
     </tr>
   <% end %>
   <tr>
-    <td colspan="4">
+    <td colspan="3">
       <%= will_paginate @sales %>
     </td>
   </tr>
   <tr>
-    <td colspan="4">
+    <td colspan="3">
+      <%= link_to t(:record_a_sale), stocks_path, :class => 'btn btn-primary' %>
       <%= link_to t(:back), root_path, :class => 'btn'%>
-      <%= link_to t(:record_a_sale), stocks_path, :class => 'btn btn-warning' %>
     </td>
   </tr>
   </tbody>

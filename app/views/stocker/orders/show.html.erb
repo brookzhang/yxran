@@ -3,6 +3,7 @@
   &nbsp;&nbsp;
   <%= link_to t(:edit), edit_stocker_order_path(@order), :class => 'btn' if @order.status == 0 %>
   <%= link_to(t(:delete), stocker_order_path(@order), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  if @order.status == 0  %>
+  <%= link_to t(:cancel), cancel_stocker_order_path(@order), :data => { :confirm => t(:are_you_sure_to_cancel) }, :class => 'btn' if @order.status == 1 %>
   <%= link_to t(:back), stocker_orders_path, :class => 'btn'%>
 </p>
 <p><%= t(:remark) %>: <%= @order.remark %></p>
@@ -10,7 +11,7 @@
 
 
 
-<%= link_to t(:cancel), cancel_stocker_order_path(@order), :data => { :confirm => t(:are_you_sure_to_cancel) }, :class => 'btn' if @order.status == 1 %>
+
 
 <%= render 'order_details' %>
 <p>
