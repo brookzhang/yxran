@@ -1,9 +1,9 @@
-<%unless @order_details.nil? %>
-<table class="table  table-striped"> 
+<%if @order_details.count > 0 %>
+<table class="table table-striped  "> 
   <thead>
     <tr>
         <th><%= t(:product_name) %></th>
-        <th><%= t(:quantity) %> / <%= t(:stock)%></th>
+        <th><%= t(:order) %> / <%= t(:stock)%></th>
         <th></th>
     </tr>
   </thead>

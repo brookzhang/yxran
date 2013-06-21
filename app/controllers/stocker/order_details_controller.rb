@@ -40,7 +40,7 @@ class Stocker::OrderDetailsController < Stocker::ApplicationController
     if @order_detail.save
       redirect_to :back, :notice => t(:add_to_order_ok)
     else
-      redirect_to :back, :alert => t(:add_failed) + @order_detail.errors.first.to_s
+      redirect_to :back, :alert => t(:add_failed) + ':'  + @order_detail.errors.first[1]
     end
     
     

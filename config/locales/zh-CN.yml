@@ -30,12 +30,13 @@ zh-CN:
           attributes:
             quantity:
               greater_than: '数量必须大于0。'
+              blank: '数量不能为空。'
         product:
           attributes:
             category_id:
               blank: '分类不能为空。'
             name:
-              blank: '商品名称不能为空。'
+              blank: '品名不能为空。'
             measurement:
               blank: '计量单位不能为空。'
             unit_price:
@@ -206,7 +207,7 @@ zh-CN:
   create_order: '新增入库'
   choose_warehouse: '选择仓库'
   quantity_to_order: '入库数量'
-  order_to_store: '入库店铺'
+  order_to_store: '入库到'
   view_order: '查看入库单'
   confirm_to_order: '确认入库'
   import_excel: '导入excel'
@@ -222,6 +223,7 @@ zh-CN:
   add_new_product: '新品入库'
   add_to_order_ok: '已添加到入库单。'
   order_canceled_ok: '入库单撤销成功.'
+  items_add_to_order: '已加入%{items_count}种商品'
   
   # transfer.
   #----------------------------------------------------------------------------
@@ -386,7 +388,7 @@ zh-CN:
   
   # product.
   #----------------------------------------------------------------------------
-  product_name: '商品名称'
+  product_name: '品名'
   product: '商品'
   products: '商品'
   measurement: '计量单位'

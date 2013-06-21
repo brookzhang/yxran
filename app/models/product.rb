@@ -22,7 +22,6 @@ class Product < ActiveRecord::Base
   
   scope :in_category, lambda { |category_id| where(:category_id => Category.sub_id_array(category_id) << category_id ).order(" id desc ") }
   
-  
   #scope :for_sale, joins(:stocks).where(" products.category_id in ? and stocks.quantity > 0 ", Category.sub_id_array(category_id) << category_id)
   #scope :for_sale, where(:products => Category.sub_id_array(category_id) << category_id   )
   
