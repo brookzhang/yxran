@@ -46,7 +46,7 @@
       <i class="icon-user"></i><%=t(:account) %>
     </a></li>
     
-    <li><a href="<%=destroy_user_session_path%>" >
+    <li><a href="<%=destroy_user_session_path%>" data-method="delete" rel="nofollow">
       <i class="icon-off"></i><%=t(:sign_out) %>
     </a></li>
   <% end %>

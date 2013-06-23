@@ -3,15 +3,15 @@ class UsersController < ApplicationController
   before_filter :require_owner, :only => [:show, :edit, :update, :update_password]
   
   def show
-    @user = User.find(params[:id])
+    #@user = User.find(current_user.id)
   end
   
   def edit
-    @user = User.find(params[:id])
+    #@user = User.find(current_user.id)
   end
 
   def update
-    @user = User.find(params[:id])
+    #@user = User.find(current_user.id)
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
   
   def update_password
-    @user = User.find(current_user.id)
+    #@user = User.find(current_user.id)
     if @user.update_with_password(params[:user])
       # Sign in the user by passing validation in case his password changed
       sign_in @user, :bypass => true
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   
   protected
   def get_user
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
   end
 
 end
