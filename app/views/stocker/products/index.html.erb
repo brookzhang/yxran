@@ -1,5 +1,5 @@
 <div class="span8">
-  <%= render :partial => '/products/search_filters', :locals =>{:url => stocker_products_path } %>
+  <%= render :partial => '/categories/list_by_select', :locals =>{:url => stocker_products_path } %>
   <% if @products.count > 0 %>
   <table class="table table-condensed">
     <thead>

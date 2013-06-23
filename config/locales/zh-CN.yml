@@ -335,7 +335,7 @@ zh-CN:
   maintain: '管理'
   users_maintain: '用户管理'
   categories_maintain: '商品分类'
-  products_maintain: '品名更改'
+  products_maintain: '品名添加'
   discounts_maintain: '折扣设定'
   stores_maintain: '店子管理'
   stocks_maintain: '库存管理'

@@ -33,14 +33,14 @@
         <i class="icon-cog"></i><%=t(:admin) %>
       </a></li>
     <% end %>
-    
+    <!--
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="my_account"><i class="icon-user"></i><%=t(:account) %> <b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li><a href="<%=user_path(current_user)%>"><%=t(:my_account) %></a></li>
         <li><a href="<%=destroy_user_session_path%>" data-method="delete" rel="nofollow"><%=t(:sign_out) %></a></li>
       </ul>
-    </li>
+    </li>-->
     
     <li><a href="<%=user_path(current_user)%>" >
       <i class="icon-user"></i><%=t(:account) %>
