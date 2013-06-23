@@ -22,8 +22,8 @@ $('#product_super_category_id').change(function() {
   
   <%= f.input :name, :label => t(:product_name), :required => true, :autofocus => true %> 
   <%= f.input :description, :label => t(:description) %>
-  <%= f.input :measurement, :label => t(:measurement), :required => true, :placeholder => "例如：克、饼、个、袋" %>
-  <%= f.input :unit_price, :label => t(:unit_price) + ' /' + t(:currency), :placeholder => "按计量单位的单价", :required => true %>
+  <%= f.input :measurement, :label => t(:measurement), :required => true, :placeholder => t(:sample_for_measurement) %>
+  <%= f.input :unit_price, :label => t(:unit_price) + ' /' + t(:currency), :placeholder => t(:sample_for_unit_price), :required => true %>
   <div class="control-group">
     <div class="controls">
       <%= f.button :submit, t(:submit), :class => 'btn' %>

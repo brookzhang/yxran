@@ -2,7 +2,7 @@
 
 
 
-<%= form_for [:maintain, @product_import] do |f| %>
+<%= form_for [:stocker, @product_import] do |f| %>
   <% if @product_import.errors.any? %>
     <div id="error_explanation">
       <h4><%= pluralize(@product_import.errors.count, "error") %> <%=t(:prohibited_from_completing)%> :</h4>

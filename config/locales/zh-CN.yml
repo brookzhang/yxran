@@ -156,6 +156,7 @@ zh-CN:
   modify_password: '修改密码'
   pre_password: '原密码'
   member_has_sales_or_scores_can_not_delete: '这个会员有积分或有购买记录，无法删除。'
+  leave_blank_not_change_password: '不改请留空'
   
   
   # sales.
@@ -400,6 +401,8 @@ zh-CN:
   unit_price: '单价'
   all_products: '所有商品'
   import_products_successfully: '产品导入成功'
+  sample_for_measurement: '例如：克、饼、个、袋'
+  sample_for_unit_price: '按计量单位的单价'
   
   
   # store.
