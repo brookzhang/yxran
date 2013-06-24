@@ -21,14 +21,16 @@ class OrderImport
     details.default_sheet = details.sheets.first
     
     (2..details.last_row).map do |i|
-      if details.cell(i,2).to_i > 0
-        product = Product.find_by_name(details.cell(i,1)) 
-        order_detail = OrderDetail.new
-        order_detail.order_id = order.id
-        order_detail.product_id = product.id
-        order_detail.quantity = details.cell(i,2)
-        order_detail.remark = details.cell(i,3)
-        order_detail.save!  
+      unless  details.cell(i,1).blank? 
+        if details.cell(i,2).to_i > 0
+          product = Product.find_by_name(details.cell(i,1)) 
+          order_detail = OrderDetail.new
+          order_detail.order_id = order.id
+          order_detail.product_id = product.id
+          order_detail.quantity = details.cell(i,2)
+          order_detail.remark = details.cell(i,3)
+          order_detail.save!  
+        end
       end
     end
     
@@ -46,24 +48,19 @@ class OrderImport
     details.default_sheet = details.sheets.first
     
     (2..details.last_row).map do |i|
-      (1..3).map do |col|
-        if details.cell(i,col).nil? || details.cell(i,col) == '' 
-          errors.add(:base, :content_is_nil)
+      unless  details.cell(i,1).blank? 
+        if !details.cell(i,2).to_i.is_a?(Integer)
+          errors.add(:base, "#{i}:E  wrong quantiy.")
         end
-      end
-      
-      if !details.cell(i,2).to_i.is_a?(Integer)
-        errors.add(:base, "#{i}:E  wrong quantiy.")
-      end
-      
-      if details.cell(i,2).to_i > 0
-        product = Product.find_by_name(details.cell(i,1))
-        if product.nil?
-          errors.add(:base, "#{i}:C  product not exists.")
+        
+        if details.cell(i,2).to_i > 0
+          product = Product.find_by_name(details.cell(i,1))
+          if product.nil?
+            errors.add(:base, "#{i}:C  product not exists.")
+          end
         end
+        
       end
-      
-      
       
     end
     
