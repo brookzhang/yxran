@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130401061535) do
+ActiveRecord::Schema.define(:version => 20130624092313) do
 
   create_table "balances", :force => true do |t|
     t.integer  "store_id"
@@ -225,6 +225,14 @@ ActiveRecord::Schema.define(:version => 20130401061535) do
   end
 
   add_index "stocks", ["product_id", "store_id"], :name => "index_stocks_on_product_id_and_store_id"
+
+  create_table "store_users", :force => true do |t|
+    t.integer  "store_id"
+    t.integer  "user_id"
+    t.string   "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "stores", :force => true do |t|
     t.string   "name"

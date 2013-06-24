@@ -3,6 +3,7 @@ Yxran::Application.routes.draw do
 
 
 
+
   devise_for :users, :skip => [:registrations]
   resources :users do
     member do
@@ -78,6 +79,7 @@ Yxran::Application.routes.draw do
     
     resources :categories
     resources :stores
+    resources :store_users
     resources :users do
       member do
         get :lock

@@ -1,0 +1,25 @@
+<%if @store_users.count > 0 %>
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+        <th><%= t(:user_name) %></th>
+        <th><%= t(:take_over) %></th>
+        <th><%= t(:hand_over) %></th>
+                                             
+      </tr>
+  </thead>   
+  <tbody>
+  <% @store_users.each do |handover| %>
+    <tr>
+        <td><%= handover.user.name %></td>
+        <td><%= handover.take_amount %> [<%= handover.took_at.to_s(:duty_time) %>]</td>
+        <td><%= handover.hand_amount %> <%= handover.handed_at.nil? ? '' : '[' + handover.handed_at.to_s(:duty_time) + ']' %></td>                                
+    </tr>
+  <% end %>
+  <tr><td><%= link_to '...' + t(:list_all) ,maintain_handovers_path %></td></tr>
+  </tbody>
+</table>
+<%else%>
+  <br>
+  <%= link_to '...' + t(:add) ,maintain_store_users_path %>
+<%end %>

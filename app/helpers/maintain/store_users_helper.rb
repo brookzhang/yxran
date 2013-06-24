@@ -1,0 +1,2 @@
+module Maintain::StoreUsersHelper
+end

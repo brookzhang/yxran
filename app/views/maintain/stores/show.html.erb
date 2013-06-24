@@ -1,11 +1,21 @@
 <p>
   <strong>
     <%= @store.name %>
-    <%= @store.remark.nil? ? '' : '(' + @store.remark + ')' %>
+    (<%= @user.nil? ? t(:no_one_on_duty) : @user.name %>)
   </strong>
 </p>
-<p><%= t(:on_duty) %>: <%= @user.nil? ? t(:no_one_on_duty) : @user.name %></p>
-<p><%= t(:balance) %>: <%= @store.balance %> <%=t(:currency)%></p>
+<p><%= t(:remark) %>: <%= @store.remark %></p>
+<%= t(:balance) %>: <%= @store.balance %> <%=t(:currency)%>
+  
+<div class="input-append">
+  <%= link_to t(:edit), edit_maintain_store_path(@store), :class => 'btn'%>
+  <%= link_to t(:back), maintain_stores_path, :class => 'btn'%>
+</div>
+
+
+<p>
+  
+</p>
 
 <div class="input-append">
   <a class="btn <%='btn-info' if @addition == 'stock'%>" href="<%= maintain_store_path(@store) + "?addition=stock" %>" >
@@ -23,14 +33,15 @@
   <a class="btn <%='btn-info' if @addition == 'handover'%>" href="<%= maintain_store_path(@store) + "?addition=handover" %>" >
     <%=t(:handover) %>
   </a>
+  
+  <a class="btn <%='btn-info' if @addition == 'store_user'%>" href="<%= maintain_store_path(@store) + "?addition=store_user" %>" >
+    <%=t(:authority) %>
+  </a>
 </div>
 
 <%= render :partial => 'stocks' if @addition == 'stock' %>
 <%= render :partial => 'sales' if @addition == 'sale' %>
 <%= render :partial => 'expenses' if @addition == 'expense' %>
 <%= render :partial => 'handovers' if @addition == 'handover' %>
+<%= render :partial => 'store_users' if @addition == 'store_user' %>
 
-<p>
-  <%= link_to t(:edit), edit_maintain_store_path(@store), :class => 'btn'%>
-  <%= link_to t(:back), maintain_stores_path, :class => 'btn'%>
-</p>

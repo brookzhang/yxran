@@ -15,6 +15,8 @@ class Maintain::StoresController < Maintain::ApplicationController
       @expenses = Expense.where(:store_id => @store.id).limit(10)
     when 'handover'
       @handovers = Handover.where(:store_id => @store.id).includes(:user).limit(10)
+    when 'store_user'
+      @store_users = StoreUser.where(:store_id => @store.id)
     else
       @stocks = Stock.where(" quantity > 0 and store_id = ? ", @store.id ).limit(5)
     end
