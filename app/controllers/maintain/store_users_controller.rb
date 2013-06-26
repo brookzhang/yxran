@@ -1,12 +1,13 @@
 class Maintain::StoreUsersController < ApplicationController
   def index
-    @store_users = StoreUser.all.order(' store_id asc ')
+    @store_users = StoreUser.order(' store_id asc ').paginate(:page => params[:page])
   end
 
   def new
     @store_user = StoreUser.new
-    @users = User.all.order('id desc')
+    @users = User.order('id desc')
     @stores = Store.all
+    @roles = Lookup.where(:category => 'role')
   end
 
   def create
@@ -21,23 +22,6 @@ class Maintain::StoreUsersController < ApplicationController
     
   end
 
-  def edit
-    @users = User.all.order('id desc')
-    @stores = Store.all
-    @store_user = StoreUser.find(params[:id])
-  end
-
-  def update
-    @store_user = StoreUser.find(params[:id])
-    if @store_user.update_attributes(params[:store_user])
-      redirect_to maintain_store_users_path
-    else
-      @users = User.all.order('id desc')
-      @stores = Store.all
-      render 'edit'
-    end
-    
-  end
 
   def destroy
     @store_user = StoreUser.find(params[:id])

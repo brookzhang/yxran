@@ -7,6 +7,7 @@ class Store < ActiveRecord::Base
   has_many :handovers
   has_many :expenses
   has_many :balances
+  has_many :store_users
   
 
   # Setup accessible (or protected) attributes for your model
