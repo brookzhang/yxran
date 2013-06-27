@@ -14,7 +14,7 @@
         <td><%= store_user.store.name %></td>
         <td><%= store_user.user.name %> </td> 
         <td><%= l(store_user.role, 'role') %></td>
-        <td><%= link_to t(:delete),  maintain_store_users_path(@store_user), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :destory, :class => 'btn btn-small' %></td>
+        <td><%= link_to t(:delete),  [:maintain, store_user], :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-small' %></td>
     </tr>
   <% end %>
   <tr>

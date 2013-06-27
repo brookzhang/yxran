@@ -21,6 +21,8 @@ zh-CN:
       invalid_token: '验证标记失败.'
       timeout: '长时间没有操作,请重新登入.'
       inactive: '你的账号没激活.'
+      user:
+        not_found_in_database: '账号或密码不正确.'
     sessions:
       signed_in: '欢迎进入易香然连锁店管理系统.'
       signed_out: '您已退出了系统.'

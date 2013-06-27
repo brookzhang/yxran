@@ -47,6 +47,12 @@ zh-CN:
             actual_amount:
               blank: '请填写实收现金的金额。'
               
+        store_user: 
+          attributes:
+            role:
+              taken: '已经有了这个权限了'
+              user_has_not_this_role: '用户没有这个身份.'
+              
               
   activemodel:
     errors:
@@ -424,6 +430,7 @@ zh-CN:
   #----------------------------------------------------------------------------
   choose_a_user: '选择用户'
   choose_a_role: '选择身份'
+  must_be_system_role: '必须是系统里的身份'
   
   # stock.
   #----------------------------------------------------------------------------

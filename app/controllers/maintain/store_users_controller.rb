@@ -1,6 +1,6 @@
 class Maintain::StoreUsersController < ApplicationController
   def index
-    @store_users = StoreUser.order(' store_id asc ').paginate(:page => params[:page])
+    @store_users = StoreUser.order(' id desc ').paginate(:page => params[:page])
   end
 
   def new
@@ -15,8 +15,9 @@ class Maintain::StoreUsersController < ApplicationController
     if @store_user.save
       redirect_to maintain_store_users_path
     else
-      @users = User.all.order('id desc')
+      @users = User.order('id desc')
       @stores = Store.all 
+      @roles = Lookup.where(:category => 'role')
       render 'new'
     end
     
