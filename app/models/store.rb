@@ -18,4 +18,7 @@ class Store < ActiveRecord::Base
   validates_uniqueness_of :name, :case_sensitive => false
   validates_numericality_of :balance
   
+  
+  scope :authorized_stores, lambda{ |user_id, role| joins(:store_users).where(:store_users => { :user_id => user_id, :role => role })}
+  
 end

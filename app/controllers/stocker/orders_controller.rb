@@ -15,7 +15,7 @@ class Stocker::OrdersController < Stocker::ApplicationController
   def new
     @order = Order.new
     #@stores = Store.where(:category => 'S')
-    @stores = Store.all
+    @stores = Store.authorized_stores(current_user.id, 'stocker')
   end
 
   def create

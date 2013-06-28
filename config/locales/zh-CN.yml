@@ -7,71 +7,7 @@ zh-CN:
     previous_label: '←'
     next_label: '→'
   
-  activerecord:
-    errors:
-      messages:
-        record_invalid: '数据无效'
-      models:
-        user:
-          attributes:
-            password:
-              too_short: '新密码太短，最少6位。'
-            current_password:
-              invalid: '当前密码输入错误。'
-            role:
-              blank: '至少有一个身份吧。'
-        member:
-          attributes:
-            name:
-              blank: '会员名称不能为空。'
-            phone:
-              blank: '会员电话不能为空。'
-        order_detail:
-          attributes:
-            quantity:
-              greater_than: '数量必须大于0。'
-              blank: '数量不能为空。'
-        product:
-          attributes:
-            category_id:
-              blank: '分类不能为空。'
-            name:
-              blank: '品名不能为空。'
-            measurement:
-              blank: '计量单位不能为空。'
-            unit_price:
-              blank: '单价不能为空。'
-              
-        sale:
-          attributes:
-            actual_amount:
-              blank: '请填写实收现金的金额。'
-              
-        store_user: 
-          attributes:
-            role:
-              taken: '已经有了这个权限了'
-              user_has_not_this_role: '用户没有这个身份.'
-              
-              
-  activemodel:
-    errors:
-      models:
-        product_import:
-          attributes:
-            base:
-              content_is_nil: '内容是空白的。'
-              wrong_format: '格式错误。'
-        order_import:
-          attributes:
-            base:
-              content_is_nil: '内容是空白的。'
-              wrong_format: '格式错误。'
-        member_import:
-          attributes:
-            base:
-              content_is_nil: '内容是空白的。'
-              wrong_format: '格式错误。'
+  
   
   # site info.
   #----------------------------------------------------------------------------
@@ -331,6 +267,7 @@ zh-CN:
   new_expense_saved_failed: '新增支出失败!'
   expense_amount: '支出总额'
   expense_canceled_ok: '支出已撤销.'
+  expense_content: '支出项目'
   
   
   

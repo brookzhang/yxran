@@ -11,8 +11,8 @@
   <tbody>
   <% @store_users.each do |store_user| %>
     <tr>
-        <td><%= store_user.store.name %></td>
-        <td><%= store_user.user.name %> </td> 
+        <td><%= link_to store_user.store.name, [:maintain, store_user.store]  %></td>
+        <td><%= link_to store_user.user.name, [:maintain, store_user.user] %> </td> 
         <td><%= l(store_user.role, 'role') %></td>
         <td><%= link_to t(:delete),  [:maintain, store_user], :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-small' %></td>
     </tr>

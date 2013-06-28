@@ -19,15 +19,6 @@ class StoreUser < ActiveRecord::Base
   end
   
   
-  def user_must_has_role1
-    if !User.find(user_id).has_role?(role)
-      errors[:base] << 'user_has_not_this_role'
-    end
-    errors[:base] << 'user_has_not_this_role'
-    self.errors.add 'base', 'user_has_not_this_role'
-  end
-  
-  
   
   
 end

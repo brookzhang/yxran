@@ -13,19 +13,27 @@ class ExpensesController < ApplicationController
   end
 
   def new
-    @expense = Expense.new
+    @expense = Expense.new(:category => 'O')
     @lookups = Lookup.where(:category => 'expense_category')
   end
 
   def create
+    @lookups = Lookup.where(:category => 'expense_category')
+        
     @expense = Expense.new(params[:expense])
     @expense.user_id = current_user.id
     @expense.store_id = current_user.store_id
-    if @expense.create_balance
-      redirect_to expenses_path, :notice => t(:new_expense_saved_ok)
+    if @expense.valid?
+      if @expense.create_balance
+        redirect_to expenses_path, :notice => t(:new_expense_saved_ok)
+      else
+        render :new 
+      end
     else
-      redirect_to :new 
+      render :new 
     end
+    
+    
       
   end
 

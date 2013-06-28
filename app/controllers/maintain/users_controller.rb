@@ -12,6 +12,8 @@ class Maintain::UsersController < Maintain::ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @store_users = StoreUser.where(:user_id => @user.id)
+    
   end
   
   def new

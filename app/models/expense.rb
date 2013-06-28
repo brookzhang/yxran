@@ -8,7 +8,7 @@ class Expense < ActiveRecord::Base
   attr_accessor :check_message
   
   validates_numericality_of :amount, :greater_than_or_equal_to => 0
-  
+  validates_presence_of :category, :amount, :store_id, :user_id, :remark
   
   #after_save :update_store_balance
   
@@ -38,6 +38,7 @@ class Expense < ActiveRecord::Base
       end
       true
     rescue => err
+      errors.add :remark, :unable_to_create
       logger.error "****************************"  
       logger.error "#{err.message}"  
       #logger.error "#{err.backtrace.join('\n')}"  

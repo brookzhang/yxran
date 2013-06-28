@@ -4,7 +4,7 @@ class Maintain::StoreUsersController < ApplicationController
   end
 
   def new
-    @store_user = StoreUser.new
+    @store_user = StoreUser.new(:store_id => params[:store_id], :user_id => params[:user_id])
     @users = User.order('id desc')
     @stores = Store.all
     @roles = Lookup.where(:category => 'role')

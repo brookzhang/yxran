@@ -31,7 +31,7 @@ class HandoversController < ApplicationController
   end
   
   def new
-    @stores = Store.where(" not exists(select * from users where store_id = stores.id) ")
+    @stores = Store.authorized_stores(current_user.id, 'user').where(" not exists(select * from users where store_id = stores.id) ")
     @handover = Handover.new()
     
   end
@@ -114,19 +114,25 @@ class HandoversController < ApplicationController
   end
   
   def is_ok_to_take_over?(handover)
-    @is_ok = true
+    is_ok = true
     
     if !current_user.store_id.nil?
       flash[:alert] = t(:you_have_took_over_a_store)
-      @is_ok = false
+      is_ok = false
     end
     
     if User.where(:store_id => handover.store_id).count > 0
       flash[:alert] = t(:this_store_not_handed_over)
-      @is_ok = false
+      is_ok = false
     end
     
-    @is_ok
+    if StoreUser.where(:store_id => handover.store_id, :user_id =>current_user.id, :role => 'user' ).count == 0
+      flash[:alert] = t(:you_do_not_have_authority_on_this_store)
+      is_ok = false
+    end
+    
+    
+    is_ok
   end
 
 end

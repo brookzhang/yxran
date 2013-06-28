@@ -6,7 +6,7 @@
 <p><%= t(:status) %>: <%= l(@expense.status.to_s, 'expense_status') %>
   <%= t(:category) %>: <%= l(@expense.category.to_s, 'expense_category') %>
 </p>
-<p><%= t(:remark) %>: <%= @expense.remark %>
+<p><%= t(:expense_content) %>: <%= @expense.remark %>
 </p>
 <p><%= t(:created_at) %>: <%= @expense.created_at.to_s(:date_time) %>
 </p>

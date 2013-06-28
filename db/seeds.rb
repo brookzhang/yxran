@@ -35,8 +35,7 @@ Lookup.create([
   {:code => '0', :category =>'handover_status', :description => '接班'},
   {:code => '1', :category =>'handover_status', :description => '交班'},
   
-  {:code => 'C', :category =>'expense_category', :description => '办公用品'},
-  {:code => 'D', :category =>'expense_category', :description => '整额支取'},
+  {:code => 'D', :category =>'expense_category', :description => '支取'},
   {:code => 'O', :category =>'expense_category', :description => '其他'},
   
   {:code => '1', :category =>'expense_status', :description => '已入账'},

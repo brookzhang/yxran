@@ -2,7 +2,7 @@
 <table class="table table-condensed">
 	  <thead>
       <tr>
-        <th><%= t(:user_name) %></th>
+        <th><%= t(:store) %></th>
         <th><%= t(:role) %></th>
                                              
       </tr>
@@ -10,13 +10,11 @@
   <tbody>
   <% @store_users.each do |store_user| %>
     <tr>
-        <td><%= store_user.user.name %></td>
+        <td><%= store_user.store.name %></td>
         <td><%= l(store_user.role,'role') %></td>                              
     </tr>
   <% end %>
   </tbody>
 </table>
-<%else%>
-  <br>
-  <%= link_to '...' + t(:add) ,new_maintain_store_user_path(:store_id => @store.id) %>
 <%end %>
+  <%= link_to '...' + t(:add) ,new_maintain_store_user_path(:user_id => @user.id) %>
