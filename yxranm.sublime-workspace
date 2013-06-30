@@ -19,7 +19,23 @@
 			"file": "app/controllers/maintain/store_users_controller.rb",
 			"settings":
 			{
-				"buffer_size": 761,
+				"buffer_size": 1194,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/maintain/store_users/_form.html.erb",
+			"settings":
+			{
+				"buffer_size": 1323,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/store_user.rb",
+			"settings":
+			{
+				"buffer_size": 648,
 				"line_ending": "Unix"
 			}
 		},
@@ -28,6 +44,22 @@
 			"settings":
 			{
 				"buffer_size": 11738,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/layouts/application.html.erb",
+			"settings":
+			{
+				"buffer_size": 1674,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/maintain/users/_store_users.html.erb",
+			"settings":
+			{
+				"buffer_size": 299,
 				"line_ending": "Unix"
 			}
 		}
@@ -102,6 +134,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"if @store_user.save\n      redirect_to maintain_store_users_path\n    else\n      @users = User.order('id desc')\n      @stores = Store.all \n      @roles = Lookup.where(:category => 'role')\n      render 'new'\n    end"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -119,7 +152,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -153,15 +186,71 @@
 					"file": "app/controllers/maintain/store_users_controller.rb",
 					"settings":
 					{
-						"buffer_size": 761,
+						"buffer_size": 1194,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								235,
-								235
+								476,
+								476
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 54.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/maintain/store_users/_form.html.erb",
+					"settings":
+					{
+						"buffer_size": 1323,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1323,
+								1323
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 378.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/models/store_user.rb",
+					"settings":
+					{
+						"buffer_size": 648,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								624,
+								624
 							]
 						],
 						"settings":
@@ -177,7 +266,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 4,
 					"file": "config/locales/zh-CN.yml",
 					"settings":
 					{
@@ -197,6 +286,60 @@
 							"syntax": "Packages/YAML/YAML.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/views/layouts/application.html.erb",
+					"settings":
+					{
+						"buffer_size": 1674,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1612,
+								1612
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/views/maintain/users/_store_users.html.erb",
+					"settings":
+					{
+						"buffer_size": 299,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								187,
+								187
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

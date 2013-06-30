@@ -84,11 +84,13 @@ class Sale < ActiveRecord::Base
         
         
         #member sale & record score
-        if self.category == 'M' && (self.score > 0 || self.used_score > 0)
+        self.score ||= 0
+        self.used_score ||= 0
+        if self.category == 'M' && (self.score > 0  || self.used_score > 0 )
           @member = Member.find(self.member_id)
           @member.score -= self.used_score if self.used_score > 0
-          @member.score += self.score if self.score > 0 
-          @member.all_score += self.score if self.score > 0 
+          @member.score += self.score if self.score > 0
+          @member.all_score += self.score if self.score > 0
           @member.save!
         end
         
@@ -97,9 +99,9 @@ class Sale < ActiveRecord::Base
     rescue => err
       logger.error "****************************"  
       logger.error "#{err.message}"  
-      #logger.error "#{err.backtrace.join('\n')}"  
+      logger.error "#{err.backtrace.join('\n')}"  
       logger.error "****************************"  
-      #logger.debug "======= error output: " + err.to_s 
+      logger.debug "======= error output: " + err.to_s 
       self.check_message = 'unable_to_create'
       false
     end
