@@ -1,9 +1,6 @@
 <!--h3><%= t(:account_info) %></h3-->
 <p><%= t(:account) %>: <%= @user.account  %></p>
 <p><%= t(:user_name) %>: <%= @user.name %></p>
-<p>
-  <%= t(:role) %>: <%= @user.roles.map{|r| l(r.name,'role')}.join(",") %>
-</p>
 <p><%= t(:status) %>: <%= l(@user.status, "user_status") %>
   <%= link_to(t(:lock), lock_maintain_user_path(@user), :data => { :confirm => t(:are_you_sure_to_lock_user) }, :method => :get, :class => 'btn btn-small') unless @user.status == 0 %>
   <%= link_to(t(:unlock), unlock_maintain_user_path(@user), :data => { :confirm => t(:are_you_sure_to_unlock_user) }, :method => :get, :class => 'btn btn-small') unless @user.status == 1 %>

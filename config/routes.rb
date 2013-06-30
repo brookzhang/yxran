@@ -79,8 +79,8 @@ Yxran::Application.routes.draw do
     
     resources :categories
     resources :stores
-    resources :store_users
     resources :users do
+      resources :store_users
       member do
         get :lock
         get :unlock

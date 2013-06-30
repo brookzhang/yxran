@@ -12,6 +12,8 @@ class CartsController < ApplicationController
   end
 
 
+
+
   def create
     @cart = Cart.new(params[:cart])
     @cart.store_id = current_user.store_id
@@ -19,6 +21,8 @@ class CartsController < ApplicationController
     @cart.unit_price = @cart.product.unit_price
     @cart.amount = @cart.quantity * @cart.unit_price
     @cart.save
+
+
     
     session[:cart_count] = Cart.count_by_user(current_user).to_s
     

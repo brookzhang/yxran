@@ -10,13 +10,10 @@
   <tbody>
   <% @store_users.each do |store_user| %>
     <tr>
-        <td><%= store_user.user.name %></td>
+        <td><%= link_to store_user.user.name, [:maintain, store_user.user] %></td>
         <td><%= l(store_user.role,'role') %></td>                              
     </tr>
   <% end %>
   </tbody>
 </table>
-<%else%>
-  <br>
-  <%= link_to '...' + t(:add) ,new_maintain_store_user_path(:store_id => @store.id) %>
 <%end %>

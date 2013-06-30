@@ -4,6 +4,7 @@ class StoreUser < ActiveRecord::Base
   
   attr_accessible :role, :store_id, :user_id
   
+  
   validates_presence_of :store_id, :user_id, :role
   validates_inclusion_of :role, :in => Role.all.map(&:name), :message => 'must_be_system_role'
   validates_uniqueness_of :role, :scope => [:store_id, :user_id]

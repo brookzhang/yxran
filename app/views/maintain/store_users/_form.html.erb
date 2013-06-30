@@ -1,16 +1,45 @@
-<%= simple_form_for [:maintain,@store_user], :html => {:class => 'form-horizontal' } do |f| %>
-  <%= f.error_notification %>
+<%= form_for [:maintain, @user, @store_user], :html => {:class => 'form-horizontal' } do |f| %>
+  <% if @store_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@store_user.errors.count, "error") %> prohibited this career from being saved:</h2>
+
+      <ul>
+      <% @store_userra.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  
   <%= display_base_errors @store_user %>
-  <%= f.input :store_id, :label => t(:store), :collection => @stores, :label_method => :name, :value_method => :id, :required => true, :prompt => t(:choose_a_store) %>
+  <div class="control-group store_user_user_id">
+    <label class="control-label" ><%=t(:user)%></label>
+    <div class="help-inline"><%=@user.name%></div>
+  </div>
   
-  <%= f.input :user_id, :label => t(:user), :collection => @users, :label_method => :name, :value_method => :id, :required => true, :prompt => t(:choose_a_user) %>
+  <%@user.roles.each do |role| %>
+    <div class="control-group">
+      <label class="control-label"><%=l(role.name, 'role')%>:</label>
+      
+
+        
+        <% @stores.each do |store| %>
+        <label class="checkbox inline">
+          <%= check_box_tag "store_user[" + role.name + "][]", store.id, @arr_role_store.include?(role.name + '_' + store.id.to_s) %>
+            <%= label_tag store.name %>
+        </label>
+        <% end %>
+
+        
+    </div>
+  <%end%>
   
-  <%= f.input :role, :label => t(:role), :collection => @roles, :label_method => :description, :value_method => :code, :required => true, :prompt => t(:choose_a_role) %>
   
   <div class="control-group">
     <div class="controls">
-      <%= f.button :submit, t(:submit), :class => 'btn' %>
-      <%= link_to t(:back), maintain_stores_path, :class => 'btn' %>
+      <%= f.submit  t(:submit), :class => 'btn' %>
+      <%= link_to t(:back), [:maintain, @user] , :class => 'btn' %>
     </div>
   </div>
 <% end %>
