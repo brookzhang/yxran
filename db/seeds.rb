@@ -26,7 +26,7 @@ Lookup.create([
   {:code => 'S', :category =>'adjust_type', :description => '销售'},
   {:code => 'SE', :category =>'adjust_type', :description => '销售修改'},
   {:code => 'R', :category =>'sale_category', :description => '零售'},
-  {:code => 'C', :category =>'sale_category', :description => '消耗'},
+  {:code => 'C', :category =>'sale_category', :description => '出库'},
   {:code => 'M', :category =>'sale_category', :description => '会员'},
   
   {:code => '1', :category =>'sale_status', :description => '已入账'},

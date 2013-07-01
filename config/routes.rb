@@ -4,6 +4,20 @@ Yxran::Application.routes.draw do
 
 
 
+  get "out_stocks/index"
+
+  get "out_stocks/new"
+
+  get "out_stocks/create"
+
+  get "out_stocks/edit"
+
+  get "out_stocks/update"
+
+  get "out_stocks/show"
+
+  get "out_stocks/destroy"
+
   devise_for :users, :skip => [:registrations]
   resources :users do
     member do
