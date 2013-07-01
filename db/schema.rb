@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130624092313) do
+ActiveRecord::Schema.define(:version => 20130701092643) do
 
   create_table "balances", :force => true do |t|
     t.integer  "store_id"
@@ -279,8 +279,9 @@ ActiveRecord::Schema.define(:version => 20130624092313) do
     t.integer  "receiver_id"
     t.datetime "transfered_at"
     t.datetime "received_at"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "type",            :default => "T"
   end
 
   add_index "transfers", ["from_store_id", "to_store_id"], :name => "index_transfers_on_from_store_id_and_to_store_id"
