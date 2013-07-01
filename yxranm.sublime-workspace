@@ -16,50 +16,18 @@
 			}
 		},
 		{
-			"file": "app/controllers/maintain/store_users_controller.rb",
-			"settings":
-			{
-				"buffer_size": 1194,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/maintain/store_users/_form.html.erb",
-			"settings":
-			{
-				"buffer_size": 1323,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/models/store_user.rb",
-			"settings":
-			{
-				"buffer_size": 648,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "config/locales/zh-CN.yml",
 			"settings":
 			{
-				"buffer_size": 11738,
+				"buffer_size": 11628,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/layouts/application.html.erb",
+			"file": "app/models/sale.rb",
 			"settings":
 			{
-				"buffer_size": 1674,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/maintain/users/_store_users.html.erb",
-			"settings":
-			{
-				"buffer_size": 299,
+				"buffer_size": 6981,
 				"line_ending": "Unix"
 			}
 		}
@@ -100,6 +68,11 @@
 	},
 	"file_history":
 	[
+		"/home/brook/program/ror/app/yxran/app/controllers/maintain/store_users_controller.rb",
+		"/home/brook/program/ror/app/yxran/app/views/maintain/store_users/_form.html.erb",
+		"/home/brook/program/ror/app/yxran/app/models/store_user.rb",
+		"/home/brook/program/ror/app/yxran/app/views/maintain/users/_store_users.html.erb",
+		"/home/brook/program/ror/app/yxran/app/views/layouts/application.html.erb",
 		"/home/brook/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/brook/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
 		"/home/brook/program/ror/app/yxran/app/controllers/users_controller.rb",
@@ -152,7 +125,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -183,102 +156,18 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app/controllers/maintain/store_users_controller.rb",
-					"settings":
-					{
-						"buffer_size": 1194,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								476,
-								476
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 54.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/views/maintain/store_users/_form.html.erb",
-					"settings":
-					{
-						"buffer_size": 1323,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1323,
-								1323
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 378.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/models/store_user.rb",
-					"settings":
-					{
-						"buffer_size": 648,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								624,
-								624
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "config/locales/zh-CN.yml",
 					"settings":
 					{
-						"buffer_size": 11738,
+						"buffer_size": 11628,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								600,
-								600
+								10847,
+								10847
 							]
 						],
 						"settings":
@@ -288,61 +177,35 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2970.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "app/views/layouts/application.html.erb",
+					"buffer": 2,
+					"file": "app/models/sale.rb",
 					"settings":
 					{
-						"buffer_size": 1674,
+						"buffer_size": 6981,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1612,
-								1612
+								2984,
+								2984
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 270.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "app/views/maintain/users/_store_users.html.erb",
-					"settings":
-					{
-						"buffer_size": 299,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								187,
-								187
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1296.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
