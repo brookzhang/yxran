@@ -10,13 +10,24 @@ class AddCategoryProductStoreStockStockHistory < ActiveRecord::Migration
       
       t.timestamps
     end
+    
+    create_table :product_units do |t|
+      t.string :name
+      t.string :unit_type
+      t.integer :unit_count, :default => 1
+      
+      t.timestamps
+    end
+    
   
     create_table(:products) do |t|
       t.string :name
       t.references :category
       t.string :description
-      t.string :measurement
-      t.float :unit_price
+      #t.string :measurement
+      t.float :default_price
+      t.references :product_unit
+      t.string :tag
       t.integer :status, :default => 1
       
       t.timestamps
@@ -54,11 +65,19 @@ class AddCategoryProductStoreStockStockHistory < ActiveRecord::Migration
       t.datetime :adjusted_at
       t.string :remark
     end
+    
+    create_table :product_prices do |t|
+      t.references :product
+      t.references :store
+      t.float :unit_price
+    end
 
     add_index(:products, [:name, :category_id])
+    add_index(:products, :tag )
     add_index(:stores, [:name, :category])
     add_index(:stocks, [:product_id, :store_id ])
     add_index(:stock_histories, :stock_id )
     add_index(:stock_histories, :adjust_type )
+    add_index :product_prices, [:product_id, :store_id]
   end
 end

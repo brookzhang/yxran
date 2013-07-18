@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701092643) do
+ActiveRecord::Schema.define(:version => 20130718042741) do
 
   create_table "balances", :force => true do |t|
     t.integer  "store_id"
@@ -144,18 +144,34 @@ ActiveRecord::Schema.define(:version => 20130701092643) do
 
   add_index "orders", ["store_id"], :name => "index_orders_on_store_id"
 
+  create_table "product_prices", :force => true do |t|
+    t.integer "product_id"
+    t.integer "store_id"
+    t.float   "unit_price"
+  end
+
+  create_table "product_units", :force => true do |t|
+    t.string   "name"
+    t.integer  "base_unit"
+    t.integer  "base_unit_count"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "products", :force => true do |t|
     t.string   "name"
     t.integer  "category_id"
     t.string   "description"
-    t.string   "measurement"
     t.float    "unit_price"
-    t.integer  "status",      :default => 1
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.integer  "status",          :default => 1
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "product_unit_id"
+    t.string   "tag"
   end
 
   add_index "products", ["name", "category_id"], :name => "index_products_on_name_and_category_id"
+  add_index "products", ["tag"], :name => "index_products_on_tag"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

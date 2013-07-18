@@ -3,17 +3,20 @@ class Product < ActiveRecord::Base
   has_many :sale_details
   has_many :order_details
   has_many :transfer_details
+  has_many :product_prices
   
   belongs_to :category
+  belongs_to :product_unit
+  
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :description, :category_id, :measurement, :unit_price, :super_category_id
+  attr_accessible :name, :description, :category_id, :product_unit, :default_price, :super_category_id
   
   attr_accessor :category_name, :super_category_id
   
-  validates_presence_of :name, :measurement, :category_id, :unit_price
+  validates_presence_of :name, :product_unit, :category_id, :default_price
   validates_uniqueness_of :name, :case_sensitive => false
-  validates_numericality_of :unit_price, :greater_than => 0
+  validates_numericality_of :default_price, :greater_than => 0
   
   
   scope :by_name, lambda { |name| where("name like ? ", '%'+name+'%').order(" id desc ") unless name.nil? || name == ''}
@@ -29,8 +32,13 @@ class Product < ActiveRecord::Base
     0.1
   end
   
-  def price
-    self.unit_price.to_s << '/' << self.measurement
+  def unit_price(store_id)
+    product_price = ProductPrice.find_by_store_id_and_product_id(store_id, self.id)
+    product_price.nil? ? self.default_price : product_price.unit_price
+  end
+  
+  def price(store_id)
+    self.unit_price(store_id).to_s << '/' << self.product_unit.name
   end
   
   def self.list_with_sub_category(category_id)

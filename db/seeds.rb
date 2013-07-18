@@ -67,7 +67,12 @@ Lookup.create([
   {:code => 'user', :category =>'role', :description => '店员'},
   {:code => '0', :category =>'member', :description => '普通会员'},
   {:code => '1', :category =>'member', :description => '高级会员'},
-  {:code => '9', :category =>'member', :description => '贵宾'}
+  {:code => '9', :category =>'member', :description => '贵宾'},
+  
+  {:code => 'g', :category =>'unit_type', :description => '按克'},
+  {:code => 'number', :category =>'unit_type', :description => '按个数'},
+  {:code => 'bottle', :category =>'unit_type', :description => '按瓶'},
+  {:code => 'box', :category =>'unit_type', :description => '按盒'}
   
   
 ], :without_protection => true)
@@ -81,17 +86,22 @@ puts "creating categories of products"
 Category.create([
   {:parent_id => '0', :name => '茶叶', :description => '茶叶种类', :sequence => '1' },
   {:parent_id => '0', :name => '茶具', :description => '茶具', :sequence => '2' },
+  {:parent_id => '0', :name => '其他', :description => '其他', :sequence => '3' },
   {:parent_id => '1', :name => '绿茶', :description => '绿茶', :sequence =>'1' },
-  {:parent_id => '1', :name => '红茶', :description => '红茶', :sequence => '2' },
-  {:parent_id => '1', :name => '铁观音', :description => '铁观音', :sequence => '3' },
-  {:parent_id => '1', :name => '普洱茶', :description => '普洱茶', :sequence => '4' },
-  {:parent_id => '1', :name => '黑茶', :description => '黑茶', :sequence => '5' },
-  {:parent_id => '1', :name => '乌龙茶', :description => '乌龙茶', :sequence => '6' },
+  {:parent_id => '1', :name => '大红袍', :description => '大红袍', :sequence =>'2' },
+  {:parent_id => '1', :name => '白茶', :description => '白茶', :sequence =>'3' },
+  {:parent_id => '1', :name => '红茶', :description => '红茶', :sequence => '4' },
+  {:parent_id => '1', :name => '铁观音', :description => '铁观音', :sequence => '5' },
+  {:parent_id => '1', :name => '普洱茶', :description => '普洱茶', :sequence => '6' },
+  {:parent_id => '1', :name => '黑茶', :description => '黑茶', :sequence => '7' },
+  {:parent_id => '1', :name => '乌龙茶', :description => '乌龙茶', :sequence => '8' },
   {:parent_id => '2', :name => '茶壶', :description => '茶壶', :sequence => '1' },
   {:parent_id => '2', :name => '茶杯', :description => '茶杯', :sequence => '2' },
   {:parent_id => '2', :name => '茶盘', :description => '茶盘', :sequence => '3' },
   {:parent_id => '2', :name => '套件', :description => '套件', :sequence => '4' },
-  {:parent_id => '2', :name => '配件', :description => '配件', :sequence => '5' }
+  {:parent_id => '2', :name => '配件', :description => '配件', :sequence => '5' },
+  {:parent_id => '3', :name => '烟', :description => '烟', :sequence => '1' },
+  {:parent_id => '3', :name => '酒', :description => '酒', :sequence => '2' }
 ], :without_protection => true)
 
 puts 'creating discounts'
@@ -103,6 +113,20 @@ Discount.create([
   {:category_id => 1, :member_level => '9', :discount => 0.2 },
   {:category_id => 2, :member_level => '9', :discount => 0.15 }
 ], :without_protection => true)
+
+puts 'create product units'
+ProductUnit.create([
+  {:name => '克', :unit_type => 'g', :unit_count => 1 },
+  {:name => '个', :unit_type => 'number', :unit_count => 1 },
+  {:name => '瓶', :unit_type => 'bottle', :unit_count => 1 },
+  {:name => '盒', :unit_type => 'box', :unit_count => 1 },
+  {:name => '包(5克)', :unit_type => 'g', :unit_count => 5 },
+  {:name => '包(10克)', :unit_type => 'g', :unit_count => 10 },
+  {:name => '斤', :unit_type => 'g', :unit_count => 500 },
+  {:name => '公斤', :unit_type => 'g', :unit_count => 1000 },
+  {:name => '饼(375)', :unit_type => 'g', :unit_count => 375 }
+  
+])
 
 
 puts 'creating roles'
@@ -140,24 +164,24 @@ if ENV["RAILS_ENV"] != 'production'
   
   puts 'creating products'
   Product.create([
-    {:name => '西湖龙井2012', :category_id => '3', :description => '西湖龙井2012', :measurement => '克', :unit_price => '0.8' },
-    {:name => '正山小种2011', :category_id => '4', :description => '正山小种2011', :measurement => '克', :unit_price => '0.5' },
-    {:name => '铁观音秋茶2012', :category_id => '5', :description => '铁观音秋茶2012', :measurement => '克', :unit_price => '0.4'},
-    {:name => '大益普洱2005', :category_id => '6', :description => '大益普洱2005', :measurement => '饼', :unit_price => '200' },
-    {:name => '久扬黑茶', :category_id => '7', :description => '久扬黑茶', :measurement => '饼', :unit_price => '80' },
-    {:name => '岩茶-肉桂', :category_id => '8', :description => '岩茶-肉桂', :measurement => '克', :unit_price => '0.2' }
+    {:name => '西湖龙井2012', :category_id => '3', :description => '西湖龙井2012', :product_unit => 1, :default_price => '0.8' },
+    {:name => '正山小种2011', :category_id => '4', :description => '正山小种2011', :product_unit => 1, :default_price => '0.5' },
+    {:name => '铁观音秋茶2012', :category_id => '5', :description => '铁观音秋茶2012', :product_unit => 1, :default_price => '0.4'},
+    {:name => '大益普洱2005', :category_id => '6', :description => '大益普洱2005', :product_unit => 1, :default_price => '200' },
+    {:name => '久扬黑茶', :category_id => '7', :description => '久扬黑茶', :product_unit => 1, :default_price => '80' },
+    {:name => '岩茶-肉桂', :category_id => '8', :description => '岩茶-肉桂', :product_unit => 1, :default_price => '0.2' }
   ], :without_protection => true)
   
   
   puts "creating stores"
   Store.create([
     {:name => '总库', :category => 'S', :balance => 1000, :remark => '总仓库'},
-    {:name => '财', :category => 'P', :balance => 800, :remark => '财培茶馆' },
-    {:name => '中', :category => 'P', :balance => 700, :remark => '中心路中茶专营店'},
-    {:name => '商', :category => 'P', :balance => 600, :remark => '建设大街工商银行对过'},
-    {:name => '农', :category => 'P', :balance => 600, :remark => '农业局楼下'},
-    {:name => '盛', :category => 'I', :balance => 600, :remark => '盛华茶叶超市'},
-    {:name => '衡水店', :category => 'P', :balance => 600, :remark => '阜城鹏元'}
+    {:name => '财', :category => 'P', :balance => 1000, :remark => '财培茶馆' },
+    {:name => '中', :category => 'P', :balance => 1000, :remark => '中心路中茶专营店'},
+    {:name => '商', :category => 'P', :balance => 1000, :remark => '建设大街工商银行对过'},
+    {:name => '农', :category => 'P', :balance => 1000, :remark => '农业局楼下'},
+    {:name => '盛', :category => 'I', :balance => 1000, :remark => '盛华茶叶超市'},
+    {:name => '衡水店', :category => 'P', :balance => 1000, :remark => '阜城鹏元'}
   ], :without_protection => true)
   
   puts "inserting inventory"

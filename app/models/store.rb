@@ -8,6 +8,7 @@ class Store < ActiveRecord::Base
   has_many :expenses
   has_many :balances
   has_many :store_users
+  has_many :product_prices
   
 
   # Setup accessible (or protected) attributes for your model
