@@ -1,5 +1,5 @@
 <% @roles.each do |role| %>
-	<p><%=t(:belong_to_stores_as_role) + l(role.name, 'role')%> :
+	<p><%=t(:belong_to_stores_as_role) + l(role.name, 'role_category')%> :
 		<%= @store_users.map{|store_user|  store_user.role == role.name ? store_user.store.name : nil }.compact.join(",") %>
 	</p>
 

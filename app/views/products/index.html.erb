@@ -1,6 +1,6 @@
 <div class="span8">
   <%= render :partial => '/categories/list_by_tree' %>
-  <% if @products.count > 0 %>
+  <% if @products  %>
   <table class="table table-condensed">
     <thead>
       <tr>
@@ -16,7 +16,7 @@
     </tbody>
 	<tr>
 	  <td colspan="3">
-			 
+		<%= link_to t(:view_carts), carts_path, :class => 'btn btn-primary' %>
 	  </td>
 	</tr>
   </table>

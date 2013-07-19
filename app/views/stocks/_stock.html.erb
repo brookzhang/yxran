@@ -1,6 +1,6 @@
 <tr>
   <td><%= link_to stock.product.name, stock.product %></td>
-  <td><%= stock.quantity %> <%= stock.product.measurement %></td>
+  <td><%= stock.quantity %> <%= stock.product.measurement.name %></td>
   <td>
     <a data-toggle="modal" href="#add_cart-options-<%= stock.product_id %>" class="btn btn-mini btn-warning" type="button"><%= t(:add_to_cart) %></a>
     <div id="add_cart-options-<%= stock.product_id %>" class="modal" style="display: none;">
@@ -10,7 +10,7 @@
           <h3><%= t(:add_to_cart) %> </h3>
         </div>
         <div class="modal-body">
-          <%= f.input :quantity, :label => t(:quantity) + ' /' + stock.product.measurement , :class => 'auto_focus' %>
+          <%= f.input :quantity, :label => t(:quantity) + ' /' + stock.product.measurement.name , :class => 'auto_focus' %>
           <%= f.input :product_id, :as => :hidden, :input_html =>{:value => stock.product_id} %>
         </div>
         <div class="modal-footer">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130718042741) do
+ActiveRecord::Schema.define(:version => 20130624092313) do
 
   create_table "balances", :force => true do |t|
     t.integer  "store_id"
@@ -105,6 +105,14 @@ ActiveRecord::Schema.define(:version => 20130718042741) do
 
   add_index "lookups", ["code", "category"], :name => "index_lookups_on_code_and_category"
 
+  create_table "measurements", :force => true do |t|
+    t.string   "name"
+    t.string   "measurement"
+    t.integer  "unit_count",  :default => 1
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
   create_table "members", :force => true do |t|
     t.string   "name"
     t.string   "phone"
@@ -150,24 +158,18 @@ ActiveRecord::Schema.define(:version => 20130718042741) do
     t.float   "unit_price"
   end
 
-  create_table "product_units", :force => true do |t|
-    t.string   "name"
-    t.integer  "base_unit"
-    t.integer  "base_unit_count"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
+  add_index "product_prices", ["product_id", "store_id"], :name => "index_product_prices_on_product_id_and_store_id"
 
   create_table "products", :force => true do |t|
     t.string   "name"
     t.integer  "category_id"
     t.string   "description"
-    t.float    "unit_price"
-    t.integer  "status",          :default => 1
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "product_unit_id"
+    t.float    "default_price"
+    t.integer  "measurement_id"
     t.string   "tag"
+    t.integer  "status",         :default => 1
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   add_index "products", ["name", "category_id"], :name => "index_products_on_name_and_category_id"
@@ -295,9 +297,8 @@ ActiveRecord::Schema.define(:version => 20130718042741) do
     t.integer  "receiver_id"
     t.datetime "transfered_at"
     t.datetime "received_at"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.string   "type",            :default => "T"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "transfers", ["from_store_id", "to_store_id"], :name => "index_transfers_on_from_store_id_and_to_store_id"

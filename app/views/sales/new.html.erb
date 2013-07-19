@@ -5,7 +5,7 @@
         <div>
         <%= link_to @member.nil? ? t(:select_member) : t(:switch_member) , members_path, :class => 'btn'%>
         <%if !@member.nil? %>
-          <%= @member.name %>(<%= l(@member.level, 'member')%> -  <%= @member.score %><%= t(:scores)%>)
+          <%= @member.name %>(<%= l(@member.level, 'member_level')%> -  <%= @member.score %><%= t(:scores)%>)
         <%end %>
         </div>
       </th>
@@ -15,7 +15,7 @@
     <tr>
       <td>
         <h4><%= cart.product.name %></h4>
-        <strong><%= cart.quantity %><%= cart.product.measurement %></strong>
+        <strong><%= cart.quantity %><%= cart.product.measurement.name %></strong>
         [<strong><%= cart.amount %><%=t(:currency)%></strong>]
       </td>         
     </tr>

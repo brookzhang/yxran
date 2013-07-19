@@ -12,7 +12,7 @@
         <td><%= t.product.name %></td>
         <td align="right"><%= t.quantity.to_s  %>
           / <%= Stock.get_quantity(@order.store_id, t.product_id)%>
-          <%= t.product.measurement %>
+          <%= t.product.measurement.name %>
         </td>
                
     </tr>

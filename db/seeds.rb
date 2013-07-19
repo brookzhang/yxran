@@ -10,21 +10,21 @@
 
 puts "creating lookups"
 Lookup.create([
-  {:code => 'S', :category =>'event', :description => '修改设定' },
-  {:code => 'U', :category =>'event', :description => '用户修改'},
-  {:code => 'C', :category =>'event', :description => '产品分类'},
-  {:code => 'DS', :category =>'event', :description => '产品折扣'},
-  {:code => 'C', :category =>'store', :description => '总部'},
-  {:code => 'P', :category =>'store', :description => '分店'},
-  {:code => 'I', :category =>'store', :description => '入驻'},
-  {:code => 'S', :category =>'store', :description => '仓库'},
-  {:code => 'I', :category =>'adjust_type', :description => '初始库存'},
-  {:code => 'O', :category =>'adjust_type', :description => '订单'},
-  {:code => 'OE', :category =>'adjust_type', :description => '订单修改'},
-  {:code => 'T', :category =>'adjust_type', :description => '调货'},
-  {:code => 'TE', :category =>'adjust_type', :description => '调货修改'},
-  {:code => 'S', :category =>'adjust_type', :description => '销售'},
-  {:code => 'SE', :category =>'adjust_type', :description => '销售修改'},
+  {:code => 'S', :category =>'event_category', :description => '修改设定' },
+  {:code => 'U', :category =>'event_category', :description => '用户修改'},
+  {:code => 'C', :category =>'event_category', :description => '产品分类'},
+  {:code => 'DS', :category =>'event_category', :description => '产品折扣'},
+  {:code => 'C', :category =>'store_category', :description => '总部'},
+  {:code => 'P', :category =>'store_category', :description => '分店'},
+  {:code => 'I', :category =>'store_category', :description => '入驻'},
+  {:code => 'S', :category =>'store_category', :description => '仓库'},
+  {:code => 'I', :category =>'adjust_category', :description => '初始库存'},
+  {:code => 'O', :category =>'adjust_category', :description => '订单'},
+  {:code => 'OE', :category =>'adjust_category', :description => '订单修改'},
+  {:code => 'T', :category =>'adjust_category', :description => '调货'},
+  {:code => 'TE', :category =>'adjust_category', :description => '调货修改'},
+  {:code => 'S', :category =>'adjust_category', :description => '销售'},
+  {:code => 'SE', :category =>'adjust_category', :description => '销售修改'},
   {:code => 'R', :category =>'sale_category', :description => '零售'},
   {:code => 'C', :category =>'sale_category', :description => '出库'},
   {:code => 'M', :category =>'sale_category', :description => '会员'},
@@ -61,18 +61,16 @@ Lookup.create([
   {:code => '9', :category =>'order_status', :description => '已取消'},
   
   
-  {:code => 'admin', :category =>'role', :description => '系统管理员'},
-  {:code => 'manager', :category =>'role', :description => '主管'},
-  {:code => 'stocker', :category =>'role', :description => '库管'},
-  {:code => 'user', :category =>'role', :description => '店员'},
-  {:code => '0', :category =>'member', :description => '普通会员'},
-  {:code => '1', :category =>'member', :description => '高级会员'},
-  {:code => '9', :category =>'member', :description => '贵宾'},
+  {:code => 'admin', :category =>'role_category', :description => '系统管理员'},
+  {:code => 'manager', :category =>'role_category', :description => '主管'},
+  {:code => 'stocker', :category =>'role_category', :description => '库管'},
+  {:code => 'user', :category =>'role_category', :description => '店员'},
+  {:code => '0', :category =>'member_level', :description => '普通会员'},
+  {:code => '1', :category =>'member_level', :description => '高级会员'},
+  {:code => '9', :category =>'member_level', :description => '贵宾'},
   
-  {:code => 'g', :category =>'unit_type', :description => '按克'},
-  {:code => 'number', :category =>'unit_type', :description => '按个数'},
-  {:code => 'bottle', :category =>'unit_type', :description => '按瓶'},
-  {:code => 'box', :category =>'unit_type', :description => '按盒'}
+  {:code => 'g', :category =>'measurement_category', :description => '按克数'},
+  {:code => 'n', :category =>'measurement_category', :description => '按个数'}
   
   
 ], :without_protection => true)
@@ -114,17 +112,15 @@ Discount.create([
   {:category_id => 2, :member_level => '9', :discount => 0.15 }
 ], :without_protection => true)
 
-puts 'create product units'
-ProductUnit.create([
-  {:name => '克', :unit_type => 'g', :unit_count => 1 },
-  {:name => '个', :unit_type => 'number', :unit_count => 1 },
-  {:name => '瓶', :unit_type => 'bottle', :unit_count => 1 },
-  {:name => '盒', :unit_type => 'box', :unit_count => 1 },
-  {:name => '包(5克)', :unit_type => 'g', :unit_count => 5 },
-  {:name => '包(10克)', :unit_type => 'g', :unit_count => 10 },
-  {:name => '斤', :unit_type => 'g', :unit_count => 500 },
-  {:name => '公斤', :unit_type => 'g', :unit_count => 1000 },
-  {:name => '饼(375)', :unit_type => 'g', :unit_count => 375 }
+puts 'create measurements'
+Measurement.create([
+  {:name => '克', :measurement => 'g', :unit_count => 1 },
+  {:name => '个', :measurement => 'number', :unit_count => 1 },
+  {:name => '袋(5克)', :measurement => 'g', :unit_count => 5 },
+  {:name => '袋(10克)', :measurement => 'g', :unit_count => 10 },
+  {:name => '斤', :measurement => 'g', :unit_count => 500 },
+  {:name => '公斤', :measurement => 'g', :unit_count => 1000 },
+  {:name => '饼(375)', :measurement => 'g', :unit_count => 375 }
   
 ])
 
@@ -164,12 +160,12 @@ if ENV["RAILS_ENV"] != 'production'
   
   puts 'creating products'
   Product.create([
-    {:name => '西湖龙井2012', :category_id => '3', :description => '西湖龙井2012', :product_unit => 1, :default_price => '0.8' },
-    {:name => '正山小种2011', :category_id => '4', :description => '正山小种2011', :product_unit => 1, :default_price => '0.5' },
-    {:name => '铁观音秋茶2012', :category_id => '5', :description => '铁观音秋茶2012', :product_unit => 1, :default_price => '0.4'},
-    {:name => '大益普洱2005', :category_id => '6', :description => '大益普洱2005', :product_unit => 1, :default_price => '200' },
-    {:name => '久扬黑茶', :category_id => '7', :description => '久扬黑茶', :product_unit => 1, :default_price => '80' },
-    {:name => '岩茶-肉桂', :category_id => '8', :description => '岩茶-肉桂', :product_unit => 1, :default_price => '0.2' }
+    {:name => '西湖龙井2012', :category_id => '3', :description => '西湖龙井2012', :measurement_id => 1, :default_price => '0.8' },
+    {:name => '正山小种2011', :category_id => '4', :description => '正山小种2011', :measurement_id => 1, :default_price => '0.5' },
+    {:name => '铁观音秋茶2012', :category_id => '5', :description => '铁观音秋茶2012', :measurement_id => 1, :default_price => '0.4'},
+    {:name => '大益普洱2005', :category_id => '6', :description => '大益普洱2005', :measurement_id => 1, :default_price => '200' },
+    {:name => '久扬黑茶', :category_id => '7', :description => '久扬黑茶', :measurement_id => 1, :default_price => '80' },
+    {:name => '岩茶-肉桂', :category_id => '8', :description => '岩茶-肉桂', :measurement_id => 1, :default_price => '0.2' }
   ], :without_protection => true)
   
   

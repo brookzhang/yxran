@@ -1,11 +1,13 @@
 class ProductsController < ApplicationController
   #before_filter :require_user  #not must be, ajax data get from here
+  before_filter :authenticate_user!
   
   def index
     category_id = params[:category_id].nil? ? 0 : params[:category_id].to_i
     @category = category_id == 0 ? nil : Category.find(category_id)
     @categories = Category.where(" parent_id = ? ", category_id )
-    @products = Product.for_sale(category_id,current_user.store_id)
+    @products = nil
+    @products = Product.for_sale(category_id,current_user.store_id) if category_id > 0 
     #@products = where( " category_id = ? ", category_id)
     #@products = Product.for_sale(category_id)
     @cart = Cart.new

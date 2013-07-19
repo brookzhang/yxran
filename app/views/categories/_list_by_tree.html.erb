@@ -1,4 +1,4 @@
-<p>
+
   <div class="input-append">
   <a class="btn btn-primary " href="<%=products_path(:category_id => 0)%>" >
     <%=t(:root_category) %> <i class="icon-chevron-right  icon-white"></i>
@@ -16,11 +16,11 @@
     </a>
   <%end%>
   </div>
-</p>
 
 
-<p>
+
+<div>
   <%@categories.each do |category|%>
       <%=link_to(category.name, products_path(:category_id => category), :class => 'btn') %>
   <%end%>
-</p>
+</div>

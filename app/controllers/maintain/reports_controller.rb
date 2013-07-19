@@ -280,7 +280,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @search.by_date_period = true
     @search.by_store = true
     @search.by_category = true
-    @search.category_for = 'adjust_type'
+    @search.category_for = 'adjust_category'
     @search.by_product = true
     
     init_search_menu_and_get_parameters
@@ -303,7 +303,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
                        :from => " stocks 
                         inner join stock_histories on stocks.id = stock_histories.stock_id
                         inner join stores on stocks.store_id = stores.id
-                        inner join lookups on stock_histories.adjust_type = lookups.code and lookups.category = 'adjust_type'
+                        inner join lookups on stock_histories.adjust_type = lookups.code and lookups.category = 'adjust_category'
                         inner join products on stocks.product_id = products.id  ",
                        :conditions => @conditions,
                        :order => " stock_histories.id desc "

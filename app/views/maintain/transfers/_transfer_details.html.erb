@@ -15,7 +15,7 @@
           / <%= Stock.get_quantity(@transfer.from_store_id, t.product_id)%>
           / <%= Stock.get_quantity(@transfer.to_store_id, t.product_id)%>
           
-          <%= t.product.measurement %>
+          <%= t.product.measurement.name %>
         </td>
    
     </tr>

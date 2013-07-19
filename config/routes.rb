@@ -101,6 +101,10 @@ Yxran::Application.routes.draw do
     resources :handovers
     resources :expenses
     resources :balances
+    match '/settings', :to => 'lookups#list'
+    scope ':category' do
+      resources :lookups
+    end
   end
   
   

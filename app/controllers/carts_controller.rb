@@ -18,7 +18,7 @@ class CartsController < ApplicationController
     @cart = Cart.new(params[:cart])
     @cart.store_id = current_user.store_id
     @cart.user_id = current_user.id
-    @cart.unit_price = @cart.product.unit_price
+    @cart.unit_price = @cart.product.unit_price(current_user.store_id)
     @cart.amount = @cart.quantity * @cart.unit_price
     @cart.save
 
@@ -26,9 +26,9 @@ class CartsController < ApplicationController
     
     session[:cart_count] = Cart.count_by_user(current_user).to_s
     
-    @pre_category_id = session[:category_id].nil? ? 0 : session[:category_id]
+    pre_category_id = session[:category_id].nil? ? 0 : session[:category_id]
     #redirect_to products_path(:category_id => @pre_category_id) # carts_path #, :notice => t(:add_ok)
-    redirect_to stocks_path 
+    redirect_to products_path(:category_id => pre_category_id) 
     
   end
 

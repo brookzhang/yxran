@@ -11,7 +11,7 @@
   <% @stocks.each do |stock| %>
     <tr>
         <td><%= stock.product.name %></td>
-        <td><%= stock.quantity %> <%= stock.product.measurement %></td>
+        <td><%= stock.quantity %> <%= stock.product.measurement.name %></td>
         <td><%= link_to t(:show), [:maintain,stock], :class => 'btn' %>
         </td>                                    
     </tr>

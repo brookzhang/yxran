@@ -15,7 +15,7 @@
           / <%= Stock.get_quantity(@transfer.from_store_id, t.product_id)%>
           / <%= Stock.get_quantity(@transfer.to_store_id, t.product_id)%>
           
-          <%= t.product.measurement %>
+          <%= t.product.measurement.name %>
         </td>
         <td><%= link_to(t(:delete), transfer_transfer_detail_path(@transfer,t), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  if @transfer.status == 0 %>     </td>
                

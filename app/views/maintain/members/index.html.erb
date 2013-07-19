@@ -11,7 +11,7 @@
   <% @members.each do |member| %>
     <tr>
         <td><%= link_to member.name, [:maintain, member] %></td>
-        <td><%= l(member.level,'member') %></td>
+        <td><%= l(member.level,'member_level') %></td>
         <td><%= member.score%></td>                                      
     </tr>
   <% end %>

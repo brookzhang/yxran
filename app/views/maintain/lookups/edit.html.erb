@@ -1,0 +1,15 @@
+<%= simple_form_for @lookup, :url => maintain_lookup_path(params[:category], @lookup), :html => {:class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @lookup %>
+  <%#= f.input :code, :label => t(:code), :autofocus => true %> 
+  <%= f.input :description, :label => t(:description), :required => true %>
+  <%#= f.input :sequence, :label => t(:sequence), :required => true %>
+  <%#= f.input :status, :label => t(:status), :required => true, :input_html  => { :value => '1' }%>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, t(:submit), :class => 'btn' %>
+      <%= link_to t(:back), :back, :class => 'btn' %>
+    </div>
+  </div>
+<% end %>
+

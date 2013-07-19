@@ -11,7 +11,7 @@
   <% @store_users.each do |store_user| %>
     <tr>
         <td><%= link_to store_user.user.name, [:maintain, store_user.user] %></td>
-        <td><%= l(store_user.role,'role') %></td>                              
+        <td><%= l(store_user.role,'role_category') %></td>                              
     </tr>
   <% end %>
   </tbody>

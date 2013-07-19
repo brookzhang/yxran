@@ -11,9 +11,9 @@ class AddCategoryProductStoreStockStockHistory < ActiveRecord::Migration
       t.timestamps
     end
     
-    create_table :product_units do |t|
+    create_table :measurements do |t|
       t.string :name
-      t.string :unit_type
+      t.string :measurement
       t.integer :unit_count, :default => 1
       
       t.timestamps
@@ -26,7 +26,7 @@ class AddCategoryProductStoreStockStockHistory < ActiveRecord::Migration
       t.string :description
       #t.string :measurement
       t.float :default_price
-      t.references :product_unit
+      t.references :measurement
       t.string :tag
       t.integer :status, :default => 1
       

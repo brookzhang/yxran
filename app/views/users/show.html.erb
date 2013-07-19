@@ -2,7 +2,7 @@
 <p><%= t(:account) %>: <%= @user.account %></p>
 <p><%= t(:name) %>: <%= @user.name %></p>
 <p><%= t(:email) %>: <%= @user.email if @user.email %></p>
-<p><%= t(:role) %>: <%= l(@user.roles.first.name,'role') unless @user.roles.first.nil? %></p>
+<p><%= t(:role) %>: <%= l(@user.roles.first.name,'role_category') unless @user.roles.first.nil? %></p>
 <p><%= t(:created_at) %>: <%= @user.created_at.to_date %></p>
 
 

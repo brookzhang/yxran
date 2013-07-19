@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   def list_roles
     roles = ''
     if self.roles.count > 0
-      roles = self.roles.map{|r| Lookup.get_one('role',r.name).description }.join(",")
+      roles = self.roles.map{|r| Lookup.get_one('role_category',r.name).description }.join(",")
     end
     roles
   end

@@ -1,0 +1,11 @@
+<!--h3><%= t(:account_info) %></h3-->
+<p><%= t(:code) %>: <%= @lookup.code %></p>
+<p><%= t(:category) %>: <%= @lookup.category %></p>
+<p><%= t(:description) %>: <%= @lookup.description %></p>
+<p><%= t(:sequence) %>: <%= @lookup.sequence %></p>
+<p><%= t(:status) %>: <%= @lookup.status %></p>
+<p><%= t(:created_at) %>: <%= @lookup.created_at.to_date %></p>
+<p><%= link_to t(:edit), edit_maintain_lookup_path(params[:category], @lookup), :class => 'btn'%>
+<%= link_to(t(:delete), maintain_lookup_path(params[:category], @lookup),  :confirm => t(:are_you_sure_to_delete), :method => :delete, :class => 'btn')  %>
+<%= link_to t(:back), maintain_lookups_path(params[:category]), :class => 'btn'%>
+</p>

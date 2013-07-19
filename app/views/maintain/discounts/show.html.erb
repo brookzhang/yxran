@@ -1,6 +1,6 @@
 <!--h3><%= t(:account_info) %></h3-->
 <p><%= t(:category) %>: <%= @discount.category.name %></p>
-<p><%= t(:member_level) %>: <%= l(@discount.member_level, 'member') %></p>
+<p><%= t(:member_level) %>: <%= l(@discount.member_level, 'member_level') %></p>
 <p><%= t(:discount) %>: * <%= @discount.discount %></p>
 <p><%= t(:created_at) %>: <%= @discount.created_at.to_date %></p>
 <%= link_to t(:edit), edit_maintain_discount_path(@discount), :class => 'btn'%>

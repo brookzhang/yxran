@@ -6,15 +6,15 @@ class Product < ActiveRecord::Base
   has_many :product_prices
   
   belongs_to :category
-  belongs_to :product_unit
+  belongs_to :measurement
   
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :description, :category_id, :product_unit, :default_price, :super_category_id
+  attr_accessible :name, :description, :category_id, :measurement_id, :default_price, :super_category_id
   
   attr_accessor :category_name, :super_category_id
   
-  validates_presence_of :name, :product_unit, :category_id, :default_price
+  validates_presence_of :name, :measurement_id, :category_id, :default_price
   validates_uniqueness_of :name, :case_sensitive => false
   validates_numericality_of :default_price, :greater_than => 0
   
@@ -38,7 +38,7 @@ class Product < ActiveRecord::Base
   end
   
   def price(store_id)
-    self.unit_price(store_id).to_s << '/' << self.product_unit.name
+    self.unit_price(store_id).to_s << '/' << self.measurement.name
   end
   
   def self.list_with_sub_category(category_id)

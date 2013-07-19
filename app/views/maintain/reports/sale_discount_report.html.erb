@@ -35,7 +35,7 @@
 			<td><%= s.score %></td>
 			<td><%= (s.discount.to_f * 100).round(2) %> %</td>
 			<td><%= s.member_name  %></td>
-			<td><%= l(s.member_level,'member') if s.member_level %></td>
+			<td><%= l(s.member_level,'member_level') if s.member_level %></td>
 			<td><%= s.created_at.to_s(:date_time) %></td> 
 			<td><%= s.user_name %></td> 
 			

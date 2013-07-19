@@ -5,14 +5,14 @@
       &nbsp;&nbsp;
     </div>
     <div>
-      <strong><%= cart.quantity %><%= cart.product.measurement %></strong>
-      *  <%= cart.product.price %>
+      <strong><%= cart.quantity %><%= cart.product.measurement.name %></strong>
+      *  <%= cart.unit_price %>
       
       <% if !@member.nil? %>
       - <%= cart.score.nil? ? 0 : cart.score %><%= t(:scores) %>
       <% end%>
       
-      = <%= cart.quantity * cart.product.unit_price %> <%=t(:currency)%>
+      = <%= cart.quantity * cart.unit_price %> <%=t(:currency)%>
       
       <%= link_to t(:delete), cart , :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-mini  btn-inverse'   %>
     </div>
