@@ -1,8 +1,8 @@
 <p><%= t(:name) %>: <%= @product.name %></p>
 <p><%= t(:description) %>: <%= @product.description %></p>
 <p><%= t(:category) %>: <%= @product.category.name %></p>
-<p><%= t(:measurement) %>: <%= @product.measurement %></p>
-<p><%= t(:unit_price) %>: <%= @product.unit_price %></p>
+<p><%= t(:measurement) %>: <%= @product.measurement.name %></p>
+<p><%= t(:default_price) %>: <%= @product.default_price %><%=t(:currency)%></p>
 <p><%= t(:created_at) %>: <%= @product.created_at.to_date %></p>
 <p><%= link_to t(:edit), edit_stocker_product_path(@product), :class => 'btn'%>
 <%= link_to(t(:delete), stocker_product_path(@product), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>

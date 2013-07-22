@@ -1,0 +1,32 @@
+<div class="span8">
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th><%= t(:name) %></th>
+          <th><%= t(:unit_count) %></th>
+          <th><%= t(:measurement) %></th>
+          <th></th>                                      
+      </tr>
+  </thead>   
+  <tbody>
+  <% @measurements.each do |measurement| %>
+    <tr>
+        <td><%= measurement.name %></td>
+        <td><%= measurement.unit_count  %></td>
+        <td><%= l(measurement.measurement,"measurement_category")  %></td>
+        <td>
+          <%=link_to t(:edit), edit_maintain_measurement_path(measurement), :class => 'btn' %>
+          <%= link_to(t(:delete), [:maintain, measurement],  :confirm => t(:please_do_not_delete_settings_while_using_or_will_error), :method => :delete, :class => 'btn')  %>
+
+        </td>                                       
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="3">
+      <%= link_to t(:create), new_maintain_measurement_path, :class => 'btn' %>
+			<%= link_to t(:back), maintain_measurements_path, :class => 'btn'%>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div> 

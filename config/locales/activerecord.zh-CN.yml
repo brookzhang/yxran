@@ -2,7 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 zh-CN:
-  
+
   activerecord:
     errors:
       messages:
@@ -37,26 +37,32 @@ zh-CN:
               blank: '计量单位不能为空。'
             unit_price:
               blank: '单价不能为空。'
-              
+
         sale:
           attributes:
             actual_amount:
               blank: '请填写实收现金的金额。'
-              
+
         expense:
           attributes:
             remark:
               blank: '请填写支出项目'
             amount:
               not_a_number: '请填写正确的金额.'
-              
+
         store_user: 
           attributes:
             role:
               taken: '已经有了这个权限了'
               user_has_not_this_role: '用户没有这个身份.'
-              
-              
+
+        measurement:
+          attributes:
+            measurement:
+              blank: '计量单位不能为空。'
+            unit_count:
+              blank: '换算单位不能为空.'
+              not_a_number: '换算单位必须为数字.'
   activemodel:
     errors:
       models:

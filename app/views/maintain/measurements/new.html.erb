@@ -1,4 +1,4 @@
-<%= simple_form_for @lookup, :url => maintain_lookup_path(params[:category], @lookup), :html => {:class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @lookup, :url => maintain_lookups_path(params[:category]), :html => {:class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors @lookup %>
   <%= f.input :code, :label => t(:code), :autofocus => true %> 

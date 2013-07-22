@@ -1,6 +1,6 @@
 <!--h3><%= t(:account_info) %></h3-->
 <p><%= @product.name %>
-  [<%= @product.unit_price %><%=t(:currency)%> / <%= @product.measurement %>]
+  [<%= @product.unit_price(current_user.store_id) %><%=t(:currency)%> / <%= @product.measurement.name %>]
 </p>
 <p><%= t(:stock_quantity) %>: <%= @stock.nil? ? 0 : @stock.quantity %></p>
 <p>

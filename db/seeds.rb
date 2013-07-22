@@ -115,7 +115,7 @@ Discount.create([
 puts 'create measurements'
 Measurement.create([
   {:name => '克', :measurement => 'g', :unit_count => 1 },
-  {:name => '个', :measurement => 'number', :unit_count => 1 },
+  {:name => '个', :measurement => 'n', :unit_count => 1 },
   {:name => '袋(5克)', :measurement => 'g', :unit_count => 5 },
   {:name => '袋(10克)', :measurement => 'g', :unit_count => 10 },
   {:name => '斤', :measurement => 'g', :unit_count => 500 },

@@ -294,6 +294,7 @@ zh-CN:
   transfers_maintain: '调货管理'
   handovers_maintain: '值班管理'
   expenses_maintain: '支出管理'
+  measurements_maintain: '商品包装'
 
   all_settings: '参数设定'
 
@@ -348,11 +349,16 @@ zh-CN:
   products: '商品'
   measurement: '计量单位'
   unit_price: '单价'
+  default_price: '默认单价'
   all_products: '所有商品'
   import_products_successfully: '产品导入成功'
   sample_for_measurement: '例如：克、饼、个、袋'
   sample_for_unit_price: '按计量单位的单价'
 
+  # measurements.
+  #----------------------------------------------------------------------------
+  unit_count: '换算单位'
+  select_measurement: '选择计量单位'
 
   # store.
   #----------------------------------------------------------------------------

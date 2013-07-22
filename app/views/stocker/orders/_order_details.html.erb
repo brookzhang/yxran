@@ -13,7 +13,7 @@
         <td><%= t.product.name %></td>
         <td align="right"><%= t.quantity.to_s  %>
            / <%= Stock.get_quantity(@order.store_id, t.product_id)%>
-           <%= t.product.measurement %>
+           <%= t.product.measurement.name%>
         </td>
         <td><%= link_to t(:delete), stocker_order_order_detail_path(@order, t), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn btn-small'  if @order.status == 0 %></td>
                

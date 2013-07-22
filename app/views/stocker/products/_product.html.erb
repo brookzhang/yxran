@@ -1,4 +1,4 @@
 <tr>
   <td><%= link_to product.name, [:stocker, product] %></td>
-  <td><%= product.unit_price %> / <%= product.measurement %></td>           
+  <td><%= product.default_price %> <%=t(:currency) %>/<%= product.measurement.name %></td>           
 </tr>

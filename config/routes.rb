@@ -5,6 +5,14 @@ Yxran::Application.routes.draw do
 
 
 
+  get "measurements/index"
+
+  get "measurements/show"
+
+  get "measurements/new"
+
+  get "measurements/edit"
+
   devise_for :users, :skip => [:registrations]
   resources :users do
     member do
@@ -105,6 +113,7 @@ Yxran::Application.routes.draw do
     scope ':category' do
       resources :lookups
     end
+    resources :measurements
   end
   
   

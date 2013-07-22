@@ -36,6 +36,7 @@ class Stocker::ProductsController < Stocker::ApplicationController
     @super_categories = Category.where(:parent_id => 0)
     @categories = [].insert(0, t(:category))
     @product = Product.new
+    @measurements = Measurement.order(" measurement asc, unit_count asc")
   end
 
   def create
@@ -55,6 +56,7 @@ class Stocker::ProductsController < Stocker::ApplicationController
     
     @super_categories = Category.where(:parent_id => 0)
     @categories = Category.where(:parent_id => @product.super_category_id)
+    @measurements = Measurement.where(:measurement => @product.measurement.measurement)
   end
 
   def update
