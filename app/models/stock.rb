@@ -5,9 +5,9 @@ class Stock < ActiveRecord::Base
   
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :product_id, :store_id, :quantity, :safe_stock, :remark, :adjust_type
+  attr_accessible :product_id, :store_id, :quantity, :safe_stock, :remark, :adjust_category
   
-  attr_accessor :adjust_type, :reference_id, :change_qty, :change_remark, :product_name
+  attr_accessor :adjust_category, :reference_id, :change_qty, :change_remark, :product_name
 
   
   validates_presence_of :product_id, :store_id
@@ -50,7 +50,7 @@ class Stock < ActiveRecord::Base
     self.change_qty = self.change_qty == 0 ? self.quantity : self.change_qty
     
     @history = StockHistory.new(:stock_id => self.id,
-                           :adjust_type => self.adjust_type,
+                           :adjust_category => self.adjust_category,
                            :reference_id => self.reference_id,
                            :adjusted_by => self.change_qty,
                            :adjusted_to => self.quantity,

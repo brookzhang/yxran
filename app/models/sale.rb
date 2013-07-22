@@ -73,7 +73,7 @@ class Sale < ActiveRecord::Base
           @stock = Stock.fetch(self.store_id, c.product_id)
           @stock.quantity = 0 if @stock.quantity.nil?
           @stock.quantity += c.quantity * (-1)
-          @stock.adjust_type = 'S'
+          @stock.adjust_category = 'S'
           @stock.reference_id = self.id
           @stock.change_qty = c.quantity * (-1)
           #@stock.change_remark = self.remark
@@ -146,7 +146,7 @@ class Sale < ActiveRecord::Base
           s.save!
           @stock = Stock.fetch(self.store_id, s.product_id)
           @stock.quantity += s.quantity 
-          @stock.adjust_type = 'S'
+          @stock.adjust_category = 'S'
           @stock.reference_id = self.id
           @stock.change_qty = s.quantity 
           @stock.change_remark = "sale canceled"

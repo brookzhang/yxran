@@ -290,7 +290,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @conditions[:stocks][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:stock_histories] = {}
     @conditions[:stock_histories][:adjusted_at] = @search.date_range
-    @conditions[:stock_histories][:adjust_type] = @search.category if @search.category != 'all'
+    @conditions[:stock_histories][:adjust_category] = @search.category if @search.category != 'all'
     
     @conditions[:products] = {}
     @conditions[:products][:name] = @search.product_name if !@search.product_name.empty?
@@ -299,11 +299,11 @@ class Maintain::ReportsController < Maintain::ApplicationController
                        :select => " stocks.*, stock_histories.adjusted_by , stock_histories.adjusted_to, stock_histories.remark, stock_histories.adjusted_at,
                        stores.name as store_name,
                        products.name as product_name, products.measurement,
-                       lookups.description as adjust_type",
+                       lookups.description as adjust_category",
                        :from => " stocks 
                         inner join stock_histories on stocks.id = stock_histories.stock_id
                         inner join stores on stocks.store_id = stores.id
-                        inner join lookups on stock_histories.adjust_type = lookups.code and lookups.category = 'adjust_category'
+                        inner join lookups on stock_histories.adjust_category = lookups.code and lookups.category = 'adjust_category'
                         inner join products on stocks.product_id = products.id  ",
                        :conditions => @conditions,
                        :order => " stock_histories.id desc "

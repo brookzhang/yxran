@@ -423,7 +423,7 @@ zh-CN:
   sequence: '排序'
   status: '状态'
   event: '事件'
-  adjust_type: '变动'
+  adjust_category: '变动'
   sale_category: '销售类型'
   sale_status: '销售状态'
   handover_status: '交接班状态'

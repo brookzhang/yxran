@@ -58,7 +58,7 @@ class AddCategoryProductStoreStockStockHistory < ActiveRecord::Migration
     create_table(:stock_histories) do |t|
       t.references :stock
       t.references :user
-      t.string :adjust_type #adjust type
+      t.string :adjust_category #adjust type
       t.integer :reference_id #sale_id or adjust_id
       t.integer :adjusted_by  # 
       t.integer :adjusted_to
@@ -77,7 +77,7 @@ class AddCategoryProductStoreStockStockHistory < ActiveRecord::Migration
     add_index(:stores, [:name, :category])
     add_index(:stocks, [:product_id, :store_id ])
     add_index(:stock_histories, :stock_id )
-    add_index(:stock_histories, :adjust_type )
+    add_index(:stock_histories, :adjust_category )
     add_index :product_prices, [:product_id, :store_id]
   end
 end

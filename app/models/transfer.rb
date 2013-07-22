@@ -42,7 +42,7 @@ class Transfer < ActiveRecord::Base
           @stock = Stock.fetch(self.from_store_id, d.product_id)
           @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
           @stock.quantity += d.quantity * (-1)
-          @stock.adjust_type = 'T'
+          @stock.adjust_category = 'T'
           @stock.reference_id = d.id
           @stock.change_qty = d.quantity  * (-1)
           #@stock.change_remark = self.remark
@@ -77,7 +77,7 @@ class Transfer < ActiveRecord::Base
           @stock = Stock.fetch(self.to_store_id, d.product_id)
           @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
           @stock.quantity += d.quantity 
-          @stock.adjust_type = 'T'
+          @stock.adjust_category = 'T'
           @stock.reference_id = d.id
           @stock.change_qty = d.quantity 
           #@stock.change_remark = self.remark

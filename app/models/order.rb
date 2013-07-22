@@ -26,7 +26,7 @@ class Order < ActiveRecord::Base
           @stock = Stock.fetch(self.store_id, d.product_id)
           @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
           @stock.quantity += d.quantity 
-          @stock.adjust_type = 'O'
+          @stock.adjust_category = 'O'
           @stock.reference_id = d.id
           @stock.change_qty = d.quantity 
           @stock.save!
@@ -66,7 +66,7 @@ class Order < ActiveRecord::Base
           @stock = Stock.fetch(self.store_id, d.product_id)
           @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
           @stock.quantity -= d.quantity 
-          @stock.adjust_type = 'O'
+          @stock.adjust_category = 'O'
           @stock.reference_id = d.id
           @stock.change_qty = d.quantity * (-1)
           @stock.save!

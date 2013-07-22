@@ -221,7 +221,7 @@ ActiveRecord::Schema.define(:version => 20130624092313) do
   create_table "stock_histories", :force => true do |t|
     t.integer  "stock_id"
     t.integer  "user_id"
-    t.string   "adjust_type"
+    t.string   "adjust_category"
     t.integer  "reference_id"
     t.integer  "adjusted_by"
     t.integer  "adjusted_to"
@@ -229,7 +229,7 @@ ActiveRecord::Schema.define(:version => 20130624092313) do
     t.string   "remark"
   end
 
-  add_index "stock_histories", ["adjust_type"], :name => "index_stock_histories_on_adjust_type"
+  add_index "stock_histories", ["adjust_category"], :name => "index_stock_histories_on_adjust_category"
   add_index "stock_histories", ["stock_id"], :name => "index_stock_histories_on_stock_id"
 
   create_table "stocks", :force => true do |t|
