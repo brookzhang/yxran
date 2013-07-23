@@ -21,7 +21,7 @@ class OrderImport
     details.default_sheet = details.sheets.first
     
     (2..details.last_row).map do |i|
-      unless  details.cell(i,1).blank? 
+      if details.cell(i,1).present?
         if details.cell(i,2).to_i > 0
           product = Product.find_by_name(details.cell(i,1)) 
           order_detail = OrderDetail.new
@@ -33,14 +33,7 @@ class OrderImport
         end
       end
     end
-    
-    if errors.any?
-      false
-    else
-      true
-    end
-    
-    
+    errors.blank?
   end
   
   def valid?
@@ -48,27 +41,18 @@ class OrderImport
     details.default_sheet = details.sheets.first
     
     (2..details.last_row).map do |i|
-      unless  details.cell(i,1).blank? 
-        if !details.cell(i,2).to_i.is_a?(Integer)
-          errors.add(:base, "#{i}:E  wrong quantiy.")
+      if details.cell(i,1).present?
+        errors.add(:base, I18n.t(:please_input_product_on_line_n, :line => i)) if details.cell(i,1).blank?
+        errors.add(:base, I18n.t(:please_input_quantity_on_line_n, :line => i)) if details.cell(i,2).blank?
+        errors.add(:base, I18n.t(:wrong_quantity_on_line_n, :line => i)) if !details.cell(i,2).is_a?(Numeric)
+
+        if errors.blank?
+          errors.add(:base, I18n.t(:wrong_product_on_line_n, :line => i)) if Product.find_by_name(details.cell(i,1)).nil?
         end
-        
-        if details.cell(i,2).to_i > 0
-          product = Product.find_by_name(details.cell(i,1))
-          if product.nil?
-            errors.add(:base, "#{i}:C  product not exists.")
-          end
-        end
-        
       end
-      
     end
     
-    if errors.any?
-      false
-    else
-      true
-    end
+    errors.blank?
   end
   
 

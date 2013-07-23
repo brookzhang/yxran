@@ -53,6 +53,9 @@ zh-CN:
   are_you_sure_to_cancel: '真的要撤销吗?'
   all: '全部'
   authority: '权限'
+  error: '错误'
+  errors_prohibited_from_completing: '个错误导致操作失败'
+  references: '参考'
 
 
 
@@ -175,6 +178,11 @@ zh-CN:
   add_to_order_ok: '已添加到入库单。'
   order_canceled_ok: '入库单撤销成功.'
   items_add_to_order: '已加入%{items_count}种商品'
+
+  please_input_product_on_line_n: '第%{line}行请填写商品'
+  please_input_quantity_on_line_n: '第%{line}行请填写数量'
+  wrong_product_on_line_n: '第%{line}行商品不存在'
+  wrong_quantity_on_line_n: '第%{line}行数量格式错误'
 
   # transfer.
   #----------------------------------------------------------------------------
@@ -354,6 +362,15 @@ zh-CN:
   import_products_successfully: '产品导入成功'
   sample_for_measurement: '例如：克、饼、个、袋'
   sample_for_unit_price: '按计量单位的单价'
+
+  please_input_category_on_line_n: '第%{line}行请填写总分类。'
+  please_input_subcategory_on_line_n: '第%{line}行请填写子分类。'
+  please_input_measurement_on_line_n: '第%{line}行请填写单位。'
+  please_input_unit_price_on_line_n: '第%{line}行请填写单价。'
+  wrong_category_on_line_n: '第%{line}行分类不存在。'
+  wrong_subcategory_on_line_n: '第%{line}行子分类不存在。'
+  wrong_measurement_on_line_n: '第%{line}行单位不存在。'
+  wrong_unit_price_format_on_line_n: '第%{line}行单价格式错误。'
 
   # measurements.
   #----------------------------------------------------------------------------

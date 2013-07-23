@@ -9,7 +9,7 @@ class Stocker::ProductImportsController < Stocker::ApplicationController
       if @product_import.import
         redirect_to stocker_products_path, notice: t(:import_products_successfully)
       else
-        render :back, :alert => t(:import_failed)
+        render :new, :alert => t(:import_failed)
       end 
     else
       render :new

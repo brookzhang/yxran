@@ -1,21 +1,52 @@
-<h3><%=t(:import_excel)%></h3>
+<div class="span8">
+  <h3><%=t(:import_excel)%></h3>
 
 
 
-<%= form_for [:stocker, @product_import] do |f| %>
-  <% if @product_import.errors.any? %>
-    <div id="error_explanation">
-      <h4><%= pluralize(@product_import.errors.count, "error") %> <%=t(:prohibited_from_completing)%> :</h4>
-      <ul>
-      <% @product_import.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <%= form_for [:stocker, @product_import] do |f| %>
+    <% if @product_import.errors.any? %>
+      <div id="error_explanation">
+        <!-- <h4><%= pluralize(@product_import.errors.count, t("error")) %> <%=t(:prohibited_from_completing)%> :</h4> -->
+        <h4><%= @product_import.errors.count %> <%=t(:errors_prohibited_from_completing)%> :</h4>
+        <ul>
+        <% @product_import.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.file_field :file, :class => 'btn' %>
     </div>
+    <div class="buttons"><%= f.submit  t(:import) , :class => 'btn btn-warning'%></div>
   <% end %>
 
-  <div class="field">
-    <%= f.file_field :file, :class => 'btn' %>
+<div class="tabbable"> 
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab"><%=t(:categories_maintain) %></a></li>
+    <li><a href="#tab2" data-toggle="tab"><%=t(:measurements_maintain) %></a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <dl  >
+        <% Category.where(:parent_id => 0).each do |category| %>
+        <dt><%=category.name%></dt>
+        <dd><%=category.subcategories.map{|c| c.name}.join(",") %></dd>
+        <%end%>
+      </dl>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <dl  >
+        <% Lookup.where(:category => 'measurement_category').each do |lookup| %>
+        <dt><%=lookup.description%></dt>
+        <dd><%=Measurement.where(:measurement => lookup.code).map{|c| c.name}.join(",") %></dd>
+        <%end%>
+      </dl>
+    </div>
   </div>
-  <div class="buttons"><%= f.submit  t(:import) , :class => 'btn btn-warning'%></div>
-<% end %>
+</div>
+
+
+
+</div>

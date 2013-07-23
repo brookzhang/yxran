@@ -22,68 +22,45 @@ class ProductImport
     details.default_sheet = details.sheets.first
     
     (2..details.last_row).map do |i|
-      product = Product.find_by_name(details.cell(i,1)) 
-      if product.nil?
-        product = Product.new
-        category = Category.find_by_name(details.cell(i,3))
-        sub_category = Category.find_by_name(details.cell(i,4))
-        if category.nil? || sub_category.nil?
-          errors.add(:base, "category not exists.")
+      if details.cell(i,1).present?
+        product = Product.find_by_name(details.cell(i,1)) 
+        if product.nil?
+          product = Product.new
+          product.name = details.cell(i,1)
+          product.description = details.cell(i,2)
+          product.category_id = Category.find_by_name(details.cell(i,4)).id
+          product.measurement_id = Measurement.find_by_name(details.cell(i,5)).id
+          product.default_price = details.cell(i,6)
+          product.save
         end
-        
-        product.name = details.cell(i,1)
-        product.description = details.cell(i,2)
-        product.category_id = sub_category.id
-        product.measurement = details.cell(i,5)
-        product.unit_price = details.cell(i,6)
-        product.save!
       end
-      
     end
-    
-    if errors.any?
-      false
-    else
-      true
-    end
-    
-    
+    errors.empty?
   end
   
+
+
+
   def valid?
     details = open_spreadsheet
     details.default_sheet = details.sheets.first
     
     (2..details.last_row).map do |i|
-      (1..6).map do |col|
-        if details.cell(i,col).nil? || details.cell(i,col) == '' 
-          errors.add(:base, :wrong_format)
+      if details.cell(i,1).present?
+        errors.add(:base, I18n.t(:please_input_category_on_line_n, :line => i)) if details.cell(i,3).blank?
+        errors.add(:base, I18n.t(:please_input_subcategory_on_line_n, :line => i)) if details.cell(i,4).blank?
+        errors.add(:base, I18n.t(:please_input_measurement_on_line_n, :line => i)) if details.cell(i,5).blank?
+        errors.add(:base, I18n.t(:please_input_unit_price_on_line_n, :line => i)) if details.cell(i,6).blank?
+
+        if errors.empty?
+          errors.add(:base, I18n.t(:wrong_category_on_line_n, :line => i)) if Category.find_by_name(details.cell(i,3)).nil?
+          errors.add(:base, I18n.t(:wrong_subcategory_on_line_n, :line => i)) if Category.find_by_name(details.cell(i,4)).nil?
+          errors.add(:base, I18n.t(:wrong_measurement_on_line_n, :line => i)) if Measurement.find_by_name(details.cell(i,5)).nil?
+          errors.add(:base, I18n.t(:wrong_unit_price_format_on_line_n, :line => i)) if !details.cell(i,6).is_a?(Numeric)
         end
       end
-        
-      
-      product = Product.find_by_name(details.cell(i,1)) 
-      if product.nil?
-        product = Product.new
-        category = Category.find_by_name(details.cell(i,3))
-        sub_category = Category.find_by_name(details.cell(i,4))
-        if category.nil? 
-          errors.add(:base, "#{i}:C  category not exists.")
-        end
-        if sub_category.nil?
-          errors.add(:base, "#{i}:D  category not exists.")
-        end
-        
-      end 
-      
-      
     end
-    
-    if errors.any?
-      false
-    else
-      true
-    end
+    errors.empty?
   end
   
 

@@ -20,7 +20,7 @@ class Maintain::UsersController < Maintain::ApplicationController
   def new
     @user = User.new
     @user.role = 'user'
-    @roles = Lookup.list("role").where(:code => [:user, :stocker]).map{|r| [r.description, r.code]}
+    @roles = Lookup.list("role_category").where(:code => [:user, :stocker]).map{|r| [r.description, r.code]}
   end
   
   def create
@@ -96,9 +96,9 @@ class Maintain::UsersController < Maintain::ApplicationController
   private
   def roles_allowed
     if current_user.has_role?(:admin)
-      roles = Lookup.list("role").map{|r| [r.description, r.code]}
+      roles = Lookup.list("role_category").map{|r| [r.description, r.code]}
     else
-      roles = Lookup.list("role").where(:code => [:user, :stocker]).map{|r| [r.description, r.code]}
+      roles = Lookup.list("role_category").where(:code => [:user, :stocker]).map{|r| [r.description, r.code]}
     end
     roles
     

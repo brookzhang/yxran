@@ -119,8 +119,6 @@ Measurement.create([
   {:name => '个', :measurement => 'n', :unit_count => 1 },
   {:name => '袋(5克)', :measurement => 'g', :unit_count => 5 },
   {:name => '袋(10克)', :measurement => 'g', :unit_count => 10 },
-  {:name => '斤', :measurement => 'g', :unit_count => 500 },
-  {:name => '公斤', :measurement => 'g', :unit_count => 1000 },
   {:name => '饼(375)', :measurement => 'g', :unit_count => 375 }
   
 ])

@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
   has_many :products
   has_many :discounts
-  has_many :categories
+  has_many :subcategories, class_name: "Category", foreign_key: "parent_id"
   
   belongs_to :parent, :class_name => 'Category'
 
@@ -10,7 +10,7 @@ class Category < ActiveRecord::Base
 
   
   validates_presence_of :parent_id, :name, :description
-  #validates_uniqueness_of :name, :case_sensitive => false
+  validates_uniqueness_of :name, :case_sensitive => false
   
   
   def self.has_children(category_id)
