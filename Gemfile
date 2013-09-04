@@ -1,7 +1,7 @@
 #source 'https://rubygems.org'
 source 'http://ruby.taobao.org'
- 
-gem 'rails', '3.2.9'
+ruby '1.9.3'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -10,6 +10,12 @@ gem 'sqlite3'
 gem 'thin'
 gem 'pg'
 
+
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller", '~> 0.7.1'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.

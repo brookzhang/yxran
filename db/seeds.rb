@@ -1,6 +1,6 @@
-# encoding: UTF-8
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# encoding: UTF-8 This file should contain all the record creation needed to
+# seed the database with its default values. The data can then be loaded with
+# the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
 #
@@ -162,8 +162,8 @@ if ENV["RAILS_ENV"] != 'production'
     {:name => '西湖龙井2012', :category_id => '4', :description => '西湖龙井2012', :measurement_id => 1, :default_price => '0.8' },
     {:name => '正山小种2011', :category_id => '7', :description => '正山小种2011', :measurement_id => 1, :default_price => '0.5' },
     {:name => '铁观音秋茶2012', :category_id => '8', :description => '铁观音秋茶2012', :measurement_id => 1, :default_price => '0.4'},
-    {:name => '大益普洱2005', :category_id => '9', :description => '大益普洱2005', :measurement_id => 7, :default_price => '200' },
-    {:name => '久扬黑茶', :category_id => '10', :description => '久扬黑茶', :measurement_id => 7, :default_price => '80' },
+    {:name => '大益普洱2005', :category_id => '9', :description => '大益普洱2005', :measurement_id => 5, :default_price => '200' },
+    {:name => '久扬黑茶', :category_id => '10', :description => '久扬黑茶', :measurement_id => 5, :default_price => '80' },
     {:name => '岩茶-肉桂', :category_id => '11', :description => '岩茶-肉桂', :measurement_id => 1, :default_price => '0.2' }
   ], :without_protection => true)
   
