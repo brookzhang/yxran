@@ -17,7 +17,7 @@ zh-CN:
       unauthenticated: '请先登入系统.'
       unconfirmed: '你得先确认账号.'
       locked: '你的账号被锁了.'
-      invalid: '邮箱或密码不能用.'
+      invalid: '账号或密码不能用.'
       invalid_token: '验证标记失败.'
       timeout: '长时间没有操作,请重新登入.'
       inactive: '你的账号没激活.'
