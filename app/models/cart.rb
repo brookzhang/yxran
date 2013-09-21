@@ -23,6 +23,10 @@ class Cart < ActiveRecord::Base
   def self.list_by_user(user)
     self.where( :user_id => user.id , :store_id => user.store_id.nil? ? 0 : user.store_id)
   end
+
+  def price
+    self.unit_price.to_s << '/' << self.product.measurement.name
+  end
   
   
   

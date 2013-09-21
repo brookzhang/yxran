@@ -50,6 +50,7 @@ class AddCategoryProductStoreStockStockHistory < ActiveRecord::Migration
       t.references :store
       t.integer :quantity
       t.integer :safe_stock
+      t.float :unit_price
       t.string :remark
       
       t.timestamps
@@ -66,11 +67,6 @@ class AddCategoryProductStoreStockStockHistory < ActiveRecord::Migration
       t.string :remark
     end
     
-    create_table :product_prices do |t|
-      t.references :product
-      t.references :store
-      t.float :unit_price
-    end
 
     add_index(:products, [:name, :category_id])
     add_index(:products, :tag )
@@ -78,6 +74,5 @@ class AddCategoryProductStoreStockStockHistory < ActiveRecord::Migration
     add_index(:stocks, [:product_id, :store_id ])
     add_index(:stock_histories, :stock_id )
     add_index(:stock_histories, :adjust_category )
-    add_index :product_prices, [:product_id, :store_id]
   end
 end

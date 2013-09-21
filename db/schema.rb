@@ -152,14 +152,6 @@ ActiveRecord::Schema.define(:version => 20130624092313) do
 
   add_index "orders", ["store_id"], :name => "index_orders_on_store_id"
 
-  create_table "product_prices", :force => true do |t|
-    t.integer "product_id"
-    t.integer "store_id"
-    t.float   "unit_price"
-  end
-
-  add_index "product_prices", ["product_id", "store_id"], :name => "index_product_prices_on_product_id_and_store_id"
-
   create_table "products", :force => true do |t|
     t.string   "name"
     t.integer  "category_id"
@@ -237,6 +229,7 @@ ActiveRecord::Schema.define(:version => 20130624092313) do
     t.integer  "store_id"
     t.integer  "quantity"
     t.integer  "safe_stock"
+    t.float    "unit_price"
     t.string   "remark"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

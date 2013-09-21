@@ -5,7 +5,7 @@ class Stock < ActiveRecord::Base
   
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :product_id, :store_id, :quantity, :safe_stock, :remark, :adjust_category
+  attr_accessible :product_id, :store_id, :quantity, :safe_stock, :unit_price, :remark, :adjust_category
   
   attr_accessor :adjust_category, :reference_id, :change_qty, :change_remark, :product_name
 
@@ -27,9 +27,9 @@ class Stock < ActiveRecord::Base
   
   #init stock
   def self.fetch(store_id, product_id)
-    @stock = where(:store_id => store_id, :product_id => product_id).first
-    @stock = new(:store_id => store_id, :product_id => product_id) if @stock.nil?
-    @stock 
+    stock = where(:store_id => store_id, :product_id => product_id).first
+    stock = new(:store_id => store_id, :product_id => product_id) if stock.nil?
+    stock 
   end
   
   def self.exists(store_id, product_id)
@@ -37,10 +37,14 @@ class Stock < ActiveRecord::Base
   end
   
   def self.get_quantity(store_id, product_id)
-    @stock = self.fetch(store_id, product_id)
-    @stock.quantity.nil? ? 0 : @stock.quantity
+    stock = self.fetch(store_id, product_id)
+    stock.quantity.nil? ? 0 : stock.quantity
   end
   
+  def self.price_of_product_in_store(product_id, store_id)
+    stock = self.find_by_product_id_and_store_id(product_id, store_id)
+    stock.nil? ? nil : stock.unit_price
+  end
   
   
   protected
@@ -49,14 +53,14 @@ class Stock < ActiveRecord::Base
     self.change_qty = self.change_qty.nil? ? 0 : self.change_qty
     self.change_qty = self.change_qty == 0 ? self.quantity : self.change_qty
     
-    @history = StockHistory.new(:stock_id => self.id,
+    history = StockHistory.new(:stock_id => self.id,
                            :adjust_category => self.adjust_category,
                            :reference_id => self.reference_id,
                            :adjusted_by => self.change_qty,
                            :adjusted_to => self.quantity,
                            :adjusted_at => DateTime.now,
                            :remark => self.change_remark)
-    @history.save!
+    history.save!
   end
   
   

@@ -3,7 +3,6 @@ class Product < ActiveRecord::Base
   has_many :sale_details
   has_many :order_details
   has_many :transfer_details
-  has_many :product_prices
   
   belongs_to :category
   belongs_to :measurement
@@ -33,8 +32,7 @@ class Product < ActiveRecord::Base
   end
   
   def unit_price(store_id)
-    product_price = ProductPrice.find_by_store_id_and_product_id(store_id, self.id)
-    product_price.nil? ? self.default_price : product_price.unit_price
+    Stock.price_of_product_in_store(self.id, store_id) || self.default_price
   end
   
   def price(store_id)
