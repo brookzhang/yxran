@@ -12,7 +12,7 @@
   <tbody>
   <% @transfers.each do |transfer| %>
     <tr>
-        <td><%= link_to '#' + transfer.id.to_s, [:maintain, transfer] %></td>
+        <td><%= link_to transfer.number, [:maintain, transfer] %></td>
         <td><%= link_to transfer.from_store.name, maintain_store_path(transfer.from_store) %></td>
         <td><%= link_to transfer.to_store.name, maintain_store_path(transfer.to_store) %></td>     
         <td><%= l(transfer.status, 'transfer_status') %></td>           

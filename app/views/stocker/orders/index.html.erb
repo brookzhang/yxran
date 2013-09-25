@@ -11,7 +11,7 @@
   <tbody>
   <% @orders.each do |order| %>
     <tr>
-        <td><%= link_to '#' + order.id.to_s, [:stocker, order], :class => 'btn' %></td>
+        <td><%= link_to order.number , [:stocker, order], :class => 'badge badge-info' %></td>
         <td><%=  order.store.name %></td>     
         <td><%= l(order.status, 'order_status') %></td>           
         <td><%= order.created_at.to_date %></td>                      

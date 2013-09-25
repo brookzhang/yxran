@@ -11,8 +11,13 @@
   <% @sale_details.each do |d| %>
     <tr>
         <td><%= d.product.name %></td>
-        <td><%= d.quantity.to_s + d.product.measurement.name %> </td>
-        <td><%= d.amount.to_s + t(:currency) %></td>                           
+        <td><%= d.quantity.to_s %> 
+          * <%= d.product.price(@sale.store_id)%>
+        </td>
+        <td>
+          = <%= d.amount.to_s + t(:currency) %>
+
+        </td>                          
     </tr>
   <% end %>
   </tbody>

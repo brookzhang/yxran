@@ -11,7 +11,7 @@
   <tbody>
   <% @transfers.each do |transfer| %>
     <tr>
-        <td><%= link_to '#' + transfer.id.to_s, transfer %></td>
+        <td><%= link_to transfer.number, transfer %></td>
         <td><%= transfer.from_store.name %></td>
         <td><%= transfer.to_store.name %></td>     
         <td><%= l(transfer.status, 'transfer_status') %></td>                    

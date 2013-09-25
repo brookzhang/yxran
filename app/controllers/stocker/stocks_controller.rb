@@ -17,14 +17,16 @@ class Stocker::StocksController < Stocker::ApplicationController
 
   def edit
     @stock = Stock.find(params[:id])
+    @stock.unit_price = @stock.price_of_product
   end
 
   def update
     @stock = Stock.find(params[:id])
+    @stock.unit_price = params[:stock][:unit_price] == @stock.price_of_product ? nil : params[:stock][:unit_price]
     if @stock.update_attributes(params[:stock])
-      redirect_to maintain_stock_path(@stock), :notice => t(:updated_ok)
+      redirect_to stocker_stock_path(@stock), :notice => t(:updated_ok)
     else
-      redirect_to maintain_stock_path(@stock), :alert => t(:unable_to_update)
+      redirect_to stocker_stock_path(@stock), :alert => t(:unable_to_update)
     end
   end
   

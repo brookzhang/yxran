@@ -3,9 +3,22 @@
   <%= display_base_errors @stock %>
   <%= f.input :product, :label => t(:product_name), :input_html => {:value => @stock.product.name, :disabled => true } %> 
   <%= f.input :store, :label => t(:store_name), :input_html => {:value => @stock.store.name, :disabled => true } %> 
-  <%= f.input :quantity, :label => t(:quantity), :input_html => {:value => @stock.quantity, :disabled => true } %> 
+  <%= f.input :quantity, :label => t(:quantity)  do %>
+      <%= f.input_field :quantity, :disabled => true %>
+    <span class="add-on"><%=@stock.product.measurement.name%></span>
+  <% end %>
+  <%= f.input :safe_stock, :label => t(:safe_stock)  do %>
+      <%= f.input_field :safe_stock, :autofocus => true %>
+    <span class="add-on"><%=@stock.product.measurement.name%></span>
+  <% end %>
+
+  <%= f.input :unit_price, :label => t(:unit_price)  do %>
+      <%= f.input_field :unit_price %>
+    <span class="add-on"><%=t(:currency)%>/<%=@stock.product.measurement.name%></span>
+  <% end %>
+
   <%= f.input :id, :as => :hidden, :input_html => {:value => @stock} %>
-  <%= f.input :safe_stock, :label => t(:safe_stock), :autofocus => true %>
+
   <%= f.input :remark, :label => t(:remark) %><div class="control-group">
     <div class="controls">
       <%= f.button :submit, t(:submit), :class => 'btn' %>

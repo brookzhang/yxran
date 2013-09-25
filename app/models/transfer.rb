@@ -16,6 +16,14 @@ class Transfer < ActiveRecord::Base
   
   #validates_uniqueness_of :name, :case_sensitive => false
   
+
+
+  def number
+    I18n.t(:transfer) + '#'+ ("%05d" % self.id)
+  end
+
+
+
   def is_ok_to_transfer?
     @is_stock_is_enough = true
     @transfer_details = TransferDetail.where(:transfer_id => self.id)

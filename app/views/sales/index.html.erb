@@ -10,9 +10,9 @@
   <tbody>
   <% @sales.each do |sale| %>
     <tr>
-        <td><%= link_to  '#'+sale.id.to_s+l(sale.category,"sale_category"), sale %></td>
+        <td><%= link_to  sale.number, sale %></td>
         <td ><%= sale.actual_amount %><%= t(:currency)%></td>
-        <td><%= l(sale.status, "sale_status") %> <%=sale.created_at.to_s(:short_date)  %></td>                                       
+        <td><%= l(sale.status, "sale_status") %> <%=sale.created_at.to_s(:duty_time)  %></td>                                       
     </tr>
   <% end %>
   <tr>

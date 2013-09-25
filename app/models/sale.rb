@@ -26,6 +26,10 @@ class Sale < ActiveRecord::Base
   def my_sales(user_id)
     where(:user_id => user_id).order(" id desc ")
   end
+
+  def number
+    Lookup.l(self.category,"sale_category") + '#'+ ("%05d" % self.id)
+  end
   
   
   def create_sale(carts)

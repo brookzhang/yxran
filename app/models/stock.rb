@@ -45,6 +45,15 @@ class Stock < ActiveRecord::Base
     stock = self.find_by_product_id_and_store_id(product_id, store_id)
     stock.nil? ? nil : stock.unit_price
   end
+
+  def price_of_product
+    self.unit_price || self.product.default_price
+  end
+
+  def price
+    self.product.price(self.store_id)
+  end
+
   
   
   protected
@@ -52,15 +61,16 @@ class Stock < ActiveRecord::Base
   def log_history()
     self.change_qty = self.change_qty.nil? ? 0 : self.change_qty
     self.change_qty = self.change_qty == 0 ? self.quantity : self.change_qty
-    
-    history = StockHistory.new(:stock_id => self.id,
-                           :adjust_category => self.adjust_category,
-                           :reference_id => self.reference_id,
-                           :adjusted_by => self.change_qty,
-                           :adjusted_to => self.quantity,
-                           :adjusted_at => DateTime.now,
-                           :remark => self.change_remark)
-    history.save!
+    if self.adjust_category.present?
+      history = StockHistory.new(:stock_id => self.id,
+                             :adjust_category => self.adjust_category,
+                             :reference_id => self.reference_id,
+                             :adjusted_by => self.change_qty,
+                             :adjusted_to => self.quantity,
+                             :adjusted_at => DateTime.now,
+                             :remark => self.change_remark)
+      history.save!
+    end
   end
   
   

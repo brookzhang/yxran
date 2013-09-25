@@ -1,16 +1,15 @@
 <!--h3><%= t(:account_info) %></h3-->
-<p><%= t(:sale_id) %>: <%= '#' + @sale.id.to_s %></p>
-<p>[<%= @sale.store.name %>] &nbsp; <%= l(@sale.category,"sale_category") %> 
-  <%= @sale.actual_amount %>
+<p>[<%= @sale.store.name %>] : 
+	<%= @sale.number %> 
+	- <%= l(@sale.status.to_s, 'sale_status') %>
+	[<%= @sale.created_at.to_s(:duty_time) %>]
 </p>
-<p>
+<p><%= @sale.actual_amount %><%=t(:currency)%>
   <% if @sale.category == 'M' %>
-    <%= t(:member) %>: <%= @member.name unless @member.nil? %>
+    <%= @member.name unless @member.nil? %>
+    <%= "+" + @sale.score.to_s + t(:score) if @sale.score > 0 %>
+    <%= "-" + @sale.used_score.to_s + t(:score) if @sale.used_score > 0 %>
   <%end%>
-  &nbsp;&nbsp;
-  <%= t(:status) %>: <%= l(@sale.status.to_s, 'sale_status') %>
-</p>
-<p><%= t(:created_at) %>: <%= @sale.created_at.to_s(:date_time) %>
 </p>
 <p><%= t(:remark) %>: <%= @sale.remark %>
 </p>

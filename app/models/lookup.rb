@@ -18,5 +18,9 @@ class Lookup < ActiveRecord::Base
   def self.list(category)
     where(:category => category)
   end
-  
+
+  def self.l(code, category)
+    lookup = Lookup.where(" code = ? and category = ? ", code.to_s, category).first
+    lookup.nil? ? code : lookup.description
+  end
 end

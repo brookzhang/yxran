@@ -1,5 +1,5 @@
 
-<p><%= t(:store) %>: <%= @order.store.name %></p>
+<p><%=@order.number%> [<%= @order.store.name %>]</p>
 <p><%= t(:status) %>: <%= l(@order.status,'order_status') %></p>
 <p><%= t(:operator) %>: <%= @order.user.name %></p>
 <p><%= t(:remark) %>: <%= @order.remark %></p>

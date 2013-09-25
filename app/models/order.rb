@@ -13,6 +13,11 @@ class Order < ActiveRecord::Base
   validates_presence_of :store_id 
   #validates_uniqueness_of :name, :case_sensitive => false
   
+
+
+  def number
+    I18n.t(:order) + '#'+ ("%05d" % self.id)
+  end
   
   
   def order_confirm

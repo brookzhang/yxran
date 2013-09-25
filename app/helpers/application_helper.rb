@@ -12,8 +12,7 @@ module ApplicationHelper
   end
   
   def l(code, category)
-    @lookup = Lookup.where(" code = ? and category = ? ", code.to_s, category).first
-    @lookup.nil? ? code : @lookup.description
+    Lookup.l(code, category)
   end
   
   def settings(key)

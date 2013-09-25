@@ -13,7 +13,7 @@
   <tbody>
   <% @sales.each do |sale| %>
     <tr>
-        <td><%= link_to '#' + sale.id.to_s, [:maintain, sale] %></td>
+        <td><%= link_to sale.number, [:maintain, sale] %></td>
         <td><%= sale.store.name %></td>
         <td><%= l(sale.category, 'sale_category') %></td>
         <td><%= sale.user.name %></td>

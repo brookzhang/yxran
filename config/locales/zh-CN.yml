@@ -357,6 +357,7 @@ zh-CN:
   products: '商品'
   measurement: '计量单位'
   unit_price: '单价'
+  price: '价格'
   default_price: '默认单价'
   all_products: '所有商品'
   import_products_successfully: '产品导入成功'
