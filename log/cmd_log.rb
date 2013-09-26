@@ -22,16 +22,18 @@ postgres linux honghong
 sudo chown -R nobody /var/app/yxran  #<-- set nginx user has permission on yxran
 sudo chmod 777 /var/app/yxran/db  #<-- set write permission of sqlite db
 
-sudo vi /opt/nginx/conf/nginx.conf
+sudo vim /opt/nginx/conf/nginx.conf
 sudo /opt/nginx/sbin/nginx
 sudo /opt/nginx/sbin/nginx -s reload    #重新加载配置文件
 sudo /opt/nginx/sbin/nginx -s reopen    #kill nginx，然后启动nginx
 sudo /opt/nginx/sbin/nginx -t  #检查修改过的配置文件是否正确
+passenger start -e production  #check passenger working
 
 ps -ef | grep nginx
 kill -QUIT 主进程号 #从容停止Nginx：
 kill -TERM 主进程号 #快速停止Nginx：
 pkill -9 nginx  #强制停止Nginx：
+sudo vim /opt/nginx/logs/access.log  #open log
 
 #///////////////  server start
 sudo /etc/init.d/postgresql start
@@ -41,6 +43,9 @@ sudo /opt/nginx/sbin/nginx
 ps -ef | grep nginx
 kill -quit 2104
 sudo /etc/init.d/postgresql stop
+
+
+RAILS_ENV=production rake db:create db:schema:load db:seed  #setup production db
 
 
 bundle exec rake assets:precompile 
