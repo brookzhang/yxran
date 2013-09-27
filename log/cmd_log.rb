@@ -1,3 +1,6 @@
+
+
+############# system install
 ssh -i yxran.pem ubuntu@54.241.26.155
 
 chmod 0666 log/development.log
@@ -14,7 +17,14 @@ echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && . '$HOME/.rvm/scripts/rvm'" >> /home/
  [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
  
 source ~/.bashrc   #/refresh bash
- 
+
+
+############# server management
+#put files in /home/brook/yxran
+chown -R brook:brook /home/brook/yxran  #set owner of yxran to brook(while download files with root) 
+chmod 755 /home/brook/yxran
+
+
 postgresql fengfeng
 postgres linux honghong
 
@@ -33,23 +43,23 @@ ps -ef | grep nginx
 kill -QUIT 主进程号 #从容停止Nginx：
 kill -TERM 主进程号 #快速停止Nginx：
 pkill -9 nginx  #强制停止Nginx：
-sudo vim /opt/nginx/logs/access.log  #open log
+sudo vim /opt/nginx/logs/access.log  #open visit log
+sudo vim /opt/nginx/logs/error.log  #open error log
 
-#///////////////  server start
+#  server start
 sudo /etc/init.d/postgresql start
 sudo /opt/nginx/sbin/nginx
 
-#///////////////  server stop
+#  server stop
 ps -ef | grep nginx
 kill -quit 2104
 sudo /etc/init.d/postgresql stop
 
 
 RAILS_ENV=production rake db:create db:schema:load db:seed  #setup production db
+RAILS_ENV=production rake assets:precompile   #assets
 
-
-bundle exec rake assets:precompile 
-
+Passenger::FileSystemException  Cannot stat  config.ru Permission denied
 
         listen      80 default;
         server_name  localhost;
