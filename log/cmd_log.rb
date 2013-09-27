@@ -67,7 +67,14 @@ Passenger::FileSystemException  Cannot stat  config.ru Permission denied
         passenger_enabled on;
         rails_env development;
 
-
+server {
+        listen      80 default;
+        server_name  www.yxran.com;
+        root /home/brook/yxran/public;
+        #index index.html;
+        passenger_enabled on;
+        rails_env production;
+}
 
 
 rails g migration AddLookupProductStoreStockHistory

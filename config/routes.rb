@@ -5,13 +5,6 @@ Yxran::Application.routes.draw do
 
 
 
-  get "measurements/index"
-
-  get "measurements/show"
-
-  get "measurements/new"
-
-  get "measurements/edit"
 
   devise_for :users, :skip => [:registrations]
   resources :users do
