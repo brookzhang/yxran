@@ -19,13 +19,9 @@
 			 <%= will_paginate @products %>
 	  </td>
 	</tr>
-	<tr>
-	  <td colspan="3">
-			 <%= link_to t(:add), new_stocker_product_path, :class => 'btn' %>
-			 <%= link_to t(:back), stocker_dashboard_path, :class => 'btn' %>
-			 <%= link_to t(:import_excel), new_stocker_product_import_path, :class => 'btn' %>
-	  </td>
-	</tr>
   </table>
   <%end%>
+  <%= link_to t(:add), new_stocker_product_path, :class => 'btn' %>
+       <%= link_to t(:back), stocker_dashboard_path, :class => 'btn' %>
+       <%= link_to t(:import_excel), new_stocker_product_import_path, :class => 'btn' %>
 </div> 
