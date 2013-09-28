@@ -6,17 +6,7 @@
       <%= @cart.product.name << ' ' << @cart.price %>
     </div>
   </div>
-  
   <%= f.input :quantity, :label => t(:quantity), :input_html => { :class => ' input-small ' }, :required => true, :autofocus => true %>
-  <% if !@member.nil? %>
-    <div class="control-group">
-      <div class="controls">
-       <%= @member.name << ' ' << @member.score.to_s << t(:scores) %>
-      </div>
-    </div>
-    <%= f.input :used_score, :label => t(:used_score), :input_html => { :class => ' input-small ' }, :required => false %>
-  <% end %>
-  <%= f.input :amount, :label => t(:amount), :input_html => { :class => ' input-small ' }, :required => true %>
   <div class="control-group">
     <div class="controls">
       <%= f.button :submit, t(:submit), :class => 'btn' %>

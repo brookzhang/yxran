@@ -1,7 +1,8 @@
 <tr>
   <td>
     <div>
-      <b><%= link_to cart.product.name, edit_cart_path(cart) %></b>
+      <%= link_to cart.product.name, edit_cart_path(cart), remote:true, :class => "badge badge-info" %>
+
       &nbsp;&nbsp;
     </div>
     <div>

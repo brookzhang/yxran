@@ -222,6 +222,8 @@ zh-CN:
   cart: '货单'
   none_cart: '货单是空的'
   add_to_cart: '加入货单'
+  edit_cart: '调整货单'
+  edit_cart_successfully: '调整货单成功'
   select: '选取'
   select_member: '选会员'
   member_selected_ok: '已选好了会员'

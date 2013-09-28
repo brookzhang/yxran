@@ -3,6 +3,7 @@ class Cart < ActiveRecord::Base
   belongs_to :product
   belongs_to :user
   
+  default_scope :order => "id desc"
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :product_id, :store_id, :quantity, :unit_price, :amount, :discount, :score, :user_id 

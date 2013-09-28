@@ -2,7 +2,7 @@
   <thead>
   <tr>
     <th colspan="3">
-      <%= link_to t(:add_product), products_path, :class => 'btn '  %>
+      <%= link_to t(:add_product), stocks_path, :class => 'btn '  %>
       <%= t(:store_amount) %>: <%=@store.balance.to_s + t(:currency) %>
     </th>
   </tr>
@@ -37,3 +37,7 @@
   <% end %>
   
 </table>
+
+
+<!-- Modal -->
+<div id="ajax-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
