@@ -2,15 +2,7 @@
   <tbody>
     
     
-    <% @carts.each do |cart| %>
-    <tr>
-      <td>
-        <h4><%= cart.product.name %></h4>
-        <strong><%= cart.quantity %><%= cart.product.measurement.name %></strong>
-        
-      </td>         
-    </tr>
-    <% end %>
+    <%= render 'detail' %>
     
     <tr>
       <td>

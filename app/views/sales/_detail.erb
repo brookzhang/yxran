@@ -1,0 +1,15 @@
+
+    <% @carts.each do |cart| %>
+    <tr>
+      <td><%= cart.product.name %>
+      <strong><%= cart.quantity %><%= cart.product.measurement.name %></strong>
+      *  <%= cart.unit_price %>
+      = <%= cart.quantity * cart.unit_price %> <%=t(:currency)%>
+      </td>         
+    </tr>
+    <% end %>
+    <tr>
+      <td>
+        <%=t(:sum_amount)%>: <%=@amount%> <%=t(:currency)%>
+      </td>         
+    </tr>

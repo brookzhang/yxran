@@ -12,6 +12,7 @@ class SalesController < ApplicationController
     @sale = Sale.find(params[:id])
     @sale_details = SaleDetail.where( :sale_id => @sale.id)
     @member = @sale.member_id.nil? ? nil : Member.find(@sale.member_id)
+    @amount = @carts.sum {|c| c.amount.nil? ? 0 : c.amount }
   end
   
   
@@ -20,6 +21,7 @@ class SalesController < ApplicationController
     @sale = Sale.new(:category => 'R')
     @carts = Cart.list_by_user(current_user)
     @sale.actual_amount = @carts.sum {|c| c.amount.nil? ? 0 : c.amount }
+    @amount = @carts.sum {|c| c.amount.nil? ? 0 : c.amount }
     
   end
   
@@ -28,6 +30,7 @@ class SalesController < ApplicationController
     #cost record, no money income
     @sale = Sale.new(:category => 'C')
     @carts = Cart.list_by_user(current_user)
+    @amount = @carts.sum {|c| c.amount.nil? ? 0 : c.amount }
     
   end
 

@@ -1,16 +1,6 @@
 <table class="table table-condensed table-striped">  
   <tbody>
-    
-    
-    <% @carts.each do |cart| %>
-    <tr>
-      <td>
-        <h4><%= cart.product.name %></h4>
-        <strong><%= cart.quantity %><%= cart.product.measurement.name %></strong>
-        [<strong><%= cart.amount %><%=t(:currency)%></strong>]
-      </td>         
-    </tr>
-    <% end %>
+    <%= render 'detail' %>
     <tr>
       <td>
       <%= simple_form_for @sale, :html => {:class => 'form-horizontal' } do |f| %>
@@ -25,7 +15,7 @@
         <div class="control-group">
           <div class="controls">
             
-            <%= f.button :submit, t(:create_sale_sheet), :class => 'btn' %>
+            <%= f.button :submit, t(:create_sale_sheet), :class => 'btn btn-primary' %>
             <%= link_to t(:back), :back, :class => 'btn' %>
           </div>
         </div>

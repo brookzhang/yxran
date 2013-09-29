@@ -16,7 +16,7 @@
     </a>
   <%end%>
   </div>
-  <div>
+  <div class="left">
   
   <%@categories.each do |category|%>
       <%=link_to(category.name, stocks_path(:category_id => category), :class => 'btn') %>

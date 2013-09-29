@@ -11,20 +11,7 @@
       </th>
     </tr>
     
-    <% @carts.each do |cart| %>
-    <tr>
-      <td>
-        <h4><%= cart.product.name %></h4>
-        <strong><%= cart.quantity %><%= cart.product.measurement.name %></strong>
-        [<strong><%= cart.amount %><%=t(:currency)%></strong>]
-      </td>         
-    </tr>
-    <% end %>
-    <tr>
-      <td>
-        <%=t(:sum_amount)%>: <%=@amount%> <%=t(:currency)%>
-      </td>         
-    </tr>
+    <%= render 'detail' %>
     
     <%if !@member.nil? %>
     <tr>
