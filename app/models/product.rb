@@ -38,6 +38,7 @@ class Product < ActiveRecord::Base
   def price(store_id)
     self.unit_price(store_id).to_s << I18n.t("currency") << '/' << self.measurement.name
   end
+
   
   def self.list_with_sub_category(category_id)
     where(:category_id => Category.sub_id_array(category_id) << category_id )

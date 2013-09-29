@@ -13,6 +13,10 @@ class SaleDetail < ActiveRecord::Base
   validates_presence_of :product_id, :quantity
   #validates_uniqueness_of :name, :case_sensitive => false
   
+
+  def price
+    self.unit_price.to_s << '/' << self.product.measurement.name
+  end
   
   
   

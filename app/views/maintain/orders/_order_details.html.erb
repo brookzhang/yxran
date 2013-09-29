@@ -9,7 +9,7 @@
   <tbody>
   <% @order_details.each do |t| %>
     <tr>
-        <td><%= t.product.name %></td>
+        <td><span class="label label-info"><%= t.product.name %></span></td>
         <td align="right"><%= t.quantity.to_s  %>
           / <%= Stock.get_quantity(@order.store_id, t.product_id)%>
           <%= t.product.measurement.name %>

@@ -10,14 +10,10 @@
   <tbody>
   <% @sale_details.each do |d| %>
     <tr>
-        <td><%= d.product.name %></td>
-        <td><%= d.quantity.to_s %> 
-          * <%= d.product.price(@sale.store_id)%>
-        </td>
-        <td>
+        <td><%= link_to d.product.name, d.product, :class => "badge badge-info" %> <%= d.price%> </td>
+        <td> * <%= d.quantity.to_s %> 
           = <%= d.amount.to_s + t(:currency) %>
-
-        </td>                          
+        </td>                         
     </tr>
   <% end %>
   </tbody>

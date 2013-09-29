@@ -12,7 +12,6 @@ class SalesController < ApplicationController
     @sale = Sale.find(params[:id])
     @sale_details = SaleDetail.where( :sale_id => @sale.id)
     @member = @sale.member_id.nil? ? nil : Member.find(@sale.member_id)
-    @amount = @carts.sum {|c| c.amount.nil? ? 0 : c.amount }
   end
   
   
@@ -52,7 +51,6 @@ class SalesController < ApplicationController
 
   def create
     @carts = Cart.list_by_user(current_user)
-    @amount = @carts.sum {|c| c.amount.nil? ? 0 : c.amount }
     
     @sale = Sale.new(params[:sale])
     @sale.user_id = current_user.id
