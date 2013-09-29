@@ -13,6 +13,10 @@ class Expense < ActiveRecord::Base
   #after_save :update_store_balance
   
   
+
+  def number
+    Lookup.l(self.category,"expense_category") + '#'+ ("%05d" % self.id)
+  end
   
   
   def create_balance

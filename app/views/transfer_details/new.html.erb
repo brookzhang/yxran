@@ -11,10 +11,11 @@
 		<tbody>
 			<% @stocks.each do |stock| %>
 			<tr>
-					<td><%= stock.product.name %></td>
-					<td><%= stock.quantity %> <%= stock.product.measurement.name %></td>  
-					<td><%= text_field_tag "product_id[#{stock.product_id}]", 0 %>
-						<%= TransferDetail.get_quantity(@transfer.id, stock.product_id) %>
+					<td><span class="label label-info"><%= stock.product.name %></span><%= stock.product.measurement.name %></td>
+					<td><%= stock.quantity %> </td>  
+					<td><%= number_field_tag "product_id[#{stock.product_id}]", nil, :placeholder => "0", :class => "numeric float transfer_detail_input "  %>
+						<% current_qty = TransferDetail.get_quantity(@transfer.id, stock.product_id) %>
+						<%= current_qty if current_qty > 0 %>
 					</td>          
 				</tr>
 				 

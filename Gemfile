@@ -38,8 +38,6 @@ gem "database_cleaner", ">= 0.8.0", :group => :test
 gem "launchy", ">= 2.1.2", :group => :test
 gem "capybara", ">= 1.1.2", :group => :test
 gem "factory_girl_rails", ">= 4.1.0", :group => [:development, :test]
-gem "bootstrap-sass", ">= 2.1.0.0"
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem "devise", ">= 2.1.2"
 gem "cancan", ">= 1.6.8"
 gem "rolify", ">= 3.2.0"
@@ -50,6 +48,12 @@ gem 'bootstrap-will_paginate'
 #gem 'bootstrap-datepicker-rails'
 gem 'roo'
 gem 'uuidtools'
+
+group :assets do
+	gem "therubyracer"
+	gem "less-rails"
+  gem 'twitter-bootstrap-rails'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

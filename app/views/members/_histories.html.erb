@@ -1,0 +1,27 @@
+<%if !@histories.nil? %>
+<table class="table  table-striped">
+	  <thead>
+      <tr>
+          <th><%= t(:store) %></th>
+          <th><%= t(:actual_amount) %></th>
+          <th><%= t(:score) %></th>   
+          <th> </th>                            
+      </tr>
+  </thead>   
+  <tbody>
+  <% @histories.each do |history| %>
+    <tr>
+        <td><%= l(history.store.name,"adjust_category") %></td>
+        <td><%= history.actual_amount %></td>
+        <td><%= "+" + history.score.to_s unless history.score.nil? || history.score == 0 %>
+        <%= "-" + history.used_score.to_s unless history.used_score.nil? || history.used_score == 0 %>
+        </td>
+        <td><%= history.created_at.to_s(:short_date)%></td>                               
+    </tr>
+    <tr>
+      <td colspan="4"><%= will_paginate @histories %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%end%>

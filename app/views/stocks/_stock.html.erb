@@ -1,5 +1,5 @@
 <tr>
-  <td><%= link_to stock.product.name, stock.product, :class => 'badge badge-info' %><%= stock.price %></td>
+  <td><%= link_to stock.product.name, stock.product, :class => 'badge badge-warning' %><%= stock.price %></td>
   <td><%= stock.quantity %> </td>
   <td><%= link_to t(:add_to_cart), new_cart_path(:product_id => stock.product.id), remote:true, :class => "btn btn-mini btn-warning" %>
   </td>            

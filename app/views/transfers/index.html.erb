@@ -1,25 +1,24 @@
 <div class="span8">
 <table class="table table-condensed">
-	  <thead>
+	  <!-- <thead>
       <tr>
           <th><%= t(:transfer_id) %></th>
           <th><%= t(:from_store) %></th>
           <th><%= t(:to_store) %></th>   
           <th><%= t(:status) %></th>                      
       </tr>
-  </thead>   
+  </thead> -->   
   <tbody>
   <% @transfers.each do |transfer| %>
     <tr>
-        <td><%= link_to transfer.number, transfer %></td>
-        <td><%= transfer.from_store.name %></td>
-        <td><%= transfer.to_store.name %></td>     
+        <td><%= link_to transfer.number, transfer, :class => 'badge badge-warning' %></td>
+        <td><%= transfer.from_store.name %> -> <%= transfer.to_store.name %></td>     
         <td><%= l(transfer.status, 'transfer_status') %></td>                    
     </tr>
   <% end %>
   
   <tr>
-    <td colspan="5">
+    <td colspan="3">
 	  <%= will_paginate @transfers %>
     </td>
   </tr>

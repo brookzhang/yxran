@@ -14,13 +14,14 @@ class MembersController < ApplicationController
     if (params[:name].nil? || params[:name].empty?) && (params[:phone].nil? || params[:phone].empty?)
       @members = nil
     else
-      @members = Member.by_name(params[:name]).by_phone(params[:phone]).paginate(:page => params[:page], :per_page => 5).order('id DESC')#.limit(5)
+      @members = Member.by_name(params[:name]).by_phone(params[:phone]).paginate(:page => params[:page], :per_page => 8).order('id DESC')#.limit(5)
     end
     
   end
   
   def view
     @member = Member.find_by_uuid(params[:uuid])
+    @histories = Sale.where(:member_id => @member.id).paginate(:page => params[:page], :per_page => 10).order('id DESC')
     
   end
   

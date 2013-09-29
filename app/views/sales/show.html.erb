@@ -1,15 +1,16 @@
 <!--h3><%= t(:account_info) %></h3-->
-<p>[<%= @sale.store.name %>] : 
-	<%= @sale.number %> 
+<p>
+	<span class="label label-info"><%= @sale.number %></span>
+	<%= @sale.actual_amount %><%=t(:currency)%> [<%= @sale.store.name %>]
 	- <%= l(@sale.status.to_s, 'sale_status') %>
-	[<%= @sale.created_at.to_s(:duty_time) %>]
 </p>
-<p><%= @sale.actual_amount %><%=t(:currency)%>
+<p>
   <% if @sale.category == 'M' %>
-    <%= @member.name unless @member.nil? %>
+    <%= link_to @member.name, viewmember_path(:uuid => @member.uuid), :class => 'badge badge-warning' unless @member.nil? %>
     <%= "+" + @sale.score.to_s + t(:score) if @sale.score > 0 %>
     <%= "-" + @sale.used_score.to_s + t(:score) if @sale.used_score > 0 %>
   <%end%>
+	<%= @sale.created_at.to_s(:duty_time) %>
 </p>
 <p><%= t(:remark) %>: <%= @sale.remark %>
 </p>

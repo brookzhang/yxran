@@ -18,7 +18,7 @@
   <% @stocks.each do |stock| %>
     <tr>
         <td><%= stock.store.name %></td>
-        <td><%= link_to stock.product.name, [:stocker,stock], :class => 'badge badge-info'  %></td>
+        <td><%= link_to stock.product.name, [:stocker,stock], :class => 'badge badge-warning'  %></td>
         <td><%= stock.quantity %>  </td>                         
     </tr>
   <% end %>

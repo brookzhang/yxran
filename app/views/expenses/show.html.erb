@@ -1,14 +1,14 @@
 <!--h3><%= t(:account_info) %></h3-->
-<p><%= t(:id) %>: <%= '#' + @expense.id.to_s %></p>
+<p><span class="label label-info"><%= @expense.number %></span><%= @expense.amount %> <%= t(:currency) %></p>
 <p>[<%= @expense.store.name %>]  
-  <%= @expense.amount %> <%= t(:currency) %>
+  <%= t(:status) %>: <%= l(@expense.status.to_s, 'expense_status') %>
 </p>
-<p><%= t(:status) %>: <%= l(@expense.status.to_s, 'expense_status') %>
-  <%= t(:category) %>: <%= l(@expense.category.to_s, 'expense_category') %>
+<p>
+
 </p>
 <p><%= t(:expense_content) %>: <%= @expense.remark %>
 </p>
-<p><%= t(:created_at) %>: <%= @expense.created_at.to_s(:date_time) %>
+<p><%= t(:date) %>: <%= @expense.created_at.to_s(:date_time) %>
 </p>
 
 <%= link_to t(:cancel), cancel_expense_path(@expense), :class => 'btn' if @expense.is_on_duty? && @expense.status == 1 %>

@@ -10,12 +10,14 @@
   <tbody>
   <% @transfer_details.each do |t| %>
     <tr>
-        <td><%= t.product.name %></td>
+        <td><%= link_to t.product.name, t.product, :class => 'badge badge-warning' %> 
+          <%= t.product.measurement.name %>
+        </td>
         <td><%= t.quantity.to_s %>
           / <%= Stock.get_quantity(@transfer.from_store_id, t.product_id)%>
           / <%= Stock.get_quantity(@transfer.to_store_id, t.product_id)%>
           
-          <%= t.product.measurement.name %>
+          
         </td>
         <td><%= link_to(t(:delete), transfer_transfer_detail_path(@transfer,t), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  if @transfer.status == 0 %>     </td>
                

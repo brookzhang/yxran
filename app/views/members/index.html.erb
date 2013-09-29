@@ -3,10 +3,11 @@
   <input type="text" name="name" class="input-small" placeholder="<%=t(:member_name)%>" value="<%=@member.name%>">
   <input type="text" name="phone" class="input-small" placeholder="<%=t(:phone)%>" value="<%=@member.phone%>">
   <button type="submit" class="btn"><%=t(:search)%></button>
-  <%= link_to t(:create_member), new_member_path(:member_id => @member), :class => 'btn btn-warning' %>
 </form>
 <% if !@members.nil? %>
   <%= render 'list' %>
   <%= t(:no_member_found) if @members.count == 0 %>
 <%end%>
+
+  <%= link_to t(:create_member), new_member_path(:member_id => @member), :class => 'btn btn-warning' %>
 </div> 

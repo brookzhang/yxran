@@ -1,4 +1,4 @@
-<p><%=@transfer.number%> [<%= @transfer.from_store.name %>] -> [<%= @transfer.to_store.name %>]
+<p><span class="label label-info"><%=@transfer.number%></span> <%= @transfer.from_store.name %> -> <%= @transfer.to_store.name %>
   [<%= l(@transfer.status,'transfer_status') %>]
 </p>
 <p><%= t(:transfer_remark) %>: <%= @transfer.transfer_remark %></p>

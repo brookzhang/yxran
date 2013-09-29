@@ -1,4 +1,4 @@
-<div class="span8">
+
 <table class="table table-condensed">
   <thead>
   <tr>
@@ -11,8 +11,7 @@
   </thead>
   <thead>
     <tr>
-        <th><%= t(:id) %></th>
-        <th><%= t(:amount) %></th>    
+        <th><%= t(:id) %></th>    
         <th><%= t(:expense_content) %></th>   
         <th><%= t(:status) %></th>                                
     </tr>
@@ -20,13 +19,12 @@
   <tbody>
   <% @expenses.each do |e| %>
     <tr>
-        <td><%= link_to '#' + e.id.to_s, e %></td>
-        <td><%= e.amount %></td>                                               
+        <td><%= link_to e.number, e, :class => 'badge badge-warning' %>
+        <%= e.amount %> <%=t(:currency)%></td>                                               
         <td><%= e.remark %></td>
         <td><%= l(e.status,"expense_status")  %></td>                        
     </tr>
   <% end %>
-  <tr><td colspan="4"><%= will_paginate @expenses %></td></tr>
+  <tr><td colspan="3"><%= will_paginate @expenses %></td></tr>
   </tbody>
 </table>
-</div> 
