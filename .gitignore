@@ -17,6 +17,9 @@
 /log/*.log
 /tmp
 
+# Ignore all public assets
+/public/assets
+
 # Ignore editor files
 *.komodoproject
 *.sublime-project

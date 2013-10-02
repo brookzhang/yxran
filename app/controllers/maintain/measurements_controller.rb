@@ -6,6 +6,7 @@ class Maintain::MeasurementsController < ApplicationController
 
   def new
   	@measurement = Measurement.new
+    @lookups = Lookup.where(:category => "measurement_category")
   end
 
   def create

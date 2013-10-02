@@ -306,6 +306,8 @@ zh-CN:
   expenses_maintain: '支出管理'
   measurements_maintain: '商品包装'
 
+  choose_measurement_category: '选择包装类型'
+
   all_settings: '参数设定'
 
   account_info: '账号信息'
