@@ -59,6 +59,10 @@ sudo /etc/init.d/postgresql stop
 RAILS_ENV=production rake db:create db:schema:load db:seed  #setup production db
 RAILS_ENV=production rake assets:precompile   #assets
 
+
+########################### issues
+echo "source \$HOME/.rvm/scripts/rvm" >> ~/.bashrc    # rvm 
+
 Passenger::FileSystemException  Cannot stat  config.ru Permission denied
 
         listen      80 default;
