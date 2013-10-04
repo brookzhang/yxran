@@ -375,7 +375,7 @@ zh-CN:
   please_input_unit_price_on_line_n: '第%{line}行请填写单价。'
   wrong_category_on_line_n: '第%{line}行分类不存在。'
   wrong_subcategory_on_line_n: '第%{line}行子分类不存在。'
-  wrong_measurement_on_line_n: '第%{line}行单位不存在。'
+  wrong_measurement_on_line_n: '第%{line}行单位(商品包装)不存在。'
   wrong_unit_price_format_on_line_n: '第%{line}行单价格式错误。'
 
   # measurements.
