@@ -29,6 +29,7 @@ class OrderImport
           order_detail.product_id = product.id
           order_detail.quantity = details.cell(i,2)
           order_detail.remark = details.cell(i,3)
+          order_detail.unit_price = details.cell(i,4) if details.cell(i,4).present?
           order_detail.save!  
         end
       end
@@ -45,6 +46,7 @@ class OrderImport
         errors.add(:base, I18n.t(:please_input_product_on_line_n, :line => i)) if details.cell(i,1).blank?
         errors.add(:base, I18n.t(:please_input_quantity_on_line_n, :line => i)) if details.cell(i,2).blank?
         errors.add(:base, I18n.t(:wrong_quantity_on_line_n, :line => i)) if !details.cell(i,2).is_a?(Numeric)
+        errors.add(:base, I18n.t(:wrong_price_on_line_n, :line => i)) if details.cell(i,4).present? && !details.cell(i,4).is_a?(Numeric)
 
         if errors.blank?
           errors.add(:base, I18n.t(:wrong_product_on_line_n, :line => i)) if Product.find_by_name(details.cell(i,1)).nil?
@@ -55,6 +57,12 @@ class OrderImport
     errors.blank?
   end
   
+# s = Roo::OpenOffice.new("myspreadsheet.ods")      # loads an OpenOffice Spreadsheet
+# s = Roo::Excel.new("myspreadsheet.xls")           # loads an Excel Spreadsheet
+# s = Roo::Google.new("myspreadsheetkey_at_google") # loads a Google Spreadsheet
+# s = Roo::Excelx.new("myspreadsheet.xlsx")         # loads an Excel Spreadsheet for Excel .xlsx files
+# s = Roo::CSV.new("mycsv.csv")                     # loads a CSV file
+
 
   def open_spreadsheet
     case File.extname(file.original_filename)

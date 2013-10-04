@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130624092313) do
+ActiveRecord::Schema.define(:version => 20131004104835) do
 
   create_table "balances", :force => true do |t|
     t.integer  "store_id"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20130624092313) do
     t.string   "remark"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.float    "unit_price"
   end
 
   add_index "order_details", ["product_id"], :name => "index_order_details_on_product_id"

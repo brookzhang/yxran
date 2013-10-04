@@ -50,6 +50,7 @@ gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
 #gem 'bootstrap-datepicker-rails'
 gem 'roo'
+gem 'rubyzip', '< 1.0.0'
 gem 'uuidtools'
 
 

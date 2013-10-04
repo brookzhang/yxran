@@ -34,6 +34,7 @@ class Order < ActiveRecord::Base
           @stock.adjust_category = 'O'
           @stock.reference_id = d.id
           @stock.change_qty = d.quantity 
+          @stock.unit_price = d.unit_price if d.unit_price.present? && @stock.product.unit_price !=  d.unit_price
           @stock.save!
         end
         

@@ -183,6 +183,7 @@ zh-CN:
   please_input_quantity_on_line_n: '第%{line}行请填写数量'
   wrong_product_on_line_n: '第%{line}行商品不存在'
   wrong_quantity_on_line_n: '第%{line}行数量格式错误'
+  wrong_quantity_on_line_n: '第%{line}行价格格式错误'
 
   # transfer.
   #----------------------------------------------------------------------------
