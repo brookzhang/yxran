@@ -14,7 +14,7 @@
       <ul class="dropdown-menu">
         <li>
           <a href="#" onclick="submit_parameter_with_form_id('search_and_filter','category_id','');">
-            <%= "--" + t(:all) + "--" %>
+            <%= "--" + category.name + "--" %>
           </a>
         </li>
         <%category.subcategories.each do |sub| %>
