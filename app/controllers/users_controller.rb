@@ -15,17 +15,19 @@ class UsersController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     
-    if @user.save
+    if @user.save!
       redirect_to @user, :notice => t(:user_updated)
     else
-      redirect_to @user, :alert => t(:unable_to_update_user)
+      render :edit
     end
   end
   
   def update_password
     #@user = User.find(current_user.id)
+    
     if @user.update_with_password(params[:user])
       # Sign in the user by passing validation in case his password changed
+
       sign_in @user, :bypass => true
       redirect_to @user, :notice => t(:password_changed_successfully)
     else

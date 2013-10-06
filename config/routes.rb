@@ -6,7 +6,7 @@ Yxran::Application.routes.draw do
 
 
 
-  devise_for :users, :skip => [:registrations]
+  devise_for :users
   resources :users do
     member do
       put :update_password

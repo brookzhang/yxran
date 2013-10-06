@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :login, :password, :password_confirmation, :remember_me, :account, :store_id, :role
   # attr_accessible :title, :body
   
-  attr_accessor :login, :role
+  attr_accessor :login, :role, :current_password
   
   
   validates_presence_of :email, :account, :role
