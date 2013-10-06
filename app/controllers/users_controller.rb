@@ -12,10 +12,7 @@ class UsersController < ApplicationController
 
   def update
     #@user = User.find(current_user.id)
-    @user.password = params[:user][:password]
-    @user.password_confirmation = params[:user][:password_confirmation]
-    
-    if @user.save!
+    if @user.update_with_password(params[:user])
       redirect_to @user, :notice => t(:user_updated)
     else
       render :edit
@@ -32,6 +29,7 @@ class UsersController < ApplicationController
       redirect_to @user, :notice => t(:password_changed_successfully)
     else
       render :edit
+     
     end
   end
   

@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   attr_accessor :login, :role, :current_password
   
   
-  validates_presence_of :email, :account, :role
+  validates_presence_of :email, :account #, :role
   #validates_uniqueness_of :name, :email, :case_sensitive => false
   validates_uniqueness_of :email, :account, :case_sensitive => false
   

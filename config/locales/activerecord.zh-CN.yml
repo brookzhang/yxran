@@ -12,8 +12,11 @@ zh-CN:
           attributes:
             password:
               too_short: '新密码太短，最少6位。'
+              confirmation: '两次输入的密码不一样'
             current_password:
               invalid: '当前密码输入错误。'
+              blank: '当前密码不能为空'
+
             role:
               blank: '至少有一个身份吧。'
         member:
