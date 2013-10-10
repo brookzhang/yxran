@@ -1,10 +1,12 @@
 class Stocker::StocksController < Stocker::ApplicationController
   def index
+    @category_id = params[:category_id].blank? ? 0 : params[:category_id].to_i
+    
     @stock = Stock.new
     @stock.store_id = params[:store_id]
     @stock.product_name = params[:product_name]
     @stores = Store.all
-    @stocks = Stock.in_store(params[:store_id]).by_product(params[:product_name]).paginate(:page => params[:page], :per_page => 8).order('id DESC')
+    @stocks = Stock.in_store(params[:store_id]).by_product(params[:product_name]).in_category(@category_id).paginate(:page => params[:page], :per_page => 8).order('id DESC')
     
   end
   

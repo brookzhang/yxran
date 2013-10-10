@@ -1,10 +1,15 @@
 <div class="span8">
-
-<%=form_tag stocker_stocks_path, :method => 'get', :class => "form-inline" do%>
+<div class="left">
+  <%=render 'categories/list_with_dropdown', :current_category_id => @category_id, :path => stocker_stocks_path %>
+</div>
+<div  class="left">
+<%=form_tag stocker_stocks_path, :method => 'get', :class => "form-inline", :id => "search_and_filter" do%>
 	<%= select_tag :store_id, options_from_collection_for_select(@stores, "id", "name", @stock.store_id), :prompt => t(:choose_a_store) %>
 	<%= text_field_tag :product_name, @stock.product_name, :placeholder => t(:product_name), :class => "input-small" %>
+  <%= hidden_field_tag :category_id, @category_id %>
   <button type="submit" class="btn"><%=t(:search)%></button>
 <%end%>
+</div>
 
 <table class="table table-condensed">
 	  <thead>

@@ -3,7 +3,8 @@ class TransferDetailsController < ApplicationController
 
   def new
     @transfer = Transfer.find(params[:transfer_id])
-    @stocks = Stock.where(" store_id = ? and quantity > 0 ", @transfer.from_store_id).paginate(:page => params[:page])
+    @category_id = params[:category_id].blank? ? 0 : params[:category_id].to_i
+    @stocks = Stock.where(" store_id = ? and quantity > 0 ", @transfer.from_store_id).in_category(@category_id).paginate(:page => params[:page])
     @transfer_detail = TransferDetail.new
   end
 

@@ -1,4 +1,15 @@
+
 <div class="span8">
+<div class="left">
+  <%=render 'categories/list_with_dropdown', :current_category_id => @category_id, :path => new_transfer_transfer_detail_path(@transfer) %>
+</div>
+<div class="right"> 
+    <form class="form-search right" method='get' action=''  id="search_and_filter">    
+      <input type="hidden" name="category_id" value="<%=params[:category_id]%>" />
+      <!-- <input type='text' name='key_words' placeholder = "Search by Keyword"  class="input-medium search-query" style="margin-right:-40px;" value="<%= params[:key_words] %>">
+      <button type="submit" style="background:transparent;border: none;"><i class="icon-search"></i></button> -->   
+    </form>
+  </div>
 	<%=form_for [@transfer,@transfer_detail] do |f| %>
 	<table class="table table-condensed">
 			<thead>
