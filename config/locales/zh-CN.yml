@@ -111,6 +111,8 @@ zh-CN:
   retail_sale: '零售'
   member_sale: '会员'
   cost_sale: '出库'
+  only_money_sale: '只记金额' 
+  only_money_sale_for_into_store: '只提供给入驻店子记录柜台结帐金额'
   sale_record: '销售记录'
   sales: '销售摘要'
   amount: '金额'

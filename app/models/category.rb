@@ -10,7 +10,7 @@ class Category < ActiveRecord::Base
 
   
   validates_presence_of :parent_id, :name, :description
-  validates_uniqueness_of :name, :case_sensitive => false
+  validates_uniqueness_of :name, :scope => :parent_id, :case_sensitive => false
   
   
   def self.has_children(category_id)

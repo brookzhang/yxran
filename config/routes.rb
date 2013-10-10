@@ -21,6 +21,7 @@ Yxran::Application.routes.draw do
     collection do
       get :retail
       get :cost
+      get :money
     end
     member do
       get :cancel

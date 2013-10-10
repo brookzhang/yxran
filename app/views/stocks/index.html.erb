@@ -1,35 +1,6 @@
 <div class="span8">
   <div class="left">
-  <%@top_categories.each do |category|%>
-    <div class="btn-group">
-      <%if @current_category && @current_category.parent_id == category.id %>
-          <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-          <%= @current_category.name %>
-        <%else%>
-          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          <%= category.name  %>
-        <%end%>
-        <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu">
-        <li>
-          <a href="#" onclick="submit_parameter_with_form_id('search_and_filter','category_id','');">
-            <%= "--" + category.name + "--" %>
-          </a>
-        </li>
-        <%category.subcategories.each do |sub| %>
-        <li>
-          <a href="#" onclick="submit_parameter_with_form_id('search_and_filter','category_id','<%=sub.id%>');">
-            <span <%="class=label" if @current_category && @current_category.id == sub.id %> >
-            <%= sub.name %>
-            </span>
-          </a>
-        </li>
-
-        <%end%>
-      </ul>
-    </div>
-  <%end%>
+    <%=render 'categories/list_with_dropdown', :current_category_id => @category_id, :path => stocks_path %>
   </div>
   
 

@@ -5,7 +5,7 @@ class Lookup < ActiveRecord::Base
 
   
   validates_presence_of :code, :category, :description
-  #validates_uniqueness_of :name, :case_sensitive => false
+  validates_uniqueness_of :code, :scope => :category
   
   
   def self.get_one(category,code)

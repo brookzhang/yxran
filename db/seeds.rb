@@ -29,6 +29,7 @@ Lookup.create([
   {:code => 'R', :category =>'sale_category', :description => '零售'},
   {:code => 'C', :category =>'sale_category', :description => '出库'},
   {:code => 'M', :category =>'sale_category', :description => '会员'},
+  {:code => 'O', :category =>'sale_category', :description => '记账'},
   
   {:code => '1', :category =>'sale_status', :description => '已入账'},
   {:code => '9', :category =>'sale_status', :description => '已撤销'},

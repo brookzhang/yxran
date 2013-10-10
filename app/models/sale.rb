@@ -44,7 +44,9 @@ class Sale < ActiveRecord::Base
           self.actual_amount = 0
         end
         
-        self.amount = carts.sum {|c| c.amount.nil? ? 0 : c.amount }
+        
+        self.amount = 0
+        self.amount = carts.sum {|c| c.amount.nil? ? 0 : c.amount } unless self.category == 'O'
         self.status = 1
         self.save!
         
@@ -64,27 +66,29 @@ class Sale < ActiveRecord::Base
         @balance.save!
         
         #sale_details
-        carts.each do |c|
-          @sale_detail = SaleDetail.new(:sale_id => self.id,
-                                        :product_id => c.product_id,
-                                        :quantity => c.quantity,
-                                        :unit_price => c.unit_price,
-                                        :amount => c.amount,
-                                        :status => 1
-                                        )
-          
-          @sale_detail.save!
-          @stock = Stock.fetch(self.store_id, c.product_id)
-          @stock.quantity = 0 if @stock.quantity.nil?
-          @stock.quantity += c.quantity * (-1)
-          @stock.adjust_category = 'S'
-          @stock.reference_id = self.id
-          @stock.change_qty = c.quantity * (-1)
-          #@stock.change_remark = self.remark
-          @stock.save!
-          
+        unless self.category == 'O'
+          carts.each do |c|
+            @sale_detail = SaleDetail.new(:sale_id => self.id,
+                                          :product_id => c.product_id,
+                                          :quantity => c.quantity,
+                                          :unit_price => c.unit_price,
+                                          :amount => c.amount,
+                                          :status => 1
+                                          )
+            
+            @sale_detail.save!
+            @stock = Stock.fetch(self.store_id, c.product_id)
+            @stock.quantity = 0 if @stock.quantity.nil?
+            @stock.quantity += c.quantity * (-1)
+            @stock.adjust_category = 'S'
+            @stock.reference_id = self.id
+            @stock.change_qty = c.quantity * (-1)
+            #@stock.change_remark = self.remark
+            @stock.save!
+            
+          end
+          Cart.destroy(carts.map{|c| c.id })
         end
-        Cart.destroy(carts.map{|c| c.id })
         
         
         #member sale & record score

@@ -47,6 +47,12 @@ class SalesController < ApplicationController
     @amount = @carts.sum {|c| c.amount.nil? ? 0 : c.amount }
     
   end
+
+
+  def money
+    @sale = Sale.new(:category => 'O')
+
+  end
   
 
   def create
@@ -67,6 +73,8 @@ class SalesController < ApplicationController
       when "M"
         @member = @sale.member_id.nil? ? nil : Member.find(@sale.member_id) 
         render :new
+      when "O"
+        render :money
       else
         render :retail
       end 

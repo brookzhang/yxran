@@ -1,0 +1,30 @@
+<table class="table table-condensed table-striped">  
+  <tbody>
+    <tr>
+      <td>
+      <%= simple_form_for @sale, :html => {:class => 'form-horizontal' } do |f| %>
+        <%= f.error_notification %>
+        <%= display_base_errors @sale %>
+        <div class="control-group">
+          <div class="controls">
+          <%=t(:only_money_sale_for_into_store) %>
+          </div>
+        </div>
+        <%= f.input :actual_amount, :label => t(:actual_amount), :autofocus => true    %>
+        
+        <%= f.input :remark, :label => t(:remark) %>
+        <%= f.hidden_field :category  %>
+        
+        <div class="control-group">
+          <div class="controls">
+            
+            <%= f.button :submit, t(:create_sale_sheet), :class => 'btn btn-primary' %>
+            <%= link_to t(:back), :back, :class => 'btn' %>
+          </div>
+        </div>
+      <% end %>
+      </td>         
+    </tr>
+     
+  </tbody> 
+</table>

@@ -5,5 +5,5 @@ class Switch < ActiveRecord::Base
 
   
   validates_presence_of :key, :value, :description
-  #validates_uniqueness_of :name, :case_sensitive => false
+  validates_uniqueness_of :key, :scope => :value
 end

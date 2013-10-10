@@ -11,7 +11,7 @@
   <tbody>
   <% @stores.each do |store| %>
     <tr>
-        <td><%= link_to store.name, [:maintain, store]  %></td>
+        <td><%= link_to store.name, [:maintain, store], :class => 'badge badge-warning'  %><%=l(store.category,"store_category")%></td>
         <td><%= store.balance %> <%=t(:currency)%></td> 
         <td><%=store.users.first.nil? ? t(:no_one_on_duty) : store.users.first.name%></td>
         <td><%= store.remark %></td> 

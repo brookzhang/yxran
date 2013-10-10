@@ -35,6 +35,17 @@
       </td>
     </tr>
   </thead> 
+  <%else%>
+    <%if @store.category == "I" %>
+    <thead>
+      <tr>
+        <td colspan="3">
+        <br><br><br>
+          <%= link_to t(:only_money_sale), money_sales_path, :class => 'btn btn-warning ' %>
+        </td>
+      </tr>
+    </thead> 
+    <%end%>
   <% end %>
   
 </table>
