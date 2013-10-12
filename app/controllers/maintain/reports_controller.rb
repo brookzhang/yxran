@@ -156,7 +156,8 @@ class Maintain::ReportsController < Maintain::ApplicationController
     
     @sales = Sale.find(:all,
                        :select => " sales.*,  stores.name as store_name, lookups.description as category_name, users.name as user_name,
-                       ((sales.actual_amount - sales.score) / (sales.amount - sales.used_score)) as discount,
+                       case when (sales.amount - sales.used_score) > 0 then ((sales.actual_amount - sales.score) / (sales.amount - sales.used_score))
+                       else 0 end as discount,
                        members.name as member_name, members.level as member_level ",
                        :from => " sales inner join stores on sales.store_id = stores.id and sales.category in ('M','R') 
                         inner join lookups on sales.category = lookups.code and lookups.category = 'sale_category'
