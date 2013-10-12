@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
+  include Devise::Controllers::Helpers
+
   before_filter :get_user, :only => [:show, :edit, :update, :update_password] 
   before_filter :require_owner, :only => [:show, :edit, :update, :update_password]
+
+
   
   def show
     #@user = User.find(current_user.id)
@@ -31,6 +35,11 @@ class UsersController < ApplicationController
       render :edit
      
     end
+  end
+
+  def quit
+    sign_out
+    redirect_to :root
   end
   
   

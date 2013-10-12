@@ -1,6 +1,9 @@
-<%if @stocks.count > 0 %>
+<%if @stocks.count > 0 
+  sum = 0
+  %>
 <table class="table table-condensed">
-  <% @stocks.each do |stock| %>
+  <% @stocks.each do |stock| 
+    sum += stock.quantity%>
     <tr>
         <td>
           <%= link_to stock.store.name, [:maintain, stock.store], :class => 'badge badge-warning' %>
@@ -10,6 +13,9 @@
         </td>                                    
     </tr>
   <% end %>
+    <tr>
+      <td><%=sum %></td>
+    </tr>
   </tbody>
 </table>
 <%end %>

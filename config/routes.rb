@@ -10,6 +10,7 @@ Yxran::Application.routes.draw do
   resources :users do
     member do
       put :update_password
+      get :quit
     end
   end
   

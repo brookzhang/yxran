@@ -27,8 +27,8 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @conditions[:sales][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:sales][:category] = @search.category if @search.category != 'all'
     
-    @conditions[:products] = {}
-    @conditions[:products][:name] = @search.product_name if !@search.product_name.empty?
+    @conditions[:products] = {} if @search.product_name.present?
+    @conditions[:products][:name] = @search.product_name if @search.product_name.present?
     
     @sales = Sale.find(:all,
                        :select => " sales.*, sale_details.*, measurements.name as measurement, products.name as product_name, stores.name as store_name, lookups.description as category_name, users.name as user_name",
@@ -41,6 +41,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
                        :conditions => @conditions,
                        :order => " sale_details.id desc "
                        ) 
+    
   end
   
   
@@ -62,8 +63,8 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @conditions[:sales][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:sales][:category] = @search.category if @search.category != 'all'
     
-    @conditions[:products] = {}
-    @conditions[:products][:name] = @search.product_name if !@search.product_name.empty?
+    @conditions[:products] = {} if @search.product_name.present?
+    @conditions[:products][:name] = @search.product_name if @search.product_name.present?
     
     @sales = Sale.find(:all,
                        :select => " sale_details.product_id, measurements.name as measurement, products.name as product_name, sum(sale_details.quantity) as quantity",
@@ -71,7 +72,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
                         inner join products on sale_details.product_id = products.id 
                         inner join measurements on products.measurement_id = measurements.id ",
                        :conditions => @conditions,
-                       :group => " sale_details.product_id, products.measurement, products.name ",
+                       :group => " sale_details.product_id, measurements.name, products.name ",
                        :order => " quantity desc "
                        ) 
     
@@ -120,6 +121,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @conditions[:sales][:created_at] = @search.date_range
     @conditions[:sales][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:sales][:category] = @search.category if @search.category != 'all'
+    @conditions[:sales][:category] = Lookup.where(:category => 'sale_category').map{|c| [c.description, c.code]}.delete_if{|x| x[1] == 'O'} if @search.category == 'all'
     
     
     @sales = Sale.find(:all,
@@ -149,8 +151,8 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @conditions[:sales][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:sales][:category] = @search.category if @search.category != 'all'
     
-    @conditions[:products] = {}
-    @conditions[:products][:name] = @search.product_name if !@search.product_name.empty?
+    @conditions[:products] = {} if @search.product_name.present?
+    @conditions[:products][:name] = @search.product_name if @search.product_name.present?
     
     @sales = Sale.find(:all,
                        :select => " sales.*,  stores.name as store_name, lookups.description as category_name, users.name as user_name,
@@ -264,8 +266,8 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @conditions[:stocks] = {}
     @conditions[:stocks][:store_id] = @search.store_id if @search.store_id.to_i > 0
     
-    @conditions[:products] = {}
-    @conditions[:products][:name] = @search.product_name if !@search.product_name.empty?
+    @conditions[:products] = {} if @search.product_name.present?
+    @conditions[:products][:name] = @search.product_name if @search.product_name.present?
     
     @stocks = Expense.find(:all,
                        :select => " stocks.*,  stores.name as store_name, products.name as product_name, measurements.name as measurement  ",
@@ -295,8 +297,8 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @conditions[:stock_histories][:adjusted_at] = @search.date_range
     @conditions[:stock_histories][:adjust_category] = @search.category if @search.category != 'all'
     
-    @conditions[:products] = {}
-    @conditions[:products][:name] = @search.product_name if !@search.product_name.empty?
+    @conditions[:products] = {} if @search.product_name.present?
+    @conditions[:products][:name] = @search.product_name if @search.product_name.present?
     
     @stocks = Expense.find(:all,
                        :select => " stocks.*, stock_histories.adjusted_by , stock_histories.adjusted_to, stock_histories.remark, stock_histories.adjusted_at,
@@ -348,6 +350,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     
     if @search.by_category
       @categories = Lookup.where(:category => @search.category_for).map{|c| [c.description, c.code]}.insert(0, [t(:all),'all'])
+      @categories.delete_if{|x| x[1]=='O' && @search.category_for == 'sale_category'}
       @search.category = params[:category] || 'all'
     end
     

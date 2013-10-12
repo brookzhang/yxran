@@ -1,10 +1,14 @@
 class Maintain::StocksController < Maintain::ApplicationController
   def index
-    @stock = Stock.new
-    @stock.store_id = params[:store_id]
-    @stock.product_name = params[:product_name]
+    @category_id = params[:category_id].blank? ? 0 : params[:category_id].to_i
+
     @stores = Store.all
-    @stocks = Stock.in_store(params[:store_id]).by_product(params[:product_name]).paginate(:page => params[:page], :per_page => 8).order('id DESC')
+    @stocks = Stock.in_category(@category_id)
+    @stocks = @stocks.in_store(params[:store_id]) if params[:store_id].present?
+    @stocks = @stocks.where(:store_id => @stores.map(&:id)) if params[:store_id].blank?
+    @stocks = @stocks.by_product(params[:product_name]) unless params[:product_name].blank?
+    @stocks = @stocks.paginate(:page => params[:page], :per_page => 10).order('id DESC')
+
     
   end
   
