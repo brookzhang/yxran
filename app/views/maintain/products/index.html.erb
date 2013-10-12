@@ -1,31 +1,30 @@
 <div class="span8">
-  <%= render 'category' %>
+  <div class="left">
+    <%=render 'categories/list_with_dropdown', :current_category_id => @category_id, :path => maintain_products_path %>
+  </div>
+  <div class="right"> 
+    <form class="form-search right" method='get' action=''  id="search_and_filter">    
+      <input type="hidden" name="category_id" value="<%=params[:category_id]%>" />
+      <!-- <input type='text' name='key_words' placeholder = "Search by Keyword"  class="input-medium search-query" style="margin-right:-40px;" value="<%= params[:key_words] %>">
+      <button type="submit" style="background:transparent;border: none;"><i class="icon-search"></i></button> -->   
+    </form>
+  </div>
   <% if @products.count > 0 %>
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th><%= t(:product_name) %></th>
-        <th><%= t(:unit_price) %></th>
-        <th></th>   
-      </tr>
-    </thead>   
+  <table class="table table-condensed">  
     <tbody>
     <% @products.each do |product| %>
-	  <%= render product %>
+    <tr>
+      <td><%= link_to product.name, [:maintain, product], :class => 'badge badge-warning' %><%= product.price %>
+      </td>
+               
+    </tr>
     <% end %>
     </tbody>
-	<tr>
-	  <td colspan="3">
-			 <%= will_paginate @products %>
-	  </td>
-	</tr>
-	<tr>
-	  <td colspan="3">
-			 <%= link_to t(:add), new_maintain_product_path, :class => 'btn' %>
-			 <%= link_to t(:import_excel), new_maintain_product_import_path, :class => 'btn' %>
-			 <%= link_to t(:back), maintain_dashboard_path, :class => 'btn' %>
-	  </td>
-	</tr>
+  <tr>
+    <td colspan="3">
+       <%= will_paginate @products %>
+    </td>
+  </tr>
   </table>
   <%end%>
 </div> 

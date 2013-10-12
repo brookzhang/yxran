@@ -35,8 +35,12 @@ class Product < ActiveRecord::Base
     Stock.price_of_product_in_store(self.id, store_id) || self.default_price
   end
   
-  def price(store_id)
-    self.unit_price(store_id).to_s << I18n.t("currency") << '/' << self.measurement.name
+  def price(*store_id)
+    if store_id
+      self.unit_price(store_id).to_s << I18n.t("currency") << '/' << self.measurement.name
+    else
+      self.default_price.to_s << I18n.t("currency") << '/' << self.measurement.name
+    end
   end
 
   

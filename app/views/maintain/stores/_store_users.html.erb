@@ -1,17 +1,13 @@
 <%if @store_users.count > 0 %>
-<table class="table table-condensed">
-	  <thead>
-      <tr>
-        <th><%= t(:user_name) %></th>
-        <th><%= t(:role) %></th>
-                                             
-      </tr>
-  </thead>   
+<table class="table table-condensed">  
   <tbody>
   <% @store_users.each do |store_user| %>
     <tr>
-        <td><%= link_to store_user.user.name, [:maintain, store_user.user] %></td>
-        <td><%= l(store_user.role,'role_category') %></td>                              
+        <td>
+          <%= link_to store_user.user.name, [:maintain, store_user.user], :class => 'badge badge-warning' %>
+          <%= l(store_user.role,'role_category') %>
+        </td>
+        <td></td>                              
     </tr>
   <% end %>
   </tbody>

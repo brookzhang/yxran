@@ -3,16 +3,15 @@ class ProductsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    category_id = params[:category_id].nil? ? 0 : params[:category_id].to_i
-    @category = category_id == 0 ? nil : Category.find(category_id)
-    @categories = Category.where(" parent_id = ? ", category_id )
+    @category_id = params[:category_id].blank? ? 0 : params[:category_id].to_i
+
     @products = nil
-    @products = Product.for_sale(category_id,current_user.store_id) if category_id > 0 
+    @products = Product.for_sale(@category_id,current_user.store_id) if @category_id > 0 
     #@products = where( " category_id = ? ", category_id)
     #@products = Product.for_sale(category_id)
     @cart = Cart.new
     
-    session[:category_id] = category_id
+    session[:category_id] = @category_id
   end
   
   def show

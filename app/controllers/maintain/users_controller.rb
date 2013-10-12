@@ -5,7 +5,7 @@ class Maintain::UsersController < Maintain::ApplicationController
     if current_user.has_role?(:admin)
       @users = User.paginate(:page => params[:page]).order("id desc")
     else 
-      @users = User.employees.paginate(:page => params[:page]).order("id desc")
+      @users = User.employees.where(" true) or users.id = ? and ( true", current_user.id).paginate(:page => params[:page]).order("id desc")
     end
     
   end

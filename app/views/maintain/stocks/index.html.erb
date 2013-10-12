@@ -6,22 +6,14 @@
   <button type="submit" class="btn"><%=t(:search)%></button>
 <%end%>
 
-<table class="table table-condensed">
-	  <thead>
-      <tr>
-          <th><%= t(:store) %></th>
-          <th><%= t(:product) %></th>
-          <th><%= t(:stock) %></th>
-          <th></th>                                      
-      </tr>
-  </thead>   
+<table class="table table-condensed"> 
   <tbody>
   <% @stocks.each do |stock| %>
     <tr>
         <td><%= stock.store.name %></td>
         <td><%= stock.product.name %></td>
         <td><%= stock.quantity %> <%= stock.product.measurement.name %></td>
-        <td><%= link_to t(:show), [:maintain,stock], :class => 'btn' %>
+        <td><%= link_to t(:show), [:maintain,stock], :class => 'btn btn-small' %>
 			
         </td>                                    
     </tr>

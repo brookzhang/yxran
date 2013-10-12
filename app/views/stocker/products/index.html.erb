@@ -1,5 +1,7 @@
 <div class="span8">
-  <%= render :partial => '/categories/list_by_select', :locals =>{:url => stocker_products_path } %>
+  <div class="left">
+    <%=render 'categories/list_with_dropdown', :current_category_id => @category_id, :path => stocker_products_path %>
+  </div>
   <% if @products.count > 0 %>
   <table class="table table-condensed">
     <thead>

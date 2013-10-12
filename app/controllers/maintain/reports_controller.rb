@@ -31,9 +31,10 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @conditions[:products][:name] = @search.product_name if !@search.product_name.empty?
     
     @sales = Sale.find(:all,
-                       :select => " sales.*, sale_details.*, products.measurement, products.name as product_name, stores.name as store_name, lookups.description as category_name, users.name as user_name",
+                       :select => " sales.*, sale_details.*, measurements.name as measurement, products.name as product_name, stores.name as store_name, lookups.description as category_name, users.name as user_name",
                        :from => " sales inner join sale_details on sales.id=sale_details.sale_id
                         inner join products on sale_details.product_id = products.id
+                        inner join measurements on products.measurement_id = measurements.id
                         inner join stores on sales.store_id = stores.id
                         inner join lookups on sales.category = lookups.code and lookups.category = 'sale_category'
                         inner join users on sales.user_id = users.id ",
@@ -65,9 +66,10 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @conditions[:products][:name] = @search.product_name if !@search.product_name.empty?
     
     @sales = Sale.find(:all,
-                       :select => " sale_details.product_id, products.measurement, products.name as product_name, sum(sale_details.quantity) as quantity",
+                       :select => " sale_details.product_id, measurements.name as measurement, products.name as product_name, sum(sale_details.quantity) as quantity",
                        :from => " sales inner join sale_details on sales.id=sale_details.sale_id
-                        inner join products on sale_details.product_id = products.id ",
+                        inner join products on sale_details.product_id = products.id 
+                        inner join measurements on products.measurement_id = measurements.id ",
                        :conditions => @conditions,
                        :group => " sale_details.product_id, products.measurement, products.name ",
                        :order => " quantity desc "
@@ -266,10 +268,11 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @conditions[:products][:name] = @search.product_name if !@search.product_name.empty?
     
     @stocks = Expense.find(:all,
-                       :select => " stocks.*,  stores.name as store_name, products.name as product_name, products.measurement  ",
+                       :select => " stocks.*,  stores.name as store_name, products.name as product_name, measurements.name as measurement  ",
                        :from => " stocks 
                         inner join stores on stocks.store_id = stores.id
-                        inner join products on stocks.product_id = products.id  ",
+                        inner join products on stocks.product_id = products.id 
+                        inner join measurements on products.measurement_id = measurements.id  ",
                        :conditions => @conditions,
                        :order => " stocks.quantity desc "
                        ) 
@@ -298,13 +301,14 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @stocks = Expense.find(:all,
                        :select => " stocks.*, stock_histories.adjusted_by , stock_histories.adjusted_to, stock_histories.remark, stock_histories.adjusted_at,
                        stores.name as store_name,
-                       products.name as product_name, products.measurement,
+                       products.name as product_name, measurements.name as measurement,
                        lookups.description as adjust_category",
                        :from => " stocks 
                         inner join stock_histories on stocks.id = stock_histories.stock_id
                         inner join stores on stocks.store_id = stores.id
                         inner join lookups on stock_histories.adjust_category = lookups.code and lookups.category = 'adjust_category'
-                        inner join products on stocks.product_id = products.id  ",
+                        inner join products on stocks.product_id = products.id 
+                        inner join measurements on products.measurement_id = measurements.id  ",
                        :conditions => @conditions,
                        :order => " stock_histories.id desc "
                        ) 

@@ -1,9 +1,15 @@
-<p><%= t(:name) %>: <%= @product.name %></p>
+<p>
+	<span class="label label-info"><%= @product.name %></span>
+	<%= @product.price(1) %>
+</p>
 <p><%= t(:description) %>: <%= @product.description %></p>
-<p><%= t(:category) %>: <%= @product.category.name %></p>
-<p><%= t(:measurement) %>: <%= @product.measurement.name %></p>
-<p><%= t(:default_price) %>: <%= @product.default_price %><%=t(:currency)%></p>
+<p><%= t(:category) %>: 
+	<%= link_to @product.category.name, stocker_products_path(:category_id => @product.category_id), :class => 'badge badge-warning' %>
+</p>
 <p><%= t(:created_at) %>: <%= @product.created_at.to_date %></p>
+
+
+
 <p><%= link_to t(:edit), edit_stocker_product_path(@product), :class => 'btn'%>
 <%#= link_to(t(:delete), stocker_product_path(@product), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn')  %>
 <%= link_to t(:back), stocker_products_path, :class => 'btn'%>

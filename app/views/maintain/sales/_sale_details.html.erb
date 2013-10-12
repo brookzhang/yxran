@@ -3,11 +3,16 @@
   <tbody>
   <% @sale_details.each do |d| %>
     <tr>
-        <td><%= d.product.name %></td>
-        <td><%= d.quantity.to_s + d.product.measurement.name %> </td>
-        <td><%= d.amount.to_s + t(:currency) %></td>                           
+        <td><%= link_to d.product.name, [:maintain, d.product], :class => 'badge badge-warning' %>
+					<%= d.quantity%> * <%=d.unit_price%> <%=t(:currency)%>/<%=d.product.measurement.name %>
+        </td>
+        <td> =<%= d.amount.to_s + t(:currency) %></td>                           
     </tr>
   <% end %>
+  <tr>
+  	<td></td>
+  	<td ><strong> =<%=@sale.amount.to_s + t(:currency) %></strong></td>
+  </tr>
   </tbody>
 </table>
 <%end%>

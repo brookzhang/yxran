@@ -2,11 +2,13 @@ class Stocker::StocksController < Stocker::ApplicationController
   def index
     @category_id = params[:category_id].blank? ? 0 : params[:category_id].to_i
     
-    @stock = Stock.new
-    @stock.store_id = params[:store_id]
-    @stock.product_name = params[:product_name]
-    @stores = Store.all
-    @stocks = Stock.in_store(params[:store_id]).by_product(params[:product_name]).in_category(@category_id).paginate(:page => params[:page], :per_page => 8).order('id DESC')
+    @stores = Store.authorized_stores(current_user.id, 'stocker')
+
+    @stocks = Stock.in_category(@category_id)
+    @stocks = @stocks.in_store(params[:store_id]) if params[:store_id].present?
+    @stocks = @stocks.where(:store_id => @stores.map(&:id)) if params[:store_id].blank?
+    @stocks = @stocks.by_product(params[:product_name]) unless params[:product_name].blank?
+    @stocks = @stocks.paginate(:page => params[:page], :per_page => 10).order('id DESC')
     
   end
   

@@ -1,19 +1,20 @@
 <p>
-  <strong>
-    <%= @store.name %>
-    (<%= @user.nil? ? t(:no_one_on_duty) : @user.name %>)
-  </strong>
+    <span class="label label-info"><%= @store.name %></span>
+    <%=l(@store.category,"store_category")%>
+
+      <%= link_to t(:edit), edit_maintain_store_path(@store), :class => 'btn'%>
+      <%= link_to t(:back), maintain_stores_path, :class => 'btn' %>
+    
 </p>
 <p><%= t(:remark) %>: <%= @store.remark %></p>
-<%= t(:balance) %>: <%= @store.balance %> <%=t(:currency)%>
-  
-<div class="input-append">
-  <%= link_to t(:edit), edit_maintain_store_path(@store), :class => 'btn'%>
-  <% link_to t(:back), maintain_stores_path, :class => 'btn'-%>
-</div>
-
 <p>
+  <%= t(:balance) %>: <%= @store.balance %> <%=t(:currency)%>
+  (<%= @user.nil? ? t(:no_one_on_duty) : @user.name %>)
 </p>
+  
+
+
+
 
 <div class="input-append">
   <a class="btn <%='btn-info' if @addition == 'stock'%>" href="<%= maintain_store_path(@store) + "?addition=stock" %>" >

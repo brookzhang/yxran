@@ -4,27 +4,22 @@
 </div>
 <div  class="left">
 <%=form_tag stocker_stocks_path, :method => 'get', :class => "form-inline", :id => "search_and_filter" do%>
-	<%= select_tag :store_id, options_from_collection_for_select(@stores, "id", "name", @stock.store_id), :prompt => t(:choose_a_store) %>
-	<%= text_field_tag :product_name, @stock.product_name, :placeholder => t(:product_name), :class => "input-small" %>
+	<%= select_tag :store_id, options_from_collection_for_select(@stores, "id", "name", params[:store_id]), :prompt => t(:choose_a_store) %>
+	<%= text_field_tag :product_name, params[:product_name], :placeholder => t(:product_name), :class => "input-small" %>
   <%= hidden_field_tag :category_id, @category_id %>
   <button type="submit" class="btn"><%=t(:search)%></button>
 <%end%>
 </div>
 
-<table class="table table-condensed">
-	  <thead>
-      <tr>
-          <th><%= t(:store) %></th>
-          <th><%= t(:product) %></th>
-          <th><%= t(:stock) %> </th>                                   
-      </tr>
-  </thead>   
+<table class="table table-condensed"> 
   <tbody>
   <% @stocks.each do |stock| %>
     <tr>
         <td><%= stock.store.name %></td>
-        <td><%= link_to stock.product.name, [:stocker,stock], :class => 'badge badge-warning'  %></td>
-        <td><%= stock.quantity %>  </td>                         
+        <td><%= link_to stock.product.name, [:stocker,stock.product], :class => 'badge badge-warning'  %>
+          <%= stock.quantity %>
+        </td>
+        <td><%= link_to t(:show), [:stocker,stock], :class => 'btn btn-small' %></td>                          
     </tr>
   <% end %>
   <tr>

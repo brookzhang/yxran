@@ -1,6 +1,9 @@
-<p><%=@sale.number%></p>
-<p>[<%= @sale.store.name %>] &nbsp; <%= l(@sale.category,"sale_category") %> 
-  <%= @sale.actual_amount %>
+<p>
+	<span class="label label-info"><%=@sale.number%></span>
+	<%=l(@sale.status.to_s, 'sale_status') %>
+</p>
+<p>[<%= @sale.store.name %>] &nbsp; 
+  <%=t(:actual_amount)%>:<%= @sale.actual_amount %> <%=t(:currency)%>
 </p>
 <p>
   <% if @sale.category == 'M' %>

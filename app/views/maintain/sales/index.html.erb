@@ -4,7 +4,6 @@
       <tr>
           <th><%= t(:sale_id) %></th>
           <th><%= t(:store) %></th>
-          <th><%= t(:category) %></th>
           <th><%= t(:employee) %></th>
           <th><%= t(:amount) %></th>
           <th><%= t(:time) %></th>                                     
@@ -13,9 +12,10 @@
   <tbody>
   <% @sales.each do |sale| %>
     <tr>
-        <td><%= link_to sale.number, [:maintain, sale] %></td>
+        <td><%= link_to sale.number, [:maintain, sale], :class => 'badge badge-warning' %>
+          <%=l(sale.status.to_s, 'sale_status') if sale.status == 9 %>
+        </td>
         <td><%= sale.store.name %></td>
-        <td><%= l(sale.category, 'sale_category') %></td>
         <td><%= sale.user.name %></td>
         <td><%= sale.amount.to_s %></td>
         <td><%= sale.created_at.to_s(:date_time) %></td>                                    

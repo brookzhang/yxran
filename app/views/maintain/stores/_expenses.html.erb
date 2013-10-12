@@ -1,19 +1,12 @@
 <%if @expenses.count > 0 %>
 <table class="table table-condensed">
-	  <thead>
-      <tr>
-          <th><%= t(:category) %></th>
-          <th><%= t(:amount) %></th>
-          <th><%= t(:time) %></th>
-          <th></th>                                      
-      </tr>
-  </thead>   
   <tbody>
   <% @expenses.each do |expense| %>
     <tr>
-        <td><%= l(expense.category, 'expense_category') %></td>
-        <td><%= link_to expense.amount.to_s + t(:currency), [:maintain,expense] %></td>
-        <td><%= expense.created_at.to_s(:date_time) %>
+        <td><%= link_to expense.number, [:maintain, expense], :class => 'badge badge-warning'  %><%= expense.amount.to_s + t(:currency) %></td>
+
+        <td><%=expense.user.name%></td>
+        <td><%= expense.created_at.to_s(:duty_time) %>
         </td>                                    
     </tr>
   <% end %>

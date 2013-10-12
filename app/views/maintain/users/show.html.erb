@@ -2,14 +2,14 @@
 <p><%= t(:account) %>: <%= @user.account  %></p>
 <p><%= t(:user_name) %>: <%= @user.name %></p>
 <p><%= t(:status) %>: <%= l(@user.status, "user_status") %>
-  <%= link_to(t(:lock), lock_maintain_user_path(@user), :data => { :confirm => t(:are_you_sure_to_lock_user) }, :method => :get, :class => 'btn btn-small') unless @user.status == 0 %>
-  <%= link_to(t(:unlock), unlock_maintain_user_path(@user), :data => { :confirm => t(:are_you_sure_to_unlock_user) }, :method => :get, :class => 'btn btn-small') unless @user.status == 1 %>
+  <%= link_to(t(:lock), lock_maintain_user_path(@user), :data => { :confirm => t(:are_you_sure_to_lock_user) }, :method => :get, :class => 'btn btn-small') unless (@user.status == 0 || @user.id == current_user.id ) %>
+  <%= link_to(t(:unlock), unlock_maintain_user_path(@user), :data => { :confirm => t(:are_you_sure_to_unlock_user) }, :method => :get, :class => 'btn btn-small') unless (@user.status == 1 || @user.id == current_user.id ) %>
 </p>
 <p><%= t(:email) %>: <%= @user.email %></p>
 <p><%= t(:created_at) %>: <%= @user.created_at.to_date %></p>
 
 
-<%= link_to t(:edit), edit_maintain_user_path(@user), :class => 'btn' unless @user.has_role? :admin%>
+<%= link_to t(:edit), edit_maintain_user_path(@user), :class => 'btn' unless  (@user.has_role? :manager ) %>
 
 <!--<%= link_to(t(:delete), maintain_user_path(@user), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'btn') %>-->
 <%= link_to t(:back), maintain_users_path, :class => 'btn'%>

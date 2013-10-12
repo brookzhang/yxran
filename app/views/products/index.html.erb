@@ -1,5 +1,7 @@
 <div class="span8">
-  <%= render :partial => '/categories/list_by_tree' %>
+  <div class="left">
+    <%=render 'categories/list_with_dropdown', :current_category_id => @category_id, :path => products_path %>
+  </div>
   <% if @products  %>
   <table class="table table-condensed">
     <thead>

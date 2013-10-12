@@ -108,6 +108,7 @@ Yxran::Application.routes.draw do
       resources :lookups
     end
     resources :measurements
+    resources :products
   end
   
   

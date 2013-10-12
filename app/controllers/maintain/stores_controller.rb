@@ -1,6 +1,6 @@
 class Maintain::StoresController < Maintain::ApplicationController
   def index
-    @stores = Store.paginate(:page => params[:page]).order('id DESC')
+    @stores = Store.paginate(:page => params[:page], :per_page => 10).order('id DESC')
   end
   
   def show
