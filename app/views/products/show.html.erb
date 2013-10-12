@@ -3,9 +3,14 @@
   <%= @product.price(current_user.store_id) %>
 </p>
 <p><%= t(:stock_quantity) %>: <%= @stock.nil? ? 0 : @stock.quantity %> <%= @product.measurement.name %></p>
-<p><%= link_to t(:add_to_cart), new_cart_path(:product_id => @stock.product_id), remote:true, :class => "btn btn-warning" %>
+<p>
+	<%= form_for @cart , :html => {:class => 'form-inline' } do |f| %>
+	  <%= f.hidden_field :product_id  %>
+	  <%= f.label t(:quantity)%>:
+	  <%= f.text_field :quantity, :class => 'numeric integer required', :type => 'number', :style => "width:70px;" %>
+	  <%= f.submit t(:add_to_cart) , :class => "btn" %>
+	<% end %>
+
 </p>
 <%= render 'histories' %>
 
-<!-- Modal -->
-<div id="ajax-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
   
   attr_accessor :check_message
   
-  validates_presence_of :store_id 
+  validates_presence_of :store_id , :remark
   #validates_uniqueness_of :name, :case_sensitive => false
   
 

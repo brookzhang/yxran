@@ -9,8 +9,8 @@
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
-  <body>
-    <div class="navbar " style="margin-bottom: 5px;">
+  <body style="padding-left:0px;padding-right:0px;">
+    <div class="navbar " style="margin-bottom: 1px;">
       <div class="navbar-inner">
         <%= link_to t(:app_name), root_path, :class => 'brand' %>
         <%= render 'layouts/navigation' %>

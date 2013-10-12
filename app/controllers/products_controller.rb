@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
     @stock = Stock.where(" product_id =? and store_id = ? ", @product.id, current_user.store_id).first
     @histories = @stock.nil? ? nil : StockHistory.where(" stock_id =? ", @stock.id)
     
-    @cart = Cart.new
+    @cart = Cart.new(:product_id => @product.id)
     
   end
   

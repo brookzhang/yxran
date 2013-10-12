@@ -23,8 +23,10 @@ class CartsController < ApplicationController
 
   def create
     pre_category_id = session[:category_id].nil? ? 0 : session[:category_id]
-
+    
     @cart = Cart.new(params[:cart])
+    @cart.quantity = 0 if @cart.quantity.blank?
+
     @cart.store_id = current_user.store_id
     @cart.user_id = current_user.id
     @cart.unit_price = @cart.product.unit_price(current_user.store_id)

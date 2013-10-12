@@ -17,7 +17,7 @@ class Sale < ActiveRecord::Base
   attr_accessor :check_message
 
   
-  validates_presence_of :store_id, :actual_amount
+  validates_presence_of :store_id, :actual_amount, :remark
   #validates_uniqueness_of :name, :case_sensitive => false
   
   validates_numericality_of :actual_amount, :greater_than_or_equal_to => 0
@@ -128,7 +128,37 @@ class Sale < ActiveRecord::Base
       return false
     end
     
+    self.sale_cancel
     
+  end
+  
+  
+  
+  def is_owned_by?(agent)
+    self.user == agent
+    # or, if you can safely assume the agent is always a User, you can 
+    # avoid the additional user query:
+    # self.owner_id == agent.id
+  end
+  
+  
+  def is_on_duty?
+    @handover = Handover.where(:user_id => self.user_id,
+                               :store_id => self.store_id,
+                               :status => 0
+                               ).order("id desc").first
+    if self.user.store_id.nil? || @handover.nil? 
+      false
+    elsif @handover.took_at <= self.created_at
+      true
+    else
+      false
+    end
+  end
+  
+
+
+  def sale_cancel
     begin
       self.transaction do
         #create sale record
@@ -183,31 +213,8 @@ class Sale < ActiveRecord::Base
       false
     end
   end
-  
-  
-  
-  def is_owned_by?(agent)
-    self.user == agent
-    # or, if you can safely assume the agent is always a User, you can 
-    # avoid the additional user query:
-    # self.owner_id == agent.id
-  end
-  
-  
-  def is_on_duty?
-    @handover = Handover.where(:user_id => self.user_id,
-                               :store_id => self.store_id,
-                               :status => 0
-                               ).order("id desc").first
-    if self.user.store_id.nil? || @handover.nil? 
-      false
-    elsif @handover.took_at <= self.created_at
-      true
-    else
-      false
-    end
-  end
-  
+
+
   
   private
   
