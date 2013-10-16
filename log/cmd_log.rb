@@ -27,6 +27,7 @@ chmod 755 /home/brook/yxran
 
 postgresql fengfeng
 postgres linux honghong
+pg_dump -Ft yxran_production > yxran.tar
 
 /var/app/yxran
 sudo chown -R nobody /var/app/yxran  #<-- set nginx user has permission on yxran

@@ -1,5 +1,6 @@
 class TransferDetailsController < ApplicationController
 
+  before_filter :require_handover 
 
   def new
     @transfer = Transfer.find(params[:transfer_id])

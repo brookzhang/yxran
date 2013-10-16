@@ -23,7 +23,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     
     @conditions = {}
     @conditions[:sales] = {}
-    @conditions[:sales][:created_at] = @search.date_range
+    @conditions[:sales][:created_at] = [@search.from_date..@search.to_date]
     @conditions[:sales][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:sales][:category] = @search.category if @search.category != 'all'
     
@@ -333,14 +333,8 @@ class Maintain::ReportsController < Maintain::ApplicationController
   def init_search_menu_and_get_parameters
     
     if @search.by_date_period
-      @date_periods = [[t(:today), 1],
-                     [t(:yesterday),2],
-                     [t(:this_week), 3],
-                     [t(:last_week), 4],
-                     [t(:this_month), 5],
-                     [t(:last_month), 6]
-                    ] 
-      @search.date_period = params[:date_period] || 1
+      @search.from_date = params[:from_date] || Date.today.beginning_of_week
+      @search.to_date = params[:to_date] || Date.today
     end
     
     

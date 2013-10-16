@@ -1,28 +1,47 @@
 
-        
 
 		<div class="input-append">
           
-            <% if @search.by_date_period %>
-              <select name="date_period" id="date_period" class="span1">
-				<%= options_for_select(@date_periods, @search.date_period) %>
-              </select>
+            <% if search.by_date_period %>
+              <input type="text"  id="from_date" name="from_date" value="<%=search.from_date%>" style="width:80px;">
+              <input type="text"  id="to_date" name="to_date" value="<%=search.to_date%>" style="width:80px;">
             <%end%>
           
-            <% if @search.by_store %>
+            <% if search.by_store %>
               <select name="store_id" id="store_id" class="span1">
-                  <%= options_for_select(@stores, @search.store_id) %>
+                  <%= options_for_select(@stores, search.store_id) %>
               </select>
             <%end%>
             
-            <% if @search.by_category %>
+            <% if search.by_category %>
               <select name="category" id="category" class="span1">
-                  <%= options_for_select(@categories, @search.category) %>
+                  <%= options_for_select(@categories, search.category) %>
               </select>
             <%end%>
           
-            <% if @search.by_product %>
-              <input type="text" name="product_name" id="product_name" class="span2" placeholder="<%=t(:product_name)%>" value="<%=@search.product_name%>">
+            <% if search.by_product %>
+              <input type="text" name="product_name" id="product_name" class="span2" placeholder="<%=t(:product_name)%>" value="<%=search.product_name%>">
             <%end%>
 			<button type="submit" class="btn" ><%=t(:search)%></button>
 		</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#from_date').datepicker({
+      format: "yyyy-mm-dd",
+      language: "zh-CN",
+      calendarWeeks: true,
+      autoclose: true,
+      todayHighlight: true
+    });
+    $('#to_date').datepicker({
+      format: "yyyy-mm-dd",
+      language: "zh-CN",
+      calendarWeeks: true,
+      autoclose: true,
+      todayHighlight: true
+    });
+  })
+</script>
+
+        

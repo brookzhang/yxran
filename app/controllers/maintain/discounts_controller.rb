@@ -44,6 +44,13 @@ class Maintain::DiscountsController < Maintain::ApplicationController
   end
 
   def destroy
+    @discount = Discount.find(params[:id])
+    if @discount.destroy
+      redirect_to maintain_discounts_path, :notice => t(:updated_ok)
+    else
+      redirect_to maintain_discount_path(@discount), :alert => t(:unable_to_delete)
+    end
+
   end
   
   

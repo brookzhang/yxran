@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   
   before_filter :require_user
+  before_filter :require_handover 
   
   def index
     

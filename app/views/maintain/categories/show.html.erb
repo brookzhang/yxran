@@ -1,7 +1,8 @@
 <!--h3><%= t(:account_info) %></h3-->
-<p><%= t(:category) %>: <%= t(@category.parent.name) %> -> <%= @category.name %></p>
+<p><%=link_to t(@category.parent.name), maintain_categories_path(:parent_id => @category.parent_id), :class => 'badge badge-warning' %> 
+  -> 
+  <span class='label label-info'> <%= @category.name %></span></p>
 <p><%= t(:description) %>: <%= @category.description %></p>
-<p><%= t(:sequence) %>: <%= @category.sequence %></p>
 <p><%= t(:discount) %>: <%= discounts_list @category.id   %>
   <%= link_to(t(:show), maintain_discounts_path(:category_id => @category.id), :class => 'btn') %>
   <%= link_to t(:create), new_maintain_discount_path(:category_id => @category.nil? ? nil : @category.id), :class => 'btn' %>

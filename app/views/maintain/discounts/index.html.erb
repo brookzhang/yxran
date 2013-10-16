@@ -3,20 +3,15 @@
 	  <thead>
       <tr>
           <th><%= t(:category) %></th>
-          <th><%= t(:member_level) %></th>
-          <th><%= t(:discount) %></th>
-          <th></th>                                      
+          <th><%= t(:member_level) %> * <%= t(:discount) %></th>
       </tr>
   </thead>   
   <tbody>
   <% @discounts.each do |discount| %>
     <tr>
-        <td><%= link_to discount.category.name, maintain_category_path(discount.category_id) %></td>
-        <td><%= l(discount.member_level, 'member_level') %></td>
-        <td>* <%= discount.discount %></td>
-        <td><%= link_to t(:show), [:maintain,discount], :class => 'btn btn-small' %>
-			
-        </td>                                    
+        <td><%= link_to discount.category.name, maintain_category_path(discount.category_id) , :class => 'badge badge-warning' %></td>
+        <td><%= link_to l(discount.member_level, 'member_level') + '*' + discount.discount.to_s, [:maintain,discount], :class => 'badge badge-warning'  %>
+        </td>
     </tr>
   <% end %>
   <tr>

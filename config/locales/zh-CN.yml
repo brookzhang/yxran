@@ -56,6 +56,8 @@ zh-CN:
   error: '错误'
   errors_prohibited_from_completing: '个错误导致操作失败'
   references: '参考'
+  from: '从'
+  to: '到'
 
 
 
@@ -269,6 +271,7 @@ zh-CN:
   you_handed_over_ok: '您已交班'
   handed_over_stores: '已交班店铺'
   choose_a_store: '选择店铺'
+  you_should_take_over_a_store_first: '您需要接班一个店铺'
 
 
 
@@ -342,10 +345,12 @@ zh-CN:
   #----------------------------------------------------------------------------
   category: '分类'
   category_name: '分类名称'
+  products_count_of_category: '商品数'
   parent_category: '父类'
   super_category: '大类'
   root_category: '全部'
   s_children: '的子分类'
+  view_children: '查看子类'
   create_product: '新增商品'
   select_category_first: '先选好分类'
   show_products: '查看所属商品'

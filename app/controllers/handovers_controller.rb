@@ -91,6 +91,8 @@ class HandoversController < ApplicationController
     #@handover.save
     
     if @handover.save
+      current_user.store_id = nil
+      session[:cart_count] = 0
       redirect_to handovers_path, :notice => t(:you_handed_over_ok)
     else
       redirect_to handovers_path, :alert => t(:you_can_not_hand_over)

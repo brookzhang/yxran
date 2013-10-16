@@ -35,6 +35,12 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, :alert => t(:only_allow_stocker_in)
     end
   end
+
+  def require_handover
+    if current_user.store_id.nil?
+      redirect_to root_path, :alert => t(:you_should_take_over_a_store_first)
+    end
+  end
   
   
   private

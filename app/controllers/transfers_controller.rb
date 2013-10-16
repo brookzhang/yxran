@@ -1,6 +1,7 @@
 class TransfersController < ApplicationController
   
   before_filter :require_user
+  before_filter :require_handover 
   before_filter :get_transfer, :only => [:edit, :update, :destroy, :transfer, :receive] 
   before_filter :require_owner, :only => [:edit, :update, :destroy, :transfer]
   before_filter :require_receiver, :only => [:receive]

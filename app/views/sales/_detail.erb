@@ -4,7 +4,7 @@
       <td><%= cart.product.name %>
       <strong><%= cart.quantity %><%= cart.product.measurement.name %></strong>
       *  <%= cart.unit_price %>
-      = <%= cart.quantity * cart.unit_price %> <%=t(:currency)%>
+      = <%= (cart.quantity * cart.unit_price).round(2) %> <%=t(:currency)%>
       </td>         
     </tr>
     <% end %>

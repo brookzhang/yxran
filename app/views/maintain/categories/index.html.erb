@@ -2,8 +2,10 @@
 <table class="table table-condensed">
 	  <thead>
       <tr>
-          <th><%= @parent_category.nil? ?  t(:root_category) : @parent_category.name %></th>
-          <th></th>
+          <th>
+            <%= @parent_category.nil? ?  t(:root_category) : @parent_category.name %>
+            (<%=t(:products_count_of_category) %>)
+          </th>
           <th></th>                                   
       </tr>
   </thead>   
@@ -11,12 +13,10 @@
   <% @categories.each do |category| %>
     <tr>
         <td>
-          <%= link_to category.name, maintain_categories_path(:parent_id => category.id) if category.has_children%>
-          <%= link_to category.name, [:maintain, category] unless category.has_children%>
-          
+          <%= link_to category.name, [:maintain, category], :class => 'badge badge-warning'%>
+          <%= category.products.count unless category.has_children%>
         </td>
-        <td></td>
-        <td><%= link_to t(:show), maintain_category_path(category), :class => 'btn btn-small'%>
+        <td><%= link_to t(:view_children), maintain_categories_path(:parent_id => category.id), :class => 'btn btn-small'  if category.has_children%>
         </td>                                       
     </tr>
   <% end %>
