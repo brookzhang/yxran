@@ -1,6 +1,6 @@
-<div class="span6">
+<div class="span12">
   
-	<form class="form-search" action="<%=sale_products_report_maintain_reports_path%>" method="get" >
+	<form class="form-search" action="<%=cost_details_report_maintain_reports_path%>" method="get" >
 		<%= render 'report_search', :search => @search %>
 	</form>
 	
@@ -8,15 +8,25 @@
   <table class="table table-bordered">
     <thead>
       <tr>
+        <th><%= t(:store_name) %></th>
+        <th><%= t(:sale_category) %></th>
         <th><%= t(:product_name) %></th>
         <th><%= t(:quantity) %></th>
+        <th><%= t(:date) %></th>
+        <th><%= t(:user_name) %></th>
       </tr>
     </thead>   
     <tbody>
     <% @sales.each do |s| %>
 	  <tr>
+			<td><%= s.store_name%></td>
+			<td><%= s.category_name %></td>  
 			<td><%= s.product_name %></td>   
 			<td><%= s.quantity %> <%=s.measurement%></td>
+			<td><%= s.created_at.to_s(:date_time) %></td> 
+			<td><%= s.user_name %></td> 
+			
+			
 		</tr>
 		<% end %>
     </tbody>

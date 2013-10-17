@@ -20,10 +20,11 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @search.by_product = true
     
     init_search_menu_and_get_parameters
+    @categories.delete_if{|x| ['O','C'].include?(x[1]) && @search.category_for == 'sale_category'}
     
     @conditions = {}
     @conditions[:sales] = {}
-    @conditions[:sales][:created_at] = [@search.from_date..@search.to_date]
+    @conditions[:sales][:created_at] = [@search.from_date...(@search.to_date.to_date + 1).to_s]
     @conditions[:sales][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:sales][:category] = @search.category if @search.category != 'all'
     
@@ -36,7 +37,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
                         inner join products on sale_details.product_id = products.id
                         inner join measurements on products.measurement_id = measurements.id
                         inner join stores on sales.store_id = stores.id
-                        inner join lookups on sales.category = lookups.code and lookups.category = 'sale_category'
+                        inner join lookups on sales.category = lookups.code and lookups.category = 'sale_category' and lookups.code != 'C'
                         inner join users on sales.user_id = users.id ",
                        :conditions => @conditions,
                        :order => " sale_details.id desc "
@@ -44,6 +45,68 @@ class Maintain::ReportsController < Maintain::ApplicationController
     
   end
   
+  def cost_details_report
+    @search = ReportSearch.new
+    @search.by_date_period = true
+    @search.by_store = true
+    @search.by_category = false
+    @search.category_for = 'sale_category'
+    @search.by_product = true
+    
+    init_search_menu_and_get_parameters
+    
+    @conditions = {}
+    @conditions[:sales] = {}
+    @conditions[:sales][:created_at] = [@search.from_date..(@search.to_date.to_date + 1).to_s]
+    @conditions[:sales][:store_id] = @search.store_id if @search.store_id.to_i > 0
+    @conditions[:sales][:category] = @search.category if @search.by_category && @search.category != 'all'
+    
+    @conditions[:products] = {} if @search.product_name.present?
+    @conditions[:products][:name] = @search.product_name if @search.product_name.present?
+    
+    @sales = Sale.find(:all,
+                       :select => " sales.*, sale_details.*, measurements.name as measurement, products.name as product_name, stores.name as store_name, lookups.description as category_name, users.name as user_name",
+                       :from => " sales inner join sale_details on sales.id=sale_details.sale_id
+                        inner join products on sale_details.product_id = products.id
+                        inner join measurements on products.measurement_id = measurements.id
+                        inner join stores on sales.store_id = stores.id
+                        inner join lookups on sales.category = lookups.code and lookups.category = 'sale_category' and lookups.code = 'C'
+                        inner join users on sales.user_id = users.id ",
+                       :conditions => @conditions,
+                       :order => " sale_details.id desc "
+                       ) 
+    
+  end
+
+
+  def only_account_details_report
+    @search = ReportSearch.new
+    @search.by_date_period = true
+    @search.by_store = true
+    @search.by_category = false
+    @search.category_for = 'sale_category'
+    @search.by_product = true
+    
+    init_search_menu_and_get_parameters
+    
+    @conditions = {}
+    @conditions[:sales] = {}
+    @conditions[:sales][:created_at] = [@search.from_date..(@search.to_date.to_date + 1).to_s]
+    @conditions[:sales][:store_id] = @search.store_id if @search.store_id.to_i > 0
+    @conditions[:sales][:category] = @search.category if @search.by_category && @search.category != 'all'
+    
+    
+    @sales = Sale.find(:all,
+                       :select => " sales.* , stores.name as store_name, lookups.description as category_name, users.name as user_name",
+                       :from => " sales 
+                        inner join stores on sales.store_id = stores.id
+                        inner join lookups on sales.category = lookups.code and lookups.category = 'sale_category' and sales.category = 'O' 
+                        inner join users on sales.user_id = users.id ",
+                       :conditions => @conditions,
+                       :order => " sales.id desc "
+                       ) 
+    
+  end
   
   
   
@@ -59,7 +122,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     
     @conditions = {}
     @conditions[:sales] = {}
-    @conditions[:sales][:created_at] = @search.date_range
+    @conditions[:sales][:created_at] = [@search.from_date..(@search.to_date.to_date + 1).to_s]
     @conditions[:sales][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:sales][:category] = @search.category if @search.category != 'all'
     
@@ -89,17 +152,18 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @search.category_for = 'sale_category'
     
     init_search_menu_and_get_parameters
+    @categories.delete_if{|x| ['O','C'].include?(x[1]) && @search.category_for == 'sale_category'}
     
     @conditions = {}
     @conditions[:sales] = {}
-    @conditions[:sales][:created_at] = @search.date_range
+    @conditions[:sales][:created_at] = [@search.from_date..(@search.to_date.to_date + 1).to_s]
     @conditions[:sales][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:sales][:category] = @search.category if @search.category != 'all'
     
     
     @sales = Sale.find(:all,
                        :select => " stores.name store_name, sum(sales.actual_amount) as actual_amount",
-                       :from => " sales inner join stores on sales.store_id = stores.id",
+                       :from => " sales inner join stores on sales.store_id = stores.id and sales.category in ('R','M') ",
                        :conditions => @conditions,
                        :group => " stores.name ",
                        :order => " actual_amount desc "
@@ -115,10 +179,11 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @search.category_for = 'sale_category'
     
     init_search_menu_and_get_parameters
+    @categories.delete_if{|x| ['O','C'].include?(x[1]) && @search.category_for == 'sale_category'}
     
     @conditions = {}
     @conditions[:sales] = {}
-    @conditions[:sales][:created_at] = @search.date_range
+    @conditions[:sales][:created_at] = [@search.from_date..(@search.to_date.to_date + 1).to_s]
     @conditions[:sales][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:sales][:category] = @search.category if @search.category != 'all'
     @conditions[:sales][:category] = Lookup.where(:category => 'sale_category').map{|c| [c.description, c.code]}.delete_if{|x| x[1] == 'O'} if @search.category == 'all'
@@ -126,7 +191,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     
     @sales = Sale.find(:all,
                        :select => " users.name as user_name, sum(sales.actual_amount) as actual_amount",
-                       :from => " sales inner join users on sales.user_id=users.id",
+                       :from => " sales inner join users on sales.user_id=users.id and sales.category in ('R','M')",
                        :conditions => @conditions,
                        :group => " users.name ",
                        :order => " actual_amount desc "
@@ -144,10 +209,11 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @search.by_product = true
     
     init_search_menu_and_get_parameters
+    @categories.delete_if{|x| ['O','C'].include?(x[1]) && @search.category_for == 'sale_category'}
     
     @conditions = {}
     @conditions[:sales] = {}
-    @conditions[:sales][:created_at] = @search.date_range
+    @conditions[:sales][:created_at] = [@search.from_date..(@search.to_date.to_date + 1).to_s]
     @conditions[:sales][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:sales][:category] = @search.category if @search.category != 'all'
     
@@ -156,11 +222,11 @@ class Maintain::ReportsController < Maintain::ApplicationController
     
     @sales = Sale.find(:all,
                        :select => " sales.*,  stores.name as store_name, lookups.description as category_name, users.name as user_name,
-                       case when (sales.amount - sales.used_score) > 0 then ((sales.actual_amount - sales.score) / (sales.amount - sales.used_score))
+                       case when (sales.amount - coalesce(sales.used_score,0)) > 0 then ((sales.actual_amount - coalesce(sales.score,0) ) / (sales.amount - coalesce(sales.used_score,0)))
                        else 0 end as discount,
                        members.name as member_name, members.level as member_level ",
                        :from => " sales inner join stores on sales.store_id = stores.id and sales.category in ('M','R') 
-                        inner join lookups on sales.category = lookups.code and lookups.category = 'sale_category'
+                        inner join lookups on sales.category = lookups.code and lookups.category = 'sale_category' and sales.category in ('R','M')
                         left join members on sales.member_id = members.id
                         inner join users on sales.user_id = users.id ",
                        :conditions => @conditions,
@@ -184,7 +250,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     
     @conditions = {}
     @conditions[:expenses] = {}
-    @conditions[:expenses][:created_at] = @search.date_range
+    @conditions[:expenses][:created_at] = [@search.from_date..(@search.to_date.to_date + 1).to_s]
     @conditions[:expenses][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:expenses][:category] = @search.category if @search.category != 'all'
     
@@ -212,7 +278,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     
     @conditions = {}
     @conditions[:expenses] = {}
-    @conditions[:expenses][:created_at] = @search.date_range
+    @conditions[:expenses][:created_at] = [@search.from_date..(@search.to_date.to_date + 1).to_s]
     @conditions[:expenses][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:expenses][:category] = @search.category if @search.category != 'all'
     
@@ -237,7 +303,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     
     @conditions = {}
     @conditions[:expenses] = {}
-    @conditions[:expenses][:created_at] = @search.date_range
+    @conditions[:expenses][:created_at] = [@search.from_date..(@search.to_date.to_date + 1).to_s]
     @conditions[:expenses][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:expenses][:category] = @search.category if @search.category != 'all'
     
@@ -292,10 +358,10 @@ class Maintain::ReportsController < Maintain::ApplicationController
     init_search_menu_and_get_parameters
     
     @conditions = {}
-    @conditions[:stocks] = {}
+    @conditions[:stocks] = {} if @search.store_id.to_i > 0
     @conditions[:stocks][:store_id] = @search.store_id if @search.store_id.to_i > 0
     @conditions[:stock_histories] = {}
-    @conditions[:stock_histories][:adjusted_at] = @search.date_range
+    @conditions[:stock_histories][:adjusted_at] = [@search.from_date..(@search.to_date.to_date + 1).to_s]
     @conditions[:stock_histories][:adjust_category] = @search.category if @search.category != 'all'
     
     @conditions[:products] = {} if @search.product_name.present?
@@ -333,8 +399,9 @@ class Maintain::ReportsController < Maintain::ApplicationController
   def init_search_menu_and_get_parameters
     
     if @search.by_date_period
-      @search.from_date = params[:from_date] || Date.today.beginning_of_week
-      @search.to_date = params[:to_date] || Date.today
+      @search.from_date = params[:from_date] || Date.today.beginning_of_week.to_s
+      @search.to_date = params[:to_date] || Date.today.to_s
+      #@search.to_date = (@search.to_date.to_date + 1).to_s
     end
     
     
@@ -345,7 +412,6 @@ class Maintain::ReportsController < Maintain::ApplicationController
     
     if @search.by_category
       @categories = Lookup.where(:category => @search.category_for).map{|c| [c.description, c.code]}.insert(0, [t(:all),'all'])
-      @categories.delete_if{|x| x[1]=='O' && @search.category_for == 'sale_category'}
       @search.category = params[:category] || 'all'
     end
     

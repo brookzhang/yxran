@@ -69,6 +69,8 @@ Yxran::Application.routes.draw do
       #match '/sale_details_report', :to => 'reports#sale_details_report'
       collection do
         get :sale_details_report
+        get :cost_details_report
+        get :only_account_details_report
         get :sale_products_report
         get :sale_amount_by_store_report
         get :sale_amount_by_user_report

@@ -220,6 +220,7 @@ zh-CN:
   received_failed: '收货失败'
   from_stock: '出仓'
   to_stock: '入仓'
+  add_to_transfer: '加进调货单'
 
 
   # cart.
@@ -500,6 +501,8 @@ zh-CN:
 
   sales_reports: '销售报表'
   sale_details_report: '销售明细报表'
+  cost_details_report: '出库明细报表'
+  only_account_details_report: '记账明细报表'
   sale_products_report: '销售商品汇总报表'
   sale_amount_by_store_report: '销售业绩报表(按店铺)'
   sale_amount_by_user_report: '销售业绩报表(按店员)'

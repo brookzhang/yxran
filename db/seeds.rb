@@ -22,7 +22,6 @@ Lookup.create([
   {:code => 'O', :category =>'adjust_category', :description => '订单'},
   {:code => 'OE', :category =>'adjust_category', :description => '订单修改'},
   {:code => 'T', :category =>'adjust_category', :description => '调货'},
-  {:code => 'T', :category =>'adjust_category', :description => '调货'},
   {:code => 'TE', :category =>'adjust_category', :description => '调货修改'},
   {:code => 'S', :category =>'adjust_category', :description => '销售'},
   {:code => 'SE', :category =>'adjust_category', :description => '销售修改'},

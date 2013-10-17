@@ -1,7 +1,7 @@
 <div class="span12">
   
 	<form class="form-search" action="<%=sale_discount_report_maintain_reports_path%>" method="get" >
-		<%= render 'report_search', :seach_filters => @search_filters %>
+		<%= render 'report_search', :search => @search %>
 	</form>
 	
   <% if @sales.count > 0 %>
@@ -31,8 +31,8 @@
 			<td><%= s.category_name %></td>  
 			<td><%= s.actual_amount %></td>   
 			<td><%= s.amount %></td>  
-			<td><%= s.used_score %></td>  
-			<td><%= s.score %></td>
+			<td><%= s.used_score.nil? ? 0.0 : s.used_score %></td>  
+			<td><%= s.score.nil? ? 0.0 : s.score %></td>
 			<td><%= (s.discount.to_f * 100).round(2) %> %</td>
 			<td><%= s.member_name  %></td>
 			<td><%= l(s.member_level,'member_level') if s.member_level %></td>

@@ -22,6 +22,7 @@ class TransfersController < ApplicationController
   end
 
   def create
+
     @transfer = Transfer.new(params[:transfer])
     @transfer.status = 0
     @transfer.transferer_id = current_user.id
@@ -33,7 +34,7 @@ class TransfersController < ApplicationController
       if @transfer.save
         redirect_to new_transfer_transfer_detail_path(@transfer), :notice => t(:created_ok)
       else
-        redirect_to :back, :alert => t(:unable_to_create)
+        render :new 
       end
     end
     
