@@ -235,6 +235,7 @@ zh-CN:
   member_selected_ok: '已选好了会员'
   selected_member: '已选会员'
   add_ok: '添加成功'
+  not_enough_stock: '库存不足'
   add_failed: '添加失败'
   add_product: '添加商品'
   score: '积分'

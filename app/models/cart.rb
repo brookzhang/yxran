@@ -15,6 +15,8 @@ class Cart < ActiveRecord::Base
   
   validates_numericality_of :quantity, :greater_than => 0
   validates_numericality_of :amount, :greater_than => 0
+
+  before_save :cart_quantity_should_not_big_than_stock
   
   
   def self.count_by_user(user)
@@ -27,6 +29,15 @@ class Cart < ActiveRecord::Base
 
   def price
     self.unit_price.to_s << '/' << self.product.measurement.name
+  end
+
+  def cart_quantity_should_not_big_than_stock
+    sum_quantity = self.quantity
+
+    carts = Cart.where(:product_id => self.product_id, :store_id => self.store_id, :user_id => self.user_id)
+    sum_quantity += carts.map(&:quantity).sum if carts.count > 0
+
+    Stock.get_quantity(self.store_id, self.product_id) >= sum_quantity
   end
   
   

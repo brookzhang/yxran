@@ -32,11 +32,12 @@ class CartsController < ApplicationController
     @cart.user_id = current_user.id
     @cart.unit_price = @cart.product.unit_price(current_user.store_id)
     @cart.amount = @cart.quantity * @cart.unit_price
-    if @cart.save
+
+    if @cart.cart_quantity_should_not_big_than_stock && @cart.save
       session[:cart_count] = Cart.count_by_user(current_user).to_s
       redirect_to stocks_path(:category_id => pre_category_id) , :notice => t(:add_ok)
     else
-      redirect_to stocks_path(:category_id => pre_category_id) , :alert => t(:add_failed)
+      redirect_to stocks_path(:category_id => pre_category_id) , :alert => t(:not_enough_stock)
     end
   end
 
