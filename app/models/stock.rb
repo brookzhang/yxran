@@ -12,6 +12,7 @@ class Stock < ActiveRecord::Base
   
   validates_presence_of :product_id, :store_id
   validates_uniqueness_of :product_id, :scope => :store_id
+  validates_numericality_of :quantity, :greater_than_or_equal_to => 0
   
   
   scope :in_store, lambda { |store_id| where( :store_id => store_id ) unless store_id.nil? || store_id == ''}
@@ -22,6 +23,7 @@ class Stock < ActiveRecord::Base
   scope :by_product, lambda{ |product_name| where(" product_id in (select id from products where name = ? )", product_name) if !product_name.nil? && product_name != '' }
   
   #callbacks
+
   after_save :log_history
   
   

@@ -11,7 +11,7 @@ class Transfer < ActiveRecord::Base
   # status 0-temp, 1-transfered , 2-received, 3-partial received , 9-cancel 
   
   validates_presence_of :from_store_id, :transfer_remark
-  validates_presence_of :receive_remark, :if => Proc.new{|transfer| transfer.status > 1 }
+  # validates_presence_of :receive_remark, :if => Proc.new{|transfer| transfer.status > 1 }
   validates_presence_of :to_store_id #, :if => Proc.new{|transfer| transfer.type == 'T'}
   #T-transfer O-out stock
   
