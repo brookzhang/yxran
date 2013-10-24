@@ -103,7 +103,7 @@ class SalesController < ApplicationController
   
   def cancel
     @sale = Sale.find(params[:id])
-    if @sale.cancel
+    if @sale.cancel_by_self
       redirect_to sales_path, :notice => t(:sale_canceled_ok)
     else
       redirect_to :back, :alert => t(@sale.check_message)

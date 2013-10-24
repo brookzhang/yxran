@@ -9,16 +9,13 @@ class Maintain::SalesController < Maintain::ApplicationController
     @member = @sale.member_id.nil? ? nil : Member.find(@sale.member_id)
   end
 
-  def edit
-    @sale = Sale.find(params[:id])
-  end
 
-  def update
+  def cancel
     @sale = Sale.find(params[:id])
-    if @sale.update_attributes(params[:sale])
-      redirect_to sale_path(@sale), :notice => t(:updated_ok)
+    if @sale.cancel_by_manager
+      redirect_to maintain_sales_path, :notice => t(:sale_canceled_ok)
     else
-      redirect_to sale_path(@sale), :alert => t(:unable_to_update)
+      redirect_to :back, :alert => t(@sale.check_message)
     end
   end
   

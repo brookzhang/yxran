@@ -93,7 +93,11 @@ Yxran::Application.routes.draw do
       end
     end
     resources :discounts
-    resources :sales
+    resources :sales do 
+      member do
+        get :cancel
+      end
+    end
     resources :members
     resources :member_imports
     resources :orders

@@ -119,7 +119,7 @@ class Sale < ActiveRecord::Base
   #*************************
   # for user on duty, could cancel sale
   #*************************
-  def cancel
+  def cancel_by_self
     if !is_on_duty?
       return false
     end
@@ -128,8 +128,16 @@ class Sale < ActiveRecord::Base
       return false
     end
     
-    self.sale_cancel
+    sale_cancel
     
+  end
+
+  def cancel_by_manager
+    if !is_ok_to_cancel?
+      return false
+    end
+    
+    sale_cancel
   end
   
   
@@ -158,61 +166,7 @@ class Sale < ActiveRecord::Base
   
 
 
-  def sale_cancel
-    begin
-      self.transaction do
-        #create sale record
-        self.status = 9
-        self.save!
-        
-        @store = Store.find(self.store_id)
-        @store.balance -= self.actual_amount
-        @store.save!
-        
-        @balance = Balance.new
-        @balance.adjusted_by = self.actual_amount * (-1)
-        @balance.adjusted_to = @store.balance
-        @balance.category = 'S'
-        @balance.reference_id = self.id
-        @balance.store_id = self.store_id
-        @balance.user_id = self.user_id
-        @balance.save!
-        
-        @sale_details = SaleDetail.where(:sale_id => self.id) 
-        @sale_details.each do |s|
-          s.status = 9
-          s.save!
-          @stock = Stock.fetch(self.store_id, s.product_id)
-          @stock.quantity += s.quantity 
-          @stock.adjust_category = 'S'
-          @stock.reference_id = self.id
-          @stock.change_qty = s.quantity 
-          @stock.change_remark = "sale canceled"
-          @stock.save!
-          
-        end
-        
-        #member sale & record score
-        if self.category == 'M' && (self.score > 0 || self.used_score > 0)
-          @member = Member.find(self.member_id)
-          @member.score += self.used_score if self.used_score > 0
-          @member.score -= self.score if self.score > 0 
-          @member.all_score -= self.score if self.score > 0 
-          @member.save!
-        end
-        
-      end
-      true
-    rescue => err
-      logger.error "****************************"  
-      logger.error "#{err.message}"  
-      #logger.error "#{err.backtrace.join('\n')}"  
-      logger.error "****************************"  
-      #logger.debug "======= error output: " + err.to_s 
-      self.check_message = 'unable_to_cancel'
-      false
-    end
-  end
+  
 
 
   
@@ -258,6 +212,65 @@ class Sale < ActiveRecord::Base
     self.check_message == 'pass'     
     
   end
+
+
+  def sale_cancel
+    begin
+      self.transaction do
+        #create sale record
+        self.status = 9
+        self.save!
+        
+        @store = Store.find(self.store_id)
+        @store.balance -= self.actual_amount
+        @store.save!
+        
+        @balance = Balance.new
+        @balance.adjusted_by = self.actual_amount * (-1)
+        @balance.adjusted_to = @store.balance
+        @balance.category = 'S'
+        @balance.reference_id = self.id
+        @balance.store_id = self.store_id
+        @balance.user_id = self.user_id
+        @balance.save!
+        
+        @sale_details = SaleDetail.where(:sale_id => self.id) 
+        if @sale_details.exists?
+          @sale_details.each do |s|
+            s.status = 9
+            s.save!
+            @stock = Stock.fetch(self.store_id, s.product_id)
+            @stock.quantity += s.quantity 
+            @stock.adjust_category = 'S'
+            @stock.reference_id = self.id
+            @stock.change_qty = s.quantity 
+            @stock.change_remark = "sale canceled"
+            @stock.save!
+          end
+        end
+        
+        #member sale & record score
+        if self.category == 'M' && ((self.score||0) > 0 || (self.used_score||0) > 0)
+          @member = Member.find(self.member_id)
+          @member.score += self.used_score if (self.used_score||0) > 0
+          @member.score -= self.score if (self.score||0) > 0 
+          @member.all_score -= self.score if (self.score||0) > 0 
+          @member.save!
+        end
+        
+      end
+      true
+    rescue => err
+      logger.error "****************************"  
+      logger.error "#{err.message}"  
+      #logger.error "#{err.backtrace.join('\n')}"  
+      logger.error "****************************"  
+      #logger.debug "======= error output: " + err.to_s 
+      self.check_message = 'unable_to_cancel'
+      false
+    end
+  end
+
   
   
 end

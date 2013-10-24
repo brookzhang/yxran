@@ -13,4 +13,5 @@
 </p>
 
 <%= render 'sale_details' %>
+<%= link_to t(:cancel), cancel_maintain_sale_path(@sale), :class => 'btn btn-inverse' if @sale.status == 1 %>
 <%= link_to t(:back), maintain_sales_path, :class => 'btn'%>
