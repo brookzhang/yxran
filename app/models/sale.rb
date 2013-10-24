@@ -48,6 +48,9 @@ class Sale < ActiveRecord::Base
         self.amount = 0
         self.amount = carts.sum {|c| c.amount.nil? ? 0 : c.amount } unless self.category == 'O'
         self.status = 1
+        
+        self.score ||= 0
+        self.used_score ||= 0
         self.save!
         
         
@@ -92,8 +95,6 @@ class Sale < ActiveRecord::Base
         
         
         #member sale & record score
-        self.score ||= 0
-        self.used_score ||= 0
         if self.category == 'M' && (self.score > 0  || self.used_score > 0 )
           @member = Member.find(self.member_id)
           @member.score -= self.used_score if self.used_score > 0
@@ -179,6 +180,8 @@ class Sale < ActiveRecord::Base
       #maybe need check stock
       #return true
     end
+
+
     
     if self.category == 'M'
       
