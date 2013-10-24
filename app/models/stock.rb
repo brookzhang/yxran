@@ -16,7 +16,7 @@ class Stock < ActiveRecord::Base
   
   
   scope :in_store, lambda { |store_id| where( :store_id => store_id ) unless store_id.nil? || store_id == ''}
-  scope :in_category, lambda { |category_id| joins(:product).where(:products => {:category_id => Category.sub_id_array(category_id) << category_id }).order(' products.default_price asc ') }
+  scope :in_category, lambda { |category_id| joins(:product).where(:products => {:category_id => Category.sub_id_array(category_id) << category_id }).order(' products.default_price asc, products.id asc ') }
   scope :has_stock, where(' stocks.quantity > 0' )
   
   
