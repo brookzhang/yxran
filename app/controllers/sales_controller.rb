@@ -58,14 +58,16 @@ class SalesController < ApplicationController
 
   def create
     @carts = Cart.list_by_user(current_user)
-    if !@carts.exists?
-      redirect_to :back, :alert => t(:please_select_product_for_cart_is_empty)
-      return false
-    end
 
     @sale = Sale.new(params[:sale])
     @sale.user_id = current_user.id
     @sale.store_id = current_user.store_id
+
+    
+    if @sale.category != 'O' && !@carts.exists?
+      redirect_to :back, :alert => t(:please_select_product_for_cart_is_empty)
+      return false
+    end
     
     if @sale.create_sale(@carts)
       session[:cart_count] = 0
