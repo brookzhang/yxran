@@ -20,8 +20,14 @@
 
 <%= render 'details' %>
 <p>
-<%= link_to t(:import_excel), new_stocker_inventory_inventory_import_path(@inventory), :class => 'btn'  if @inventory.status == 0 %>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<%= link_to t(:confirm_to_inventory), confirm_stocker_inventory_path(@inventory), :class => 'btn btn-primary'  if @inventory.status == 0 && @inventory_details.count > 0 %>
+<%= link_to t(:import_excel), new_stocker_inventory_inventory_import_path(@inventory), :class => 'badge badge-info'  if @inventory.status == 0 %>
+<%= link_to t(:clear_details), clear_stocker_inventory_path(@inventory), :class => 'badge badge-inverse'  if @inventory.status == 0 %>
+<br><br>
+<%if @inventory.is_ok_to_confirm? %>
+	<%= link_to t(:confirm_to_inventory), confirm_stocker_inventory_path(@inventory), :class => 'btn btn-primary' %>
+<%else%>
+	<%= t(:not_ok_to_confirm_message) if @inventory.status == 0 %>
+<%end%>
+
 
 </p>

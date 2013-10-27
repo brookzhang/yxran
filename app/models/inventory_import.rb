@@ -38,6 +38,8 @@ class InventoryImport
         end
       end
     end
+    
+    
     errors.blank?
   end
   

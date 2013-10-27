@@ -25,6 +25,8 @@ Lookup.create([
   {:code => 'TE', :category =>'adjust_category', :description => '调货修改'},
   {:code => 'S', :category =>'adjust_category', :description => '销售'},
   {:code => 'SE', :category =>'adjust_category', :description => '销售修改'},
+  {:code => 'IC', :category =>'adjust_category', :description => '盘点'},
+  {:code => 'ICE', :category =>'adjust_category', :description => '盘点修改'},
   {:code => 'R', :category =>'sale_category', :description => '零售'},
   {:code => 'C', :category =>'sale_category', :description => '出库'},
   {:code => 'M', :category =>'sale_category', :description => '会员'},

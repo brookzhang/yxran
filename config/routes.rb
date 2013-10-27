@@ -165,6 +165,7 @@ Yxran::Application.routes.draw do
       member do
         get :confirm
         get :cancel
+        get :clear
       end
       resources :inventory_details
       resources :inventory_imports

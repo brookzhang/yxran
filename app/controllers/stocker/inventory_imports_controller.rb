@@ -9,7 +9,11 @@ class Stocker::InventoryImportsController < Stocker::ApplicationController
     @inventory_import = InventoryImport.new(params[:inventory_import])
     if @inventory_import.valid?
       if @inventory_import.save(@inventory)
-        redirect_to [:stocker, @inventory], notice: t(:import_inventory_successfully)
+        if @inventory.inventory_details.count == 0
+          redirect_to [:stocker, @inventory], alert: t(:none_of_change_quantity)
+        else
+          redirect_to [:stocker, @inventory], notice: t(:import_inventory_successfully)
+        end
       else
         render :back, :alert => t(:import_failed)
       end 

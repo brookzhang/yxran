@@ -56,20 +56,31 @@ class Stocker::InventoriesController < Stocker::ApplicationController
         redirect_to :back, :alert => t(:unable_to_delete)
       end
     else
-      redirect_to :back, :alert => t(:already_inventoried_can_not_delete)
+      redirect_to :back, :alert => t(:already_confirmed_can_not_delete)
     end
     
   end
   
-  
+  def clear
+    @inventory = Inventory.find(params[:id])
+    if @inventory.status == 0
+      if @inventory.inventory_details.destroy_all
+        redirect_to stocker_inventory_path(@inventory), :notice => t(:cleared_ok)
+      else
+        redirect_to :back, :alert => t(:unable_to_clear)
+      end
+    else
+      redirect_to :back, :alert => t(:already_confirmed_can_not_clear)
+    end
+  end
   
   
   def confirm
     @inventory = Inventory.find(params[:id])
-    if @inventory.inventory_confirm
+    if @inventory.inventory_details.count > 0 && @inventory.inventory_confirm
       redirect_to stocker_inventory_path(@inventory), :notice => t(:inventory_confirmed_ok)
     else
-      redirect_to stocker_inventory_path(@inventory), :alert => t(:unable_to_inventory_out)
+      redirect_to stocker_inventory_path(@inventory), :alert => t(:unable_to_confirm)
     end
     
   end

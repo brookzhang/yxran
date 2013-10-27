@@ -199,6 +199,15 @@ zh-CN:
   check_quantity: '盘点库存'
   change_quantity: '卖出数量'
   account_amount: '记账总额'
+  not_ok_to_confirm_message: '请导入盘点库存，并且卖出数量不可为负值'
+  cleared_ok: '清空完成'
+  unable_to_clear: '无法清空'
+  already_confirmed_can_not_delete: '已确认，不能删除'
+  already_confirmed_can_not_clear: '已确认，不能清空'
+  unable_to_confirm: '不能确认'
+  inventory_canceled_ok: '盘点撤销成功'
+  inventory_confirmed_ok: '盘点完成'
+  none_of_change_quantity: '库存没有任何变动'
 
 
 
