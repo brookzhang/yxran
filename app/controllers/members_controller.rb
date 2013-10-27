@@ -34,6 +34,8 @@ class MembersController < ApplicationController
     @member = Member.new
     @member.name = params[:name]
     @member.phone = params[:phone]
+    @member.start_date = Date.today
+    @levels = Lookup.list("member_level").map{|c| [c.description, c.code]}
   end
 
   def create
@@ -42,9 +44,11 @@ class MembersController < ApplicationController
     @member.score = 0
     @member.user_id = current_user.id
     @member.uuid = UUIDTools::UUID.random_create().to_s
+    @member.start_date = Date.today
     if @member.save
       redirect_to  viewmember_path(:uuid => @member.uuid) , :notice => t(:created_ok)
     else
+      @levels = Lookup.list("member_level").map{|c| [c.description, c.code]}
       render :new# :back, :alert => t(:unable_to_create)
     end
   end

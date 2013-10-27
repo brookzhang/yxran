@@ -6,10 +6,10 @@ class Member < ActiveRecord::Base
   belongs_to :user
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :phone, :address, :remark, :level, :score, :user_id, :uuid
+  attr_accessible :name, :phone, :address, :remark, :level, :score, :user_id, :uuid, :start_date
   
   
-  validates_presence_of :name, :phone, :uuid
+  validates_presence_of :name, :phone, :level, :uuid, :start_date
   validates_uniqueness_of :name, :scope => :phone, :case_sensitive => false
   #validates_uniqueness_of :uuid, :case_sensitive => false
   

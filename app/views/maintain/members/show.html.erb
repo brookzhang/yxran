@@ -1,10 +1,11 @@
 <!--h3><%= t(:account_info) %></h3-->
 <p><%= t(:name) %>: <%= @member.name %></p>
 <p><%= t(:phone) %>: <%= @member.phone %></p>
+<p><%= t(:member_level) %>: <%= l(@member.level,'member_level') %></p>
+<p><%= t(:member_start_date) %>: <%= @member.start_date %></p>
+<p><%= t(:score) %>: <%= @member.score %></p>
 <p><%= t(:address) %>: <%= @member.address %></p>
 <p><%= t(:remark) %>: <%= @member.remark %></p>
-<p><%= t(:member_level) %>: <%= l(@member.level,'member_level') %></p>
-<p><%= t(:score) %>: <%= @member.score %></p>
 <p><%= t(:creator) %>: <%= @member.user.name %></p>
 <p><%= t(:created_at) %>: <%= @member.created_at.to_date %></p>
 <%= link_to t(:edit), edit_maintain_member_path(@member), :class => 'btn'%>

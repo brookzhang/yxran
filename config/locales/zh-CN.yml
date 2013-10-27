@@ -9,6 +9,7 @@ zh-CN:
 
 
 
+
   # site info.
   #----------------------------------------------------------------------------
   app_name: '易香然'
@@ -155,6 +156,8 @@ zh-CN:
   dismiss: '取消'
   member_level: '会员等级'
   import_members_successfully: '会员导入成功'
+  select_member_level: '选择会员级别'
+  member_start_date: '加入日期'
 
 
 

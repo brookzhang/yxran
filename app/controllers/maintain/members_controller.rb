@@ -9,6 +9,7 @@ class Maintain::MembersController < Maintain::ApplicationController
 
   def edit
     @member = Member.find(params[:id])
+    @levels = Lookup.list("member_level").map{|c| [c.description, c.code]}
   end
 
   def update
@@ -16,6 +17,7 @@ class Maintain::MembersController < Maintain::ApplicationController
     if @member.update_attributes(params[:member])
       redirect_to maintain_member_path(@member), :notice => t(:updated_ok)
     else
+      @levels = Lookup.list("member_level").map{|c| [c.description, c.code]}
       render :edit
     end
   end

@@ -25,6 +25,8 @@ zh-CN:
               blank: '会员名称不能为空。'
             phone:
               blank: '会员电话不能为空。'
+            start_date:
+              blank: '加入日期不能为空'
         order_detail:
           attributes:
             quantity:

@@ -5,7 +5,7 @@
           <th><%= t(:sale_id) %></th>
           <th><%= t(:store) %></th>
           <th><%= t(:employee) %></th>
-          <th><%= t(:amount) %></th>
+          <th><%= t(:actual_amount) %></th>
           <th><%= t(:time) %></th>                                     
       </tr>
   </thead>   
@@ -17,7 +17,7 @@
         </td>
         <td><%= sale.store.name %></td>
         <td><%= sale.user.name %></td>
-        <td><%= sale.amount.to_s %></td>
+        <td><%= sale.actual_amount.to_s %></td>
         <td><%= sale.created_at.to_s(:date_time) %></td>                                    
     </tr>
   <% end %>

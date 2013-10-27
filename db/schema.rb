@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131027012904) do
+ActiveRecord::Schema.define(:version => 20131027130124) do
 
   create_table "balances", :force => true do |t|
     t.integer  "store_id"
@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(:version => 20131027012904) do
     t.string   "uuid"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.date     "start_date"
   end
 
   add_index "members", ["name", "phone"], :name => "index_members_on_name_and_phone"

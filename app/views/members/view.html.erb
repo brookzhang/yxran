@@ -4,9 +4,9 @@
 	<%= @member.phone if @member.phone %>
 </p>
 <p><%= l(@member.level,'member_level') %> <%= t(:score) %>: <%= @member.score %></p>
+<p><%= t(:member_start_date) %>: <%= @member.start_date %></p>
 <p><%= t(:address) %>: <%= @member.address %></p>
 <p><%= t(:remark) %>: <%= @member.remark %></p>
-<p><%= t(:created_at) %>: <%= @member.created_at.to_s(:date_time) %></p>
 
 <p>
   <%= link_to t(:select), new_sale_path(:member_id => @member), :class => 'btn btn-warning' %>

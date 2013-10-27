@@ -3,6 +3,10 @@
   <%= display_base_errors @member %>
   <%= f.input :name, :label => t(:name), :required => true , :autofocus => true %> 
   <%= f.input :phone, :label => t(:phone), :required => true %>
+  <%= f.input :level, :label => t(:member_level), :collection => @levels, :required => true, prompt: "select_member_level" %>
+  
+  <%= f.input :start_date, :label => t(:member_start_date), :input_html => {class: 'datepicker', data: {behaviour: "datepicker"}}, :as => :string, :readonly => true %>
+
   <%= f.input :address, :label => t(:address) %>
   <%= f.input :remark, :label => t(:remark) %>
   <div class="control-group">
@@ -12,4 +16,16 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker({
+      format: "yyyy-mm-dd",
+      language: "zh-CN",
+      calendarWeeks: true,
+      autoclose: true,
+      todayHighlight: true
+    });
+  })
+</script>
 
