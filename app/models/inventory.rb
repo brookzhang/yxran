@@ -43,13 +43,35 @@ class Inventory < ActiveRecord::Base
   def inventory_confirm
     ActiveRecord::Base.transaction do
       begin
+        sale = Sale.new(:store_id => self.store_id, :remark => self.number, :category => 'I')
+        sale.user_id = self.user_id
+        sale.score = 0
+        sale.used_score = 0
+        sale.actual_amount = 0
+        sale.amount = 0
+        sale.status = 1
+        sale.save!
+
+
         self.sum_amount = self.sum_amount_of_me
         self.pay_amount = self.sum_pay_amount_by_me
+        self.sale_id = sale.id
         self.status = 1
-        self.save
+        self.save!
+
         
         @inventory_details = InventoryDetail.where(:inventory_id => self.id )
         @inventory_details.each do |d|
+          sale_detail = SaleDetail.new(:sale_id => sale.id)
+          sale_detail.product_id = d.product_id
+          sale_detail.quantity = d.change_quantity
+          sale_detail.unit_price = d.unit_price
+          sale_detail.save!
+
+          d.sale_detail_id = sale_detail.id
+          d.save!
+
+
           @stock = Stock.fetch(self.store_id, d.product_id)
           @stock.quantity += d.change_quantity  * (-1)
           @stock.adjust_category = 'IC'
@@ -81,7 +103,11 @@ class Inventory < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       begin
         self.status = 9
-        self.save
+        self.save!
+
+        sale = self.sale 
+        sale.status = 9
+        sale.save!
         
         @inventory_details = InventoryDetail.where(:inventory_id => self.id )
         @inventory_details.each do |d|

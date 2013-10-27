@@ -152,7 +152,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @search.category_for = 'sale_category'
     
     init_search_menu_and_get_parameters
-    @categories.delete_if{|x| ['O','C'].include?(x[1]) && @search.category_for == 'sale_category'}
+    @categories.delete_if{|x| ['O','C','I'].include?(x[1]) && @search.category_for == 'sale_category'}
     
     @conditions = {}
     @conditions[:sales] = {}
@@ -179,7 +179,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @search.category_for = 'sale_category'
     
     init_search_menu_and_get_parameters
-    @categories.delete_if{|x| ['O','C'].include?(x[1]) && @search.category_for == 'sale_category'}
+    @categories.delete_if{|x| ['O','C','I'].include?(x[1]) && @search.category_for == 'sale_category'}
     
     @conditions = {}
     @conditions[:sales] = {}
@@ -209,7 +209,7 @@ class Maintain::ReportsController < Maintain::ApplicationController
     @search.by_product = true
     
     init_search_menu_and_get_parameters
-    @categories.delete_if{|x| ['O','C'].include?(x[1]) && @search.category_for == 'sale_category'}
+    @categories.delete_if{|x| ['O','C','I'].include?(x[1]) && @search.category_for == 'sale_category'}
     
     @conditions = {}
     @conditions[:sales] = {}

@@ -211,6 +211,10 @@ class Sale < ActiveRecord::Base
     end
     
     self.check_message = 'not_enough_balance_to_cancel' if self.store.balance < self.actual_amount 
+
+    if self.category == 'I'
+      self.check_message = 'inventory_sale_should_cancel_with_inventory'
+    end
     
     self.check_message == 'pass'     
     

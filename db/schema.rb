@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20131027012904) do
   create_table "inventories", :force => true do |t|
     t.integer  "store_id"
     t.integer  "user_id"
+    t.integer  "sale_id"
     t.string   "remark"
     t.float    "sum_amount"
     t.float    "pay_amount"
@@ -104,12 +105,14 @@ ActiveRecord::Schema.define(:version => 20131027012904) do
     t.datetime "updated_at",                :null => false
   end
 
+  add_index "inventories", ["sale_id"], :name => "index_inventories_on_sale_id"
   add_index "inventories", ["store_id"], :name => "index_inventories_on_store_id"
   add_index "inventories", ["user_id"], :name => "index_inventories_on_user_id"
 
   create_table "inventory_details", :force => true do |t|
     t.integer  "inventory_id"
     t.integer  "product_id"
+    t.integer  "sale_detail_id"
     t.integer  "stock_quantity"
     t.integer  "check_quantity"
     t.integer  "change_quantity"
@@ -122,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20131027012904) do
 
   add_index "inventory_details", ["inventory_id"], :name => "index_inventory_details_on_inventory_id"
   add_index "inventory_details", ["product_id"], :name => "index_inventory_details_on_product_id"
+  add_index "inventory_details", ["sale_detail_id"], :name => "index_inventory_details_on_sale_detail_id"
 
   create_table "lookups", :force => true do |t|
     t.string   "code"
