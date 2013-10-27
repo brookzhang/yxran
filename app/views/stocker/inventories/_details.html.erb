@@ -1,0 +1,41 @@
+<%if @inventory_details.count > 0 %>
+<table class="table table-striped  "> 
+  <thead>
+    <tr>
+        <th><%= t(:product_name) %></th>
+        <th><%= t(:stock_quantity) %> - <%= t(:check_quantity)%> = <%= t(:change_quantity) %> </th>
+        <th><%= t(:amount) %></th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% 
+    sum_amount = 0
+    @inventory_details.each do |t| 
+      sum_amount += t.amount
+    %>
+    <tr>
+        <td><%= t.product.name %></td>
+        <td align="right"><%= t.stock_quantity.to_s  %>
+           - <%= t.check_quantity.to_s  %>
+           = <%= t.change_quantity.to_s  %>
+        </td>
+        <td align="right">* <%= t.product.price%> = <%= t.amount.round(2) %> <%= t(:currency)%>
+        </td>
+        <td><%= link_to t(:delete), stocker_inventory_inventory_detail_path(@inventory, t), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'badge badge-inverse'  if @inventory.status == 0 %></td>
+               
+    </tr>
+  <% end %>
+    <tr>
+      <td colspan="2"><%=t(:sum_amount)%></td>
+      <td><%=sum_amount.round(2) %> <%= t(:currency)%></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="2"><%=t(:account_amount)%></td>
+      <td><%=@inventory.sum_pay_amount_by_me.round(2) %> <%= t(:currency)%></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<%end%>

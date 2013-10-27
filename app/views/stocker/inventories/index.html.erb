@@ -1,0 +1,33 @@
+<div class="span8">
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th><%= t(:id) %></th>
+          <th><%= t(:store) %></th> 
+          <th><%= t(:status) %></th>    
+          <th><%= t(:created_at) %></th>                      
+      </tr>
+  </thead>   
+  <tbody>
+  <% @inventories.each do |inventory| %>
+    <tr>
+        <td><%= link_to inventory.number , [:stocker, inventory], :class => 'badge badge-warning' %></td>
+        <td><%=  inventory.store.name %></td>     
+        <td><%= l(inventory.status, 'inventory_status') %></td>           
+        <td><%= inventory.created_at.to_date %></td>                      
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="4">
+      <%= will_paginate @inventories %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <%= link_to t(:create), new_stocker_inventory_path, :class => 'btn btn-primary' %>
+	  <%= link_to t(:back), root_path, :class => 'btn'%>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div> 

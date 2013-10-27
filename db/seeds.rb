@@ -71,7 +71,11 @@ Lookup.create([
   {:code => '9', :category =>'member_level', :description => '贵宾'},
   
   {:code => 'g', :category =>'measurement_category', :description => '按克数'},
-  {:code => 'n', :category =>'measurement_category', :description => '按个数'}
+  {:code => 'n', :category =>'measurement_category', :description => '按个数'},
+
+  {:code => '0', :category =>'inventory_status', :description => '准备中'},
+  {:code => '1', :category =>'inventory_status', :description => '已盘点'},
+  {:code => '9', :category =>'inventory_status', :description => '已取消'}
   
   
 ], :without_protection => true)

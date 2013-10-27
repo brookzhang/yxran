@@ -6,6 +6,20 @@ Yxran::Application.routes.draw do
 
 
 
+  get "inventories/index"
+
+  get "inventories/show"
+
+  get "inventories/new"
+
+  get "inventories/create"
+
+  get "inventories/edit"
+
+  get "inventories/update"
+
+  get "inventories/destroy"
+
   devise_for :users
   resources :users do
     member do
@@ -147,6 +161,14 @@ Yxran::Application.routes.draw do
       resources :products
     end
     
+    resources :inventories do
+      member do
+        get :confirm
+        get :cancel
+      end
+      resources :inventory_details
+      resources :inventory_imports
+    end
     
     
     resources :stocks do

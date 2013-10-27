@@ -1,0 +1,13 @@
+<%= simple_form_for [:stocker,@inventory], :html => {:class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @inventory %>
+  <%= f.input :store_id, :label => t(:store), :collection => @stores, :prompt => t(:choose_warehouse), :required => true, :autofocus => true %> 
+  <%= f.input :remark, :label => t(:remark) %>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, t(:submit), :class => 'btn btn-primary' %>
+      <%= link_to t(:back), :back, :class => 'btn' %>
+    </div>
+  </div>
+<% end %>
+

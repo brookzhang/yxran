@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131004104835) do
+ActiveRecord::Schema.define(:version => 20131027012904) do
 
   create_table "balances", :force => true do |t|
     t.integer  "store_id"
@@ -92,6 +92,36 @@ ActiveRecord::Schema.define(:version => 20131004104835) do
   end
 
   add_index "handovers", ["store_id", "user_id"], :name => "index_handovers_on_store_id_and_user_id"
+
+  create_table "inventories", :force => true do |t|
+    t.integer  "store_id"
+    t.integer  "user_id"
+    t.string   "remark"
+    t.float    "sum_amount"
+    t.float    "pay_amount"
+    t.integer  "status",     :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "inventories", ["store_id"], :name => "index_inventories_on_store_id"
+  add_index "inventories", ["user_id"], :name => "index_inventories_on_user_id"
+
+  create_table "inventory_details", :force => true do |t|
+    t.integer  "inventory_id"
+    t.integer  "product_id"
+    t.integer  "stock_quantity"
+    t.integer  "check_quantity"
+    t.integer  "change_quantity"
+    t.float    "unit_price"
+    t.float    "amount"
+    t.integer  "status",          :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "inventory_details", ["inventory_id"], :name => "index_inventory_details_on_inventory_id"
+  add_index "inventory_details", ["product_id"], :name => "index_inventory_details_on_product_id"
 
   create_table "lookups", :force => true do |t|
     t.string   "code"

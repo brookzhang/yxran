@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :expenses
   has_many :balances
   has_many :store_users
+  has_many :inventories
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :as => :admin

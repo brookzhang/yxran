@@ -1,0 +1,2 @@
+module Stocker::InventoriesHelper
+end

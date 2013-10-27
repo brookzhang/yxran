@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   has_many :sale_details
   has_many :order_details
   has_many :transfer_details
+  has_many :inventory_details
   
   belongs_to :category
   belongs_to :measurement
@@ -31,16 +32,16 @@ class Product < ActiveRecord::Base
     0.1
   end
   
-  def unit_price(store_id)
-    Stock.price_of_product_in_store(self.id, store_id) || self.default_price
+  def unit_price(*store_id)
+    if store_id
+      Stock.price_of_product_in_store(self.id, store_id) || self.default_price
+    else
+      self.default_price
+    end
   end
   
   def price(*store_id)
-    if store_id
-      self.unit_price(store_id).to_s << I18n.t("currency") << '/' << self.measurement.name
-    else
-      self.default_price.to_s << I18n.t("currency") << '/' << self.measurement.name
-    end
+    self.unit_price(store_id).to_s << I18n.t("currency") << '/' << self.measurement.name
   end
 
   

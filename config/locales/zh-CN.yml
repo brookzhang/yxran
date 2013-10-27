@@ -190,6 +190,19 @@ zh-CN:
   wrong_quantity_on_line_n: '第%{line}行数量格式错误'
   wrong_quantity_on_line_n: '第%{line}行价格格式错误'
 
+
+  #inventory
+  #----------------------------------------------------------------------------
+  inventory: '盘点'
+  confirm_to_inventory: '确认盘点'
+  import_inventory_successfully: '盘点导入成功'
+  check_quantity: '盘点库存'
+  change_quantity: '卖出数量'
+  account_amount: '记账总额'
+
+
+
+
   # transfer.
   #----------------------------------------------------------------------------
   transfer: '调货'
@@ -314,6 +327,7 @@ zh-CN:
   handovers_maintain: '值班管理'
   expenses_maintain: '支出管理'
   measurements_maintain: '商品包装'
+  inventories_maintain: '记账盘点'
 
   choose_measurement_category: '选择包装类型'
 

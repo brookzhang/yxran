@@ -1,0 +1,27 @@
+
+<p><span class="label label-info"><%=@inventory.number %></span> <%= @inventory.store.name %> (<%= l(@inventory.status,'inventory_status') %>)
+  &nbsp;&nbsp;
+  <%= link_to(t(:delete), stocker_inventory_path(@inventory), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'badge badge-inverse')  if @inventory.status == 0  %>
+  <%= link_to t(:cancel), cancel_stocker_inventory_path(@inventory), :data => { :confirm => t(:are_you_sure_to_cancel) }, :class => 'badge badge-inverse' if @inventory.status == 1 %>
+  <%= link_to t(:back), stocker_inventories_path, :class => 'btn'%>
+  
+</p>
+<p><%= t(:remark) %>: <%= @inventory.remark %>
+<%= link_to t(:edit), edit_stocker_inventory_path(@inventory), :class => 'badge badge-info' if @inventory.status == 0 %>
+	<br>
+	
+  
+</p>
+
+
+
+
+
+
+<%= render 'details' %>
+<p>
+<%= link_to t(:import_excel), new_stocker_inventory_inventory_import_path(@inventory), :class => 'btn'  if @inventory.status == 0 %>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to t(:confirm_to_inventory), confirm_stocker_inventory_path(@inventory), :class => 'btn btn-primary'  if @inventory.status == 0 && @inventory_details.count > 0 %>
+
+</p>

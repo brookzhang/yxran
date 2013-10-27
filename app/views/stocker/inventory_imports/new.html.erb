@@ -1,0 +1,25 @@
+<h3><%=t(:import_excel)%></h3>
+
+
+
+
+
+
+
+<%= form_for [:stocker, @inventory, @inventory_import] do |f| %>
+  <% if @inventory_import.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= @inventory_import.errors.count %> <%=t(:errors_prohibited_from_completing)%> :</h4>
+      <ul>
+      <% @inventory_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.file_field :file, :class => 'btn' %>
+  </div>
+  <div class="buttons"><%= f.submit  t(:import) , :class => 'btn btn-warning'%></div>
+<% end %>
