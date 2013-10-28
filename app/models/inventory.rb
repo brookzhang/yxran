@@ -31,7 +31,7 @@ class Inventory < ActiveRecord::Base
     is_ok = true
     is_ok = false if self.status > 0 
     is_ok = false if self.inventory_details.count == 0
-    is_ok = false if InventoryDetail.where(:inventory_id => self.id).where(" change_quantity < 0 ").exists?
+    #is_ok = false if InventoryDetail.where(:inventory_id => self.id).where(" change_quantity < 0 ").exists?
 
     is_ok
   end
