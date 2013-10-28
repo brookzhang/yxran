@@ -1,5 +1,8 @@
 class Inventory < ActiveRecord::Base
   attr_accessible :store_id, :user_id, :remark #, :sum_amount, :pay_amount, :status
+
+  attr_accessor :check_message
+
   belongs_to :store
   belongs_to :user
 
@@ -105,7 +108,7 @@ class Inventory < ActiveRecord::Base
         self.status = 9
         self.save!
 
-        sale = self.sale 
+        sale = Sale.find(self.sale_id) 
         sale.status = 9
         sale.save!
         
