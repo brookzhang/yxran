@@ -14,11 +14,18 @@ class Inventory < ActiveRecord::Base
     I18n.t(:inventory) + '#'+ ("%05d" % self.id)
   end
 
+  def last_inventory
+    Inventory.where(:store_id => self.store_id, :status => 1).where(" created_at < ? ", self.created_at).order(" id desc ").first
+  end
+
+  def last_inventory_from
+    self.last_inventory.nil? ? 1.years.ago : self.last_inventory.created_at
+  end
+
   
   def sum_pay_amount_by_me
-    last_inventory = Inventory.where(:store_id => self.store_id, :status => 1).where(" created_at < ? ", self.created_at).order(" id desc ").first
     sales = Sale.select(" sum(actual_amount) as actual_amount ").where(:store_id => self.store_id, :category => 'O', :status => 1)
-    sales = sales.where(" created_at > ? ", last_inventory.created_at) if last_inventory
+    sales = sales.where(" created_at > ? ", self.last_inventory.created_at) if self.last_inventory
     sales = sales.where(" created_at < ? ", self.created_at)
     sales.first.actual_amount
   end

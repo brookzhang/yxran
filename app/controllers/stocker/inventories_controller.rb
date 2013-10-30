@@ -3,12 +3,29 @@ class Stocker::InventoriesController < Stocker::ApplicationController
   before_filter :require_owner, :only => [:edit, :update, :cancel]
   
   def index
-    @inventories = Inventory.paginate(:page => params[:page]).order("id desc")
+    @inventories = Inventory.where(:user_id => current_user.id).paginate(:page => params[:page]).order("id desc")
   end
   
   def show
     @inventory = Inventory.find(params[:id])
-    @inventory_details = InventoryDetail.where(:inventory_id => @inventory.id).order("product_id asc")
+
+    @addition = params[:addition].blank? ? 'details' : params[:addition]
+    case @addition
+    when 'sales'
+      @sales = Sale.where(:store_id => @inventory.store_id).where("created_at > ? and created_at < ?",@inventory.last_inventory_from, @inventory.created_at  ).includes(:user)
+    when 'expenses'
+      @expenses = Expense.where(:store_id => @inventory.store_id).where("created_at > ? and created_at < ?",@inventory.last_inventory_from, @inventory.created_at  ).includes(:user)
+    when 'transfers_out'
+      @transfer_details = TransferDetail.joins(:transfer).joins(" users on transfers.user_id = users.id ").where(:transfer => {:from_store_id => @inventory.store_id}).where(" transfers.transfered_at > ? and transfers.transfered_at < ? ", @inventory.last_inventory_from, @inventory.created_at )
+    when 'transfers_in'
+      @transfer_details = TransferDetail.joins(:transfer).joins(" users on transfers.user_id = users.id ").where(:transfer => {:to_store_id => @inventory.store_id}).where(" transfers.received_at > ? and transfers.transfered_at < ? ", @inventory.last_inventory_from, @inventory.created_at )
+    when 'orders'
+      @order_details = OrderDetail.joins(:order).where(:order => {:store_id => @inventory.store_id}).where(" orders.created_at > ? and orders.created_at < ? ", @inventory.last_inventory_from, @inventory.created_at )
+    else
+      @inventory_details = InventoryDetail.where(:inventory_id => @inventory.id).order("product_id asc")
+    end
+
+
   end
 
   def new

@@ -9,25 +9,38 @@
 <p><%= t(:remark) %>: <%= @inventory.remark %>
 <%= link_to t(:edit), edit_stocker_inventory_path(@inventory), :class => 'badge badge-info' if @inventory.status == 0 %>
 	<br>
-	
-  
 </p>
-
-
-
-
-
-
-<%= render 'details' %>
 <p>
-<%= link_to t(:import_excel), new_stocker_inventory_inventory_import_path(@inventory), :class => 'badge badge-info'  if @inventory.status == 0 %>
-<%= link_to t(:clear_details), clear_stocker_inventory_path(@inventory), :class => 'badge badge-inverse'  if @inventory.status == 0 %>
-<br><br>
-<%if @inventory.is_ok_to_confirm? %>
-	<%= link_to t(:confirm_to_inventory), confirm_stocker_inventory_path(@inventory), :class => 'btn btn-primary' %>
-<%else%>
-	<%= t(:not_ok_to_confirm_message) if @inventory.status == 0 %>
-<%end%>
-
-
+	<%=t(:last_inventory)%>: <%=@inventory.last_inventory.nil? ? " " : @inventory.last_inventory.created_at.to_s(:date_time) %>
+	~ <%=@inventory.created_at.to_s(:date_time) %>
 </p>
+
+
+
+<div class="input-append">
+  <a class="btn <%='btn-info' if @addition == 'details'%>" href="<%= stocker_inventory_path(@inventory) + "?addition=details" %>" >
+    <%=t(:inventory) %>
+  </a>
+  
+  <a class="btn <%='btn-info' if @addition == 'sales'%> " href="<%= stocker_inventory_path(@inventory) + "?addition=sales" %>" >
+    <%=t(:sale) %>
+  </a>
+  
+  <a class="btn <%='btn-info' if @addition == 'expenses'%>" href="<%= stocker_inventory_path(@inventory) + "?addition=expenses" %>" >
+    <%=t(:expense) %>
+  </a>
+  
+  <a class="btn <%='btn-info' if @addition == 'handovers'%>" href="<%= stocker_inventory_path(@inventory) + "?addition=handovers" %>" >
+    <%=t(:handover) %>
+  </a>
+  
+  <a class="btn <%='btn-info' if @addition == 'store_user'%>" href="<%= stocker_inventory_path(@inventory) + "?addition=store_user" %>" >
+    <%=t(:authority) %>
+  </a>
+</div>
+
+<%= render 'details' if @addition == 'details' %>
+<%= render :partial => 'sales' if @addition == 'sales' %>
+<%= render :partial => 'expenses' if @addition == 'expenses' %>
+
+

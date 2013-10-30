@@ -212,7 +212,7 @@ zh-CN:
   inventory_confirmed_ok: '盘点完成'
   none_of_change_quantity: '库存没有任何变动'
   inventory_sale_should_cancel_with_inventory: '盘点生成的销售单只能在盘点功能里撤销'
-
+  last_inventory: '上次盘点'
 
 
 
