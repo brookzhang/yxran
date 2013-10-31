@@ -23,7 +23,7 @@ class InventoryImport
     (2..details.last_row).map do |i|
       if details.cell(i,1).present?
         check_quantity = details.cell(i,2).present? ? details.cell(i,2).to_i : 0
-        if check_quantity > 0
+        
           product = Product.find_by_name(details.cell(i,1)) 
           inventory_detail = InventoryDetail.new
           inventory_detail.inventory_id = inventory.id
@@ -35,7 +35,7 @@ class InventoryImport
           inventory_detail.unit_price = product.unit_price(inventory.store_id)
           inventory_detail.amount = inventory_detail.unit_price * inventory_detail.change_quantity
           inventory_detail.save! if inventory_detail.change_quantity != 0 
-        end
+        
       end
     end
     
