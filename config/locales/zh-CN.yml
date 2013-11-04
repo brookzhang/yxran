@@ -248,6 +248,7 @@ zh-CN:
   from_stock: '出仓'
   to_stock: '入仓'
   add_to_transfer: '加进调货单'
+  cancel_ok: '撤销成功'
 
 
   # cart.

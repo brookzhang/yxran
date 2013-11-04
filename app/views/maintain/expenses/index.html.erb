@@ -10,9 +10,12 @@
   <tbody>
   <% @expenses.each do |e| %>
     <tr>
-        <td><%= e.store.name %></td>
+        <td><span class="label label-info"><%=e.number%></span><%= e.store.name %></td>
         <td><%= e.amount %></td>                                    
         <td><%= e.remark %></td>
+        <td>
+          <%= l(e.status.to_s, 'expense_status') %>
+          <%= link_to t(:cancel), cancel_maintain_expense_path(e), :class => 'btn' if e.status == 1 %></td>
     </tr>
   <% end %>
     <tr>

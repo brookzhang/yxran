@@ -58,11 +58,18 @@ class Expense < ActiveRecord::Base
   #*************************
   # for user on duty, could cancel expense
   #*************************
-  def cancel
+  def cancel_by_self
     if !is_on_duty?
       return false
     end
-    
+    cancel
+  end
+
+  def cancel_by_manager
+    cancel
+  end
+
+  def cancel
     begin
       self.transaction do
         #create sale record

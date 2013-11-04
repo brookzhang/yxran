@@ -6,20 +6,6 @@ Yxran::Application.routes.draw do
 
 
 
-  get "inventories/index"
-
-  get "inventories/show"
-
-  get "inventories/new"
-
-  get "inventories/create"
-
-  get "inventories/edit"
-
-  get "inventories/update"
-
-  get "inventories/destroy"
-
   devise_for :users
   resources :users do
     member do
@@ -115,14 +101,22 @@ Yxran::Application.routes.draw do
     resources :members
     resources :member_imports
     resources :orders
-    resources :transfers
+    resources :transfers do
+      member do
+        get :cancel
+      end
+    end
     #match 'transfer/transfer', :to => 'transfer#transfer'
     
     resources :stocks do
       resources :histories
     end
     resources :handovers
-    resources :expenses
+    resources :expenses do 
+      member do
+        get :cancel
+      end
+    end
     resources :balances
     match '/settings', :to => 'lookups#list'
     scope ':category' do

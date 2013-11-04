@@ -105,6 +105,60 @@ class Transfer < ActiveRecord::Base
     end
     
   end
+
+
+  def cancel_by_manager
+    @transfer_details = TransferDetail.where(:transfer_id => self.id)
+
+    begin
+      self.transaction do
+        #update status to received
+        
+        #update stock
+        if self.status == 1 || self.status == 2
+          @transfer_details.each do |d|
+            @stock = Stock.fetch(self.from_store_id, d.product_id)
+            @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
+            @stock.quantity += d.quantity 
+            @stock.adjust_category = 'TE'
+            @stock.reference_id = d.id
+            @stock.change_qty = d.quantity 
+            #@stock.change_remark = self.remark
+            @stock.save!
+          end
+        end
+
+        if self.status == 2
+          @transfer_details.each do |d|
+            @stock = Stock.fetch(self.to_store_id, d.product_id)
+            @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
+            @stock.quantity = d.quantity * (-1)  
+            @stock.adjust_category = 'TE'
+            @stock.reference_id = d.id
+            @stock.change_qty = d.quantity * (-1) 
+            #@stock.change_remark = self.remark
+            @stock.save!
+          end
+        end
+
+
+        self.status = 9
+        self.save!
+      end
+      true
+    rescue => err
+      logger.error "****************************"  
+      logger.error "#{err.message}"  
+      #logger.error "#{err.backtrace.join('\n')}"  
+      logger.error "****************************"  
+      #logger.debug "======= error output: " + err.to_s 
+      #self.check_message = 'unable_to_receive'
+      false
+    end
+
+
+
+  end
   
   
   

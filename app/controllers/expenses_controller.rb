@@ -50,12 +50,14 @@ class ExpensesController < ApplicationController
   
   def cancel
     @expense = Expense.find(params[:id])
-    if @expense.cancel
+    if @expense.cancel_by_self
       redirect_to expenses_path, :notice => t(:expense_canceled_ok)
     else
       redirect_to :back, :alert => t(@expense.check_message)
     end
   end
+  
+
   
   protected
   def get_expense
