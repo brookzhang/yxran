@@ -20,26 +20,26 @@ class Expense < ActiveRecord::Base
   
   
   def create_balance
+
     begin
-      self.transaction do
-        self.save!
+      self.status = 1
+      self.save!
+      
+      store = Store.find(self.store_id)
+      store.balance -= self.amount
+      store.save!
+      
+      #:adjusted_by, :adjusted_to, :category, :reference_id, :store_id, :user_id
+      balance = Balance.new
+      balance.adjusted_by = self.amount
+      balance.adjusted_to = store.balance
+      balance.category = 'E'
+      balance.reference_id = self.id
+      balance.store_id = self.store_id
+      balance.user_id = self.user_id
+      balance.save!
         
-        @store = Store.find(self.store_id)
-        @store.balance -= self.amount
-        @store.save!
         
-        #:adjusted_by, :adjusted_to, :category, :reference_id, :store_id, :user_id
-        @balance = Balance.new
-        @balance.adjusted_by = self.amount
-        @balance.adjusted_to = @store.balance
-        @balance.category = 'E'
-        @balance.reference_id = self.id
-        @balance.store_id = self.store_id
-        @balance.user_id = self.user_id
-        @balance.save!
-        
-        
-      end
       true
     rescue => err
       errors.add :remark, :unable_to_create
@@ -70,26 +70,28 @@ class Expense < ActiveRecord::Base
   end
 
   def cancel
+
+    if self.status != 1
+      return false
+    end
     begin
-      self.transaction do
-        #create sale record
-        self.status = 9
-        self.save!
-        
-        @store = Store.find(self.store_id)
-        @store.balance += self.amount
-        @store.save!
-        
-        @balance = Balance.new
-        @balance.adjusted_by = self.amount
-        @balance.adjusted_to = @store.balance
-        @balance.category = 'E'
-        @balance.reference_id = self.id
-        @balance.store_id = self.store_id
-        @balance.user_id = self.user_id
-        @balance.save!
-        
-      end
+      #create sale record
+      self.status = 9
+      self.save!
+      
+      store = Store.find(self.store_id)
+      store.balance += self.amount
+      store.save!
+      
+      balance = Balance.new
+      balance.adjusted_by = self.amount
+      balance.adjusted_to = store.balance
+      balance.category = 'E'
+      balance.reference_id = self.id
+      balance.store_id = self.store_id
+      balance.user_id = self.user_id
+      balance.save!
+      
       true
     rescue => err
       logger.error "****************************"  
@@ -114,13 +116,13 @@ class Expense < ActiveRecord::Base
   
   
   def is_on_duty?
-    @handover = Handover.where(:user_id => self.user_id,
+    handover = Handover.where(:user_id => self.user_id,
                                :store_id => self.store_id,
                                :status => 0
                                ).order("id desc").first
-    if self.user.store_id.nil? || @handover.nil? 
+    if self.user.store_id.nil? || handover.nil? 
       false
-    elsif @handover.took_at <= self.created_at
+    elsif handover.took_at <= self.created_at
       true
     else
       false

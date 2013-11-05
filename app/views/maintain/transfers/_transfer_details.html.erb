@@ -8,12 +8,17 @@
     </tr>
   </thead> 
   <tbody>
-  <% @transfer_details.each do |t| %>
+  <% @transfer_details.each do |t| 
+    from_stock = Stock.fetch(@transfer.from_store_id, t.product_id)
+    to_stock = Stock.fetch(@transfer.to_store_id, t.product_id)
+    %>
     <tr>
-        <td><%= t.product.name %></td>
+        <td><%= link_to t.product.name, [:maintain, t.product], :class => 'badge badge-warning' %></td>
         <td><%= t.quantity.to_s %>
-          / <%= Stock.get_quantity(@transfer.from_store_id, t.product_id)%>
-          / <%= Stock.get_quantity(@transfer.to_store_id, t.product_id)%>
+          / 
+          <%= link_to from_stock.quantity, [:maintain, from_stock], :class => 'badge badge-warning' %>
+          / 
+          <%= link_to to_stock.quantity, [:maintain, to_stock], :class => 'badge badge-warning' %>
           
           <%= t.product.measurement.name %>
         </td>

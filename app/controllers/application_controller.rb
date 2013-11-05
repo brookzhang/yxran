@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   
   WillPaginate.per_page = 5
   
+  around_filter :transactional, :except => [:index, :show, :new, :edit]
+
   
   
   protected
@@ -66,6 +68,12 @@ class ApplicationController < ActionController::Base
     #  I18n.locale = locale
     #end
     
+  end
+
+  def transactional
+    ActiveRecord::Base.transaction do
+      yield
+    end
   end
   
   

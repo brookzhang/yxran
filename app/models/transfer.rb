@@ -26,37 +26,37 @@ class Transfer < ActiveRecord::Base
 
 
   def is_ok_to_transfer?
-    @is_stock_is_enough = true
-    @transfer_details = TransferDetail.where(:transfer_id => self.id)
-    @transfer_details.each do |d|
+    is_stock_is_enough = true
+    transfer_details = TransferDetail.where(:transfer_id => self.id)
+    transfer_details.each do |d|
       if d.quantity > Stock.get_quantity(self.from_store_id, d.product_id)
-        @is_stock_is_enough = false
+        is_stock_is_enough = false
       end
     end
-    @is_stock_is_enough
+    is_stock_is_enough
   end
   
   def transfer
-    @transfer_details = TransferDetail.where(:transfer_id => self.id)
-    
+    if self.status !=0
+      return false
+    end
+    transfer_details = TransferDetail.where(:transfer_id => self.id)
     begin
-      self.transaction do
-        #update status to transfered
-        self.status = 1
-        self.transfered_at = DateTime.now()
-        self.save!
-        
-        #update stock
-        @transfer_details.each do |d|
-          @stock = Stock.fetch(self.from_store_id, d.product_id)
-          @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
-          @stock.quantity += d.quantity * (-1)
-          @stock.adjust_category = 'T'
-          @stock.reference_id = d.id
-          @stock.change_qty = d.quantity  * (-1)
-          #@stock.change_remark = self.remark
-          @stock.save!
-        end
+      #update status to transfered
+      self.status = 1
+      self.transfered_at = DateTime.now()
+      self.save!
+      
+      #update stock
+      transfer_details.each do |d|
+        @stock = Stock.fetch(self.from_store_id, d.product_id)
+        @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
+        @stock.quantity += d.quantity * (-1)
+        @stock.adjust_category = 'T'
+        @stock.reference_id = d.id
+        @stock.change_qty = d.quantity  * (-1)
+        #@stock.change_remark = self.remark
+        @stock.save!
       end
       true
     rescue => err
@@ -72,27 +72,25 @@ class Transfer < ActiveRecord::Base
   
   
   def receive
-    @transfer_details = TransferDetail.where(:transfer_id => self.id)
-    
+    transfer_details = TransferDetail.where(:transfer_id => self.id)
+    if self.status !=1
+      return false
+    end
     begin
-      self.transaction do
-        #update status to received
         self.status = 2
         self.received_at = DateTime.now()
         self.save!
         
-        #update stock
-        @transfer_details.each do |d|
-          @stock = Stock.fetch(self.to_store_id, d.product_id)
-          @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
-          @stock.quantity += d.quantity 
-          @stock.adjust_category = 'T'
-          @stock.reference_id = d.id
-          @stock.change_qty = d.quantity 
+        transfer_details.each do |d|
+          stock = Stock.fetch(self.to_store_id, d.product_id)
+          stock.quantity = stock.quantity.nil? ? 0 : stock.quantity
+          stock.quantity += d.quantity 
+          stock.adjust_category = 'T'
+          stock.reference_id = d.id
+          stock.change_qty = d.quantity 
           #@stock.change_remark = self.remark
-          @stock.save!
+          stock.save!
         end
-      end
       true
     rescue => err
       logger.error "****************************"  
@@ -108,43 +106,40 @@ class Transfer < ActiveRecord::Base
 
 
   def cancel_by_manager
-    @transfer_details = TransferDetail.where(:transfer_id => self.id)
-
+    transfer_details = TransferDetail.where(:transfer_id => self.id)
+    if ![1,2].include?(self.status)
+      return false
+    end
     begin
-      self.transaction do
-        #update status to received
-        
-        #update stock
-        if self.status == 1 || self.status == 2
-          @transfer_details.each do |d|
-            @stock = Stock.fetch(self.from_store_id, d.product_id)
-            @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
-            @stock.quantity += d.quantity 
-            @stock.adjust_category = 'TE'
-            @stock.reference_id = d.id
-            @stock.change_qty = d.quantity 
-            #@stock.change_remark = self.remark
-            @stock.save!
-          end
+      if self.status == 1 || self.status == 2
+        transfer_details.each do |d|
+          stock = Stock.fetch(self.from_store_id, d.product_id)
+          stock.quantity = stock.quantity.nil? ? 0 : stock.quantity
+          stock.quantity += d.quantity 
+          stock.adjust_category = 'TE'
+          stock.reference_id = d.id
+          stock.change_qty = d.quantity 
+          #@stock.change_remark = self.remark
+          stock.save!
         end
-
-        if self.status == 2
-          @transfer_details.each do |d|
-            @stock = Stock.fetch(self.to_store_id, d.product_id)
-            @stock.quantity = @stock.quantity.nil? ? 0 : @stock.quantity
-            @stock.quantity = d.quantity * (-1)  
-            @stock.adjust_category = 'TE'
-            @stock.reference_id = d.id
-            @stock.change_qty = d.quantity * (-1) 
-            #@stock.change_remark = self.remark
-            @stock.save!
-          end
-        end
-
-
-        self.status = 9
-        self.save!
       end
+
+      if self.status == 2
+        transfer_details.each do |d|
+          stock = Stock.fetch(self.to_store_id, d.product_id)
+          stock.quantity = stock.quantity.nil? ? 0 : stock.quantity
+          stock.quantity += d.quantity * (-1)  
+          stock.adjust_category = 'TE'
+          stock.reference_id = d.id
+          stock.change_qty = d.quantity * (-1) 
+          #@stock.change_remark = self.remark
+          stock.save!
+        end
+      end
+
+
+      self.status = 9
+      self.save!
       true
     rescue => err
       logger.error "****************************"  

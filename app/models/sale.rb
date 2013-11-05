@@ -36,74 +36,75 @@ class Sale < ActiveRecord::Base
     if !check_sale
       return false
     end
+
+    if self.status !=0
+      return false
+    end
     
     begin
-      self.transaction do
-        #create sale record
-        if self.category == 'C'
-          self.actual_amount = 0
-        end
-        
-        
-        self.amount = 0
-        self.amount = carts.sum {|c| c.amount.nil? ? 0 : c.amount } unless self.category == 'O'
-        self.status = 1
-        
-        self.score ||= 0
-        self.used_score ||= 0
-        self.save!
-        
-        
-        @store = Store.find(self.store_id)
-        @store.balance += self.actual_amount
-        @store.save!
-        
-        #:adjusted_by, :adjusted_to, :category, :reference_id, :store_id, :user_id
-        @balance = Balance.new
-        @balance.adjusted_by = self.actual_amount
-        @balance.adjusted_to = @store.balance
-        @balance.category = 'S'
-        @balance.reference_id = self.id
-        @balance.store_id = self.store_id
-        @balance.user_id = self.user_id
-        @balance.save!
-        
-        #sale_details
-        unless self.category == 'O'
-          carts.each do |c|
-            @sale_detail = SaleDetail.new(:sale_id => self.id,
-                                          :product_id => c.product_id,
-                                          :quantity => c.quantity,
-                                          :unit_price => c.unit_price,
-                                          :amount => c.amount,
-                                          :status => 1
-                                          )
-            
-            @sale_detail.save!
-            @stock = Stock.fetch(self.store_id, c.product_id)
-            @stock.quantity = 0 if @stock.quantity.nil?
-            @stock.quantity += c.quantity * (-1)
-            @stock.adjust_category = 'S'
-            @stock.reference_id = self.id
-            @stock.change_qty = c.quantity * (-1)
-            #@stock.change_remark = self.remark
-            @stock.save!
-            
-          end
-          Cart.destroy(carts.map{|c| c.id })
-        end
-        
-        
-        #member sale & record score
-        if self.category == 'M' && (self.score > 0  || self.used_score > 0 )
-          @member = Member.find(self.member_id)
-          @member.score -= self.used_score if self.used_score > 0
-          @member.score += self.score if self.score > 0
-          @member.all_score += self.score if self.score > 0
-          @member.save!
-        end
-        
+      if self.category == 'C'
+        self.actual_amount = 0
       end
+      
+      
+      self.amount = 0
+      self.amount = carts.sum {|c| c.amount.nil? ? 0 : c.amount } unless self.category == 'O'
+      self.status = 1
+      
+      self.score ||= 0
+      self.used_score ||= 0
+      self.save!
+      
+      
+      store = Store.find(self.store_id)
+      store.balance += self.actual_amount
+      store.save!
+      
+      #:adjusted_by, :adjusted_to, :category, :reference_id, :store_id, :user_id
+      balance = Balance.new
+      balance.adjusted_by = self.actual_amount
+      balance.adjusted_to = store.balance
+      balance.category = 'S'
+      balance.reference_id = self.id
+      balance.store_id = self.store_id
+      balance.user_id = self.user_id
+      balance.save!
+      
+      #sale_details
+      unless self.category == 'O'
+        carts.each do |c|
+          sale_detail = SaleDetail.new(:sale_id => self.id,
+                                        :product_id => c.product_id,
+                                        :quantity => c.quantity,
+                                        :unit_price => c.unit_price,
+                                        :amount => c.amount,
+                                        :status => 1
+                                        )
+          
+          sale_detail.save!
+          stock = Stock.fetch(self.store_id, c.product_id)
+          stock.quantity = 0 if stock.quantity.nil?
+          stock.quantity += c.quantity * (-1)
+          stock.adjust_category = 'S'
+          stock.reference_id = self.id
+          stock.change_qty = c.quantity * (-1)
+          #stock.change_remark = self.remark
+          stock.save!
+          
+        end
+        Cart.destroy(carts.map{|c| c.id })
+      end
+      
+      
+      #member sale & record score
+      if self.category == 'M' && (self.score > 0  || self.used_score > 0 )
+        member = Member.find(self.member_id)
+        member.score -= self.used_score if self.used_score > 0
+        member.score += self.score if self.score > 0
+        member.all_score += self.score if self.score > 0
+        member.save!
+      end
+        
       true
     rescue => err
       logger.error "****************************"  
@@ -152,13 +153,13 @@ class Sale < ActiveRecord::Base
   
   
   def is_on_duty?
-    @handover = Handover.where(:user_id => self.user_id,
+    handover = Handover.where(:user_id => self.user_id,
                                :store_id => self.store_id,
                                :status => 0
                                ).order("id desc").first
-    if self.user.store_id.nil? || @handover.nil? 
+    if self.user.store_id.nil? || handover.nil? 
       false
-    elsif @handover.took_at <= self.created_at
+    elsif handover.took_at <= self.created_at
       true
     else
       false
@@ -188,8 +189,8 @@ class Sale < ActiveRecord::Base
       if self.member_id.nil?
         self.check_message = 'please_select_member'
       else
-        @member = Member.find(self.member_id)
-        self.check_message = 'not_enough_score_to_use' if self.used_score > @member.score
+        member = Member.find(self.member_id)
+        self.check_message = 'not_enough_score_to_use' if self.used_score > member.score
       end
     end
       
@@ -222,50 +223,50 @@ class Sale < ActiveRecord::Base
 
 
   def sale_cancel
+    if self.status !=1
+      return false
+    end
     begin
-      self.transaction do
-        #create sale record
-        self.status = 9
-        self.save!
-        
-        @store = Store.find(self.store_id)
-        @store.balance -= self.actual_amount
-        @store.save!
-        
-        @balance = Balance.new
-        @balance.adjusted_by = self.actual_amount * (-1)
-        @balance.adjusted_to = @store.balance
-        @balance.category = 'S'
-        @balance.reference_id = self.id
-        @balance.store_id = self.store_id
-        @balance.user_id = self.user_id
-        @balance.save!
-        
-        @sale_details = SaleDetail.where(:sale_id => self.id) 
-        if @sale_details.exists?
-          @sale_details.each do |s|
-            s.status = 9
-            s.save!
-            @stock = Stock.fetch(self.store_id, s.product_id)
-            @stock.quantity += s.quantity 
-            @stock.adjust_category = 'S'
-            @stock.reference_id = self.id
-            @stock.change_qty = s.quantity 
-            @stock.change_remark = "sale canceled"
-            @stock.save!
-          end
+      self.status = 9
+      self.save!
+      
+      store = Store.find(self.store_id)
+      store.balance -= self.actual_amount
+      store.save!
+      
+      balance = Balance.new
+      balance.adjusted_by = self.actual_amount * (-1)
+      balance.adjusted_to = store.balance
+      balance.category = 'S'
+      balance.reference_id = self.id
+      balance.store_id = self.store_id
+      balance.user_id = self.user_id
+      balance.save!
+      
+      sale_details = SaleDetail.where(:sale_id => self.id) 
+      if sale_details.exists?
+        sale_details.each do |s|
+          s.status = 9
+          s.save!
+          stock = Stock.fetch(self.store_id, s.product_id)
+          stock.quantity += s.quantity 
+          stock.adjust_category = 'S'
+          stock.reference_id = self.id
+          stock.change_qty = s.quantity 
+          stock.change_remark = "sale canceled"
+          stock.save!
         end
-        
-        #member sale & record score
-        if self.category == 'M' && ((self.score||0) > 0 || (self.used_score||0) > 0)
-          @member = Member.find(self.member_id)
-          @member.score += self.used_score if (self.used_score||0) > 0
-          @member.score -= self.score if (self.score||0) > 0 
-          @member.all_score -= self.score if (self.score||0) > 0 
-          @member.save!
-        end
-        
       end
+      
+      #member sale & record score
+      if self.category == 'M' && ((self.score||0) > 0 || (self.used_score||0) > 0)
+        member = Member.find(self.member_id)
+        member.score += self.used_score if (self.used_score||0) > 0
+        member.score -= self.score if (self.score||0) > 0 
+        member.all_score -= self.score if (self.score||0) > 0 
+        member.save!
+      end
+      
       true
     rescue => err
       logger.error "****************************"  

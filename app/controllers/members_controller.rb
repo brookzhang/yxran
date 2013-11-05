@@ -40,7 +40,7 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(params[:member])
-    @member.level = 0
+    @member.level = 0 if @member.level.nil?
     @member.score = 0
     @member.user_id = current_user.id
     @member.uuid = UUIDTools::UUID.random_create().to_s

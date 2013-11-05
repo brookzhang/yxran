@@ -1,5 +1,5 @@
 class Stock < ActiveRecord::Base
-  has_many :histories
+  has_many :stock_histories
   belongs_to :store
   belongs_to :product
   
