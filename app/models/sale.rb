@@ -37,9 +37,6 @@ class Sale < ActiveRecord::Base
       return false
     end
 
-    if self.status !=0
-      return false
-    end
     
     begin
       if self.category == 'C'
