@@ -1,31 +1,21 @@
 <div class="span8">
-  <%= render :partial => '/categories/list_by_select', :locals =>{:url => new_stocker_order_order_detail_path(@order) } %>
+  <%=render 'categories/list_with_keyword', :current_category_id => @category_id, :path => new_stocker_order_order_detail_path(@order) %>
+  <div class="clear"></div>
+
   <% if @products.count > 0 %>
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th><%= t(:product_name) %></th>
-        <th><%= t(:unit_price) %></th>
-        <th></th>   
-      </tr>
-    </thead>   
-    <tbody>
+  <div>
     <% @products.each do |product| %>
 	  <%= render 'product', :product => product %>
     <% end %>
-    </tbody>
-	<tr>
-	  <td colspan="3">
+  </div>
+  <div class="clear"></div>
+
+  <div>
 			 <%= will_paginate @products %>
-	  </td>
-	</tr>
-	<tr>
-	  <td colspan="3">
-        <%= link_to t(:view_order), stocker_order_path(@order), :class => 'btn btn-primary' %>
-        <!--span class="help-inline"><%#=t(:items_add_to_order, :items_count => 3) %></span-->
-        
-	  </td>
-	</tr>
-  </table>
+  </div>
+  
+  <div>
+    <%= link_to t(:view_order), stocker_order_path(@order), :class => 'btn btn-primary' %>
+  </div>
   <%end%>
 </div> 

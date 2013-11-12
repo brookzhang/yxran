@@ -1,19 +1,16 @@
-<tr>
-  <td><%= link_to product.name, [:stocker, @order, product] %></td>
-  <td><%= product.unit_price(@order.store_id) %> <%= t(:currency) %>/<%= product.measurement.name %></td>
-  <td>
-    <a data-toggle="modal" href="#add_cart-options-<%= product.id %>" class="btn btn-mini btn-warning" type="button"><%= t(:add_to_order) %></a>
-    <div id="add_cart-options-<%= product.id %>" class="modal" style="display: none;">
-      <%= simple_form_for @order_detail , :url => stocker_order_order_details_path, :method => :post, :html => {:class => 'form-horizontal' } do |f| %>
-        <div class="modal-body">
-          <%= f.input :quantity, :label => t(:quantity) + ' /' + product.measurement.name, :autofocus => true  %>
-          <%= f.input :product_id, :as => :hidden, :input_html =>{:value => product.id} %>
-        </div>
-        <div class="modal-footer">
-          <%= f.submit t(:add_to_order) , :class => "btn", :input_html => { 'data-dismiss' => "modal"} %>
-          <a class="btn"  data-dismiss="modal" href="#"><%= t(:back)%></a>
-        </div>
-      <% end %>
-    </div>
-  </td>            
-</tr>
+<div>
+  <div class="left" style="width:200px;">
+    <%= link_to product.name, [:stocker, @order, product], :class => 'badge badge-warning' %>
+    <%= product.price(@order.store_id) %>
+  </div>
+  <div>
+    <%= form_for @order_detail , :url => stocker_order_order_details_path(@order), :method => :post, :html => {:class => 'form-horizontal' } do |f| %>
+      <%= f.hidden_field :product_id, :value => product.id %>
+      <div class="input-append">
+        <%= f.text_field :quantity , :autofocus => true, :class => 'inline-input'  %>
+        <button type="submit" class="btn"><%=t(:add_to_order)%></button>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="clear"></div>

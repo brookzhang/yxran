@@ -20,7 +20,7 @@ class Stock < ActiveRecord::Base
   scope :has_stock, where(' stocks.quantity > 0' )
   
   
-  scope :by_product, lambda{ |product_name| where(" product_id in (select id from products where name = ? )", product_name) if !product_name.nil? && product_name != '' }
+  scope :by_product, lambda{ |product_name| where(" product_id in (select id from products where name ilike ? )", '%' + product_name + '%') if  product_name.present? }
   
   #callbacks
 

@@ -4,18 +4,23 @@
     <tr>
         <th><%= t(:store) %></th>
         <th><%= t(:amount) %></th>  
-        <th><%= t(:remark) %></th>                                
+        <th><%= t(:remark) %></th>  
+        <th> </th> 
+        <th> </th>                               
     </tr>
   </thead>   
   <tbody>
   <% @expenses.each do |e| %>
     <tr>
         <td><span class="label label-info"><%=e.number%></span><%= e.store.name %></td>
-        <td><%= e.amount %></td>                                    
+        <td><%= e.amount.round(2) %></td>                                      
         <td><%= e.remark %></td>
         <td>
           <%= l(e.status.to_s, 'expense_status') %>
-          <%= link_to t(:cancel), cancel_maintain_expense_path(e), :class => 'btn' if e.status == 1 %></td>
+          <%= link_to t(:cancel), cancel_maintain_expense_path(e), :class => 'btn', :confirm => t(:are_you_sure_to_cancel) if e.status == 1 %>
+        </td>                                   
+        <td><%= e.user.name %></td>
+        <td><%= e.created_at.to_s(:duty_time) %></td>
     </tr>
   <% end %>
     <tr>

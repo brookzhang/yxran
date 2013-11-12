@@ -1,17 +1,5 @@
 <div class="span8">
-  <div class="left">
-    <%=render 'categories/list_with_dropdown', :current_category_id => @category_id, :path => stocks_path %>
-  </div>
-  
-
-
-  <div class="right"> 
-    <form class="form-search right" method='get' action=''  id="search_and_filter">    
-      <input type="hidden" name="category_id" value="<%=params[:category_id]%>" />
-      <!-- <input type='text' name='key_words' placeholder = "Search by Keyword"  class="input-medium search-query" style="margin-right:-40px;" value="<%= params[:key_words] %>">
-      <button type="submit" style="background:transparent;border: none;"><i class="icon-search"></i></button> -->   
-    </form>
-  </div>
+  <%=render 'categories/list_with_keyword', :current_category_id => @category_id, :path => stocks_path %>
   <table class="table table-condensed">
   	  <!-- <thead>
         <tr>

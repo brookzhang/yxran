@@ -1,5 +1,5 @@
 
-<p><%=@order.number %> [<%= @order.store.name %>] (<%= l(@order.status,'order_status') %>)
+<p><span class="label label-info"><%=@order.number %></span> <%= @order.store.name %> (<%= l(@order.status,'order_status') %>)
   &nbsp;&nbsp;
   
 </p>
@@ -11,12 +11,9 @@
   <%= link_to t(:back), stocker_orders_path, :class => 'btn'%>
 </p>
 
-
-
-
-
-
+<div style="min-height:100px;">
 <%= render 'order_details' %>
+</div>
 <p>
 <%= link_to t(:add_on_hand), new_stocker_order_order_detail_path(@order), :class => 'btn btn-primary'  if @order.status == 0 %>
 <%= link_to t(:import_excel), new_stocker_order_order_import_path(@order), :class => 'btn'  if @order.status == 0 %>

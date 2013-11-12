@@ -1,7 +1,5 @@
 <div class="span8">
-  <div class="left">
-    <%=render 'categories/list_with_dropdown', :current_category_id => @category_id, :path => stocker_products_path %>
-  </div>
+    <%=render 'categories/list_with_keyword', :current_category_id => @category_id, :path => stocker_products_path %>
   <% if @products.count > 0 %>
   <table class="table table-condensed">
     <thead>

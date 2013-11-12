@@ -3,7 +3,7 @@ class Stocker::ProductsController < Stocker::ApplicationController
     
     @category_id = params[:category_id].blank? ? 0 : params[:category_id].to_i
     
-    @products = Product.in_category(@category_id).paginate(:page => params[:page], :per_page => 10) 
+    @products = Product.in_category(@category_id).by_name(params[:keywords]).paginate(:page => params[:page], :per_page => 10) 
     
   end
   

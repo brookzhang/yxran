@@ -1,56 +1,27 @@
 <div style="min-height:70px;">
-  <%if @inventory_details.count > 0 
+  <%if @expenses.count > 0 
     %>
   <table class="table table-striped  "> 
-    <thead>
-      <tr>
-          <th><%= t(:product_name) %></th>
-          <th><%= t(:stock_quantity) %> - <%= t(:check_quantity)%> = <%= t(:change_quantity) %> </th>
-          <th><%= t(:amount) %></th>
-          <th></th>
-      </tr>
-    </thead>
     <tbody>
     <% 
       sum_amount = 0
-      @inventory_details.each do |t| 
+      @expenses.each do |t| 
         sum_amount += t.amount
       %>
       <tr>
-          <td><%= link_to t.product.name, [:stocker, t.product], :class => 'badge badge-warning' %></td>
-          <td align="right"><%= t.stock_quantity.to_s  %>
-             - <%= t.check_quantity.to_s  %>
-             = <%= t.change_quantity.to_s  %>
-          </td>
-          <td align="right">* <%= t.product.price%> = <%= t.amount.round(2) %> <%= t(:currency)%>
-          </td>
-          <td><%= link_to t(:delete), stocker_inventory_inventory_detail_path(@inventory, t), :data => { :confirm => t(:are_you_sure_to_delete) }, :method => :delete, :class => 'badge badge-inverse'  if @inventory.status == 0 %></td>
+          <td><%= link_to t.number, "#", :class => 'badge badge-warning' %></td>
+          <td align="right"><%= t.amount.round(2).to_s %></td>
+          <td align="right"><%= t.created_at.to_s(:date_time)  %></td>       
+          <td align="right"><%= t.user.name  %></td>    
                  
       </tr>
     <% end %>
       <tr>
-        <td colspan="2"><%=t(:sum_amount)%></td>
+        <td><%=t(:sum_amount)%></td>
         <td><%=sum_amount.round(2) %> <%= t(:currency)%></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td colspan="2"><%=t(:account_amount)%></td>
-        <td><%=@inventory.sum_pay_amount_by_me.round(2) %> <%= t(:currency)%></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <%end%>
 </div>
-
-
-<p>
-<%= link_to t(:import_excel), new_stocker_inventory_inventory_import_path(@inventory), :class => 'badge badge-info'  if @inventory.status == 0 %>
-<%= link_to t(:clear_details), clear_stocker_inventory_path(@inventory), :class => 'badge badge-inverse'  if @inventory.status == 0 %>
-<br><br>
-<%if @inventory.is_ok_to_confirm? %>
-  <%= link_to t(:confirm_to_inventory), confirm_stocker_inventory_path(@inventory), :class => 'btn btn-primary' %>
-<%else%>
-  <%= t(:not_ok_to_confirm_message) if @inventory.status == 0 %>
-<%end%>
-</p>
