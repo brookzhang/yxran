@@ -54,6 +54,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'roo'
 gem 'rubyzip', '< 1.0.0'
 gem 'uuidtools'
+gem "chartkick"
 
 
 

@@ -19,6 +19,10 @@ zh-CN:
 
             role:
               blank: '至少有一个身份吧。'
+            from_time:
+              invalid: '时间格式错误，参考格式 08:05'
+            to_time:
+              invalid: '时间格式错误，参考格式 19:30'
         member:
           attributes:
             name:

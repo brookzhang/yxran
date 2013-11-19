@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :set_locale
   before_filter :authenticate_user! #, :only => [:show]
+  before_filter :check_duty_period
   
   check_authorization :unless => :do_not_check_authorization?
   
@@ -77,8 +78,17 @@ class ApplicationController < ActionController::Base
   end
 
   def current_ability
-      @current_ability ||= Ability.new(current_user, request)
+    @current_ability ||= Ability.new(current_user, request)
+  end
+
+
+  def check_duty_period
+    if current_user.from_time.present? && current_user.to_time.present?
+
+    else
+      true
     end
+  end
   
   
   

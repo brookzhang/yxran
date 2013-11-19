@@ -1,18 +1,15 @@
 <%if !@histories.nil? %>
-<table class="table  table-striped">
-	  <thead>
-      <tr>
-          <th><%= t(:adjust_category) %></th>
-          <th><%= t(:adjusted_by) %></th>
-          <th><%= t(:adjusted_at) %></th>                              
-      </tr>
-  </thead>   
+<table class="table  table-striped">   
   <tbody>
   <% @histories.each do |history| %>
     <tr>
-        <td><%= l(history.adjust_category,"adjust_category") %></td>
-        <td><%= '+' unless  history.adjusted_by.nil? ? 0 : history.adjusted_by < 0  %><%= history.adjusted_by %></td>
-        <td><%= history.adjusted_at.to_date %></td>                             
+      <td>[<%= history.adjusted_at.to_s(:short_date) %>] 
+          <%= l(history.adjust_category,"adjust_category") %>
+          <%= '+' unless history.adjusted_by.nil? ? 0 : history.adjusted_by < 0 %><%= history.adjusted_by %>
+          -> <%= history.adjusted_to %>
+          <%= history.stock.product.measurement.name %>
+          <%= "(" + history.remark + ")" unless history.remark.blank? %>
+          </td>                           
     </tr>
   <% end %>
   </tbody>

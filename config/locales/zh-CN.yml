@@ -107,7 +107,8 @@ zh-CN:
   pre_password: '原密码'
   member_has_sales_or_scores_can_not_delete: '这个会员有积分或有购买记录，无法删除。'
   leave_blank_not_change_password: '不改请留空'
-
+  from_time: '值班开始'
+  to_time: '值班结束'
 
   # sales.
   #----------------------------------------------------------------------------
@@ -528,6 +529,8 @@ zh-CN:
   # Reports.
   #----------------------------------------------------------------------------
   reports: '报表'
+  chart_report: '统计图'
+  data_report: '数据表'
 
   sales_reports: '销售报表'
   sale_details_report: '销售明细报表'

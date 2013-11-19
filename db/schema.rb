@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131027130124) do
+ActiveRecord::Schema.define(:version => 20131119135128) do
 
   create_table "balances", :force => true do |t|
     t.integer  "store_id"
@@ -349,6 +349,8 @@ ActiveRecord::Schema.define(:version => 20131027130124) do
     t.integer  "store_id"
     t.integer  "status",                 :default => 1
     t.string   "account"
+    t.string   "from_time"
+    t.string   "to_time"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,27 +1,43 @@
-<ol>
-  <li><%=t(:sales_reports)%>
-    <ul>
-      <li><%= link_to t(:sale_details_report), sale_details_report_maintain_reports_path, :class => '' %></li>
-      <li><%= link_to t(:cost_details_report), cost_details_report_maintain_reports_path, :class => '' %></li>
-      <li><%= link_to t(:only_account_details_report), only_account_details_report_maintain_reports_path, :class => '' %></li>
-      <li><%= link_to t(:sale_products_report), sale_products_report_maintain_reports_path, :class => '' %></li>
-      <li><%= link_to t(:sale_amount_by_store_report), sale_amount_by_store_report_maintain_reports_path, :class => '' %></li>
-      <li><%= link_to t(:sale_amount_by_user_report), sale_amount_by_user_report_maintain_reports_path, :class => '' %></li>
-      <li><%= link_to t(:sale_discount_report), sale_discount_report_maintain_reports_path, :class => '' %></li>
-    </ul>
-  </li>
-  <li><%=t(:expenses_reports)%>
-    <ul>
-      <li><%= link_to t(:expense_details_report), expense_details_report_maintain_reports_path, :class => '' %></li>
-      <li><%= link_to t(:expense_amount_by_store_report), expense_amount_by_store_report_maintain_reports_path, :class => '' %></li>
-      <li><%= link_to t(:expense_amount_by_user_report), expense_amount_by_user_report_maintain_reports_path, :class => '' %></li>
-    </ul>
-  </li>
-  <li><%=t(:stocks_reports)%>
-    <ul>
-      <li><%= link_to t(:stock_details_report), stock_details_report_maintain_reports_path, :class => '' %></li>
-      <li><%= link_to t(:stock_movement_histories_report), stock_movement_histories_report_maintain_reports_path, :class => '' %></li>
-    </ul>
-  </li>
-</ol>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab"><%=t(:chart_report)%></a></li>
+    <li><a href="#tab2" data-toggle="tab"><%=t(:sales_reports)%></a></li>
+    <li><a href="#tab3" data-toggle="tab"><%=t(:expenses_reports)%></a></li>
+    <li><a href="#tab4" data-toggle="tab"><%=t(:stocks_reports)%></a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <%= javascript_include_tag  "chartkick" %>
+      <%= pie_chart [["Football", 10], ["Basketball", 5]] %>
+    </div>
+
+    <div class="tab-pane" id="tab2">
+      <ul>
+        <li><%= link_to t(:sale_details_report), sale_details_report_maintain_reports_path, :class => '' %></li>
+        <li><%= link_to t(:cost_details_report), cost_details_report_maintain_reports_path, :class => '' %></li>
+        <li><%= link_to t(:only_account_details_report), only_account_details_report_maintain_reports_path, :class => '' %></li>
+        <li><%= link_to t(:sale_products_report), sale_products_report_maintain_reports_path, :class => '' %></li>
+        <li><%= link_to t(:sale_amount_by_store_report), sale_amount_by_store_report_maintain_reports_path, :class => '' %></li>
+        <li><%= link_to t(:sale_amount_by_user_report), sale_amount_by_user_report_maintain_reports_path, :class => '' %></li>
+        <li><%= link_to t(:sale_discount_report), sale_discount_report_maintain_reports_path, :class => '' %></li>
+      </ul>
+    </div>
+
+    <div class="tab-pane" id="tab3">
+      <ul>
+        <li><%= link_to t(:expense_details_report), expense_details_report_maintain_reports_path, :class => '' %></li>
+        <li><%= link_to t(:expense_amount_by_store_report), expense_amount_by_store_report_maintain_reports_path, :class => '' %></li>
+        <li><%= link_to t(:expense_amount_by_user_report), expense_amount_by_user_report_maintain_reports_path, :class => '' %></li>
+      </ul>
+    </div>
+
+    <div class="tab-pane" id="tab4">
+      <ul>
+        <li><%= link_to t(:stock_details_report), stock_details_report_maintain_reports_path, :class => '' %></li>
+        <li><%= link_to t(:stock_movement_histories_report), stock_movement_histories_report_maintain_reports_path, :class => '' %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 

@@ -25,14 +25,18 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :login, :password, :password_confirmation, :remember_me, :account, :store_id, :role
-  # attr_accessible :title, :body
+  attr_accessible :from_time, :to_time
   
   attr_accessor :login, :role, :current_password
+
   
   
   validates_presence_of :email, :account #, :role
   #validates_uniqueness_of :name, :email, :case_sensitive => false
   validates_uniqueness_of :email, :account, :case_sensitive => false
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
+  validates_format_of :from_time, with: /([0-1][0-9]|2[0-3]):([0-5][0-9])/
+  validates_format_of :to_time, with: /([0-1][0-9]|2[0-3]):([0-5][0-9])/
   
   
   scope :by_category_name, lambda { |name| where("category_id in (select id from categories where name = ? )", name) unless name.nil? || name == '' }

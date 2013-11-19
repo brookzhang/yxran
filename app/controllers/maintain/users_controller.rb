@@ -45,6 +45,8 @@ class Maintain::UsersController < Maintain::ApplicationController
     @user.account = params[:user][:account]
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
+    @user.from_time = params[:user][:from_time]
+    @user.to_time = params[:user][:to_time]
     @user.password = params[:user][:password] unless params[:user][:password].blank?
     #@user.role = params[:user][:role].inject{|r,result| result + ',' + r unless r.blank? }
     @user.role = params[:user][:role].delete_if{|r| r.blank?}.join(",")
