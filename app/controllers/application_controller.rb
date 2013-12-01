@@ -83,11 +83,11 @@ class ApplicationController < ActionController::Base
 
 
   def check_duty_period
-    if current_user.from_time.present? && current_user.to_time.present?
-
-    else
-      true
-    end
+    # if current_user.from_time.present? && current_user.to_time.present?
+      
+    # else
+    #   true
+    # end
   end
   
   

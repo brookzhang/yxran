@@ -11,8 +11,9 @@
     <thead>
       <tr>
         <th><%= t(:store_name) %></th>
-        <th><%= t(:sale_category) %></th>
-        <th><%= t(:account) %></th>
+        <!-- <th><%#= t(:sale_category) %></th> -->
+        <th><%= t(:amount) %></th>
+        <th><%= t(:remark)%></th>
         <th><%= t(:date) %></th>
         <th><%= t(:user_name) %></th>
       </tr>
@@ -22,8 +23,9 @@
       sum_amount += s.actual_amount %>
 	  <tr>
 			<td><%= s.store_name%></td>
-			<td><%= s.category_name %></td>  
-			<td><%= s.actual_amount %><%=t(:currency)%></td>   
+			<!-- <td><%#= s.category_name %></td>   -->
+			<td><%= s.actual_amount %><%=t(:currency)%></td>  
+      <td><%= s.remark %></td>   
 			<td><%= s.created_at.to_s(:date_time) %></td> 
 			<td><%= s.user_name %></td> 
 			
@@ -31,7 +33,7 @@
 		</tr>
 		<% end %>
     <tr>
-      <td colspan="2"><%=t(:sum_amount)%></td>
+      <td colspan="1"><%=t(:sum_amount)%></td>
       <td><%=sum_amount.round(2)%><%=t(:currency)%></td>
       <td colspan="2"></td>
     </tr>
