@@ -160,6 +160,13 @@ zh-CN:
   select_member_level: '选择会员级别'
   member_start_date: '加入日期'
 
+  please_input_name_on_line_n: '第%{line}行请填写姓名'
+  please_input_phone_on_line_n: '第%{line}行请填写电话'
+  please_input_right_level_on_line_n: '第%{line}行请填写正确的会员级别'
+  please_input_score_on_line_n: '第%{line}行请填写积分'
+  please_input_right_score_on_line_n: '第%{line}行请填写正确的积分' 
+  please_input_right_date_on_line_n: '第%{line}行请填写正确的加入日期' 
+
 
 
 
