@@ -1,54 +1,108 @@
-
-<ul class="nav">
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><%= link_to t(:app_name), root_path %></h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
   <% if user_signed_in? %>
-    <% if !current_user.store_id.nil? && current_user.has_role?(:user) %>
-      <li><a href="<%=carts_path%>" class="cart_count" >
-        <%=current_user.store.name %>
-        <% if !session[:cart_count].nil? && session[:cart_count].to_i > 0 %>
-        <span class="num"><span><%= session[:cart_count] %></span><i></i></span>
+    <section class="top-bar-section">
+      <% if !current_user.store_id.nil? && current_user.has_role?(:user) %>
+        <!-- store -->
+        <ul class="left">
+          <li class="has-dropdown">
+            <a href="#"><%=current_user.store.name %>
+              <% if !session[:cart_count].nil? && session[:cart_count].to_i > 0 %>
+                <span><%= session[:cart_count] %></span>
+              <% end %>
+            </a>
+            <ul class="dropdown">
+              <%if !current_user.store_id.nil? %>
+                <li><a href="<%=carts_path%>"><%=t(:record_a_sale) %></a></li>
+                <li><a href="<%=sales_path%>"><%=t(:sales) %></a></li>
+                <li><a href="<%=members_path%>"><%=t(:member_search) %></a></li>
+                <li><a href="<%=expenses_path%>"><%=t(:expenses) %></a></li>
+                <li><a href="<%=transfers_path%>"><%=t(:transfer_receive) %></a></li>
+                <li><a href="<%=stocks_path%>"><%=t(:stock_in_store) %></a></li>
+              <%end%>
+                <li><a href="<%=handovers_path%>"><%=t(:handovers) %></a></li>
+            </ul>
+          </li>
+        </ul>
+      <% end %>
+
+
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <!-- <li class="active"><a href="#">Right Nav Button Active</a></li> -->
+        <% if current_user.has_role?(:stocker) %>
+          <li class="has-dropdown">
+            <a href="#"><%=t(:stocker) %></a>
+            <ul class="dropdown">
+              <li><a href="<%=stocker_orders_path%>"><%=t(:orders_into_stock) %></a></li>
+              <li><a href="<%=stocker_stocks_path%>"><%=t(:all_stocks) %></a></li>
+              <li><a href="<%=stocker_products_path%>"><%=t(:products_maintain) %></a></li>
+              <li><a href="<%=stocker_inventories_path%>"><%=t(:inventories_maintain) %></a></li>
+            </ul>
+          </li>
         <% end %>
-      </a></li>
-      
-    <% end %>
-    
-    
-    <% if current_user.has_role?(:stocker) %>
-      <li><a href="<%=stocker_dashboard_path%>" >
-        <%=t(:stocker) %>
-      </a></li>
-    <% end %>
-    
-    <% if current_user.has_role?(:manager) %>
-      <li><a href="<%=maintain_reports_path%>" >
-        </i><%=t(:reports) %>
-      </a></li>
-      
-      <li><a href="<%=maintain_dashboard_path%>" >
-        <%=t(:maintain) %>
-      </a></li>
-    <% end %>
-    
-    <% if current_user.has_role?(:admin) %>
-      <li><a href="<%=admin_dashboard_path%>" >
-        <%=t(:admin) %>
-      </a></li>
-    <% end %>
-    <!--
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="my_account"><i class="icon-user"></i><%=t(:account) %> <b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a href="<%=user_path(current_user)%>"><%=t(:my_account) %></a></li>
-        <li><a href="<%=destroy_user_session_path%>" data-method="delete" rel="nofollow"><%=t(:sign_out) %></a></li>
+
+        <% if current_user.has_role?(:manager) %>
+          <!-- reports -->
+          <li class="has-dropdown">
+            <a href="#"><%=t(:reports) %></a>
+            <ul class="dropdown">
+              <li><a href="<%=stocker_orders_path%>"><%=t(:orders_into_stock) %></a></li>
+              <li><a href="<%=stocker_stocks_path%>"><%=t(:all_stocks) %></a></li>
+              <li><a href="<%=stocker_products_path%>"><%=t(:products_maintain) %></a></li>
+              <li><a href="<%=stocker_inventories_path%>"><%=t(:inventories_maintain) %></a></li>
+            </ul>
+          </li>
+
+          <!-- maintain -->
+          <li class="has-dropdown">
+            <a href="#"><%=t(:maintain) %></a>
+            <ul class="dropdown">
+              <li><a href="<%=maintain_stores_path%>"><%=t(:stores_maintain) %></a></li>
+              <li><a href="<%=maintain_handovers_path%>"><%=t(:handovers_maintain) %></a></li>
+              <li><a href="<%=maintain_sales_path%>"><%=t(:sales_maintain) %></a></li>
+              <li><a href="<%=maintain_expenses_path%>"><%=t(:expenses_maintain) %></a></li>
+              <li><a href="<%=maintain_orders_path%>"><%=t(:orders_maintain) %></a></li>
+              <li><a href="<%=maintain_transfers_path%>"><%=t(:transfers_maintain) %></a></li>
+              <li><a href="<%=maintain_categories_path%>"><%=t(:categories_maintain) %></a></li>
+              <li><a href="<%=maintain_products_path%>"><%=t(:all_products) %></a></li>
+              <li><a href="<%=maintain_stocks_path%>"><%=t(:stocks_maintain) %></a></li>
+              <li><a href="<%=maintain_measurements_path%>"><%=t(:measurements_maintain) %></a></li>
+              <li><a href="<%=maintain_users_path%>"><%=t(:users_maintain) %></a></li>
+              <li><a href="<%=maintain_members_path%>"><%=t(:members_maintain) %></a></li>
+              <li><a href="<%=maintain_settings_path%>"><%=t(:all_settings) %></a></li>
+              <li><a href="<%=maintain_discounts_path%>"><%=t(:discounts_maintain) %></a></li>
+            </ul>
+          </li>
+        <% end %>
+
+        <% if current_user.has_role?(:admin) %>
+          <!-- admin -->
+          <li class="has-dropdown">
+            <a href="#"><%=t(:admin) %></a>
+            <ul class="dropdown">
+              <li><a href="<%=admin_switches_path%>"><%=t(:switches_admin) %></a></li>
+              <li><a href="<%=admin_lookups_path%>"><%=t(:lookups_admin) %></a></li>
+              <li><a href="<%=admin_events_path%>"><%=t(:events_maintain) %></a></li>
+              <li><a href="<%=maintain_users_path%>"><%=t(:users_maintain) %></a></li>
+            </ul>
+          </li>
+        <% end %>
+
+        <!-- settings -->
+        <li class="has-dropdown">
+          <a href="#"><%=fa_icon "cog 2x"%></a>
+          <ul class="dropdown">
+            <li><a href="<%=user_path(current_user)%>"><%=t(:account) %></a></li>
+            <li><a href="<%=destroy_user_session_path %>" data-method="delete" rel="nofollow"><%=t(:sign_out) %></a></li>
+          </ul>
+        </li>
       </ul>
-    </li>-->
-    
-    <li><a href="<%=user_path(current_user)%>" >
-      <%=t(:account) %>
-    </a></li>
-    
-    <li><a href="<%=destroy_user_session_path%>" data-method="delete" rel="nofollow">
-      <i class="icon-off"></i><%=t(:sign_out) %>
-    </a></li>
-  <% end %>
-  
-</ul>
+    </section>
+  <%end%>
+</nav>

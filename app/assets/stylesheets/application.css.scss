@@ -10,7 +10,9 @@
  * 
  * 
  *= require_self
- *= require bootstrap-datepicker
+ *= require font-awesome
+ //= require foundation_and_overrides
+
  *= require_tree .
  */
 body { 

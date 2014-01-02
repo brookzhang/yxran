@@ -15,7 +15,7 @@ gem 'pg'
 group :development do
   gem "better_errors"
   gem "binding_of_caller", '~> 0.7.1'
-  gem 'rack-mini-profiler'
+  # gem 'rack-mini-profiler'
 end
 
 # Gems used only for assets and not required
@@ -30,7 +30,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem "less-rails"
-  gem 'twitter-bootstrap-rails'
+  # gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'
@@ -48,13 +48,16 @@ gem "rolify", ">= 3.2.0"
 gem "simple_form", ">= 2.0.3"
 gem "quiet_assets", ">= 1.0.1", :group => :development
 gem 'will_paginate', '~> 3.0'
-gem 'bootstrap-will_paginate'
-gem 'bootstrap-datepicker-rails'
+#gem 'bootstrap-will_paginate'
+#gem 'bootstrap-datepicker-rails'
 #gem 'bootstrap-datepicker-rails'
 gem 'roo'
 gem 'rubyzip', '< 1.0.0'
-gem 'uuidtools'
+gem 'uuidtools'   #for member uuid
 gem "chartkick"
+
+gem 'foundation-rails'
+gem "font-awesome-rails"
 
 
 
