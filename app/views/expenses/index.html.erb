@@ -13,7 +13,7 @@
     <tr>
         <th><%= t(:id) %></th>    
         <th><%= t(:expense_content) %></th>   
-        <th><%= t(:status) %></th>                                
+        <th><%#= t(:status) %></th>                                
     </tr>
   </thead>   
   <tbody>
@@ -22,7 +22,10 @@
         <td><%= link_to e.number, e, :class => 'badge badge-warning' %>
         <%= e.amount %> <%=t(:currency)%></td>                                               
         <td><%= e.remark %></td>
-        <td><%= l(e.status,"expense_status")  %></td>                        
+        <td>
+          <%#= l(e.status,"expense_status")  %>
+          <%= e.created_at.to_s(:short_date) %>
+        </td>                        
     </tr>
   <% end %>
   <tr><td colspan="3"><%= will_paginate @expenses %></td></tr>

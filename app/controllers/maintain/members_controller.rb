@@ -36,5 +36,9 @@ class Maintain::MembersController < Maintain::ApplicationController
     
     
   end
+
+  def export
+
+  end
   
 end
