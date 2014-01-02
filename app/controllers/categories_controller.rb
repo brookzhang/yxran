@@ -1,6 +1,9 @@
 class CategoriesController < ApplicationController
   
-  
+  def index 
+    @top_categoires = Category.where(:parent_id => 0)
+  end
+
   def refresh_sub
     parent_id =  (params[:parent_id].nil? || params[:parent_id].empty?) ? 0 : params[:parent_id].to_i
     

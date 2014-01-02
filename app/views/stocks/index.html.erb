@@ -1,5 +1,19 @@
 <div class="span8">
-  <%=render 'categories/list_with_keyword', :current_category_id => @category_id, :path => stocks_path %>
+  <div class="row collapse large-5">
+    <div class="small-4 columns">
+      <a href="#" data-reveal-id="myModal" class="tiny button prefix">
+        <%= @current_category.nil? ? t(:choose_category) : @current_category.name %>
+      </a>
+    </div>
+    <div class="small-6 columns">
+      <input type="text" placeholder="<%=t(:product_name)%>">
+    </div>
+    <div class="small-2 columns">
+      <a href="#" class="button postfix"><%=t(:search)%></a>
+    </div>
+  </div>
+
+  
   <table class="table table-condensed">
   	  <!-- <thead>
         <tr>
@@ -27,4 +41,10 @@
 </div> 
 
 <!-- Modal -->
-<div id="ajax-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<div id="myModal" class="reveal-modal " data-reveal="" style="display: none; opacity: 1; visibility: hidden; ">
+  <%= render 'categories/list_in_accordion', :path => stocks_path %>
+  <a class="close-reveal-modal">×</a>
+</div>
+<div id="addModal" class="reveal-modal " data-reveal="" style="display: none; opacity: 1; visibility: hidden; ">
+  
+</div>

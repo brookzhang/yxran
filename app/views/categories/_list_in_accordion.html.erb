@@ -1,0 +1,17 @@
+<% @top_categoires = Category.where(:parent_id => 0) unless @top_categoires %>
+<a href="<%=path%>" class="tiny button"><%=t(:root_category)%></a>
+<dl class="accordion" data-accordion>
+  <%@top_categoires.each_with_index do |top, index|%>
+  <dd>
+    <a href="#panel_<%=top.id%>"><%= top.name %></a>
+    <div id="panel_<%=top.id%>" class="content <%=' active' if index == 0 %>">
+      <ul class="button-group">
+        <li><a href="<%=path + "?category_id="+ top.id.to_s%>" class="tiny button" ><%=t(:all) + top.name%></a></li>
+        <%top.subcategories.each do |category| %>
+           <li><%= link_to category.name, path + "?category_id="+ category.id.to_s, :class => "tiny button" %></li>
+        <%end%>
+      </ul>
+    </div>
+  </dd>
+  <%end%>
+</dl>

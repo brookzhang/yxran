@@ -108,7 +108,7 @@
 // $include-html-accordion-classes: $include-html-classes;
 
 // $accordion-navigation-padding: rem-calc(16);
-// $accordion-navigation-bg-color: #efefef  ;
+// $accordion-navigation-bg-color: #074e68  ;
 // $accordion-navigation-hover-bg-color: darken($accordion-navigation-bg-color, 5%);
 // $accordion-navigation-active-bg-color: darken($accordion-navigation-bg-color, 3%);
 // $accordion-navigation-font-color: #222;
@@ -273,7 +273,7 @@
 
 // We use these to set the color of the pip in dropdown buttons
 // $dropdown-button-pip-color: #fff;
-// $dropdown-button-pip-color-alt: #333;
+$dropdown-button-pip-color-alt: #074e68;
 
 // $button-pip-tny: rem-calc(6);
 // $button-pip-sml: rem-calc(7);
@@ -927,7 +927,7 @@
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-// $topbar-bg-color: #333;
+$topbar-bg-color: #074e68;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -941,9 +941,9 @@
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
-// $topbar-dropdown-bg: #333;
+$topbar-dropdown-bg: #074e68;
 // $topbar-dropdown-link-color: #fff;
-// $topbar-dropdown-link-bg: #333;
+$topbar-dropdown-link-bg: #074e68;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: #fff;
 // $topbar-dropdown-toggle-alpha: 0.4;
@@ -955,7 +955,7 @@
 // $topbar-link-weight: normal;
 // $topbar-link-font-size: rem-calc(13);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
-// $topbar-link-bg-hover: #272727  ;
+$topbar-link-bg-hover: #085a78  ;
 // $topbar-link-bg-active: $primary-color;
 // $topbar-link-bg-active-hover: darken($primary-color, 5%);
 // $topbar-link-font-family: $body-font-family;
@@ -966,7 +966,7 @@
 // $topbar-dropdown-label-text-transform: uppercase;
 // $topbar-dropdown-label-font-weight: bold;
 // $topbar-dropdown-label-font-size: rem-calc(10);
-// $topbar-dropdown-label-bg: #333;
+$topbar-dropdown-label-bg: #074e68;
 
 // Top menu icon styles
 // $topbar-menu-link-transform: uppercase;

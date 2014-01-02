@@ -4,9 +4,10 @@ class StocksController < ApplicationController
   
   def index
     @category_id = params[:category_id].blank? ? 0 : params[:category_id].to_i
+    @current_category = Category.find(params[:category_id]) if params[:category_id].present?
     
     @stock = Stock.new
-    @stocks = Stock.in_store(current_user.store.id).in_category(@category_id).has_stock.by_product(params[:keywords]).paginate(:page => params[:page], :per_page => 10)
+    @stocks = Stock.in_store(current_user.store.id).in_category(@category_id).has_stock.by_product(params[:keywords]).paginate(:page => params[:page], :per_page => 6)
     
     
   end

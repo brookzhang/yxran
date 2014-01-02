@@ -59,6 +59,7 @@ zh-CN:
   references: '参考'
   from: '从'
   to: '到'
+  menu: '菜单'
 
 
 
@@ -387,7 +388,7 @@ zh-CN:
   products_count_of_category: '商品数'
   parent_category: '父类'
   super_category: '大类'
-  root_category: '全部'
+  root_category: '全部种类'
   s_children: '的子分类'
   view_children: '查看子类'
   create_product: '新增商品'
@@ -399,7 +400,7 @@ zh-CN:
   category_deleted: '分类已删除'
   can_not_delete_category: '不能删除此分类'
   choose_super_category: '选择大分类'
-  choose_category: '选择分类'
+  choose_category: '选择种类'
 
   # product.
   #----------------------------------------------------------------------------

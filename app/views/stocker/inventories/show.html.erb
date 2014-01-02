@@ -18,15 +18,15 @@
 
 
 <div class="input-append">
-  <a class="btn <%='btn-info' if @addition == 'details'%>" href="<%= stocker_inventory_path(@inventory) + "?addition=details" %>" >
+  <a class="button <%='btn-info' if @addition == 'details'%>" href="<%= stocker_inventory_path(@inventory) + "?addition=details" %>" >
     <%=t(:inventory) %>
   </a>
   
-  <a class="btn <%='btn-info' if @addition == 'sales'%> " href="<%= stocker_inventory_path(@inventory) + "?addition=sales" %>" >
+  <a class="button <%='btn-info' if @addition == 'sales'%> " href="<%= stocker_inventory_path(@inventory) + "?addition=sales" %>" >
     <%=t(:sale) %>
   </a>
   
-  <a class="btn <%='btn-info' if @addition == 'expenses'%>" href="<%= stocker_inventory_path(@inventory) + "?addition=expenses" %>" >
+  <a class="button <%='btn-info' if @addition == 'expenses'%>" href="<%= stocker_inventory_path(@inventory) + "?addition=expenses" %>" >
     <%=t(:expense) %>
   </a>
 </div>

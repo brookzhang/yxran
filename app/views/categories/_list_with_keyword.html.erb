@@ -1,4 +1,7 @@
-<div class="left">
+
+
+
+<!-- <div class="left">
 
 
 <%
@@ -14,7 +17,7 @@
 
 %>
 <%if current_category %>
-  <a class="btn btn-danger" href="<%= path + "?category_id=" + up_level_id.to_s %>" ><i class="icon-chevron-up"></i></a> 
+  <a class="button btn-danger" href="<%= path + "?category_id=" + up_level_id.to_s %>" ><i class="icon-chevron-up"></i></a> 
 <%end%>
 <%sub_categories.each do |category|%>
   <%if category.subcategories.count > 0 %>
@@ -22,7 +25,7 @@
     <a class="btn" href="<%= path + "?category_id=" + category.id.to_s %>" >
       <%= category.name  %>
     </a>
-    <button class="btn dropdown-toggle" data-toggle="dropdown">
+    <button class="button dropdown-toggle" data-toggle="dropdown">
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
@@ -39,7 +42,7 @@
   </div>
   <%else%>
     <div class="btn-group">
-      <a class="btn  <%= "btn-info" if current_category && category.id== current_category.id %>" href="<%= path + "?category_id=" + category.id.to_s %>" >
+      <a class="button  <%= "btn-info" if current_category && category.id== current_category.id %>" href="<%= path + "?category_id=" + category.id.to_s %>" >
         <%= category.name  %>
       </a>
     </div>
@@ -57,6 +60,6 @@
         <button type="submit" class="btn"><%=t(:search)%></button>
       </div>
     </form>
-  </div>
+  </div> -->
 
 
