@@ -38,7 +38,9 @@ Yxran::Application.routes.draw do
   end
   resources :stocks
   resources :carts
-  resources :handovers
+  resources :handovers do 
+    get :handout, on: :collection
+  end
   resources :expenses do
     member do
       get :cancel

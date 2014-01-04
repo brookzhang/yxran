@@ -7,27 +7,33 @@
   </ul>
   <% if user_signed_in? %>
     <section class="top-bar-section">
-      <% if !current_user.store_id.nil? && current_user.has_role?(:user) %>
+      <% if current_user.has_role?(:user) %>
         <!-- store -->
         <ul class="left">
+          
+          <%if !current_user.store_id.nil? %>
           <li class="has-dropdown">
-            <a href="#"><%=current_user.store.name %>
+            <a href="#">
+              <%=current_user.store.name %>
               <% if !session[:cart_count].nil? && session[:cart_count].to_i > 0 %>
                 &nbsp;&nbsp;<span><%= session[:cart_count] %></span>
               <% end %>
             </a>
             <ul class="dropdown">
-              <%if !current_user.store_id.nil? %>
-                <li><a href="<%=carts_path%>"><%=t(:record_a_sale) %></a></li>
-                <li><a href="<%=sales_path%>"><%=t(:sales) %></a></li>
-                <li><a href="<%=members_path%>"><%=t(:member_search) %></a></li>
-                <li><a href="<%=expenses_path%>"><%=t(:expenses) %></a></li>
-                <li><a href="<%=transfers_path%>"><%=t(:transfer_receive) %></a></li>
-                <li><a href="<%=stocks_path%>"><%=t(:stock_in_store) %></a></li>
-              <%end%>
-                <li><a href="<%=handovers_path%>"><%=t(:handovers) %></a></li>
+              <li><a href="<%=carts_path%>"><%=t(:record_a_sale) %></a></li>
+              <li><a href="<%=sales_path%>"><%=t(:sales) %></a></li>
+              <li><a href="<%=members_path%>"><%=t(:member_search) %></a></li>
+              <li><a href="<%=expenses_path%>"><%=t(:expenses) %></a></li>
+              <li><a href="<%=transfers_path%>"><%=t(:transfer_receive) %></a></li>
+              <li><a href="<%=stocks_path%>"><%=t(:stock_in_store) %></a></li>
+              <li><a href="<%=handout_handovers_path%>"><%=t(:hand_over) %></a></li>
             </ul>
           </li>
+          <%else%>
+          <li>
+            <a href="<%=new_handover_path%>"><%=fa_icon "user 1x"%>&nbsp;<%=t(:take_over) %></a>
+          </li>
+          <%end%>
         </ul>
       <% end %>
 

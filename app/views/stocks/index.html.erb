@@ -1,4 +1,4 @@
-<div class="span8">
+<div class="large-12">
   <div class="row collapse large-5">
     <div class="small-4 columns">
       <a href="#" data-reveal-id="myModal" class="tiny button prefix">
@@ -14,28 +14,21 @@
   </div>
 
   
-  <table class="table table-condensed">
-  	  <!-- <thead>
-        <tr>
-            <th><%= t(:product) %></th>
-            <th><%= t(:stock) %></th>
-            <th></th>                                      
-        </tr>
-    </thead>    -->
+  <table width="100%">
     <tbody>
       <% @stocks.each do |stock| %>
   	  <%= render stock %>
       <% end %>
       <tr>
         <td colspan="3">
-          <%= will_paginate @stocks %>
+          <%= will_paginate @stocks, renderer: FoundationPagination::Rails %>
         </td>
       </tr>
-  	<tr>
-  	  <td colspan="3">
-          <%= link_to t(:view_carts), carts_path, :class =>'btn btn-primary' %>
-  	  </td>
-  	</tr>
+    	<tr>
+    	  <td colspan="3">
+            <%= link_to t(:view_carts), carts_path, :class =>'tiny button' %>
+    	  </td>
+    	</tr>
     </tbody>
   </table>
 </div> 

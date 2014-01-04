@@ -1,0 +1,16 @@
+<%= simple_form_for @handover do |f| %>
+<%= f.error_notification %>
+<%= display_base_errors @handover %>
+<ul class="pricing-table">
+  <li class="title"><%= @store.name %> <%= @handover.take_amount %> ~ <%=@store.balance %></li>
+  <li class="price"><%=t(:income)%> <%=@sale_amount %> <%=t(:currency)%> </li>
+  <li class="description"><%=t(:expense)%> <%=@expense_amount %> <%=t(:currency)%> </li>
+  <li class="bullet-item">
+    <%= @handover.took_at.to_s(:date_time) %> ~ <%= Time.now.to_s(:date_time) %>
+  </li>
+  <li class="bullet-item">
+    <%= f.input_field :hand_remark, :placeholder => t(:hand_remark), :autofocus => true%>
+  </li>
+  <li class="cta-button"><%= f.button :submit, t(:submit), :class => 'button' %></li>
+</ul>
+<% end %>

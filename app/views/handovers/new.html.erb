@@ -1,15 +1,13 @@
-<%= simple_form_for @handover, :html => {:class => 'form-horizontal' } do |f| %>
-  <%= f.error_notification %>
-  <%= display_base_errors @handover %>
-  <%= f.association :store, :collection => @stores, :prompt => t(:choose_a_store), :label_method => lambda {|r| r.name + '  (' + r.balance.to_s + t(:currency) + ')' }, :label => t(:store_name), :required => true %>
-  <%= f.input :take_remark, :label => t(:take_remark) %>
-  <div class="control-group string optional handover_submit">
-    <div class="controls">
-      <%= f.button :submit, t(:submit), :class => 'btn btn-warning' %>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <%= link_to t(:back), :back, :class => 'btn btn-mini' %>
-    </div>
-  </div>
+
+
+<%= form_for @handover do |f| %>
+<%=f.hidden_field :store_id %>
+<ul class="pricing-table">
+  <li class="title"><%= t(:stores_no_one_on_duty) %></li>
+  <li class="bullet-item">
+  <%@stores.each do |store| %>
+    <a href="#" data-store-id="<%=store.id%>" class="button small-8 large-2 js-handover-store" ><%= store.name %> <%=store.balance.to_s + t(:currency) %></a>
+  <%end%>
+  </li>
+</ul>
 <% end %>
-
-

@@ -10,12 +10,18 @@
     <%= yield(:head) %>
   </head>
   <body >
-    <%= render 'layouts/navigation' %>
-    <%= render 'layouts/messages' %>
-    <%= yield %>
-    <center>
-      <footer><a href="http://www.miitbeian.gov.cn/"><%= t(:bei_an) %></a></footer>
-    </center>
+    <div id="navigation">
+      <%= render 'layouts/navigation' %>
+    </div>
+    <div id="container" style="margin-left:0px;">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </div>
+    <div class="footer" style="margin-top:10px;border-top: solid 1px #3181C0;padding-top: 5px;">
+      <center>
+        <footer><a href="http://www.miitbeian.gov.cn/"><%= t(:bei_an) %></a></footer>
+      </center>
+    </div>
     <%= debug(params) if Rails.env.development? %>
     <%= javascript_include_tag "application" %>
   </body>

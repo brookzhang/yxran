@@ -113,6 +113,7 @@ zh-CN:
 
   # sales.
   #----------------------------------------------------------------------------
+  income: '收入'
   retail_sale: '零售'
   member_sale: '会员'
   cost_sale: '出库'
@@ -302,6 +303,7 @@ zh-CN:
   hand_remark: '交班备注'
   took_at: '接班时间'
   handed_at: '交班时间'
+  stores_no_one_on_duty: '目前无人值班的店铺'
   you_can_not_take_over: '您目前不能接班'
   you_have_took_over_a_store: '您已经有值班店铺了'
   this_store_not_handed_over: '这个店铺还没交班'

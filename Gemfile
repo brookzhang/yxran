@@ -58,6 +58,7 @@ gem "chartkick"
 
 gem 'foundation-rails'
 gem "font-awesome-rails"
+gem 'will_paginate-foundation'
 
 
 

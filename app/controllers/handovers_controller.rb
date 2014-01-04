@@ -99,6 +99,22 @@ class HandoversController < ApplicationController
     end
     
   end
+
+  def handout
+    @handover = Handover.where(:user_id => current_user.id).order('id DESC').first || Handover.new
+    @store = Store.find(@handover.store_id)
+    @sales = Sale.where(:store_id => @handover.store_id,
+                        :user_id => @handover.user_id,
+                        :created_at => (@handover.took_at)..(@handover.handed_at.nil? ? Time.now : @handover.handed_at)
+                       )
+    
+    @expenses = Expense.where(:store_id => @handover.store_id,
+                        :user_id => @handover.user_id,
+                        :created_at => (@handover.took_at)..(@handover.handed_at.nil? ? Time.now : @handover.handed_at)
+                        )
+    @sale_amount = @sales.sum{|s| s.actual_amount}
+    @expense_amount = @expenses.sum{|e| e.amount}
+  end
   
   
   
