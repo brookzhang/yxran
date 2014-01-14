@@ -54,7 +54,12 @@ class Inventory < ActiveRecord::Base
     if self.status != 0
       return false
     end
-    begin
+
+    if inventory_details.count == 0 
+      return false
+    end
+    
+    ActiveRecord::Base.transaction do
       sale = Sale.new(:store_id => self.store_id, :remark => self.number, :category => 'I')
       sale.user_id = self.user_id
       sale.score = 0
@@ -85,23 +90,15 @@ class Inventory < ActiveRecord::Base
 
 
         stock = Stock.fetch(self.store_id, d.product_id)
-        stock.quantity += d.change_quantity  * (-1)
+        stock.quantity =  d.check_quantity
         stock.adjust_category = 'IC'
         stock.reference_id = d.id
         stock.change_qty = d.change_quantity * (-1)
         stock.save!
       end
-      
-      true
-    rescue => err
-      logger.error "****************************"  
-      logger.error "#{err.message}"  
-      #logger.error "#{err.backtrace.join('\n')}"  
-      logger.error "****************************"  
-      #logger.debug "======= error output: " + err.to_s 
-      self.check_message = 'unable_to_confirm'
-      false
     end
+
+    true
   end
 
 
@@ -110,11 +107,11 @@ class Inventory < ActiveRecord::Base
   # for owner, could cancel order
   #*************************
   def cancel
-
     if self.status != 1
       return false
     end
-    begin
+
+    ActiveRecord::Base.transaction do
       self.status = 9
       self.save!
 
@@ -125,24 +122,14 @@ class Inventory < ActiveRecord::Base
       inventory_details = InventoryDetail.where(:inventory_id => self.id )
       inventory_details.each do |d|
         stock = Stock.fetch(self.store_id, d.product_id)
-        stock.quantity += d.change_quantity 
+        stock.quantity = d.stock_quantity 
         stock.adjust_category = 'ICE'
         stock.reference_id = d.id
-        stock.change_qty = d.change_quantity
+        stock.change_qty =  d.change_quantity
         stock.save!
       end
-      
-      true
-    rescue => err
-      logger.error "****************************"  
-      logger.error "#{err.message}"  
-      #logger.error "#{err.backtrace.join('\n')}"  
-      logger.error "****************************"  
-      #logger.debug "======= error output: " + err.to_s 
-      self.check_message = 'unable_to_cancel'
-      false
     end
-      
+    true
   end
 
 

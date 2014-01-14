@@ -94,7 +94,7 @@ class Stocker::InventoriesController < Stocker::ApplicationController
   
   def confirm
     @inventory = Inventory.find(params[:id])
-    if @inventory.inventory_details.count > 0 && @inventory.inventory_confirm
+    if  @inventory.inventory_confirm
       redirect_to stocker_inventory_path(@inventory), :notice => t(:inventory_confirmed_ok)
     else
       redirect_to stocker_inventory_path(@inventory), :alert => t(:unable_to_confirm)
